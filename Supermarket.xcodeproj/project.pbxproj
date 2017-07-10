@@ -19,6 +19,7 @@
 		A079042A1F13F098000E4419 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A07904281F13F098000E4419 /* LaunchScreen.storyboard */; };
 		A07904351F13F098000E4419 /* SupermarketTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07904341F13F098000E4419 /* SupermarketTests.swift */; };
 		A07904401F13F098000E4419 /* SupermarketUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A079043F1F13F098000E4419 /* SupermarketUITests.swift */; };
+		A0E30DA01F143A230062B100 /* BuyFeed.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A0E30D9F1F143A230062B100 /* BuyFeed.storyboard */; };
 		DB316A86A749F02FBC5E3946 /* Pods_Supermarket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2533FCA0375016EEE9885993 /* Pods_Supermarket.framework */; };
 /* End PBXBuildFile section */
 
@@ -62,6 +63,7 @@
 		A079043B1F13F098000E4419 /* SupermarketUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SupermarketUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A079043F1F13F098000E4419 /* SupermarketUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupermarketUITests.swift; sourceTree = "<group>"; };
 		A07904411F13F098000E4419 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A0E30D9F1F143A230062B100 /* BuyFeed.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = BuyFeed.storyboard; path = ../BuyFeed.storyboard; sourceTree = "<group>"; };
 		D418555F8C554DEB840A5204 /* Pods-Supermarket.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Supermarket.release.xcconfig"; path = "Pods/Target Support Files/Pods-Supermarket/Pods-Supermarket.release.xcconfig"; sourceTree = "<group>"; };
 		E42E1176683AA54DDF0B2C47 /* Pods-SupermarketTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SupermarketTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SupermarketTests/Pods-SupermarketTests.release.xcconfig"; sourceTree = "<group>"; };
 		E87B2B465B556641E6116E4C /* Pods-Supermarket.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Supermarket.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Supermarket/Pods-Supermarket.debug.xcconfig"; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 				A079041F1F13F098000E4419 /* AppDelegate.swift */,
 				A07904211F13F098000E4419 /* ViewController.swift */,
 				A07904231F13F098000E4419 /* Main.storyboard */,
+				A0E30D9F1F143A230062B100 /* BuyFeed.storyboard */,
 				A07904261F13F098000E4419 /* Assets.xcassets */,
 				A07904281F13F098000E4419 /* LaunchScreen.storyboard */,
 				A079042B1F13F098000E4419 /* Info.plist */,
@@ -307,6 +310,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A079042A1F13F098000E4419 /* LaunchScreen.storyboard in Resources */,
+				A0E30DA01F143A230062B100 /* BuyFeed.storyboard in Resources */,
 				A07904271F13F098000E4419 /* Assets.xcassets in Resources */,
 				4D1556111F143A3B00F70DB3 /* SellFeed.storyboard in Resources */,
 				A07904251F13F098000E4419 /* Main.storyboard in Resources */,
