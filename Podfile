@@ -6,6 +6,8 @@ target 'Supermarket' do
   use_frameworks!
 
   # Pods for Supermarket
+	pod 'Parse'
+	pod 'ParseUI'
 
   target 'SupermarketTests' do
     inherit! :search_paths
