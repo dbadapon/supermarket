@@ -47,22 +47,27 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="92.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You got a new message!!!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Whq-qM-Z5s">
-                                                    <rect key="frame" x="89" y="36" width="196" height="21"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="insta_camera_btn" translatesAutoresizingMaskIntoConstraints="NO" id="hsh-vC-IZo">
+                                                    <rect key="frame" x="8" y="8" width="75" height="75"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="21" id="Mo3-9U-V6i"/>
-                                                        <constraint firstAttribute="width" constant="196" id="XX2-qG-q9q"/>
+                                                        <constraint firstAttribute="width" constant="75" id="GM6-wV-xiU"/>
+                                                        <constraint firstAttribute="height" constant="75" id="hvx-0j-pyA"/>
                                                     </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dominique sent you a message!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Whq-qM-Z5s">
+                                                    <rect key="frame" x="91" y="35" width="276" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottomMargin" secondItem="Whq-qM-Z5s" secondAttribute="bottom" constant="27.5" id="ZBI-r9-agM"/>
-                                                <constraint firstItem="Whq-qM-Z5s" firstAttribute="leading" secondItem="kmB-yY-af5" secondAttribute="leadingMargin" constant="81" id="d05-XD-9eb"/>
-                                                <constraint firstItem="Whq-qM-Z5s" firstAttribute="top" secondItem="kmB-yY-af5" secondAttribute="topMargin" constant="28" id="gfF-4d-qeJ"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="Whq-qM-Z5s" secondAttribute="trailing" constant="82" id="z50-5S-dl1"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="hsh-vC-IZo" secondAttribute="bottom" constant="8" id="Dhs-hI-FTa"/>
+                                                <constraint firstAttribute="trailing" secondItem="Whq-qM-Z5s" secondAttribute="trailing" constant="8" id="UwI-Is-gIl"/>
+                                                <constraint firstItem="hsh-vC-IZo" firstAttribute="leading" secondItem="kmB-yY-af5" secondAttribute="leading" constant="8" id="bHK-Jq-s2T"/>
+                                                <constraint firstItem="Whq-qM-Z5s" firstAttribute="leading" secondItem="hsh-vC-IZo" secondAttribute="trailing" constant="8" id="hn2-XP-hUl"/>
+                                                <constraint firstItem="hsh-vC-IZo" firstAttribute="top" secondItem="kmB-yY-af5" secondAttribute="top" constant="8" id="hoG-Wl-YF3"/>
+                                                <constraint firstItem="Whq-qM-Z5s" firstAttribute="centerY" secondItem="hsh-vC-IZo" secondAttribute="centerY" id="xZP-F1-2Ha"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -135,4 +140,7 @@
             <point key="canvasLocation" x="144.80000000000001" y="42.728635682158924"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="insta_camera_btn" width="16" height="16"/>
+    </resources>
 </document>
