@@ -75,6 +75,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Market Name" id="Lde-4x-prC">
+                        <barButtonItem key="leftBarButtonItem" title="Menu" id="OWe-ii-zns">
+                            <connections>
+                                <segue destination="gaw-1C-xQB" kind="presentation" id="RUs-SN-LkC"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Filter" id="ehW-7w-uU0"/>
                     </navigationItem>
                     <connections>
@@ -84,6 +89,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MrS-z7-W1g" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1047" y="-105"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="2Hc-Ml-Ecm">
+            <objects>
+                <viewController id="0G0-yD-TYX" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="68M-V4-HqX"/>
+                        <viewControllerLayoutGuide type="bottom" id="KGi-qu-jC9"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="w8U-KX-2yi">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.42906409400000001" green="0.60921453569999995" blue="0.93730527159999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="qYe-3n-wt1"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nlw-aM-G9B" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2796" y="-106"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="atP-oI-SDc">
@@ -102,6 +126,27 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4hn-NG-Rok" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="316" y="-105"/>
+        </scene>
+        <!--Side Menu Navigation Controller-->
+        <scene sceneID="6NG-RO-Aqv">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="gaw-1C-xQB" customClass="UISideMenuNavigationController" customModule="SideMenu" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="EOb-EU-qi3">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="leftSide" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <segue destination="0G0-yD-TYX" kind="relationship" relationship="rootViewController" id="NUb-xn-m8s"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eQg-MD-uQF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1991" y="-106"/>
         </scene>
     </scenes>
 </document>

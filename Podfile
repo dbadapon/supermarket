@@ -8,6 +8,7 @@ target 'Supermarket' do
   # Pods for Supermarket
 	pod 'Parse'
 	pod 'ParseUI'
+	pod 'SideMenu'
 
   target 'SupermarketTests' do
     inherit! :search_paths
