@@ -26,6 +26,9 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         searchController.dimsBackgroundDuringPresentation = false
         searchController.searchBar.sizeToFit()
         postTableView.tableHeaderView = searchController.searchBar
+        
+        searchController.searchBar.barTintColor = UIColor.purple
+        
         definesPresentationContext = true
     }
 
