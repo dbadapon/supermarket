@@ -27,37 +27,21 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         searchController.searchBar.sizeToFit()
         postTableView.tableHeaderView = searchController.searchBar
         
-        searchController.searchBar.barTintColor = UIColor.purple
+        searchController.searchBar.barTintColor = UIColor.white
+        
+        searchController.searchBar.layer.borderWidth = 1
+        
+        searchController.searchBar.layer.borderColor = searchController.searchBar.barTintColor?.cgColor
         
         navigationController?.navigationBar.barTintColor = UIColor.purple
         navigationController?.navigationBar.isTranslucent = false
         
-        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        navigationController?.navigationBar.shadowImage = UIImage()
         
-        
-//        if self.navigationController != nil {
-//            hideBorder(view: self.navigationController!.navigationBar)
-//        }
-        
+        searchController.searchBar.clipsToBounds = true
         
         definesPresentationContext = true
     }
     
-//    func hideBorder(view: UIView) -> Bool {
-//        if view.isKind(of: UIImageView.classForCoder()) && view.frame.size.height <= 1 {
-//            view.isHidden = true
-//            return true
-//        }
-//        
-//        for sub in view.subviews {
-//            if hideBorder(view: sub as! UIView) {
-//                return true
-//            }
-//        }
-//        return false
-//        
-//    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
