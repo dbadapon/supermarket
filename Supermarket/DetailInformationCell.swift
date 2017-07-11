@@ -10,6 +10,8 @@ import UIKit
 
 class DetailInformationCell: UITableViewCell {
 
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -21,4 +23,9 @@ class DetailInformationCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    @IBAction func onMessage(_ sender: Any) {
+    }
+    
+    @IBAction func onInterested(_ sender: Any) {
+    }
 }
