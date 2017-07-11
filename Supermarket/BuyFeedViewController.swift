@@ -33,7 +33,12 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         
         searchController.searchBar.layer.borderColor = searchController.searchBar.barTintColor?.cgColor
         
-        navigationController?.navigationBar.barTintColor = UIColor.purple
+        navigationController?.navigationBar.barTintColor = UIColor.init(colorLiteralRed: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha: 1.0)
+        
+        navigationController?.navigationBar.barStyle = UIBarStyle.black
+        
+        navigationController?.navigationBar.tintColor = UIColor.white
+        
         navigationController?.navigationBar.isTranslucent = false
         
         
