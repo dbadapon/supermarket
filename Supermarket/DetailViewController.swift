@@ -34,7 +34,6 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print ("it gets to cell for row at")
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "DetailPictureCell") as! DetailPictureCell
             
@@ -49,12 +48,10 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print ("it gets to number of rows in section")
         return 1
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        print ("It gets to number of sections")
         return 2
     }
     
