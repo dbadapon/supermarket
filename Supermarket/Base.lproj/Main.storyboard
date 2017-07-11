@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F2073" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="dbk-qZ-jFD">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="dbk-qZ-jFD">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -57,7 +57,7 @@
                                     <segue destination="Vl0-9F-hHi" kind="show" id="ggL-nP-E9k"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="X4k-1f-BqS">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="X4k-1f-BqS">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="210"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -76,8 +76,19 @@
                                     <action selector="loginUser:" destination="SQ9-MZ-TCc" eventType="touchUpInside" id="GRZ-sI-PdJ"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="supermarket_white" translatesAutoresizingMaskIntoConstraints="NO" id="Ic1-79-j5g">
+                                <rect key="frame" x="88" y="60" width="200" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="lF9-lQ-Eus"/>
+                                    <constraint firstAttribute="width" constant="200" id="pDK-zC-oOo"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Ic1-79-j5g" firstAttribute="top" secondItem="fU1-aN-zMl" secondAttribute="bottom" constant="40" id="ZDN-Dh-OEW"/>
+                            <constraint firstItem="Ic1-79-j5g" firstAttribute="centerX" secondItem="ual-1i-2cY" secondAttribute="centerX" id="gXP-on-U1E"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="NbY-NK-X8k"/>
                     <connections>
@@ -88,7 +99,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GzM-g0-ZzF" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1255" y="108"/>
+            <point key="canvasLocation" x="-1255.2" y="107.49625187406298"/>
         </scene>
         <!--SignUpViewController-->
         <scene sceneID="6dx-ib-gjh">
@@ -131,7 +142,7 @@
                                     <action selector="cancelRegisterAction:" destination="Vl0-9F-hHi" eventType="touchUpInside" id="djn-sR-c4y"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mSO-2h-AKS">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="mSO-2h-AKS">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="210"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -150,8 +161,19 @@
                                     <action selector="registerUser:" destination="Vl0-9F-hHi" eventType="touchUpInside" id="T8t-W8-aOn"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="supermarket_white" translatesAutoresizingMaskIntoConstraints="NO" id="gMg-K9-dsw">
+                                <rect key="frame" x="87.5" y="60" width="200" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="92f-Az-yVr"/>
+                                    <constraint firstAttribute="width" constant="200" id="C3l-f7-Ogc"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="gMg-K9-dsw" firstAttribute="top" secondItem="IyS-4G-ck6" secondAttribute="bottom" constant="40" id="8Ht-vS-i1S"/>
+                            <constraint firstItem="gMg-K9-dsw" firstAttribute="centerX" secondItem="ocz-RO-WEz" secondAttribute="centerX" id="OvC-XE-PCm"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="emailLabel" destination="AsS-LL-9z9" id="HJI-Nf-DHo"/>
@@ -161,7 +183,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1aD-k0-dAh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-479" y="108"/>
+            <point key="canvasLocation" x="-479.19999999999999" y="107.49625187406298"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="background" width="1439" height="863"/>
+        <image name="supermarket_white" width="259" height="57"/>
+    </resources>
 </document>
