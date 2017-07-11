@@ -14,11 +14,29 @@ class TabBarController: UITabBarController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        var buyFeedStoryboard = UIStoryboard(name: "BuyFeed", bundle: nil)
+        let buyFeedStoryboard = UIStoryboard(name: "BuyFeed", bundle: nil)
+        let buyFeedController = buyFeedStoryboard.instantiateViewController(withIdentifier: "BuyFeedController") as! UINavigationController
         
-        var buyFeedController = buyFeedStoryboard.instantiateViewController(withIdentifier: "BuyFeedController") as! UINavigationController
+        let tab1 = UITabBarItem(title: "Buy", image: nil, selectedImage: nil)
+        buyFeedController.tabBarItem = tab1
         
-        let controllers = [buyFeedController]
+        // change images later!
+        
+        
+        let sellFeedStoryboard = UIStoryboard(name: "SellFeed", bundle: nil)
+        let sellFeedController = sellFeedStoryboard.instantiateViewController(withIdentifier: "SellFeedController") as! UINavigationController
+        
+        let tab2 = UITabBarItem(title: "Sell", image: nil, selectedImage: nil)
+        sellFeedController.tabBarItem = tab2
+        
+        
+        let createPostStoryboard = UIStoryboard(name: "CreatePost", bundle: nil)
+        let createPostController = createPostStoryboard.instantiateViewController(withIdentifier: "CreatePostController") as! UINavigationController
+        
+        let tab3 = UITabBarItem(title: "Post", image: nil, selectedImage: nil)
+        createPostController.tabBarItem = tab3
+        
+        let controllers = [buyFeedController, sellFeedController, createPostController]
         self.viewControllers = controllers
         
     }
