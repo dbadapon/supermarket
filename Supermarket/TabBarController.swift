@@ -15,10 +15,12 @@ class TabBarController: UITabBarController {
         super.viewWillAppear(animated)
         
         var buyFeedStoryboard = UIStoryboard(name: "BuyFeed", bundle: nil)
+        
         var buyFeedController = buyFeedStoryboard.instantiateViewController(withIdentifier: "BuyFeedController") as! UINavigationController
         
         let controllers = [buyFeedController]
         self.viewControllers = controllers
+        
     }
 
     override func viewDidLoad() {

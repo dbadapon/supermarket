@@ -8,9 +8,11 @@
 
 import UIKit
 
-class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchResultsUpdating {
     
     @IBOutlet weak var postTableView: UITableView!
+    
+    var searchController: UISearchController!
     
 
     override func viewDidLoad() {
@@ -18,7 +20,13 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         postTableView.dataSource = self
         postTableView.delegate = self
 
-        // Do any additional setup after loading the view.
+        searchController = UISearchController(searchResultsController: nil)
+        searchController.searchResultsUpdater = self
+        
+        searchController.dimsBackgroundDuringPresentation = false
+        searchController.searchBar.sizeToFit()
+        postTableView.tableHeaderView = searchController.searchBar
+        definesPresentationContext = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -27,7 +35,7 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5 // change to posts.count once you have parse and stuff...
+        return 10 // change to posts.count once you have parse and stuff...
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -36,6 +44,10 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         
         return cell
         
+    }
+    
+    func updateSearchResults(for searchController: UISearchController) {
+
     }
 
     /*
