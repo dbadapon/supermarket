@@ -20,6 +20,9 @@ class NotificationsViewController: UIViewController, UITableViewDelegate, UITabl
 
         // Do any additional setup after loading the view.
         
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 100
         
