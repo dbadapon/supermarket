@@ -7,10 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A017A531F143C51001C6B5A /* CreatePost.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A017A521F143C51001C6B5A /* CreatePost.storyboard */; };
 		4235A579D607D191574DCF4B /* Pods_SupermarketTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AE35AF3621B63A19B9B12F4 /* Pods_SupermarketTests.framework */; };
 		4D15560D1F1402B900F70DB3 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D15560C1F1402B900F70DB3 /* User.swift */; };
 		4D15560F1F1402CF00F70DB3 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D15560E1F1402CF00F70DB3 /* Post.swift */; };
 		4D1556111F143A3B00F70DB3 /* SellFeed.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D1556101F143A3B00F70DB3 /* SellFeed.storyboard */; };
+		4D1556131F143BCB00F70DB3 /* Market.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1556121F143BCB00F70DB3 /* Market.swift */; };
+		4D1556151F143BE500F70DB3 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1556141F143BE500F70DB3 /* Category.swift */; };
 		926A42BE122588BD99E6BC61 /* Pods_SupermarketUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80572461216E64975C83358E /* Pods_SupermarketUITests.framework */; };
 		A07904201F13F098000E4419 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A079041F1F13F098000E4419 /* AppDelegate.swift */; };
 		A07904221F13F098000E4419 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07904211F13F098000E4419 /* ViewController.swift */; };
@@ -22,6 +25,7 @@
 		A0E30DA01F143A230062B100 /* BuyFeed.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A0E30D9F1F143A230062B100 /* BuyFeed.storyboard */; };
 		A0E30DA21F143C020062B100 /* BuyFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E30DA11F143C020062B100 /* BuyFeedViewController.swift */; };
 		A0E30DA51F14438D0062B100 /* BuyFeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E30DA41F14438D0062B100 /* BuyFeedCell.swift */; };
+		A0E30DE71F144EA00062B100 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E30DE61F144EA00062B100 /* TabBarController.swift */; };
 		DB316A86A749F02FBC5E3946 /* Pods_Supermarket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2533FCA0375016EEE9885993 /* Pods_Supermarket.framework */; };
 /* End PBXBuildFile section */
 
@@ -43,12 +47,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0A017A521F143C51001C6B5A /* CreatePost.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CreatePost.storyboard; sourceTree = "<group>"; };
 		166F786788F2FF8997A86CB0 /* Pods-SupermarketTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SupermarketTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SupermarketTests/Pods-SupermarketTests.debug.xcconfig"; sourceTree = "<group>"; };
 		2533FCA0375016EEE9885993 /* Pods_Supermarket.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Supermarket.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AE35AF3621B63A19B9B12F4 /* Pods_SupermarketTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SupermarketTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D15560C1F1402B900F70DB3 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		4D15560E1F1402CF00F70DB3 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		4D1556101F143A3B00F70DB3 /* SellFeed.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SellFeed.storyboard; sourceTree = "<group>"; };
+		4D1556121F143BCB00F70DB3 /* Market.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Market.swift; sourceTree = "<group>"; };
+		4D1556141F143BE500F70DB3 /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		80572461216E64975C83358E /* Pods_SupermarketUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SupermarketUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		926BE3FB87F2C782821060A8 /* Pods-SupermarketUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SupermarketUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SupermarketUITests/Pods-SupermarketUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		9CA3F4E30EAAA6212351048B /* Pods-SupermarketUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SupermarketUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SupermarketUITests/Pods-SupermarketUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -68,6 +75,7 @@
 		A0E30D9F1F143A230062B100 /* BuyFeed.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = BuyFeed.storyboard; path = ../BuyFeed.storyboard; sourceTree = "<group>"; };
 		A0E30DA11F143C020062B100 /* BuyFeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuyFeedViewController.swift; sourceTree = "<group>"; };
 		A0E30DA41F14438D0062B100 /* BuyFeedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuyFeedCell.swift; sourceTree = "<group>"; };
+		A0E30DE61F144EA00062B100 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		D418555F8C554DEB840A5204 /* Pods-Supermarket.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Supermarket.release.xcconfig"; path = "Pods/Target Support Files/Pods-Supermarket/Pods-Supermarket.release.xcconfig"; sourceTree = "<group>"; };
 		E42E1176683AA54DDF0B2C47 /* Pods-SupermarketTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SupermarketTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SupermarketTests/Pods-SupermarketTests.release.xcconfig"; sourceTree = "<group>"; };
 		E87B2B465B556641E6116E4C /* Pods-Supermarket.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Supermarket.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Supermarket/Pods-Supermarket.debug.xcconfig"; sourceTree = "<group>"; };
@@ -119,6 +127,8 @@
 			children = (
 				4D15560C1F1402B900F70DB3 /* User.swift */,
 				4D15560E1F1402CF00F70DB3 /* Post.swift */,
+				4D1556121F143BCB00F70DB3 /* Market.swift */,
+				4D1556141F143BE500F70DB3 /* Category.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -127,6 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				A0E30DA11F143C020062B100 /* BuyFeedViewController.swift */,
+				A0E30DE61F144EA00062B100 /* TabBarController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -172,6 +183,7 @@
 				A079041F1F13F098000E4419 /* AppDelegate.swift */,
 				A07904211F13F098000E4419 /* ViewController.swift */,
 				A07904231F13F098000E4419 /* Main.storyboard */,
+				0A017A521F143C51001C6B5A /* CreatePost.storyboard */,
 				A0E30D9F1F143A230062B100 /* BuyFeed.storyboard */,
 				4D1556101F143A3B00F70DB3 /* SellFeed.storyboard */,
 				A07904261F13F098000E4419 /* Assets.xcassets */,
@@ -323,6 +335,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A017A531F143C51001C6B5A /* CreatePost.storyboard in Resources */,
 				A079042A1F13F098000E4419 /* LaunchScreen.storyboard in Resources */,
 				A0E30DA01F143A230062B100 /* BuyFeed.storyboard in Resources */,
 				A07904271F13F098000E4419 /* Assets.xcassets in Resources */,
@@ -493,9 +506,12 @@
 				A0E30DA51F14438D0062B100 /* BuyFeedCell.swift in Sources */,
 				A07904221F13F098000E4419 /* ViewController.swift in Sources */,
 				A0E30DA21F143C020062B100 /* BuyFeedViewController.swift in Sources */,
+				A0E30DE71F144EA00062B100 /* TabBarController.swift in Sources */,
 				A07904201F13F098000E4419 /* AppDelegate.swift in Sources */,
 				4D15560D1F1402B900F70DB3 /* User.swift in Sources */,
 				4D15560F1F1402CF00F70DB3 /* Post.swift in Sources */,
+				4D1556131F143BCB00F70DB3 /* Market.swift in Sources */,
+				4D1556151F143BE500F70DB3 /* Category.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
