@@ -8,10 +8,15 @@
 
 import UIKit
 
-class BuyFeedViewController: UIViewController {
+class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
+    @IBOutlet weak var postTableView: UITableView!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        postTableView.dataSource = self
+        postTableView.delegate = self
 
         // Do any additional setup after loading the view.
     }
@@ -21,6 +26,17 @@ class BuyFeedViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 5 // change to posts.count once you have parse and stuff...
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = postTableView.dequeueReusableCell(withIdentifier: "BuyFeedCell", for: indexPath) as! BuyFeedCell
+        
+        return cell
+        
+    }
 
     /*
     // MARK: - Navigation

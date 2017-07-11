@@ -20,6 +20,8 @@
 		A07904351F13F098000E4419 /* SupermarketTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07904341F13F098000E4419 /* SupermarketTests.swift */; };
 		A07904401F13F098000E4419 /* SupermarketUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A079043F1F13F098000E4419 /* SupermarketUITests.swift */; };
 		A0E30DA01F143A230062B100 /* BuyFeed.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A0E30D9F1F143A230062B100 /* BuyFeed.storyboard */; };
+		A0E30DA21F143C020062B100 /* BuyFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E30DA11F143C020062B100 /* BuyFeedViewController.swift */; };
+		A0E30DA51F14438D0062B100 /* BuyFeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E30DA41F14438D0062B100 /* BuyFeedCell.swift */; };
 		DB316A86A749F02FBC5E3946 /* Pods_Supermarket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2533FCA0375016EEE9885993 /* Pods_Supermarket.framework */; };
 /* End PBXBuildFile section */
 
@@ -64,6 +66,8 @@
 		A079043F1F13F098000E4419 /* SupermarketUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupermarketUITests.swift; sourceTree = "<group>"; };
 		A07904411F13F098000E4419 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A0E30D9F1F143A230062B100 /* BuyFeed.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = BuyFeed.storyboard; path = ../BuyFeed.storyboard; sourceTree = "<group>"; };
+		A0E30DA11F143C020062B100 /* BuyFeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuyFeedViewController.swift; sourceTree = "<group>"; };
+		A0E30DA41F14438D0062B100 /* BuyFeedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuyFeedCell.swift; sourceTree = "<group>"; };
 		D418555F8C554DEB840A5204 /* Pods-Supermarket.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Supermarket.release.xcconfig"; path = "Pods/Target Support Files/Pods-Supermarket/Pods-Supermarket.release.xcconfig"; sourceTree = "<group>"; };
 		E42E1176683AA54DDF0B2C47 /* Pods-SupermarketTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SupermarketTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SupermarketTests/Pods-SupermarketTests.release.xcconfig"; sourceTree = "<group>"; };
 		E87B2B465B556641E6116E4C /* Pods-Supermarket.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Supermarket.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Supermarket/Pods-Supermarket.debug.xcconfig"; sourceTree = "<group>"; };
@@ -122,6 +126,7 @@
 		4D15560B1F1400CA00F70DB3 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				A0E30DA11F143C020062B100 /* BuyFeedViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -161,16 +166,17 @@
 		A079041E1F13F098000E4419 /* Supermarket */ = {
 			isa = PBXGroup;
 			children = (
+				A0E30DA31F14434B0062B100 /* Views */,
 				4D15560B1F1400CA00F70DB3 /* View Controllers */,
 				4D15560A1F1400A500F70DB3 /* Models */,
 				A079041F1F13F098000E4419 /* AppDelegate.swift */,
 				A07904211F13F098000E4419 /* ViewController.swift */,
 				A07904231F13F098000E4419 /* Main.storyboard */,
 				A0E30D9F1F143A230062B100 /* BuyFeed.storyboard */,
+				4D1556101F143A3B00F70DB3 /* SellFeed.storyboard */,
 				A07904261F13F098000E4419 /* Assets.xcassets */,
 				A07904281F13F098000E4419 /* LaunchScreen.storyboard */,
 				A079042B1F13F098000E4419 /* Info.plist */,
-				4D1556101F143A3B00F70DB3 /* SellFeed.storyboard */,
 			);
 			path = Supermarket;
 			sourceTree = "<group>";
@@ -191,6 +197,14 @@
 				A07904411F13F098000E4419 /* Info.plist */,
 			);
 			path = SupermarketUITests;
+			sourceTree = "<group>";
+		};
+		A0E30DA31F14434B0062B100 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A0E30DA41F14438D0062B100 /* BuyFeedCell.swift */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -476,7 +490,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A0E30DA51F14438D0062B100 /* BuyFeedCell.swift in Sources */,
 				A07904221F13F098000E4419 /* ViewController.swift in Sources */,
+				A0E30DA21F143C020062B100 /* BuyFeedViewController.swift in Sources */,
 				A07904201F13F098000E4419 /* AppDelegate.swift in Sources */,
 				4D15560D1F1402B900F70DB3 /* User.swift in Sources */,
 				4D15560F1F1402CF00F70DB3 /* Post.swift in Sources */,

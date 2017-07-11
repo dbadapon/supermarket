@@ -12,7 +12,7 @@
         <!--Market Name-->
         <scene sceneID="tIp-Vc-pBc">
             <objects>
-                <viewController id="8QK-l8-mMa" customClass="BuyFeedViewController" customModule="Supermarket" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="8QK-l8-mMa" customClass="BuyFeedViewController" customModule="BuyFeedPrototype" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="v3I-p6-fPU"/>
                         <viewControllerLayoutGuide type="bottom" id="7zv-AI-b54"/>
@@ -26,7 +26,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BuyFeedCell" rowHeight="118" id="NK2-NI-7Gp" customClass="BuyFeedCell" customModule="Supermarket" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BuyFeedCell" rowHeight="118" id="NK2-NI-7Gp" customClass="BuyFeedCell" customModule="BuyFeedPrototype" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="118"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NK2-NI-7Gp" id="WXX-iZ-TMn">
@@ -83,12 +83,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MrS-z7-W1g" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="791.20000000000005" y="-163.26836581709148"/>
+            <point key="canvasLocation" x="1047" y="-105"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="atP-oI-SDc">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="3xq-Nx-q7N" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="BuyFeedController" automaticallyAdjustsScrollViewInsets="NO" id="3xq-Nx-q7N" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="rLC-xc-5c8">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -101,7 +101,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4hn-NG-Rok" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-148" y="-163.26836581709148"/>
+            <point key="canvasLocation" x="316" y="-105"/>
         </scene>
     </scenes>
 </document>
