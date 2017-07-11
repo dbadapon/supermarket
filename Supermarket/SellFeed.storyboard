@@ -28,7 +28,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
-                                    <segue destination="0YK-hM-0Ha" kind="show" id="gvd-Wr-2gq"/>
+                                    <segue destination="fCc-EQ-dXC" kind="show" id="XV8-9a-t2z"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -63,7 +63,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="293.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IPx-MX-dYl">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="insta_camera_btn" translatesAutoresizingMaskIntoConstraints="NO" id="IPx-MX-dYl">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="281.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="IPx-MX-dYl" secondAttribute="height" multiplier="4:3" id="L6Z-Tc-E56"/>
@@ -74,6 +74,7 @@
                                                 <constraint firstAttribute="trailing" secondItem="IPx-MX-dYl" secondAttribute="trailing" id="IQL-O1-7e2"/>
                                                 <constraint firstItem="IPx-MX-dYl" firstAttribute="leading" secondItem="R0b-Wv-IjI" secondAttribute="leading" id="IRP-4u-QhI"/>
                                                 <constraint firstItem="IPx-MX-dYl" firstAttribute="top" secondItem="R0b-Wv-IjI" secondAttribute="top" id="jT8-Vk-C6H"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="IPx-MX-dYl" secondAttribute="bottom" constant="8" id="r4i-0K-5mE"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -188,23 +189,8 @@
             </objects>
             <point key="canvasLocation" x="292" y="-25.637181409295355"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="6wr-aK-3D9">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="0YK-hM-0Ha" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="aAT-ih-8bj">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="fCc-EQ-dXC" kind="relationship" relationship="rootViewController" id="Ykg-Ib-bGX"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="PZZ-o5-LPD" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2181.5999999999999" y="-26.53673163418291"/>
-        </scene>
     </scenes>
+    <resources>
+        <image name="insta_camera_btn" width="16" height="16"/>
+    </resources>
 </document>

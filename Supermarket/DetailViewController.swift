@@ -20,6 +20,10 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 100
         
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.separatorStyle = .none
+        
         tableView.reloadData()
         
     }
@@ -50,7 +54,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        print ("it gets to number of sections")
+        print ("It gets to number of sections")
         return 2
     }
     
