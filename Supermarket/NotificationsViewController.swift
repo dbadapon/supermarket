@@ -60,9 +60,13 @@ class NotificationsViewController: UIViewController, UITableViewDelegate, UITabl
     }
 
     @IBAction func indexChanged(_ sender: Any) {
-        tableView.reloadData()
+        if segmentedControl.selectedSegmentIndex == 0 {
+            self.title = "Notifications"
+        } else {
+            self.title = "Messages"
+        }
         
-        // print ("inded changed \(segmentedControl.selectedSegmentIndex)")
+        tableView.reloadData()
     }
     /*
     // MARK: - Navigation

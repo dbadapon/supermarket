@@ -31,13 +31,13 @@
                                     <segment title="Notifications"/>
                                     <segment title="Messages"/>
                                 </segments>
-                                <color key="tintColor" red="0.36550331115722656" green="0.79173368215560913" blue="0.80787837505340576" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="tintColor" red="0.36550331120000001" green="0.79173368219999996" blue="0.80787837510000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <connections>
                                     <action selector="indexChanged:" destination="7a0-aG-N1u" eventType="valueChanged" id="Lmz-em-wg6"/>
                                 </connections>
                             </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="93" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="FPX-9d-g14">
-                                <rect key="frame" x="0.0" y="92" width="375" height="575"/>
+                                <rect key="frame" x="0.0" y="93" width="375" height="574"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MessageCell" rowHeight="93" id="yfo-At-jcW" customClass="MessageCell" customModule="Supermarket" customModuleProvider="target">
@@ -78,24 +78,58 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="139.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You got a new notification!!!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="04w-xf-dw0">
-                                                    <rect key="frame" x="82" y="59" width="228" height="21"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="insta_camera_btn" translatesAutoresizingMaskIntoConstraints="NO" id="Kdx-BS-8Nj">
+                                                    <rect key="frame" x="8" y="8" width="75" height="75"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="21" id="Okj-sO-9N6"/>
-                                                        <constraint firstAttribute="width" constant="228" id="TzK-PG-e4B"/>
+                                                        <constraint firstAttribute="width" constant="75" id="Xoa-62-WdM"/>
+                                                        <constraint firstAttribute="height" constant="75" id="zyQ-cO-mmT"/>
                                                     </constraints>
+                                                </imageView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IbF-TB-2eE">
+                                                    <rect key="frame" x="91" y="57" width="85" height="30"/>
+                                                    <color key="backgroundColor" red="0.36550331120000001" green="0.79173368219999996" blue="0.80787837510000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="85" id="p6P-Ka-j9D"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Ignore">
+                                                        <color key="titleColor" red="1" green="0.9999879599" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    </state>
+                                                </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dominique is interested in your Foldable Chair!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="04w-xf-dw0">
+                                                    <rect key="frame" x="91" y="8" width="276" height="41"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ghe-Nn-iCL">
+                                                    <rect key="frame" x="199" y="57.5" width="85" height="30"/>
+                                                    <color key="backgroundColor" red="0.36550331120000001" green="0.79173368219999996" blue="0.80787837510000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="85" id="J07-Ec-ZQx"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Respond">
+                                                        <color key="titleColor" red="1" green="0.9999879599" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    </state>
+                                                </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailingMargin" secondItem="04w-xf-dw0" secondAttribute="trailing" constant="57" id="Pqz-Wv-moZ"/>
-                                                <constraint firstItem="04w-xf-dw0" firstAttribute="top" secondItem="a5v-44-Ge5" secondAttribute="topMargin" constant="51" id="R16-5q-jhp"/>
-                                                <constraint firstItem="04w-xf-dw0" firstAttribute="leading" secondItem="a5v-44-Ge5" secondAttribute="leadingMargin" constant="74" id="VzL-sf-2y0"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="04w-xf-dw0" secondAttribute="bottom" constant="51.5" id="saq-BC-Mh4"/>
+                                                <constraint firstItem="ghe-Nn-iCL" firstAttribute="centerY" secondItem="IbF-TB-2eE" secondAttribute="centerY" id="1bW-B2-amq"/>
+                                                <constraint firstItem="04w-xf-dw0" firstAttribute="leading" secondItem="Kdx-BS-8Nj" secondAttribute="trailing" constant="8" id="2rb-si-uyr"/>
+                                                <constraint firstItem="IbF-TB-2eE" firstAttribute="leading" secondItem="04w-xf-dw0" secondAttribute="leading" id="3qP-Bm-h5I"/>
+                                                <constraint firstItem="04w-xf-dw0" firstAttribute="top" secondItem="Kdx-BS-8Nj" secondAttribute="top" id="7FV-VV-Rf8"/>
+                                                <constraint firstAttribute="trailing" secondItem="04w-xf-dw0" secondAttribute="trailing" constant="8" id="9eh-eJ-3Cb"/>
+                                                <constraint firstItem="Kdx-BS-8Nj" firstAttribute="leading" secondItem="a5v-44-Ge5" secondAttribute="leading" constant="8" id="GDZ-uk-lPI"/>
+                                                <constraint firstItem="Kdx-BS-8Nj" firstAttribute="top" secondItem="a5v-44-Ge5" secondAttribute="top" constant="8" id="GFe-Ec-x8O"/>
+                                                <constraint firstItem="IbF-TB-2eE" firstAttribute="top" secondItem="04w-xf-dw0" secondAttribute="bottom" constant="8" id="TMN-bs-Nay"/>
+                                                <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="IbF-TB-2eE" secondAttribute="bottom" constant="8" id="aX0-Ba-8Mq"/>
+                                                <constraint firstItem="ghe-Nn-iCL" firstAttribute="leading" secondItem="IbF-TB-2eE" secondAttribute="trailing" constant="23" id="lMU-MB-mm8"/>
+                                                <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="Kdx-BS-8Nj" secondAttribute="bottom" constant="8" id="pxA-uy-yb3"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="ignoreButton" destination="IbF-TB-2eE" id="CQg-H5-Giw"/>
+                                            <outlet property="respondButton" destination="ghe-Nn-iCL" id="oVp-VE-kZI"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -103,7 +137,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="FPX-9d-g14" firstAttribute="leading" secondItem="E8Y-fD-Nrn" secondAttribute="leading" id="1Vj-JJ-RdH"/>
-                            <constraint firstItem="FPX-9d-g14" firstAttribute="top" secondItem="NTy-yd-xe1" secondAttribute="bottom" id="7py-7V-Oj8"/>
+                            <constraint firstItem="FPX-9d-g14" firstAttribute="top" secondItem="NTy-yd-xe1" secondAttribute="bottom" constant="1" id="7py-7V-Oj8"/>
                             <constraint firstItem="NTy-yd-xe1" firstAttribute="leading" secondItem="E8Y-fD-Nrn" secondAttribute="leading" id="Rr6-CR-Uip"/>
                             <constraint firstItem="NTy-yd-xe1" firstAttribute="top" secondItem="V9K-jf-fup" secondAttribute="bottom" id="SNA-bS-Aat"/>
                             <constraint firstItem="wb1-KY-uec" firstAttribute="top" secondItem="FPX-9d-g14" secondAttribute="bottom" id="cSl-2i-aED"/>
