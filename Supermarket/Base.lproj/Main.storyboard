@@ -57,7 +57,7 @@
                                     <segue destination="Vl0-9F-hHi" kind="show" id="ggL-nP-E9k"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="X4k-1f-BqS">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="X4k-1f-BqS">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="210"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -142,7 +142,7 @@
                                     <action selector="cancelRegisterAction:" destination="Vl0-9F-hHi" eventType="touchUpInside" id="djn-sR-c4y"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="mSO-2h-AKS">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="mSO-2h-AKS">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="210"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -187,7 +187,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="background" width="1439" height="863"/>
+        <image name="Background" width="1439" height="863"/>
         <image name="supermarket_white" width="259" height="57"/>
     </resources>
 </document>
