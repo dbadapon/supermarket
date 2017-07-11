@@ -16,6 +16,9 @@
 		4D1556111F143A3B00F70DB3 /* SellFeed.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D1556101F143A3B00F70DB3 /* SellFeed.storyboard */; };
 		4D1556131F143BCB00F70DB3 /* Market.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1556121F143BCB00F70DB3 /* Market.swift */; };
 		4D1556151F143BE500F70DB3 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1556141F143BE500F70DB3 /* Category.swift */; };
+		4D1556571F153FC800F70DB3 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1556561F153FC800F70DB3 /* DetailViewController.swift */; };
+		4D1556591F1540EB00F70DB3 /* DetailPictureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1556581F1540EB00F70DB3 /* DetailPictureCell.swift */; };
+		4D15565B1F1540FD00F70DB3 /* DetailInformationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D15565A1F1540FD00F70DB3 /* DetailInformationCell.swift */; };
 		926A42BE122588BD99E6BC61 /* Pods_SupermarketUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80572461216E64975C83358E /* Pods_SupermarketUITests.framework */; };
 		A07904201F13F098000E4419 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A079041F1F13F098000E4419 /* AppDelegate.swift */; };
 		A07904221F13F098000E4419 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07904211F13F098000E4419 /* ViewController.swift */; };
@@ -60,6 +63,9 @@
 		4D1556101F143A3B00F70DB3 /* SellFeed.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SellFeed.storyboard; sourceTree = "<group>"; };
 		4D1556121F143BCB00F70DB3 /* Market.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Market.swift; sourceTree = "<group>"; };
 		4D1556141F143BE500F70DB3 /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		4D1556561F153FC800F70DB3 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		4D1556581F1540EB00F70DB3 /* DetailPictureCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailPictureCell.swift; sourceTree = "<group>"; };
+		4D15565A1F1540FD00F70DB3 /* DetailInformationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailInformationCell.swift; sourceTree = "<group>"; };
 		80572461216E64975C83358E /* Pods_SupermarketUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SupermarketUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		926BE3FB87F2C782821060A8 /* Pods-SupermarketUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SupermarketUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SupermarketUITests/Pods-SupermarketUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		9CA3F4E30EAAA6212351048B /* Pods-SupermarketUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SupermarketUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SupermarketUITests/Pods-SupermarketUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -144,6 +150,7 @@
 				A0E30DE61F144EA00062B100 /* TabBarController.swift */,
 				0A6966C51F15401200E72FD8 /* LoginViewController.swift */,
 				0A6966C71F15404700E72FD8 /* SignUpViewController.swift */,
+				4D1556561F153FC800F70DB3 /* DetailViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -221,6 +228,8 @@
 			isa = PBXGroup;
 			children = (
 				A0E30DA41F14438D0062B100 /* BuyFeedCell.swift */,
+				4D1556581F1540EB00F70DB3 /* DetailPictureCell.swift */,
+				4D15565A1F1540FD00F70DB3 /* DetailInformationCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -516,10 +525,13 @@
 				A0E30DE71F144EA00062B100 /* TabBarController.swift in Sources */,
 				A07904201F13F098000E4419 /* AppDelegate.swift in Sources */,
 				4D15560D1F1402B900F70DB3 /* User.swift in Sources */,
+				4D1556591F1540EB00F70DB3 /* DetailPictureCell.swift in Sources */,
 				4D15560F1F1402CF00F70DB3 /* Post.swift in Sources */,
+				4D1556571F153FC800F70DB3 /* DetailViewController.swift in Sources */,
 				4D1556131F143BCB00F70DB3 /* Market.swift in Sources */,
 				0A6966C61F15401200E72FD8 /* LoginViewController.swift in Sources */,
 				4D1556151F143BE500F70DB3 /* Category.swift in Sources */,
+				4D15565B1F1540FD00F70DB3 /* DetailInformationCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
