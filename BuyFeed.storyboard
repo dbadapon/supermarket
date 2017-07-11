@@ -75,7 +75,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Market Name" id="Lde-4x-prC">
-                        <barButtonItem key="leftBarButtonItem" title="Menu" id="OWe-ii-zns">
+                        <barButtonItem key="leftBarButtonItem" image="Menu Filled-50" id="OWe-ii-zns">
                             <connections>
                                 <segue destination="gaw-1C-xQB" kind="presentation" id="RUs-SN-LkC"/>
                             </connections>
@@ -90,10 +90,10 @@
             </objects>
             <point key="canvasLocation" x="1047" y="-105"/>
         </scene>
-        <!--View Controller-->
+        <!--Your Markets-->
         <scene sceneID="2Hc-Ml-Ecm">
             <objects>
-                <viewController id="0G0-yD-TYX" sceneMemberID="viewController">
+                <viewController id="0G0-yD-TYX" customClass="SidebarViewController" customModule="Supermarket" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="68M-V4-HqX"/>
                         <viewControllerLayoutGuide type="bottom" id="KGi-qu-jC9"/>
@@ -101,13 +101,42 @@
                     <view key="view" contentMode="scaleToFill" id="w8U-KX-2yi">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.42906409400000001" green="0.60921453569999995" blue="0.93730527159999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="p8x-I7-ZCZ">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MarketCell" id="hcK-Zc-zY3" customClass="MarketCell" customModule="Supermarket" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hcK-Zc-zY3" id="L4I-wn-ktu">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="FBU Interns" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x7n-xl-Aec">
+                                                    <rect key="frame" x="8" y="8" width="90" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.36550331120000001" green="0.79173368219999996" blue="0.80787837510000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </view>
-                    <navigationItem key="navigationItem" id="qYe-3n-wt1"/>
+                    <navigationItem key="navigationItem" title="Your Markets" id="qYe-3n-wt1"/>
+                    <connections>
+                        <outlet property="marketTableView" destination="p8x-I7-ZCZ" id="zww-L0-cT3"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nlw-aM-G9B" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2796" y="-106"/>
+            <point key="canvasLocation" x="2796" y="-106.59670164917542"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="atP-oI-SDc">
@@ -149,4 +178,7 @@
             <point key="canvasLocation" x="1991" y="-106"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Menu Filled-50" width="25" height="25"/>
+    </resources>
 </document>

@@ -32,6 +32,8 @@
 		A07904401F13F098000E4419 /* SupermarketUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A079043F1F13F098000E4419 /* SupermarketUITests.swift */; };
 		A07DD39C1F1555E70079C286 /* NotificationStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A07DD39B1F1555E70079C286 /* NotificationStoryboard.storyboard */; };
 		A07DD39E1F15573B0079C286 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A07DD39D1F15573B0079C286 /* Profile.storyboard */; };
+		A0B989F21F15806F0037EFCF /* SidebarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B989F11F15806F0037EFCF /* SidebarViewController.swift */; };
+		A0B989F41F1583AA0037EFCF /* MarketCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B989F31F1583AA0037EFCF /* MarketCell.swift */; };
 		A0E30DA01F143A230062B100 /* BuyFeed.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A0E30D9F1F143A230062B100 /* BuyFeed.storyboard */; };
 		A0E30DA21F143C020062B100 /* BuyFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E30DA11F143C020062B100 /* BuyFeedViewController.swift */; };
 		A0E30DA51F14438D0062B100 /* BuyFeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E30DA41F14438D0062B100 /* BuyFeedCell.swift */; };
@@ -92,6 +94,8 @@
 		A07904411F13F098000E4419 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A07DD39B1F1555E70079C286 /* NotificationStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = NotificationStoryboard.storyboard; sourceTree = "<group>"; };
 		A07DD39D1F15573B0079C286 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
+		A0B989F11F15806F0037EFCF /* SidebarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarViewController.swift; sourceTree = "<group>"; };
+		A0B989F31F1583AA0037EFCF /* MarketCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarketCell.swift; sourceTree = "<group>"; };
 		A0E30D9F1F143A230062B100 /* BuyFeed.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = BuyFeed.storyboard; path = ../BuyFeed.storyboard; sourceTree = "<group>"; };
 		A0E30DA11F143C020062B100 /* BuyFeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuyFeedViewController.swift; sourceTree = "<group>"; };
 		A0E30DA41F14438D0062B100 /* BuyFeedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuyFeedCell.swift; sourceTree = "<group>"; };
@@ -157,6 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				A0E30DA11F143C020062B100 /* BuyFeedViewController.swift */,
+				A0B989F11F15806F0037EFCF /* SidebarViewController.swift */,
 				A0E30DE61F144EA00062B100 /* TabBarController.swift */,
 				0A6966C51F15401200E72FD8 /* LoginViewController.swift */,
 				0A6966C71F15404700E72FD8 /* SignUpViewController.swift */,
@@ -241,6 +246,7 @@
 			isa = PBXGroup;
 			children = (
 				A0E30DA41F14438D0062B100 /* BuyFeedCell.swift */,
+				A0B989F31F1583AA0037EFCF /* MarketCell.swift */,
 				4D1556581F1540EB00F70DB3 /* DetailPictureCell.swift */,
 				4D15565A1F1540FD00F70DB3 /* DetailInformationCell.swift */,
 				4D114E071F1571FD00897FC8 /* MessageCell.swift */,
@@ -541,7 +547,9 @@
 				0A6966C81F15404700E72FD8 /* SignUpViewController.swift in Sources */,
 				A0E30DA51F14438D0062B100 /* BuyFeedCell.swift in Sources */,
 				A07904221F13F098000E4419 /* ViewController.swift in Sources */,
+				A0B989F41F1583AA0037EFCF /* MarketCell.swift in Sources */,
 				A0E30DA21F143C020062B100 /* BuyFeedViewController.swift in Sources */,
+				A0B989F21F15806F0037EFCF /* SidebarViewController.swift in Sources */,
 				A0E30DE71F144EA00062B100 /* TabBarController.swift in Sources */,
 				A07904201F13F098000E4419 /* AppDelegate.swift in Sources */,
 				4D15560D1F1402B900F70DB3 /* User.swift in Sources */,
