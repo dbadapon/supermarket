@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F2073" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Notifications-->
         <scene sceneID="56E-fw-LWM">
             <objects>
-                <viewController id="7a0-aG-N1u" sceneMemberID="viewController">
+                <viewController id="7a0-aG-N1u" customClass="NotificationsViewController" customModule="Supermarket" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="V9K-jf-fup"/>
                         <viewControllerLayoutGuide type="bottom" id="wb1-KY-uec"/>
@@ -20,9 +21,96 @@
                     <view key="view" contentMode="scaleToFill" id="E8Y-fD-Nrn">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="NTy-yd-xe1">
+                                <rect key="frame" x="0.0" y="64" width="375" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="Khw-YC-0FZ"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="Notifications"/>
+                                    <segment title="Messages"/>
+                                </segments>
+                                <color key="tintColor" red="0.36550331115722656" green="0.79173368215560913" blue="0.80787837505340576" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <connections>
+                                    <action selector="indexChanged:" destination="7a0-aG-N1u" eventType="valueChanged" id="Lmz-em-wg6"/>
+                                </connections>
+                            </segmentedControl>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="93" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="FPX-9d-g14">
+                                <rect key="frame" x="0.0" y="92" width="375" height="575"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MessageCell" rowHeight="93" id="yfo-At-jcW" customClass="MessageCell" customModule="Supermarket" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="93"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yfo-At-jcW" id="kmB-yY-af5">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="92.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You got a new message!!!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Whq-qM-Z5s">
+                                                    <rect key="frame" x="89" y="36" width="196" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="Mo3-9U-V6i"/>
+                                                        <constraint firstAttribute="width" constant="196" id="XX2-qG-q9q"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="Whq-qM-Z5s" secondAttribute="bottom" constant="27.5" id="ZBI-r9-agM"/>
+                                                <constraint firstItem="Whq-qM-Z5s" firstAttribute="leading" secondItem="kmB-yY-af5" secondAttribute="leadingMargin" constant="81" id="d05-XD-9eb"/>
+                                                <constraint firstItem="Whq-qM-Z5s" firstAttribute="top" secondItem="kmB-yY-af5" secondAttribute="topMargin" constant="28" id="gfF-4d-qeJ"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Whq-qM-Z5s" secondAttribute="trailing" constant="82" id="z50-5S-dl1"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="InterestedCell" rowHeight="140" id="ADG-We-PUn" customClass="InterestedCell" customModule="Supermarket" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="121" width="375" height="140"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ADG-We-PUn" id="a5v-44-Ge5">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="139.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You got a new notification!!!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="04w-xf-dw0">
+                                                    <rect key="frame" x="82" y="59" width="228" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="Okj-sO-9N6"/>
+                                                        <constraint firstAttribute="width" constant="228" id="TzK-PG-e4B"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="04w-xf-dw0" secondAttribute="trailing" constant="57" id="Pqz-Wv-moZ"/>
+                                                <constraint firstItem="04w-xf-dw0" firstAttribute="top" secondItem="a5v-44-Ge5" secondAttribute="topMargin" constant="51" id="R16-5q-jhp"/>
+                                                <constraint firstItem="04w-xf-dw0" firstAttribute="leading" secondItem="a5v-44-Ge5" secondAttribute="leadingMargin" constant="74" id="VzL-sf-2y0"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="04w-xf-dw0" secondAttribute="bottom" constant="51.5" id="saq-BC-Mh4"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="FPX-9d-g14" firstAttribute="leading" secondItem="E8Y-fD-Nrn" secondAttribute="leading" id="1Vj-JJ-RdH"/>
+                            <constraint firstItem="FPX-9d-g14" firstAttribute="top" secondItem="NTy-yd-xe1" secondAttribute="bottom" id="7py-7V-Oj8"/>
+                            <constraint firstItem="NTy-yd-xe1" firstAttribute="leading" secondItem="E8Y-fD-Nrn" secondAttribute="leading" id="Rr6-CR-Uip"/>
+                            <constraint firstItem="NTy-yd-xe1" firstAttribute="top" secondItem="V9K-jf-fup" secondAttribute="bottom" id="SNA-bS-Aat"/>
+                            <constraint firstItem="wb1-KY-uec" firstAttribute="top" secondItem="FPX-9d-g14" secondAttribute="bottom" id="cSl-2i-aED"/>
+                            <constraint firstAttribute="trailing" secondItem="NTy-yd-xe1" secondAttribute="trailing" id="g67-c4-du7"/>
+                            <constraint firstAttribute="trailing" secondItem="FPX-9d-g14" secondAttribute="trailing" id="koO-Im-Ahf"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="4Yc-2P-jbG"/>
+                    <navigationItem key="navigationItem" title="Notifications" id="4Yc-2P-jbG"/>
+                    <connections>
+                        <outlet property="segmentedControl" destination="NTy-yd-xe1" id="OmE-8F-irk"/>
+                        <outlet property="tableView" destination="FPX-9d-g14" id="uLX-oF-2yN"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k0F-gV-W4S" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
