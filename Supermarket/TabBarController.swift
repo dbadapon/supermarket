@@ -36,7 +36,19 @@ class TabBarController: UITabBarController {
         let tab3 = UITabBarItem(title: "Post", image: nil, selectedImage: nil)
         createPostController.tabBarItem = tab3
         
-        let controllers = [buyFeedController, sellFeedController, createPostController]
+        let notificationStoryboard = UIStoryboard(name: "NotificationStoryboard", bundle: nil)
+        let notificationController = notificationStoryboard.instantiateViewController(withIdentifier: "NotificationController") as! UINavigationController
+        
+        let tab4 = UITabBarItem(title: "Notifications", image: nil, selectedImage: nil)
+        notificationController.tabBarItem = tab4
+        
+        let profileStoryboard = UIStoryboard(name: "Profile", bundle: nil)
+        let profileController = profileStoryboard.instantiateViewController(withIdentifier: "ProfileController") as! UINavigationController
+        
+        let tab5 = UITabBarItem(title: "Profile", image: nil, selectedImage: nil)
+        profileController.tabBarItem = tab5
+        
+        let controllers = [buyFeedController, sellFeedController, createPostController, notificationController, profileController]
         self.viewControllers = controllers
         
     }

@@ -27,6 +27,8 @@
 		A079042A1F13F098000E4419 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A07904281F13F098000E4419 /* LaunchScreen.storyboard */; };
 		A07904351F13F098000E4419 /* SupermarketTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07904341F13F098000E4419 /* SupermarketTests.swift */; };
 		A07904401F13F098000E4419 /* SupermarketUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A079043F1F13F098000E4419 /* SupermarketUITests.swift */; };
+		A07DD39C1F1555E70079C286 /* NotificationStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A07DD39B1F1555E70079C286 /* NotificationStoryboard.storyboard */; };
+		A07DD39E1F15573B0079C286 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A07DD39D1F15573B0079C286 /* Profile.storyboard */; };
 		A0E30DA01F143A230062B100 /* BuyFeed.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A0E30D9F1F143A230062B100 /* BuyFeed.storyboard */; };
 		A0E30DA21F143C020062B100 /* BuyFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E30DA11F143C020062B100 /* BuyFeedViewController.swift */; };
 		A0E30DA51F14438D0062B100 /* BuyFeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E30DA41F14438D0062B100 /* BuyFeedCell.swift */; };
@@ -82,6 +84,8 @@
 		A079043B1F13F098000E4419 /* SupermarketUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SupermarketUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A079043F1F13F098000E4419 /* SupermarketUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupermarketUITests.swift; sourceTree = "<group>"; };
 		A07904411F13F098000E4419 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A07DD39B1F1555E70079C286 /* NotificationStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = NotificationStoryboard.storyboard; sourceTree = "<group>"; };
+		A07DD39D1F15573B0079C286 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		A0E30D9F1F143A230062B100 /* BuyFeed.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = BuyFeed.storyboard; path = ../BuyFeed.storyboard; sourceTree = "<group>"; };
 		A0E30DA11F143C020062B100 /* BuyFeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuyFeedViewController.swift; sourceTree = "<group>"; };
 		A0E30DA41F14438D0062B100 /* BuyFeedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuyFeedCell.swift; sourceTree = "<group>"; };
@@ -196,9 +200,11 @@
 				A079041F1F13F098000E4419 /* AppDelegate.swift */,
 				A07904211F13F098000E4419 /* ViewController.swift */,
 				A07904231F13F098000E4419 /* Main.storyboard */,
-				0A017A521F143C51001C6B5A /* CreatePost.storyboard */,
 				A0E30D9F1F143A230062B100 /* BuyFeed.storyboard */,
 				4D1556101F143A3B00F70DB3 /* SellFeed.storyboard */,
+				0A017A521F143C51001C6B5A /* CreatePost.storyboard */,
+				A07DD39B1F1555E70079C286 /* NotificationStoryboard.storyboard */,
+				A07DD39D1F15573B0079C286 /* Profile.storyboard */,
 				A07904261F13F098000E4419 /* Assets.xcassets */,
 				A07904281F13F098000E4419 /* LaunchScreen.storyboard */,
 				A079042B1F13F098000E4419 /* Info.plist */,
@@ -352,9 +358,11 @@
 			files = (
 				0A017A531F143C51001C6B5A /* CreatePost.storyboard in Resources */,
 				A079042A1F13F098000E4419 /* LaunchScreen.storyboard in Resources */,
+				A07DD39E1F15573B0079C286 /* Profile.storyboard in Resources */,
 				A0E30DA01F143A230062B100 /* BuyFeed.storyboard in Resources */,
 				A07904271F13F098000E4419 /* Assets.xcassets in Resources */,
 				4D1556111F143A3B00F70DB3 /* SellFeed.storyboard in Resources */,
+				A07DD39C1F1555E70079C286 /* NotificationStoryboard.storyboard in Resources */,
 				A07904251F13F098000E4419 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
