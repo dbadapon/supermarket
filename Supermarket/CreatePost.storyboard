@@ -32,7 +32,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XSf-R9-VWs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="589" y="105"/>
+            <point key="canvasLocation" x="836" y="105"/>
         </scene>
         <!--Item Details-->
         <scene sceneID="LCC-zi-RLy">
@@ -135,7 +135,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5a0-YW-yPT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1091" y="933"/>
+            <point key="canvasLocation" x="836" y="871"/>
         </scene>
         <!--Market Selection -->
         <scene sceneID="o0D-m6-t2I">
@@ -149,9 +149,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4Uy-0x-jL8">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4Uy-0x-jL8">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <label key="tableHeaderView" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4Pn-Ox-xs7">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -181,6 +180,12 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="4Uy-0x-jL8" secondAttribute="trailing" id="00e-yY-eZt"/>
+                            <constraint firstItem="4Uy-0x-jL8" firstAttribute="top" secondItem="EFI-C6-aYx" secondAttribute="top" id="R9y-Is-vLv"/>
+                            <constraint firstItem="kie-Pe-QZZ" firstAttribute="top" secondItem="4Uy-0x-jL8" secondAttribute="bottom" id="nJo-r5-sQx"/>
+                            <constraint firstItem="4Uy-0x-jL8" firstAttribute="leading" secondItem="EFI-C6-aYx" secondAttribute="leading" id="oYn-Fs-aA3"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Market Selection " id="WdR-e1-pYT">
                         <barButtonItem key="rightBarButtonItem" title="Next" id="GJe-RY-968">
@@ -192,7 +197,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5eA-RY-0XG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1589" y="1746"/>
+            <point key="canvasLocation" x="836" y="1627"/>
         </scene>
         <!--Exchange Information-->
         <scene sceneID="I47-o7-Xw1">
@@ -275,7 +280,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HUr-Cn-2EH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2079" y="2559"/>
+            <point key="canvasLocation" x="836" y="2389"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="46l-E6-MsJ">
@@ -311,7 +316,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tQa-tx-YUe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="589" y="933"/>
+            <point key="canvasLocation" x="86" y="872"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="wM9-Sc-65f">
@@ -329,7 +334,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uV3-t9-qvd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1091" y="1746"/>
+            <point key="canvasLocation" x="86" y="1627"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Sq6-mN-DLp">
@@ -347,7 +352,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hIq-6U-lhL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1589" y="2559"/>
+            <point key="canvasLocation" x="86" y="2389"/>
         </scene>
     </scenes>
 </document>
