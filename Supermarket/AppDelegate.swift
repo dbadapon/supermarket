@@ -48,7 +48,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             with: ParseClientConfiguration(block: { (configuration: ParseMutableClientConfiguration) -> Void in
                 configuration.applicationId = "myAppId"
                 configuration.clientKey = "myMasterKey"  // originally set to nil assuming you have not set clientKey
-                configuration.server = "https://sleepy-harbor-59251.herokuapp.com/parse"
+                configuration.server = "http://supermarket-fbu.herokuapp.com/parse"
             })
         )
         
