@@ -8,6 +8,6 @@
 
 import Foundation
 
-class Market {
+class Market: NSObject {
     
 }
