@@ -12,7 +12,7 @@
         <!--New Post-->
         <scene sceneID="gdQ-Ll-Pp8">
             <objects>
-                <viewController id="sDM-ls-ttW" sceneMemberID="viewController">
+                <viewController id="sDM-ls-ttW" customClass="NewPostViewController" customModule="Supermarket" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="GkH-au-4HV"/>
                         <viewControllerLayoutGuide type="bottom" id="4xX-Mj-MpP"/>
@@ -23,26 +23,21 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="New Post" id="JjH-83-hsn">
-                        <barButtonItem key="rightBarButtonItem" style="done" id="XFs-98-mSx">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="yUA-Vw-BN3">
-                                <rect key="frame" x="276" y="7" width="83" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Next"/>
-                            </button>
+                        <barButtonItem key="rightBarButtonItem" title="Next" id="rqz-DG-0pE">
+                            <connections>
+                                <segue destination="zK3-Dk-Hv0" kind="show" animates="NO" id="F2d-Sw-Eff"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <connections>
-                        <segue destination="zK3-Dk-Hv0" kind="show" id="CR9-eR-Ljp"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XSf-R9-VWs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1024.8" y="104.7976011994003"/>
+            <point key="canvasLocation" x="589" y="105"/>
         </scene>
         <!--Item Details-->
         <scene sceneID="LCC-zi-RLy">
             <objects>
-                <viewController id="lnH-Cs-OL8" sceneMemberID="viewController">
+                <viewController id="lnH-Cs-OL8" customClass="NewPostDescriptionViewController" customModule="Supermarket" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="1Ns-QM-P7y"/>
                         <viewControllerLayoutGuide type="bottom" id="CmE-SP-WOT"/>
@@ -131,26 +126,21 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Item Details" id="DmX-YC-A4q">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="CZ9-yY-EkU">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="kNu-gc-puY">
-                                <rect key="frame" x="276" y="7" width="83" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Next"/>
-                            </button>
+                        <barButtonItem key="rightBarButtonItem" title="Next" id="yde-hH-39r">
+                            <connections>
+                                <segue destination="I0M-kB-HK7" kind="show" animates="NO" id="Fl0-t8-kdu"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <connections>
-                        <segue destination="I0M-kB-HK7" kind="show" id="X7k-tU-o8J"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5a0-YW-yPT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1964" y="846.9265367316342"/>
+            <point key="canvasLocation" x="1091" y="933"/>
         </scene>
         <!--Market Selection -->
         <scene sceneID="o0D-m6-t2I">
             <objects>
-                <viewController id="tlo-MH-cl0" sceneMemberID="viewController">
+                <viewController id="tlo-MH-cl0" customClass="NewPostMarketViewController" customModule="Supermarket" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="JTg-aL-wGG"/>
                         <viewControllerLayoutGuide type="bottom" id="kie-Pe-QZZ"/>
@@ -193,26 +183,21 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Market Selection " id="WdR-e1-pYT">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="E5u-WO-nei">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="1e4-cq-lZf">
-                                <rect key="frame" x="276" y="7" width="83" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Next"/>
-                            </button>
+                        <barButtonItem key="rightBarButtonItem" title="Next" id="GJe-RY-968">
+                            <connections>
+                                <segue destination="n8o-Ob-cAg" kind="show" animates="NO" id="MDL-DX-43W"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <connections>
-                        <segue destination="n8o-Ob-cAg" kind="show" id="Qct-Lx-Wuf"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5eA-RY-0XG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2903.1999999999998" y="1573.7631184407796"/>
+            <point key="canvasLocation" x="1589" y="1746"/>
         </scene>
         <!--Exchange Information-->
         <scene sceneID="I47-o7-Xw1">
             <objects>
-                <viewController id="OqQ-58-ILF" sceneMemberID="viewController">
+                <viewController id="OqQ-58-ILF" customClass="NewPostExchangeViewController" customModule="Supermarket" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ojQ-EH-G8A"/>
                         <viewControllerLayoutGuide type="bottom" id="Mdq-LM-v1J"/>
@@ -285,18 +270,12 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Exchange Information" id="m4Q-Rb-kOp">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="Rkp-CG-w4O">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="yDI-Dd-mKr">
-                                <rect key="frame" x="276" y="7" width="83" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Post"/>
-                            </button>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Post" id="LIs-xN-HWA"/>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HUr-Cn-2EH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3840.8000000000002" y="2309.5952023988007"/>
+            <point key="canvasLocation" x="2079" y="2559"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="46l-E6-MsJ">
@@ -332,7 +311,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tQa-tx-YUe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1024.8" y="847.82608695652175"/>
+            <point key="canvasLocation" x="589" y="933"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="wM9-Sc-65f">
@@ -350,7 +329,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uV3-t9-qvd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1964" y="1573.7631184407796"/>
+            <point key="canvasLocation" x="1091" y="1746"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Sq6-mN-DLp">
@@ -368,7 +347,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hIq-6U-lhL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2901.5999999999999" y="2309.5952023988007"/>
+            <point key="canvasLocation" x="1589" y="2559"/>
         </scene>
     </scenes>
 </document>
