@@ -1,5 +1,6 @@
 PODS:
   - Bolts/Tasks (1.8.4)
+  - CameraManager (3.1.4)
   - ModernSearchBar (1.4)
   - Parse (1.14.4):
     - Bolts/Tasks (~> 1.8)
@@ -9,6 +10,7 @@ PODS:
   - SideMenu (2.3.2)
 
 DEPENDENCIES:
+  - CameraManager
   - ModernSearchBar
   - Parse
   - ParseUI
@@ -16,11 +18,12 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
+  CameraManager: 837ff54004e37b83533abf0543daf143fae851e4
   ModernSearchBar: d888b62f960c4d91f8662f0720e1544d19847e7f
   Parse: b0aa91d2c435e53d4a9af26e741e014c9b35c42e
   ParseUI: af2eba584799da4a9fbdac0e178662d7438b502e
   SideMenu: 3fa07dd05d4bade2b6f9889fb1877e312e1ba319
 
-PODFILE CHECKSUM: 40dfe0d3631271d8f715320a19cf6b8780b7d7f0
+PODFILE CHECKSUM: f39e0dea79b6dc23e709d667c8d511b2658adb1c
 
 COCOAPODS: 1.2.1

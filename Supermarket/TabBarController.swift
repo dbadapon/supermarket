@@ -9,10 +9,10 @@
 import UIKit
 
 class TabBarController: UITabBarController {
-
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
         let buyFeedStoryboard = UIStoryboard(name: "BuyFeed", bundle: nil)
         let buyFeedController = buyFeedStoryboard.instantiateViewController(withIdentifier: "BuyFeedController") as! UINavigationController
@@ -51,12 +51,6 @@ class TabBarController: UITabBarController {
         let controllers = [buyFeedController, sellFeedController, createPostController, notificationController, profileController]
         self.viewControllers = controllers
         
-    }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {

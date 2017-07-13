@@ -6,6 +6,8 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -20,19 +22,78 @@
                     <view key="view" contentMode="scaleToFill" id="T9B-in-44g">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cm5-mA-Obt">
+                                <rect key="frame" x="0.0" y="64" width="375" height="375"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="cm5-mA-Obt" secondAttribute="height" multiplier="1:1" id="4cj-pq-TV4"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CvL-Lk-tH1">
+                                <rect key="frame" x="150" y="462" width="75" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="75" id="OO0-PJ-hNP"/>
+                                    <constraint firstAttribute="height" constant="30" id="ozH-fR-ABr"/>
+                                </constraints>
+                                <state key="normal" title="Capture"/>
+                                <connections>
+                                    <action selector="onCapture:" destination="sDM-ls-ttW" eventType="touchUpInside" id="IYp-HD-cj6"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="cm5-mA-Obt" firstAttribute="top" secondItem="GkH-au-4HV" secondAttribute="bottom" id="JXn-em-DTI"/>
+                            <constraint firstItem="CvL-Lk-tH1" firstAttribute="top" secondItem="cm5-mA-Obt" secondAttribute="bottom" constant="23" id="KbS-66-EiK"/>
+                            <constraint firstItem="cm5-mA-Obt" firstAttribute="leading" secondItem="T9B-in-44g" secondAttribute="leading" id="KiC-Vt-yeO"/>
+                            <constraint firstAttribute="trailing" secondItem="cm5-mA-Obt" secondAttribute="trailing" id="L1K-Hr-z26"/>
+                            <constraint firstItem="CvL-Lk-tH1" firstAttribute="centerX" secondItem="cm5-mA-Obt" secondAttribute="centerX" id="tGb-5r-Xhl"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="New Post" id="JjH-83-hsn">
-                        <barButtonItem key="rightBarButtonItem" title="Next" id="rqz-DG-0pE">
-                            <connections>
-                                <segue destination="zK3-Dk-Hv0" kind="show" animates="NO" id="F2d-Sw-Eff"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="New Post" id="JjH-83-hsn"/>
+                    <connections>
+                        <outlet property="cameraView" destination="cm5-mA-Obt" id="2mV-nY-4jw"/>
+                        <segue destination="jAm-rj-bke" kind="presentation" identifier="confirmPhotoSegue" id="41K-xs-Mgw"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XSf-R9-VWs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="836" y="105"/>
+            <point key="canvasLocation" x="836" y="104.7976011994003"/>
+        </scene>
+        <!--Confirm Photo View Controller-->
+        <scene sceneID="Plc-zh-ZcL">
+            <objects>
+                <viewController storyboardIdentifier="ConfirmPhotoViewController" id="jAm-rj-bke" customClass="ConfirmPhotoViewController" customModule="Supermarket" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="bO3-PR-96k"/>
+                        <viewControllerLayoutGuide type="bottom" id="SbL-1T-143"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="clO-wb-cPM">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LlI-XV-1GK">
+                                <rect key="frame" x="67" y="71" width="128" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="LlI-XV-1GK" secondAttribute="height" multiplier="1:1" id="DKE-fM-Drw"/>
+                                    <constraint firstAttribute="height" constant="128" id="pLN-Kz-Efe"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="LlI-XV-1GK" firstAttribute="top" secondItem="bO3-PR-96k" secondAttribute="bottom" constant="51" id="0ns-8P-Mld"/>
+                            <constraint firstItem="LlI-XV-1GK" firstAttribute="leading" secondItem="clO-wb-cPM" secondAttribute="leadingMargin" constant="51" id="mVW-eu-Mz3"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="imagePreview" destination="LlI-XV-1GK" id="RST-Bg-syK"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rSR-Sq-RL4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1732" y="105"/>
         </scene>
         <!--Item Details-->
         <scene sceneID="LCC-zi-RLy">

@@ -9,11 +9,14 @@
 import UIKit
 
 class NewPostDescriptionViewController: UIViewController {
+    
+    var image: UIImage? 
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        print ("view did load in the new window is running")
         
         navigationController?.navigationBar.titleTextAttributes = [
             NSFontAttributeName: UIFont.systemFont(ofSize: 17, weight: UIFontWeightHeavy)

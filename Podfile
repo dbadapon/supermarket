@@ -10,6 +10,7 @@ target 'Supermarket' do
 	pod 'ParseUI'
 	pod 'SideMenu'
 	pod 'ModernSearchBar'
+	pod 'CameraManager'
 
   target 'SupermarketTests' do
     inherit! :search_paths
