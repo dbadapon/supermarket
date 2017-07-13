@@ -10,7 +10,8 @@ import UIKit
 
 class NewPostDescriptionViewController: UIViewController {
     
-    var image: UIImage? 
+    var image: UIImage?
+    var name: String!
 
     override func viewDidLoad() {
         super.viewDidLoad()

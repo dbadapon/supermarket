@@ -76,24 +76,13 @@ class NewPostViewController: UIViewController, UIImagePickerControllerDelegate, 
         
         // Do something with the images (based on your use case)
         self.image = editedImage
-        print ("EDITED IMAGE IS: \(editedImage)")
-        print ("THIS IMAGE IS : \(self.image)")
         
 
         // Dismiss UIImagePickerController to go back to your original view controller
-        
-//        self.dismiss(animated: true) {
-//            print ("just dismissed")
-//        }
-        print ("AFTER THE DISMISS THIS IMAGE IS: \(self.image)")
-        
-        dismiss(animated: true, completion: nil)
-        
-        performSegue(withIdentifier: "confirmPhotoSegue", sender: self)
 
-        
-        
-        
+        dismiss(animated: true) { 
+            self.performSegue(withIdentifier: "confirmPhotoSegue", sender: self)
+        }
         
     }
     
@@ -109,7 +98,7 @@ class NewPostViewController: UIViewController, UIImagePickerControllerDelegate, 
                 print (error.localizedDescription)
             } else {
                 self.image = image
-                
+                self.performSegue(withIdentifier: "confirmPhotoSegue", sender: self)
             }
             
         })
@@ -128,11 +117,9 @@ class NewPostViewController: UIViewController, UIImagePickerControllerDelegate, 
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         if segue.identifier == "confirmPhotoSegue" {
-            print ("about to perform segue")
             let destination = segue.destination as! ConfirmPhotoViewController
-            print("destination was set!")
             destination.image = self.image
-            print("destination image was set!")
+            self.image = nil
         }
         
         

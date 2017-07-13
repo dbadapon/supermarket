@@ -54,14 +54,14 @@
                     <navigationItem key="navigationItem" title="New Post" id="JjH-83-hsn"/>
                     <connections>
                         <outlet property="cameraView" destination="cm5-mA-Obt" id="2mV-nY-4jw"/>
-                        <segue destination="jAm-rj-bke" kind="presentation" identifier="confirmPhotoSegue" id="41K-xs-Mgw"/>
+                        <segue destination="jAm-rj-bke" kind="show" identifier="confirmPhotoSegue" id="0VD-D7-6UC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XSf-R9-VWs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="836" y="104.7976011994003"/>
         </scene>
-        <!--Confirm Photo View Controller-->
+        <!--Confirm Photo-->
         <scene sceneID="Plc-zh-ZcL">
             <objects>
                 <viewController storyboardIdentifier="ConfirmPhotoViewController" id="jAm-rj-bke" customClass="ConfirmPhotoViewController" customModule="Supermarket" customModuleProvider="target" sceneMemberID="viewController">
@@ -74,26 +74,47 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LlI-XV-1GK">
-                                <rect key="frame" x="67" y="71" width="128" height="128"/>
+                                <rect key="frame" x="24" y="72" width="327" height="327"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="LlI-XV-1GK" secondAttribute="height" multiplier="1:1" id="DKE-fM-Drw"/>
-                                    <constraint firstAttribute="height" constant="128" id="pLN-Kz-Efe"/>
+                                    <constraint firstAttribute="width" secondItem="LlI-XV-1GK" secondAttribute="height" multiplier="1:1" id="ZeR-MI-cTL"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AAp-dR-2cT">
+                                <rect key="frame" x="273" y="436" width="62" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Retake"/>
+                                <connections>
+                                    <action selector="onRetake:" destination="jAm-rj-bke" eventType="touchUpInside" id="aO9-it-Zni"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="LlI-XV-1GK" firstAttribute="top" secondItem="bO3-PR-96k" secondAttribute="bottom" constant="51" id="0ns-8P-Mld"/>
-                            <constraint firstItem="LlI-XV-1GK" firstAttribute="leading" secondItem="clO-wb-cPM" secondAttribute="leadingMargin" constant="51" id="mVW-eu-Mz3"/>
+                            <constraint firstItem="LlI-XV-1GK" firstAttribute="leading" secondItem="clO-wb-cPM" secondAttribute="leadingMargin" constant="8" id="AqF-eQ-SiQ"/>
+                            <constraint firstItem="LlI-XV-1GK" firstAttribute="top" secondItem="bO3-PR-96k" secondAttribute="bottom" constant="8" id="Rom-HK-dVd"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="LlI-XV-1GK" secondAttribute="trailing" constant="8" id="hka-Wc-RTp"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Confirm Photo" id="Pnw-Vt-02X">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="puN-E0-P99">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="xPJ-m6-5LP">
+                                <rect key="frame" x="250" y="7" width="109" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Use Photo"/>
+                                <connections>
+                                    <action selector="onUsePhoto:" destination="jAm-rj-bke" eventType="touchUpInside" id="7jy-sL-UoA"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="imagePreview" destination="LlI-XV-1GK" id="RST-Bg-syK"/>
+                        <segue destination="lnH-Cs-OL8" kind="show" identifier="toItemDescription" id="IvH-Oj-8qB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rSR-Sq-RL4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1732" y="105"/>
+            <point key="canvasLocation" x="1735" y="105"/>
         </scene>
         <!--Item Details-->
         <scene sceneID="LCC-zi-RLy">
@@ -188,8 +209,9 @@
                     </view>
                     <navigationItem key="navigationItem" title="Item Details" id="DmX-YC-A4q">
                         <barButtonItem key="rightBarButtonItem" title="Next" id="yde-hH-39r">
+                            <color key="tintColor" red="1" green="0.9999879599" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <connections>
-                                <segue destination="I0M-kB-HK7" kind="show" animates="NO" id="Fl0-t8-kdu"/>
+                                <segue destination="tlo-MH-cl0" kind="show" identifier="toMarketSelection" id="Pqz-Ez-JLk"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -225,7 +247,7 @@
                                         <rect key="frame" x="0.0" y="72" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8eI-NE-3V6" id="l76-7N-Evx">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -233,7 +255,7 @@
                                         <rect key="frame" x="0.0" y="116" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pZc-TT-DYy" id="Imy-fl-jKq">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -251,7 +273,7 @@
                     <navigationItem key="navigationItem" title="Market Selection " id="WdR-e1-pYT">
                         <barButtonItem key="rightBarButtonItem" title="Next" id="GJe-RY-968">
                             <connections>
-                                <segue destination="n8o-Ob-cAg" kind="show" animates="NO" id="MDL-DX-43W"/>
+                                <segue destination="OqQ-58-ILF" kind="show" identifier="toExchangeInformation" id="zrb-KQ-KRi"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -273,9 +295,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Payment" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="szs-W7-mbp">
-                                <rect key="frame" x="16" y="72" width="60" height="18"/>
+                                <rect key="frame" x="16" y="72" width="95" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -300,9 +322,9 @@
                                 <state key="normal" title="Other(s):"/>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Transport" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hB7-e5-bCu">
-                                <rect key="frame" x="16" y="291" width="67" height="18"/>
+                                <rect key="frame" x="16" y="291" width="149" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -341,7 +363,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HUr-Cn-2EH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="836" y="2389"/>
+            <point key="canvasLocation" x="836" y="2388.7556221889058"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="46l-E6-MsJ">
@@ -416,4 +438,9 @@
             <point key="canvasLocation" x="86" y="2389"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="IvH-Oj-8qB"/>
+        <segue reference="Pqz-Ez-JLk"/>
+        <segue reference="zrb-KQ-KRi"/>
+    </inferredMetricsTieBreakers>
 </document>
