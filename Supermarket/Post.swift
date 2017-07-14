@@ -11,6 +11,9 @@ import UIKit
 import Parse
 
 class Post: NSObject {
+    
+    
+    
     /**
      * Other methods
      */
@@ -22,7 +25,7 @@ class Post: NSObject {
      - parameter caption: Caption text input by the user
      - parameter completion: Block to be executed after save operation is complete
      */
-    class func postUserItem(images: [UIImage]?, withName name: String, withDescription description: String?, withPrice price: Double, withCompletion completion: PFBooleanResultBlock?) {
+    class func postUserItem(images: [UIImage]?, withName name: String, withDescription description: String?, withPrice price: Double, withConditionNew conditionNew: Bool, withNegotiable negotiable: Bool, withExchange exchange: [String]?, withTransport transport: [String]?, withCompletion completion: PFBooleanResultBlock?) {
         // Create Parse object PFObject
         let post = PFObject(className: "Post")
         
@@ -35,7 +38,7 @@ class Post: NSObject {
         }
         
         post["media"] = convertedImages // PFFile column type
-        post["author"] = PFUser.current() // Pointer column type that points to PFUser
+        post["seller"] = PFUser.current() // Pointer column type that points to PFUser
         post["description"] = description
         post["interestedCount"] = 0
         var interestedList: [PFUser] = []
@@ -44,10 +47,8 @@ class Post: NSObject {
         post["name"] = name
         var buyer: PFUser? = nil
         post["buyer"] = buyer
-        var seller: PFUser? = nil
-        post["seller"] = seller
-        
-        
+        post["exchange"] = exchange
+        post["transport"] = transport
         
         
         // Save object (following function will save the object in Parse asynchronously)

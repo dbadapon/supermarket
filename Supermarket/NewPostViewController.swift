@@ -8,6 +8,7 @@
 
 import UIKit
 import CameraManager
+import Parse
 
 class NewPostViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -20,9 +21,6 @@ class NewPostViewController: UIViewController, UIImagePickerControllerDelegate, 
     }
     
     @IBOutlet weak var cameraView: UIView!
-    
-
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,6 +49,53 @@ class NewPostViewController: UIViewController, UIImagePickerControllerDelegate, 
             cameraManager.cameraOutputQuality = .high
             cameraManager.cameraOutputMode = .stillImage
             cameraManager.flashMode = .auto
+        }
+        
+        let username = "hello"
+        let password = "password"
+        
+        if username.isEmpty || password.isEmpty {
+            print ("You cannot have empty username/password")
+        } else {
+            PFUser.logInWithUsername(inBackground: username, password: password, block: { (user: PFUser?, error: Error?) in
+                if let error = error {
+                    print ("there was an error with logging in")
+                    let errorInfo = error._userInfo as! [String: Any]
+                    let code = errorInfo["code"] as! Int
+                    if code == 101 {
+                        print ("invalid login credentials")
+                    }
+                    
+                } else {
+                    print("User logged in successfully")
+                    // display view controller that needs to shown after successful login
+                    Market.postMarket(withName: "Rice Students", withCategories: nil, withNewCategory: true, withPublic: true) { (success: Bool, error: Error?) in
+                        if let error = error {
+                            print (error.localizedDescription)
+                        } else {
+                            print ("success")
+                        }
+                    }
+                    
+                    Market.postMarket(withName: "UCIrvineStudents", withCategories: nil, withNewCategory: true, withPublic: true) { (success: Bool, error: Error?) in
+                        if let error = error {
+                            print (error.localizedDescription)
+                        } else {
+                            print ("success")
+                        }
+                    }
+                    
+                    Market.postMarket(withName: "Yale Students", withCategories: nil, withNewCategory: true, withPublic: true) { (success: Bool, error: Error?) in
+                        if let error = error {
+                            print (error.localizedDescription)
+                        } else {
+                            print ("success")
+                        }
+                    }
+                    
+
+                }
+            })
         }
         
         

@@ -79,14 +79,6 @@
                                     <constraint firstAttribute="width" secondItem="LlI-XV-1GK" secondAttribute="height" multiplier="1:1" id="ZeR-MI-cTL"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AAp-dR-2cT">
-                                <rect key="frame" x="273" y="436" width="62" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Retake"/>
-                                <connections>
-                                    <action selector="onRetake:" destination="jAm-rj-bke" eventType="touchUpInside" id="aO9-it-Zni"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -96,20 +88,16 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Confirm Photo" id="Pnw-Vt-02X">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="puN-E0-P99">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="xPJ-m6-5LP">
-                                <rect key="frame" x="250" y="7" width="109" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Use Photo"/>
-                                <connections>
-                                    <action selector="onUsePhoto:" destination="jAm-rj-bke" eventType="touchUpInside" id="7jy-sL-UoA"/>
-                                </connections>
-                            </button>
+                        <barButtonItem key="rightBarButtonItem" title="Next" id="Bxd-BM-AqQ">
+                            <color key="tintColor" red="1" green="0.9999879599" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <connections>
+                                <action selector="onNext:" destination="jAm-rj-bke" id="gex-bl-Bb5"/>
+                                <segue destination="lnH-Cs-OL8" kind="show" identifier="toItemDetails" id="x8s-nz-xEd"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="imagePreview" destination="LlI-XV-1GK" id="RST-Bg-syK"/>
-                        <segue destination="lnH-Cs-OL8" kind="show" identifier="toItemDescription" id="IvH-Oj-8qB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rSR-Sq-RL4" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -161,7 +149,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="No"/>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter the sell price of your item..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="d7D-uU-sCb">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter the sell price of your item using only digits..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="d7D-uU-sCb">
                                 <rect key="frame" x="16" y="172" width="343" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
@@ -208,13 +196,19 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Item Details" id="DmX-YC-A4q">
-                        <barButtonItem key="rightBarButtonItem" title="Next" id="yde-hH-39r">
+                        <barButtonItem key="rightBarButtonItem" title="Next" id="H8f-Nh-yfL">
                             <color key="tintColor" red="1" green="0.9999879599" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <connections>
-                                <segue destination="tlo-MH-cl0" kind="show" identifier="toMarketSelection" id="Pqz-Ez-JLk"/>
+                                <action selector="onNext:" destination="lnH-Cs-OL8" id="zn6-e0-RLx"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="descriptionField" destination="hfR-iu-heo" id="Nso-8D-MgC"/>
+                        <outlet property="nameField" destination="qxP-dm-yf5" id="PLC-74-iQm"/>
+                        <outlet property="priceField" destination="d7D-uU-sCb" id="WjC-es-izG"/>
+                        <segue destination="tlo-MH-cl0" kind="show" identifier="toMarketSelection" id="JN6-db-R0X"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5a0-YW-yPT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -249,14 +243,15 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8eI-NE-3V6" id="l76-7N-Evx">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="pZc-TT-DYy">
-                                        <rect key="frame" x="0.0" y="116" width="375" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pZc-TT-DYy" id="Imy-fl-jKq">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gsU-lp-N0q">
+                                                    <rect key="frame" x="76" y="11" width="194" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
@@ -272,15 +267,20 @@
                     </view>
                     <navigationItem key="navigationItem" title="Market Selection " id="WdR-e1-pYT">
                         <barButtonItem key="rightBarButtonItem" title="Next" id="GJe-RY-968">
+                            <color key="tintColor" red="1" green="0.9999879599" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <connections>
-                                <segue destination="OqQ-58-ILF" kind="show" identifier="toExchangeInformation" id="zrb-KQ-KRi"/>
+                                <action selector="onNext:" destination="tlo-MH-cl0" id="pt7-PR-7pj"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="4Uy-0x-jL8" id="n6q-MV-p1f"/>
+                        <segue destination="OqQ-58-ILF" kind="show" identifier="toExchangeInformation" id="JE7-LG-0BO"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5eA-RY-0XG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="836" y="1627"/>
+            <point key="canvasLocation" x="836" y="1626.8365817091455"/>
         </scene>
         <!--Exchange Information-->
         <scene sceneID="I47-o7-Xw1">
@@ -358,7 +358,12 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Exchange Information" id="m4Q-Rb-kOp">
-                        <barButtonItem key="rightBarButtonItem" title="Post" id="LIs-xN-HWA"/>
+                        <barButtonItem key="rightBarButtonItem" title="Post" id="LIs-xN-HWA">
+                            <color key="tintColor" red="1" green="0.9999879599" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <connections>
+                                <action selector="onPost:" destination="OqQ-58-ILF" id="ofu-P5-bjE"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HUr-Cn-2EH" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -439,8 +444,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="IvH-Oj-8qB"/>
-        <segue reference="Pqz-Ez-JLk"/>
-        <segue reference="zrb-KQ-KRi"/>
+        <segue reference="x8s-nz-xEd"/>
+        <segue reference="JN6-db-R0X"/>
+        <segue reference="JE7-LG-0BO"/>
     </inferredMetricsTieBreakers>
 </document>

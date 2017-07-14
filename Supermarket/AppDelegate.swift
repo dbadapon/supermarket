@@ -46,9 +46,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // clientKey is not used on Parse open source unless explicitly configured
         Parse.initialize(
             with: ParseClientConfiguration(block: { (configuration: ParseMutableClientConfiguration) -> Void in
-                configuration.applicationId = "myAppId"
-                configuration.clientKey = "myMasterKey"  // originally set to nil assuming you have not set clientKey
-                configuration.server = "http://supermarket-fbu.herokuapp.com/parse"
+                configuration.applicationId = "Supermarket"
+                configuration.clientKey = "randomMasterKey101"  // set to nil assuming you have not set clientKey
+                configuration.server = "https://whispering-island-66333.herokuapp.com/parse"
             })
         )
         
@@ -60,6 +60,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let tabBarController = storyboard.instantiateViewController(withIdentifier: "TabBarController")
             // TabBarController is storyboard ID
             window?.rootViewController = tabBarController
+        } else {
+            print ("there was no current user")
         }
         return true
     }
