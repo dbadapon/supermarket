@@ -51,52 +51,64 @@ class NewPostViewController: UIViewController, UIImagePickerControllerDelegate, 
             cameraManager.flashMode = .auto
         }
         
-        let username = "hello"
-        let password = "password"
+//        let username = "hello"
+//        let password = "password"
+//        
+//        if username.isEmpty || password.isEmpty {
+//            print ("You cannot have empty username/password")
+//        } else {
+//            PFUser.logInWithUsername(inBackground: username, password: password, block: { (user: PFUser?, error: Error?) in
+//                if let error = error {
+//                    print ("there was an error with logging in")
+//                    let errorInfo = error._userInfo as! [String: Any]
+//                    let code = errorInfo["code"] as! Int
+//                    if code == 101 {
+//                        print ("invalid login credentials")
+//                    }
+//                    
+//                } else {
+//                    print("User logged in successfully")
+//                    // display view controller that needs to shown after successful login
+//                    var categories: [String: [Post]?]? = [:]
+//                    categories = ["Math": nil, "Science": nil, "English": nil, "History": nil]
+//                    
+//                    Market.postMarket(withName: "Rice Students", withCategories: categories, withNewCategory: true, withPublic: true) { (success, error: Error?) in
+//                        if success {
+//                            print ("Rice Market posted")
+//                        } else {
+//                            print (error?.localizedDescription)
+//                        }
+//                    }
+//                    
+//                    Market.postMarket(withName: "Yale Students", withCategories: categories, withNewCategory: true, withPublic: true) { (success, error: Error?) in
+//                        if success {
+//                            print ("Yale Market posted")
+//                        } else {
+//                            print (error?.localizedDescription)
+//                        }
+//                    }
+//                    
+//                    Market.postMarket(withName: "UC Irvine Students", withCategories: categories, withNewCategory: true, withPublic: true) { (success, error: Error?) in
+//                        if success {
+//                            print ("UC Irvine Market posted")
+//                        } else {
+//                            print (error?.localizedDescription)
+//                        }
+//                    }
+//                    
+//
+//
+//                }
+//            })
+//        }
+//        let destinations = ["Rice Students": ["English", "Math"], "Yale Students": ["History", "Science"], "UC Irvine Students": ["English"]]
+//        Market.postToMarkets(destinations: destinations, post: "Making sure it goes to the markets!!!")
         
-        if username.isEmpty || password.isEmpty {
-            print ("You cannot have empty username/password")
-        } else {
-            PFUser.logInWithUsername(inBackground: username, password: password, block: { (user: PFUser?, error: Error?) in
-                if let error = error {
-                    print ("there was an error with logging in")
-                    let errorInfo = error._userInfo as! [String: Any]
-                    let code = errorInfo["code"] as! Int
-                    if code == 101 {
-                        print ("invalid login credentials")
-                    }
-                    
-                } else {
-                    print("User logged in successfully")
-                    // display view controller that needs to shown after successful login
-                    Market.postMarket(withName: "Rice Students", withCategories: nil, withNewCategory: true, withPublic: true) { (success: Bool, error: Error?) in
-                        if let error = error {
-                            print (error.localizedDescription)
-                        } else {
-                            print ("success")
-                        }
-                    }
-                    
-                    Market.postMarket(withName: "UCIrvineStudents", withCategories: nil, withNewCategory: true, withPublic: true) { (success: Bool, error: Error?) in
-                        if let error = error {
-                            print (error.localizedDescription)
-                        } else {
-                            print ("success")
-                        }
-                    }
-                    
-                    Market.postMarket(withName: "Yale Students", withCategories: nil, withNewCategory: true, withPublic: true) { (success: Bool, error: Error?) in
-                        if let error = error {
-                            print (error.localizedDescription)
-                        } else {
-                            print ("success")
-                        }
-                    }
-                    
+        
 
-                }
-            })
-        }
+        
+        
+        
         
         
     }
