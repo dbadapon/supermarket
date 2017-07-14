@@ -12,7 +12,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="t4x-cM-TcJ">
             <objects>
-                <tabBarController id="dbk-qZ-jFD" customClass="TabBarController" customModule="Supermarket" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabBarController" id="dbk-qZ-jFD" customClass="TabBarController" customModule="Supermarket" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="zLj-Sp-tMD">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
