@@ -26,13 +26,9 @@ class ConfirmPhotoViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func onUsePhoto(_ sender: Any) {
+    @IBAction func onNext(_ sender: Any) {
         name = MLManager.getName(withImage: image)
-        performSegue(withIdentifier: "toItemDescription", sender: self)
-    }
-    
-    @IBAction func onRetake(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+        performSegue(withIdentifier: "toItemDetails", sender: self)
     }
 
     
@@ -42,7 +38,7 @@ class ConfirmPhotoViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
-        if segue.identifier == "toItemDescription" {
+        if segue.identifier == "toItemDetails" {
             let destination = segue.destination as! NewPostDescriptionViewController
             destination.image = self.image
             destination.name = self.name

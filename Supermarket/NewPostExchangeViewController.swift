@@ -10,6 +10,16 @@ import UIKit
 
 class NewPostExchangeViewController: UIViewController {
 
+    var image: UIImage?
+    var name: String!
+    var conditionNew: Bool?
+    var negotiable: Bool?
+    var itemDescription: String?
+    var price: Double?
+    var markets: [Market]?
+    var exchangeMethods: [String]?
+    var transportMethods: [String]?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -35,6 +45,9 @@ class NewPostExchangeViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func onPost(_ sender: Any) {
+        
+    }
 
     /*
     // MARK: - Navigation
