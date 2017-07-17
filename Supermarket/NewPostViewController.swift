@@ -181,5 +181,4 @@ class NewPostViewController: UIViewController, UIImagePickerControllerDelegate, 
         
         
     }
-    
 }
