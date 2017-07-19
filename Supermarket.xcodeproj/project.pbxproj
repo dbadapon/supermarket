@@ -26,6 +26,7 @@
 		4D1556571F153FC800F70DB3 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1556561F153FC800F70DB3 /* DetailViewController.swift */; };
 		4D1556591F1540EB00F70DB3 /* DetailPictureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1556581F1540EB00F70DB3 /* DetailPictureCell.swift */; };
 		4D15565B1F1540FD00F70DB3 /* DetailInformationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D15565A1F1540FD00F70DB3 /* DetailInformationCell.swift */; };
+		4DAF789E1F1ED37C00768EFD /* WalmartAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DAF789D1F1ED37C00768EFD /* WalmartAPIManager.swift */; };
 		4DF6982C1F16E66D008DB9D6 /* ConfirmPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF6982B1F16E66D008DB9D6 /* ConfirmPhotoViewController.swift */; };
 		4DF6982E1F17ED8B008DB9D6 /* MLManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF6982D1F17ED8B008DB9D6 /* MLManager.swift */; };
 		926A42BE122588BD99E6BC61 /* Pods_SupermarketUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80572461216E64975C83358E /* Pods_SupermarketUITests.framework */; };
@@ -86,6 +87,7 @@
 		4D1556561F153FC800F70DB3 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		4D1556581F1540EB00F70DB3 /* DetailPictureCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailPictureCell.swift; sourceTree = "<group>"; };
 		4D15565A1F1540FD00F70DB3 /* DetailInformationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailInformationCell.swift; sourceTree = "<group>"; };
+		4DAF789D1F1ED37C00768EFD /* WalmartAPIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalmartAPIManager.swift; sourceTree = "<group>"; };
 		4DF6982B1F16E66D008DB9D6 /* ConfirmPhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmPhotoViewController.swift; sourceTree = "<group>"; };
 		4DF6982D1F17ED8B008DB9D6 /* MLManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MLManager.swift; sourceTree = "<group>"; };
 		80572461216E64975C83358E /* Pods_SupermarketUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SupermarketUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -238,6 +240,7 @@
 				A07904281F13F098000E4419 /* LaunchScreen.storyboard */,
 				A079042B1F13F098000E4419 /* Info.plist */,
 				4DF6982D1F17ED8B008DB9D6 /* MLManager.swift */,
+				4DAF789D1F1ED37C00768EFD /* WalmartAPIManager.swift */,
 			);
 			path = Supermarket;
 			sourceTree = "<group>";
@@ -564,6 +567,7 @@
 				4D114E081F1571FD00897FC8 /* MessageCell.swift in Sources */,
 				0A6966CC1F159ED500E72FD8 /* NewPostDescriptionViewController.swift in Sources */,
 				4DF6982C1F16E66D008DB9D6 /* ConfirmPhotoViewController.swift in Sources */,
+				4DAF789E1F1ED37C00768EFD /* WalmartAPIManager.swift in Sources */,
 				0A6966C81F15404700E72FD8 /* SignUpViewController.swift in Sources */,
 				A0E30DA51F14438D0062B100 /* BuyFeedCell.swift in Sources */,
 				A07904221F13F098000E4419 /* ViewController.swift in Sources */,
