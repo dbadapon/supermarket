@@ -6,6 +6,8 @@
 	<string>$(PRODUCT_NAME) Would you like this application to access your camera? </string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>$(PRODUCT_NAME) Would you like this application to access your photo library? </string>
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>$(PRODUCT_NAME) Would you like this application to access your location? </string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>

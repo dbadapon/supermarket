@@ -26,14 +26,14 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BuyFeedCell" rowHeight="118" id="NK2-NI-7Gp" customClass="BuyFeedCell" customModule="Supermarket" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="BuyFeedCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="BuyFeedCell" rowHeight="118" id="NK2-NI-7Gp" customClass="BuyFeedCell" customModule="Supermarket" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="118"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NK2-NI-7Gp" id="WXX-iZ-TMn">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="117.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wHL-Qm-jyZ">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wHL-Qm-jyZ" customClass="PFImageView">
                                                     <rect key="frame" x="8" y="15" width="75" height="75"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" red="0.34506586189999999" green="0.61268699169999996" blue="0.93730527159999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -59,8 +59,8 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Negotiable" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UeH-17-xzU">
-                                                    <rect key="frame" x="305" y="42" width="62" height="15"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="New?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c38-E0-Jb7">
+                                                    <rect key="frame" x="335" y="45" width="32" height="15"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <nil key="textColor"/>
@@ -68,7 +68,13 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <connections>
+                                            <outlet property="categoryLabel" destination="gNi-RB-ikK" id="olW-9c-30b"/>
+                                            <outlet property="conditionLabel" destination="c38-E0-Jb7" id="He9-aJ-0G6"/>
+                                            <outlet property="itemImageView" destination="wHL-Qm-jyZ" id="R00-X4-9RG"/>
+                                            <outlet property="nameLabel" destination="skR-Pl-uC2" id="vTF-mM-20G"/>
+                                            <outlet property="priceLabel" destination="LfS-Od-jzF" id="5Vi-ny-Uud"/>
                                             <segue destination="Erm-oh-1Zx" kind="show" id="T6S-Lr-4e2"/>
                                         </connections>
                                     </tableViewCell>

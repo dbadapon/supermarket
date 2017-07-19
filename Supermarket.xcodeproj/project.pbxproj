@@ -236,11 +236,11 @@
 				0A017A521F143C51001C6B5A /* CreatePost.storyboard */,
 				A07DD39B1F1555E70079C286 /* NotificationStoryboard.storyboard */,
 				A07DD39D1F15573B0079C286 /* Profile.storyboard */,
-				A07904261F13F098000E4419 /* Assets.xcassets */,
 				A07904281F13F098000E4419 /* LaunchScreen.storyboard */,
 				A079042B1F13F098000E4419 /* Info.plist */,
 				4DF6982D1F17ED8B008DB9D6 /* MLManager.swift */,
 				4DAF789D1F1ED37C00768EFD /* WalmartAPIManager.swift */,
+				A07904261F13F098000E4419 /* Assets.xcassets */,
 			);
 			path = Supermarket;
 			sourceTree = "<group>";

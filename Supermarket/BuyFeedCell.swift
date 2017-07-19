@@ -7,8 +7,34 @@
 //
 
 import UIKit
+import Parse
+import ParseUI
 
 class BuyFeedCell: UITableViewCell {
+    
+    @IBOutlet weak var nameLabel: UILabel!
+    
+    @IBOutlet weak var categoryLabel: UILabel! // hard code this for now and deal with it later...
+    
+    @IBOutlet weak var priceLabel: UILabel!
+    
+    
+    @IBOutlet weak var conditionLabel: UILabel!
+    
+    
+    
+    @IBOutlet weak var itemImageView: PFImageView!
+
+    var itemImage: PFObject! {
+        didSet{
+            let images: [PFFile]? = itemImage["images"] as! [PFFile]
+            let file = images![0] as? PFFile
+            self.itemImageView.file = file
+            self.itemImageView.loadInBackground()
+        }
+
+    }
+    
 
     override func awakeFromNib() {
         super.awakeFromNib()

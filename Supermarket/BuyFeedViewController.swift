@@ -7,27 +7,38 @@
 //
 
 import UIKit
+import Parse
+import ParseUI
 
 class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchResultsUpdating {
+
     
     @IBOutlet weak var postTableView: UITableView!
     
     var searchController: UISearchController!
     
+    var posts: [PFObject] = []
+    
+    // try showing all posts for now, then figure out how to show all posts only from the selected market...
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        postTableView.dataSource = self
+        postTableView.delegate = self
         
-        let image = UIImage(named: "rice cooker")
+        let image = UIImage(named: "brita")!
     
         print(image)
 //        Post.postItem(images: <#T##[UIImage]?#>, name: <#T##String#>, itemDescription: <#T##String#>, price: <#T##Double#>, conditionNew: <#T##Bool#>, negotiable: <#T##Bool#>, latitude: <#T##Double#>, longitude: <#T##Double#>)
         
-        Post.postItem(images: nil, name: "Rice cooker", itemDescription: "A medium-sized rice cooker that's perfect for college dorms!", price: 20.00, conditionNew: false, negotiable: false, latitude: 33.640495, longitude: -117.844296)
+//        Post.postItem(images: [image], name: "Brita filter", itemDescription: "New and unused! Fresh drinking water for days.", price: 12.25, conditionNew: true, negotiable: false, latitude: 33.640495, longitude: -117.844296)
         
         
-        postTableView.dataSource = self
-        postTableView.delegate = self
+        
+        
+        
+        // YOU'RE GONNA HAVE TO CHANGE ALL THIS SEARCH STUFF...FIGURE OUT HOW TO DO IT!
 
         searchController = UISearchController(searchResultsController: nil)
         searchController.searchResultsUpdater = self
@@ -59,6 +70,30 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         searchController.searchBar.clipsToBounds = true
         
         definesPresentationContext = true
+        
+
+//        Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.queryParse), userInfo: nil, repeats: true)
+        
+        queryParse()
+        print("posts: \(posts)")
+    }
+    
+    func queryParse() {
+        let query = PFQuery(className: "Post")
+        query.addDescendingOrder("createdAt")
+//        query.limit = 20
+        //includekey stuff... do you need that?
+        query.findObjectsInBackground { (posts: [PFObject]?, error: Error?) in
+            if let posts = posts {
+                print("found em!")
+                self.posts = posts
+                self.postTableView.reloadData()
+                print("new posts: \(self.posts)")
+            }
+            else {
+                print("Error loading posts: \(error?.localizedDescription)")
+            }
+        }
     }
     
 
@@ -68,12 +103,46 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10 // change to posts.count once you have parse and stuff...
+        return posts.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
+        print("POSTS AGAIN: \(posts)")
+        
         let cell = postTableView.dequeueReusableCell(withIdentifier: "BuyFeedCell", for: indexPath) as! BuyFeedCell
+        
+        
+//        let cell = postTableView.dequeueReusableCell(withIdentifier: "BuyFeedCell", for: indexPath) as! BuyFeedCell
+        
+        let post = posts[indexPath.row]
+        cell.itemImage = post
+        
+        let name = post["name"] as! String
+        cell.nameLabel.text = name
+    
+        
+        let category = "Category"
+        cell.categoryLabel.text = category
+        
+        let price = post["price"]!
+        cell.priceLabel.text = "$\(price)"
+        
+//        let negotiable = post["negotiable"] as! Bool
+//        var negotiableString = ""
+//        
+//        if negotiable {
+//            negotiableString = "Negotiable"
+//        }
+//        cell.negotiableLabel.text = negotiableString
+        
+        let conditionNew = post["conditionNew"] as! Bool
+        var newString = ""
+        if conditionNew {
+            newString = "New"
+        }
+        cell.conditionLabel.text = newString
+        
         
         return cell
     }
