@@ -11,7 +11,7 @@ import Parse
 
 class Market: NSObject {
     
-    class func postMarket(withName name: String, withCategories categories: [String: [Post]?]?, withNewCategory newCategory: Bool, withPublic isPublic: Bool,  withCompletion completion: PFBooleanResultBlock?) {
+    class func postMarket(withName name: String, withCategories categories: [String: [Post]?]?, withNewCategory newCategory: Bool, withPublic isPublic: Bool, withLatitude latitude: Double?, withLongitude longitude: Double?, withCompletion completion: PFBooleanResultBlock?) {
         // Create Parse object PFObject
         
         let market = PFObject(className: "Market")
@@ -29,6 +29,11 @@ class Market: NSObject {
         
         market["memberCanCreateNewCategory"] = newCategory
         market["public"] = isPublic
+        
+        if let latitude = latitude {
+            market["latitude"] = latitude
+            market["longitude"] = longitude!
+        }
         
         
         // Save object (following function will save the object in Parse asynchronously)
@@ -57,9 +62,9 @@ class Market: NSObject {
                                 var posts = categories[category] as? [PFObject]
                                 if posts == nil {
                                     posts = []
-                                    posts?.append(post!)
+                                    posts?.append(post)
                                 } else {
-                                    posts!.append(post!)
+                                    posts!.append(post)
                                 }
                                 categories[category] = posts
                             }
@@ -81,5 +86,5 @@ class Market: NSObject {
 
         }
         
-    }
+    
 }
