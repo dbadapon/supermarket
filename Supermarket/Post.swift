@@ -72,7 +72,11 @@ class Post: NSObject {
         let post = PFObject(className: "Post")
         
         if let images = images {
-            post["images"] = images
+            var convertedImages: [PFFile]? = nil
+            for image in images {
+                convertedImages?.append(Post.getPFFileFromImage(image: image)!)
+            }
+            post["images"] = convertedImages
         } else {
             post["images"] = NSNull()
         }
