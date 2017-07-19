@@ -68,6 +68,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="Erm-oh-1Zx" kind="show" id="T6S-Lr-4e2"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -89,6 +92,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MrS-z7-W1g" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1047" y="-105"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="lZk-OH-Hy4">
+            <objects>
+                <viewController id="Erm-oh-1Zx" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="gy9-06-z2l"/>
+                        <viewControllerLayoutGuide type="bottom" id="apr-2r-X7E"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="BOB-Fc-PXZ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eDJ-LE-0aX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1046" y="590"/>
         </scene>
         <!--Your Markets-->
         <scene sceneID="2Hc-Ml-Ecm">

@@ -69,6 +69,10 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        postTableView.deselectRow(at: indexPath, animated: true)
+    }
+    
     func updateSearchResults(for searchController: UISearchController) {
 
     }
