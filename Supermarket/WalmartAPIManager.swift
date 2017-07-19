@@ -69,4 +69,49 @@ class WalmartAPIManager {
         return name
     }
     
+    class func getImageUrl(query: String) -> String  {
+        var urlString = ""
+        
+        let baseURL = "http://api.walmartlabs.com/v1/search?query="
+        let endUrl = "&format=json&apiKey=yva6f6yprac42rsp44tjvxjg"
+        
+        let newString = query.replacingOccurrences(of: " ", with: "+")
+        var wholeUrl = baseURL + newString + endUrl
+        
+        request(wholeUrl, method: .get).validate().responseJSON { (response) in
+            if response.result.isSuccess,
+                let responseDictionary = response.result.value as? [String: Any] {
+                let numberOfItems = responseDictionary["numItems"] as! Int
+                if numberOfItems > 0 {
+                    let itemArray = responseDictionary["items"] as! [[String: Any]]
+                    
+                    let item = itemArray[0] as! [String: Any]
+                    
+                    let imageEntities = item["imageEntities"] as! [[String: Any]]
+                    var realEntity: [String: Any]? = nil
+                    for entity in imageEntities {
+                        let entityType = entity["entityType"] as! String
+                        if entityType == "PRIMARY" {
+                            realEntity = entity
+                            break
+                        }
+                    }
+                    
+                    if realEntity == nil {
+                        realEntity = imageEntities[0] as! [String : Any]
+                    }
+                    
+                    urlString = realEntity!["largeImage"] as! String
+                }
+            } else {
+                print ("it's not getting a response")
+                print (response.result.error)
+            }
+            
+        }
+        
+        return urlString
+
+    }
+    
 }
