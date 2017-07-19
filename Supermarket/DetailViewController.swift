@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -25,6 +26,51 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tableView.separatorStyle = .none
         
         tableView.reloadData()
+        
+//        let post = Post.postItem(images: nil, name: "Foldable Chair", itemDescription: "This is a cool foldable chair. Pretty cool", price: 10.00, conditionNew: true, negotiable: true, latitude: 30, longitude: 30)
+//        
+//        print (post)
+//        print (post?["name"])
+//        
+//        
+//        Market.postToMarkets(destinations: ["Rice Students": ["English", "Math"], "Yale Students": ["History"], "UC Irvine Students": ["Science"]], post: post!)
+        
+//        let query = PFQuery(className: "Post")
+//        
+//        query.findObjectsInBackground { (posts: [PFObject]?, error: Error?) in
+//            if let error = error {
+//                print (error.localizedDescription)
+//            } else {
+//                for post in posts! {
+//                    print (post["name"])
+//                }
+//            }
+//        }
+        
+        let query = PFQuery(className: "Market")
+        query.whereKey("name", equalTo: "Rice Students")
+        
+        query.findObjectsInBackground { (markets: [PFObject]?, error: Error?) in
+            if let error = error {
+                print (error.localizedDescription)
+            } else {
+                for market in markets! {
+                    
+                    let categories = market["categories"] as! [String: Any]
+                    let category = categories["English"] as! [PFObject]
+                    let post = category[0] as! PFObject
+                    post.fetchInBackground(block: { (post: PFObject?, error: Error?) in
+                        if let error = error {
+                            print (error.localizedDescription)
+                        } else {
+                            print (post!["name"])
+                        }
+                    })
+                    
+                    
+                }
+            }
+        }
         
     }
 
