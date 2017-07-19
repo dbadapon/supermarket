@@ -19,6 +19,13 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
     
     var posts: [PFObject] = []
     
+    var markets: [PFObject] = []
+    
+    var currentMarket: PFObject?
+    
+
+    
+    
     // try showing all posts for now, then figure out how to show all posts only from the selected market...
     
 
@@ -95,7 +102,35 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
 
 //        Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.queryParse), userInfo: nil, repeats: true)
         
+        setFirstMarket()
+        print(markets)
+
+//        currentMarket = self.markets[0]
+//        let marketName = currentMarket!["name"] as! String
+//        self.title = marketName
+        
         queryParse()
+    }
+    
+    func setFirstMarket() {
+        let query = PFQuery(className: "Market")
+//        query.addAscendingOrder("name")
+        query.addAscendingOrder("name")
+        
+        query.findObjectsInBackground { (markets: [PFObject]?, error: Error?) in
+            if let markets = markets {
+                self.markets = markets
+                print("Just set markets to: \(markets)")
+                self.currentMarket = self.markets[0]
+                let marketName = self.currentMarket!["name"] as! String
+                self.title = marketName
+//                self.marketTableView.reloadData()
+            }
+            else {
+                print("Error getting markets: \(error?.localizedDescription)")
+            }
+        }
+        
     }
     
     func queryParse() {
@@ -112,6 +147,7 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
                 print("Error loading posts: \(error?.localizedDescription)")
             }
         }
+        
     }
     
 
