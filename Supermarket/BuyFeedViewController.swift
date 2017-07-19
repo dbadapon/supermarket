@@ -17,6 +17,15 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let image = UIImage(named: "rice cooker")
+    
+        print(image)
+//        Post.postItem(images: <#T##[UIImage]?#>, name: <#T##String#>, itemDescription: <#T##String#>, price: <#T##Double#>, conditionNew: <#T##Bool#>, negotiable: <#T##Bool#>, latitude: <#T##Double#>, longitude: <#T##Double#>)
+        
+        Post.postItem(images: nil, name: "Rice cooker", itemDescription: "A medium-sized rice cooker that's perfect for college dorms!", price: 20.00, conditionNew: false, negotiable: false, latitude: 33.640495, longitude: -117.844296)
+        
+        
         postTableView.dataSource = self
         postTableView.delegate = self
 
