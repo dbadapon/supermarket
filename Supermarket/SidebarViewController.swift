@@ -7,10 +7,14 @@
 //
 
 import UIKit
+import Parse
+import ParseUI
 
 class SidebarViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var marketTableView: UITableView!
+    
+    var markets: [PFObject] = []
     
     
     override func viewDidLoad() {
@@ -29,7 +33,24 @@ class SidebarViewController: UIViewController, UITableViewDataSource, UITableVie
         
         definesPresentationContext = true
 
-        // Do any additional setup after loading the view.
+        
+        // fetch data from database
+        queryParse()
+        
+    }
+    
+    func queryParse() {
+        let query = PFQuery(className: "Market")
+        query.addAscendingOrder("name")
+        query.findObjectsInBackground { (markets: [PFObject]?, error: Error?) in
+            if let markets = markets {
+                self.markets = markets
+                self.marketTableView.reloadData()
+            }
+            else {
+                print(error?.localizedDescription)
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -37,10 +58,14 @@ class SidebarViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5 // change later!
+        return markets.count // change later!
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = marketTableView.dequeueReusableCell(withIdentifier: "MarketCell", for: indexPath) as! MarketCell
+        
+        let market = markets[indexPath.row]
+        cell.marketName.text = market["name"] as! String
+        
         return cell
     }
     

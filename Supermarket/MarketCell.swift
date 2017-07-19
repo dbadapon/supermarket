@@ -10,6 +10,8 @@ import UIKit
 
 class MarketCell: UITableViewCell {
 
+    @IBOutlet weak var marketName: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

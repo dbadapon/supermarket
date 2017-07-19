@@ -27,12 +27,33 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         postTableView.dataSource = self
         postTableView.delegate = self
         
-        let image = UIImage(named: "brita")!
+        let image = UIImage(named: "accounting textbook")!
+        
+        
+//        let post = Post.postItem(images: [image], name: "Intermediate Accounting 13th Ed.", itemDescription: "For Accounting 122a.", price: 15.00, conditionNew: false, negotiable: true, latitude: 33.640495, longitude: -117.844296)
     
-        print(image)
+
 //        Post.postItem(images: <#T##[UIImage]?#>, name: <#T##String#>, itemDescription: <#T##String#>, price: <#T##Double#>, conditionNew: <#T##Bool#>, negotiable: <#T##Bool#>, latitude: <#T##Double#>, longitude: <#T##Double#>)
         
 //        Post.postItem(images: [image], name: "Brita filter", itemDescription: "New and unused! Fresh drinking water for days.", price: 12.25, conditionNew: true, negotiable: false, latitude: 33.640495, longitude: -117.844296)
+        
+        
+        // Books, Kitchen, Home, Clothing, Electronics, Supplies
+        
+//        let categories: [String: [Post]?]? = ["Books": [], "Kitchen": [], "Home": [], "Clothing": [], "Electronics": [], "Supplies": []]
+//        
+//        Market.postMarket(withName: "UCI Free and For Sale", withCategories: categories, withNewCategory: false, withPublic: true, withLatitude: 33.640495, withLongitude: -117.844296) { (success, error) in
+//            if success {
+//                print("created new market yay!")
+//            } else {
+//                print(error?.localizedDescription)
+//            }
+//        }
+        
+        let marketsToPost: [String: [String]] = ["UCI Free and For Sale": ["Books"]]
+        
+        
+//        Market.postToMarkets(destinations: marketsToPost, post: post!)
         
         
         
@@ -75,7 +96,6 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
 //        Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.queryParse), userInfo: nil, repeats: true)
         
         queryParse()
-        print("posts: \(posts)")
     }
     
     func queryParse() {
@@ -85,10 +105,8 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         //includekey stuff... do you need that?
         query.findObjectsInBackground { (posts: [PFObject]?, error: Error?) in
             if let posts = posts {
-                print("found em!")
                 self.posts = posts
                 self.postTableView.reloadData()
-                print("new posts: \(self.posts)")
             }
             else {
                 print("Error loading posts: \(error?.localizedDescription)")
@@ -107,8 +125,6 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        print("POSTS AGAIN: \(posts)")
         
         let cell = postTableView.dequeueReusableCell(withIdentifier: "BuyFeedCell", for: indexPath) as! BuyFeedCell
         
