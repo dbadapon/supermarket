@@ -27,6 +27,8 @@
 		4D1556591F1540EB00F70DB3 /* DetailPictureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1556581F1540EB00F70DB3 /* DetailPictureCell.swift */; };
 		4D15565B1F1540FD00F70DB3 /* DetailInformationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D15565A1F1540FD00F70DB3 /* DetailInformationCell.swift */; };
 		4DAF789E1F1ED37C00768EFD /* WalmartAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DAF789D1F1ED37C00768EFD /* WalmartAPIManager.swift */; };
+		4DC3C0C81F20166C00B4E2C4 /* SellFeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC3C0C71F20166C00B4E2C4 /* SellFeedCell.swift */; };
+		4DC3C0CA1F2016B400B4E2C4 /* SellFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC3C0C91F2016B400B4E2C4 /* SellFeedViewController.swift */; };
 		4DF6982C1F16E66D008DB9D6 /* ConfirmPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF6982B1F16E66D008DB9D6 /* ConfirmPhotoViewController.swift */; };
 		4DF6982E1F17ED8B008DB9D6 /* MLManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF6982D1F17ED8B008DB9D6 /* MLManager.swift */; };
 		926A42BE122588BD99E6BC61 /* Pods_SupermarketUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80572461216E64975C83358E /* Pods_SupermarketUITests.framework */; };
@@ -88,6 +90,8 @@
 		4D1556581F1540EB00F70DB3 /* DetailPictureCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailPictureCell.swift; sourceTree = "<group>"; };
 		4D15565A1F1540FD00F70DB3 /* DetailInformationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailInformationCell.swift; sourceTree = "<group>"; };
 		4DAF789D1F1ED37C00768EFD /* WalmartAPIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalmartAPIManager.swift; sourceTree = "<group>"; };
+		4DC3C0C71F20166C00B4E2C4 /* SellFeedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SellFeedCell.swift; sourceTree = "<group>"; };
+		4DC3C0C91F2016B400B4E2C4 /* SellFeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SellFeedViewController.swift; sourceTree = "<group>"; };
 		4DF6982B1F16E66D008DB9D6 /* ConfirmPhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmPhotoViewController.swift; sourceTree = "<group>"; };
 		4DF6982D1F17ED8B008DB9D6 /* MLManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MLManager.swift; sourceTree = "<group>"; };
 		80572461216E64975C83358E /* Pods_SupermarketUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SupermarketUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -186,6 +190,7 @@
 				0A6966CD1F159EE400E72FD8 /* NewPostMarketViewController.swift */,
 				0A6966CF1F159EF000E72FD8 /* NewPostExchangeViewController.swift */,
 				4DF6982B1F16E66D008DB9D6 /* ConfirmPhotoViewController.swift */,
+				4DC3C0C91F2016B400B4E2C4 /* SellFeedViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -272,6 +277,7 @@
 				4D15565A1F1540FD00F70DB3 /* DetailInformationCell.swift */,
 				4D114E071F1571FD00897FC8 /* MessageCell.swift */,
 				4D114E091F15728800897FC8 /* InterestedCell.swift */,
+				4DC3C0C71F20166C00B4E2C4 /* SellFeedCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -564,6 +570,7 @@
 			files = (
 				4D114E041F1559B700897FC8 /* NotificationsViewController.swift in Sources */,
 				4D114E0A1F15728800897FC8 /* InterestedCell.swift in Sources */,
+				4DC3C0CA1F2016B400B4E2C4 /* SellFeedViewController.swift in Sources */,
 				4D114E081F1571FD00897FC8 /* MessageCell.swift in Sources */,
 				0A6966CC1F159ED500E72FD8 /* NewPostDescriptionViewController.swift in Sources */,
 				4DF6982C1F16E66D008DB9D6 /* ConfirmPhotoViewController.swift in Sources */,
@@ -585,6 +592,7 @@
 				4D1556571F153FC800F70DB3 /* DetailViewController.swift in Sources */,
 				4D1556131F143BCB00F70DB3 /* Market.swift in Sources */,
 				0A6966D01F159EF000E72FD8 /* NewPostExchangeViewController.swift in Sources */,
+				4DC3C0C81F20166C00B4E2C4 /* SellFeedCell.swift in Sources */,
 				0A6966C61F15401200E72FD8 /* LoginViewController.swift in Sources */,
 				4D1556151F143BE500F70DB3 /* Category.swift in Sources */,
 				4D15565B1F1540FD00F70DB3 /* DetailInformationCell.swift in Sources */,
