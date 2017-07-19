@@ -12,6 +12,7 @@ target 'Supermarket' do
 	pod 'ModernSearchBar'
 	pod 'CameraManager'
 	pod 'Alamofire'
+	pod 'AlamofireImage'
 
   target 'SupermarketTests' do
     inherit! :search_paths
