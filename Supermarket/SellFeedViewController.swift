@@ -9,13 +9,37 @@
 import UIKit
 import Parse
 
-class SellFeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class SellFeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, YSSegmentedControlDelegate {
     
     @IBOutlet weak var postTableView: UITableView!
     var posts: [PFObject]?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let segmented = YSSegmentedControl(
+            frame: CGRect(
+                x: 0,
+                y: 64,
+                width: view.frame.size.width,
+                height: 44),
+            titles: [
+                "First",
+                "Second",
+                "Third"
+            ],
+            action: {
+                control, index in
+                print ("segmented did pressed \(index)")
+        })
+        
+        segmented.delegate = self
+        segmented.appearance.backgroundColor = UIColor.black
+        segmented.layoutSubviews()
+        segmented.draw(CGRect(x: 0, y: 64, width: view.frame.size.width, height: 44))
+        
+        
+        
         
         postTableView.dataSource = self
         postTableView.delegate = self
@@ -33,6 +57,7 @@ class SellFeedViewController: UIViewController, UITableViewDataSource, UITableVi
         navigationController?.navigationBar.isTranslucent = false
         
         definesPresentationContext = true
+        
         
         var query = PFQuery(className: "Post")
         query.limit = 20
@@ -71,6 +96,16 @@ class SellFeedViewController: UIViewController, UITableViewDataSource, UITableVi
         cell.post = posts![indexPath.row]
         
         return cell
+    }
+    
+    func segmentedControl(_ segmentedControl: YSSegmentedControl, willPressItemAt index: Int) {
+        print (index)
+    }
+    
+    
+    
+    func segmentedControl(_ segmentedControl: YSSegmentedControl, didPressItemAt index: Int) {
+        print (index)
     }
     
     
