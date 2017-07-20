@@ -7,9 +7,23 @@
 //
 
 import UIKit
+import Parse
+import ParseUI
+
 
 class DetailPictureCell: UITableViewCell {
-    @IBOutlet weak var postImage: UIImageView!
+    
+    @IBOutlet weak var postImageView: PFImageView!
+    
+    var postImage: PFObject! {
+        didSet {
+            let images: [PFFile]? = postImage["images"] as! [PFFile]
+            let file = images![0] as? PFFile
+            self.postImageView.file = file
+            self.postImageView.loadInBackground()
+        }
+    }
+    
 
     override func awakeFromNib() {
         super.awakeFromNib()

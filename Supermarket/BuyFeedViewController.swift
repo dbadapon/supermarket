@@ -19,6 +19,8 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
     
     var posts: [PFObject] = []
     
+    var allPosts: [PFObject] = []
+    
     var markets: [PFObject] = []
     
     var currentMarket: PFObject?
@@ -110,6 +112,22 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
 //        self.title = marketName
         
         queryParse()
+//        loadPosts()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.barTintColor = UIColor.init(colorLiteralRed: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha: 1.0)
+        
+//        navigationController?.navigationBar.barStyle = UIBarStyle.black
+        
+//        self.navigationController.view.backgroundColor = [UIColor whiteColor]
+        
+        navigationController?.view.backgroundColor = UIColor.white
+        
+        navigationController?.navigationBar.tintColor = UIColor.white
+        
+        navigationController?.navigationBar.isTranslucent = false
     }
     
     func setFirstMarket() {
@@ -121,9 +139,10 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
             if let markets = markets {
                 self.markets = markets
                 print("Just set markets to: \(markets)")
-                self.currentMarket = self.markets[0]
+                self.currentMarket = self.markets[2]
                 let marketName = self.currentMarket!["name"] as! String
-                self.title = marketName
+                self.navigationItem.title = marketName
+//                self.loadPosts()
 //                self.marketTableView.reloadData()
             }
             else {
@@ -131,6 +150,18 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
             }
         }
         
+    }
+    
+    func loadPosts() {
+//        let query = PFQuery(className: "Post")
+        var posts: [Post] = []
+        let categories = currentMarket!["categories"] as! [String: [Post]]
+        for (key, value) in categories {
+            for post in value {
+                posts.append(post)
+            }
+        }
+//        query.whereKey("id", containedIn: postIDs)
     }
     
     func queryParse() {
@@ -207,14 +238,25 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
 
     }
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        
+        // clear back button text
+        
+        let backItem = UIBarButtonItem()
+        backItem.title = ""
+        navigationItem.backBarButtonItem = backItem
+        
+        let cell = sender as! UITableViewCell
+        if let indexPath = postTableView.indexPath(for: cell) {
+            let post = posts[indexPath.row]
+            let detailViewController = segue.destination as! DetailViewController
+            detailViewController.post = post
+        }
     }
-    */
+ 
 
 }

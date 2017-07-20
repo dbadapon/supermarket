@@ -121,6 +121,8 @@ class Post: NSObject {
         return nil
     }
     
-
+//    class func getID() {
+//        return
+//    }
     
 }

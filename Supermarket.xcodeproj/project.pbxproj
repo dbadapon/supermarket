@@ -179,11 +179,11 @@
 			isa = PBXGroup;
 			children = (
 				A0E30DA11F143C020062B100 /* BuyFeedViewController.swift */,
+				4D1556561F153FC800F70DB3 /* DetailViewController.swift */,
 				A0B989F11F15806F0037EFCF /* SidebarViewController.swift */,
 				A0E30DE61F144EA00062B100 /* TabBarController.swift */,
 				0A6966C51F15401200E72FD8 /* LoginViewController.swift */,
 				0A6966C71F15404700E72FD8 /* SignUpViewController.swift */,
-				4D1556561F153FC800F70DB3 /* DetailViewController.swift */,
 				4D114E031F1559B700897FC8 /* NotificationsViewController.swift */,
 				0A6966C91F159EB000E72FD8 /* NewPostViewController.swift */,
 				0A6966CB1F159ED500E72FD8 /* NewPostDescriptionViewController.swift */,

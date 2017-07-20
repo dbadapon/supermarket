@@ -10,6 +10,17 @@ import UIKit
 
 class DetailInformationCell: UITableViewCell {
 
+    @IBOutlet weak var nameLabel: UILabel!
+    
+    @IBOutlet weak var priceLabel: UILabel!
+    
+    @IBOutlet weak var conditionLabel: UILabel!
+    
+    @IBOutlet weak var locationLabel: UILabel!
+    
+    @IBOutlet weak var timestampLabel: UILabel!
+    
+    @IBOutlet weak var descriptionLabel: UILabel!
     
     
     override func awakeFromNib() {

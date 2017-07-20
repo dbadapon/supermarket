@@ -8,10 +8,16 @@
 
 import UIKit
 import Parse
+import ParseUI
 
 class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
+    
+    
+    var post: PFObject!
+
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +31,16 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tableView.delegate = self
         tableView.separatorStyle = .none
         
-        tableView.reloadData()
+        
+        // make navigation bar clear
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.view.backgroundColor = UIColor.clear
+        
+        automaticallyAdjustsScrollViewInsets = false
+        
+//        tableView.reloadData()
         
 //        let post = Post.postItem(images: nil, name: "Foldable Chair", itemDescription: "This is a cool foldable chair. Pretty cool", price: 10.00, conditionNew: true, negotiable: true, latitude: 30, longitude: 30)
 //        
@@ -47,30 +62,30 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
 //            }
 //        }
         
-        let query = PFQuery(className: "Market")
-        query.whereKey("name", equalTo: "Rice Students")
-        
-        query.findObjectsInBackground { (markets: [PFObject]?, error: Error?) in
-            if let error = error {
-                print (error.localizedDescription)
-            } else {
-                for market in markets! {
-                    
-                    let categories = market["categories"] as! [String: Any]
-                    let category = categories["English"] as! [PFObject]
-                    let post = category[0] as! PFObject
-                    post.fetchInBackground(block: { (post: PFObject?, error: Error?) in
-                        if let error = error {
-                            print (error.localizedDescription)
-                        } else {
-                            print (post!["name"])
-                        }
-                    })
-                    
-                    
-                }
-            }
-        }
+//        let query = PFQuery(className: "Market")
+//        query.whereKey("name", equalTo: "Rice Students")
+//        
+//        query.findObjectsInBackground { (markets: [PFObject]?, error: Error?) in
+//            if let error = error {
+//                print (error.localizedDescription)
+//            } else {
+//                for market in markets! {
+//                    
+//                    let categories = market["categories"] as! [String: Any]
+//                    let category = categories["English"] as! [PFObject]
+//                    let post = category[0] as! PFObject
+//                    post.fetchInBackground(block: { (post: PFObject?, error: Error?) in
+//                        if let error = error {
+//                            print (error.localizedDescription)
+//                        } else {
+//                            print (post!["name"])
+//                        }
+//                    })
+//                    
+//                    
+//                }
+//            }
+//        }
         
     }
 
@@ -83,10 +98,36 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "DetailPictureCell") as! DetailPictureCell
             
+            cell.postImage = post
+            
             return cell
             
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "DetailInformationCell") as! DetailInformationCell
+            
+            let name = post["name"] as! String
+            cell.nameLabel.text = name
+            
+            let price = post["price"] as! Double
+            cell.priceLabel.text = "$\(price)"
+            
+            let new = post["conditionNew"] as! Bool
+            var conditionString = ""
+            if new {
+                conditionString = "New"
+            }
+            cell.conditionLabel.text = conditionString
+            
+            let latitude = post["latitude"] as! Double
+            let longitude = post["longitude"] as! Double
+            cell.locationLabel.text = "Lat: \(latitude), Long: \(longitude)"
+            
+            let timestamp = post["_created_at"] as? String
+            // maybe change this to a var so you can format it...
+            cell.timestampLabel.text = timestamp
+            
+            let description = post["itemDescription"] as! String
+            cell.descriptionLabel.text = description
             
             return cell
         }
