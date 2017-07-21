@@ -78,7 +78,7 @@
                                             <outlet property="itemImageView" destination="wHL-Qm-jyZ" id="R00-X4-9RG"/>
                                             <outlet property="nameLabel" destination="skR-Pl-uC2" id="vTF-mM-20G"/>
                                             <outlet property="priceLabel" destination="LfS-Od-jzF" id="5Vi-ny-Uud"/>
-                                            <segue destination="n9O-Wh-7Py" kind="show" id="AFX-ff-brx"/>
+                                            <segue destination="n9O-Wh-7Py" kind="show" identifier="detailSegue" id="AFX-ff-brx"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

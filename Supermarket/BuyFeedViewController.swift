@@ -17,7 +17,7 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
     
     var searchController: UISearchController!
     
-    var posts: [PFObject] = []
+    var posts: [Post] = []
     
     var allPosts: [PFObject] = []
     
@@ -111,7 +111,7 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
 //        let marketName = currentMarket!["name"] as! String
 //        self.title = marketName
         
-        queryParse()
+//        queryParse()
 //        loadPosts()
     }
     
@@ -142,8 +142,9 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
                 self.currentMarket = self.markets[2]
                 let marketName = self.currentMarket!["name"] as! String
                 self.navigationItem.title = marketName
-//                self.loadPosts()
-//                self.marketTableView.reloadData()
+                self.loadPosts()
+//                print(self.posts)
+                self.postTableView.reloadData()
             }
             else {
                 print("Error getting markets: \(error?.localizedDescription)")
@@ -155,31 +156,44 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
     func loadPosts() {
 //        let query = PFQuery(className: "Post")
         var posts: [Post] = []
-        let categories = currentMarket!["categories"] as! [String: [Post]]
+        print("current market is: \(currentMarket)")
+        let categories = currentMarket!["categories"] as! [String: [PFObject]]
+        print(type(of: categories))
         for (key, value) in categories {
-            for post in value {
+            print(type(of: value))
+//            print("value is: \(value)")
+//            let postArray: [Post] = value
+            print(type(of: value))
+            for p in value {
+                let post = Post(p)
                 posts.append(post)
             }
         }
 //        query.whereKey("id", containedIn: postIDs)
+        
+        print(posts)
+        self.posts = posts
     }
     
-    func queryParse() {
-        let query = PFQuery(className: "Post")
-        query.addDescendingOrder("createdAt")
-//        query.limit = 20
-        //includekey stuff... do you need that?
-        query.findObjectsInBackground { (posts: [PFObject]?, error: Error?) in
-            if let posts = posts {
-                self.posts = posts
-                self.postTableView.reloadData()
-            }
-            else {
-                print("Error loading posts: \(error?.localizedDescription)")
-            }
-        }
-        
-    }
+    
+    
+//    func queryParse() {
+//        let query = PFQuery(className: "Post")
+//        query.addDescendingOrder("createdAt")
+////        query.limit = 20
+//        //includekey stuff... do you need that?
+//        query.findObjectsInBackground { (posts: [PFObject]?, error: Error?) in
+//            if let posts = posts {
+//                self.posts = posts
+//                self.postTableView.reloadData()
+//                print("POSTS: \(self.posts)")
+//            }
+//            else {
+//                print("Error loading posts: \(error?.localizedDescription)")
+//            }
+//        }
+//        
+//    }
     
 
     override func didReceiveMemoryWarning() {
@@ -199,32 +213,66 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
 //        let cell = postTableView.dequeueReusableCell(withIdentifier: "BuyFeedCell", for: indexPath) as! BuyFeedCell
         
         let post = posts[indexPath.row]
-        cell.itemImage = post
+        let parseObject = post.parseObject
         
-        let name = post["name"] as! String
-        cell.nameLabel.text = name
-    
-        
-        let category = "Category"
-        cell.categoryLabel.text = category
-        
-        let price = post["price"]!
-        cell.priceLabel.text = "$\(price)"
-        
-//        let negotiable = post["negotiable"] as! Bool
-//        var negotiableString = ""
-//        
-//        if negotiable {
-//            negotiableString = "Negotiable"
-//        }
-//        cell.negotiableLabel.text = negotiableString
-        
-        let conditionNew = post["conditionNew"] as! Bool
-        var newString = ""
-        if conditionNew {
-            newString = "New"
+        // maybe Post needs a fetchInBackground method so you don't have to do this...
+        post.parseObject.fetchInBackground { (parseObject, error) in
+            if let parseObject  = parseObject {
+                cell.itemImage = parseObject
+                
+                let name = post.name
+                cell.nameLabel.text = name
+                
+                
+                let category = "Category"
+                cell.categoryLabel.text = category
+                
+                let price = post.price!
+                cell.priceLabel.text = "$\(price)"
+                
+                
+                let conditionNew = post.conditionNew!
+                var newString = ""
+                if conditionNew {
+                    newString = "New"
+                }
+                cell.conditionLabel.text = newString
+            } else {
+                print(error?.localizedDescription)
+            }
         }
-        cell.conditionLabel.text = newString
+        
+
+
+        
+//        post.fetchInBackground { (post, error) in
+//            if let post = post {
+//                cell.itemImage = post
+//                
+//                let name = post.name
+//                cell.nameLabel.text = name
+//                
+//                
+//                let category = "Category"
+//                cell.categoryLabel.text = category
+//                
+//                let price = post.price
+//                cell.priceLabel.text = "$\(price)"
+//                
+//                
+//                let conditionNew = post.conditionNew
+//                var newString = ""
+//                if conditionNew {
+//                    newString = "New"
+//                }
+//                cell.conditionLabel.text = newString
+//            }
+//            else {
+//                print(error?.localizedDescription)
+//            }
+//        }
+        
+
         
         
         return cell
@@ -246,16 +294,19 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         
         // clear back button text
         
-        let backItem = UIBarButtonItem()
-        backItem.title = ""
-        navigationItem.backBarButtonItem = backItem
-        
-        let cell = sender as! UITableViewCell
-        if let indexPath = postTableView.indexPath(for: cell) {
-            let post = posts[indexPath.row]
-            let detailViewController = segue.destination as! DetailViewController
-            detailViewController.post = post
+        if segue.identifier == "detailSegue" {
+            let backItem = UIBarButtonItem()
+            backItem.title = ""
+            navigationItem.backBarButtonItem = backItem
+            
+            let cell = sender as! UITableViewCell
+            if let indexPath = postTableView.indexPath(for: cell) {
+                let post = posts[indexPath.row]
+                let detailViewController = segue.destination as! DetailViewController
+                detailViewController.post = post
+            }
         }
+        
     }
  
 

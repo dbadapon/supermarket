@@ -15,7 +15,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var tableView: UITableView!
     
     
-    var post: PFObject!
+    var post: Post = Post()
 
     
 
@@ -40,53 +40,6 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         automaticallyAdjustsScrollViewInsets = false
         
-//        tableView.reloadData()
-        
-//        let post = Post.postItem(images: nil, name: "Foldable Chair", itemDescription: "This is a cool foldable chair. Pretty cool", price: 10.00, conditionNew: true, negotiable: true, latitude: 30, longitude: 30)
-//        
-//        print (post)
-//        print (post?["name"])
-//        
-//        
-//        Market.postToMarkets(destinations: ["Rice Students": ["English", "Math"], "Yale Students": ["History"], "UC Irvine Students": ["Science"]], post: post!)
-        
-//        let query = PFQuery(className: "Post")
-//        
-//        query.findObjectsInBackground { (posts: [PFObject]?, error: Error?) in
-//            if let error = error {
-//                print (error.localizedDescription)
-//            } else {
-//                for post in posts! {
-//                    print (post["name"])
-//                }
-//            }
-//        }
-        
-//        let query = PFQuery(className: "Market")
-//        query.whereKey("name", equalTo: "Rice Students")
-//        
-//        query.findObjectsInBackground { (markets: [PFObject]?, error: Error?) in
-//            if let error = error {
-//                print (error.localizedDescription)
-//            } else {
-//                for market in markets! {
-//                    
-//                    let categories = market["categories"] as! [String: Any]
-//                    let category = categories["English"] as! [PFObject]
-//                    let post = category[0] as! PFObject
-//                    post.fetchInBackground(block: { (post: PFObject?, error: Error?) in
-//                        if let error = error {
-//                            print (error.localizedDescription)
-//                        } else {
-//                            print (post!["name"])
-//                        }
-//                    })
-//                    
-//                    
-//                }
-//            }
-//        }
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -98,35 +51,35 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "DetailPictureCell") as! DetailPictureCell
             
-            cell.postImage = post
+            cell.postImage = post.parseObject
             
             return cell
             
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "DetailInformationCell") as! DetailInformationCell
             
-            let name = post["name"] as! String
+            let name = post.name
             cell.nameLabel.text = name
             
-            let price = post["price"] as! Double
+            let price = post.price!
             cell.priceLabel.text = "$\(price)"
             
-            let new = post["conditionNew"] as! Bool
+            let new = post.conditionNew
             var conditionString = ""
-            if new {
+            if new! {
                 conditionString = "New"
             }
             cell.conditionLabel.text = conditionString
             
-            let latitude = post["latitude"] as! Double
-            let longitude = post["longitude"] as! Double
+            let latitude = post.latitude!
+            let longitude = post.longitude!
             cell.locationLabel.text = "Lat: \(latitude), Long: \(longitude)"
             
-            let timestamp = post["_created_at"] as? String
+            let timestamp = post.parseObject["_created_at"] as? String // change this...
             // maybe change this to a var so you can format it...
             cell.timestampLabel.text = timestamp
             
-            let description = post["itemDescription"] as! String
+            let description = post.itemDescription
             cell.descriptionLabel.text = description
             
             return cell

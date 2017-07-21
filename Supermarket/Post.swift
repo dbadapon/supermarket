@@ -11,93 +11,182 @@ import UIKit
 import Parse
 import CoreLocation
 
-class Post: NSObject {
+class Post {
+
+    enum Field {
+        case Name, Images, ItemDescription, Price, Condition, Negotiable, Latitude, Longitude
+        
+        var key: String {
+            switch (self) {
+            case .Name:
+                return "name"
+            case .Images:
+                return "images"
+            case .ItemDescription:
+                return "itemDescription"
+            case .Price:
+                return "price"
+            case .Condition:
+                return "conditionNew"
+            case .Negotiable:
+                return "negotiable"
+            case .Latitude:
+                return "latitude"
+            case .Longitude:
+                return "longitude"
+            }
+        }
+    }
     
-//    var images: [PFFile]?
-//    var name: String
-//    var itemDescription: String
-//    var price: Double
-//    var conditionNew: Bool
-//    var negotiable: Bool
-//    var exchange: [String]?
-//    var transport: [String]?
-//    var location: CLLocationCoordinate2D?
-//    
-//    init(images: [UIImage]?, name: String, description: String?, price: Double, conditionNew: Bool, negotiable: Bool, exchange: [String]?, transport: [String]?, location: CLLocationCoordinate2D) {
-//        var convertedImages: [PFFile]? = []
+    var name: String? { // so why do all of these things have to be optional?
+        get {
+            return parseObject[Field.Name.key] as? String
+        }
+        set {
+            parseObject[Field.Name.key] = newValue
+        }
+    }
+    
+    var itemDescription: String? {
+        get {
+            return parseObject[Field.ItemDescription.key] as? String
+        }
+        set {
+            parseObject[Field.ItemDescription.key] = newValue
+        }
+    }
+    
+    var price: Double? {
+        get {
+            return parseObject[Field.Price.key] as? Double
+        }
+        set {
+            parseObject[Field.Price.key] = newValue
+        }
+    }
+    
+    var conditionNew: Bool? {
+        get {
+            return parseObject[Field.Condition.key] as? Bool
+        }
+        set {
+            parseObject[Field.Condition.key] = newValue
+        }
+    }
+    
+    var negotiable: Bool? {
+        get {
+            return parseObject[Field.Negotiable.key] as? Bool
+        }
+        set {
+            parseObject[Field.Negotiable.key] = newValue
+        }
+    }
+    
+    var latitude: Double? {
+        get {
+            return parseObject[Field.Latitude.key] as? Double
+        }
+        set {
+            parseObject[Field.Latitude.key] = newValue
+        }
+    }
+    
+    var longitude: Double? {
+        get {
+            return parseObject[Field.Longitude.key] as? Double
+        }
+        set {
+            parseObject[Field.Latitude.key] = newValue
+        }
+    }
+    
+    var images: [PFFile]? {
+        get {
+            return parseObject[Field.Images.key] as? [PFFile]
+        }
+        set {
+            parseObject[Field.Images.key] = newValue
+        }
+    }
+
+    
+//    private (set)
+    var parseObject: PFObject
+    
+    init(_ parseObject: PFObject? = nil) {
+        self.parseObject = parseObject ?? PFObject(className: "Post")
+    }
+
+
+    class func postItem(images: [UIImage], name: String, itemDescription: String, price: Double, conditionNew: Bool, negotiable: Bool, latitude: Double, longitude: Double)  {
+        
+//        let newPost = Post()
+//        newPost.name = "Alvin"
+//        let postKey = Post.Field.Name.key
+        
+        let newPost = Post()
+        
+        newPost.name = name
+        
+        newPost.itemDescription = itemDescription
+        
+        newPost.price = price
+        
+        newPost.conditionNew = conditionNew
+        
+        newPost.negotiable = negotiable
+        
+        newPost.latitude = latitude
+        
+        newPost.longitude = latitude
+        
+        var convertedImages: [PFFile] = []
+        for image in images {
+            convertedImages.append(Post.getPFFileFromImage(image: image)!)
+        }
+        newPost.images = convertedImages
+        
+        
+        
+        newPost.parseObject.saveInBackground { (success: Bool, error: Error?) in
+            if let error = error {
+                print(error.localizedDescription)
+            } else {
+                print("the post should have saved!")
+            }
+        }
+        
+    
+        
 //        if let images = images {
+//            var convertedImages: [PFFile]? = []
 //            for image in images {
-//                let file = Post.getPFFileFromImage(image: image)
-//                convertedImages?.append(file!)
+//                convertedImages?.append(Post.getPFFileFromImage(image: image)!)
+//            }
+//            post["images"] = convertedImages
+//        } else {
+//            post["images"] = NSNull()
+//        }
+//        post["name"] = name
+//        post["itemDescription"] = itemDescription
+//        post["price"] = price
+//        post["conditionNew"] = conditionNew
+//        post["negotiable"] = negotiable
+//        post["latitude"] = latitude
+//        post["longitude"] = longitude
+        
+        
+//        post.saveInBackground { (success: Bool, error: Error?) in
+//            if let error = error {
+//                print (error.localizedDescription)
+//                
+//            } else {
+//                print ("the post should have saved!")
 //            }
 //        }
-//        self.images = convertedImages
-//        
-//        self.name = name
-//        self.itemDescription = description!
-//        self.price = price
-//        self.conditionNew = conditionNew
-//        self.negotiable = negotiable
-//        self.exchange = exchange
-//        self.transport = transport
-//        self.location = location
-//    }
-//    
-//    override init() {
-//        var images: [UIImage]? = []
-//        images?.append( UIImage(named: "insta_camera_btn")! )
-//        images?.append( UIImage(named: "Menu-50")!)
-//        var convertedImages: [PFFile]? = []
-//        for image in images! {
-//            let convertedImage = Post.getPFFileFromImage(image: image)!
-//            convertedImages?.append(convertedImage)
-//        }
-//
-//        name = "Foldable Chair"
-//        itemDescription = "This is a new foldable chair. Really cool!"
-//        price = 25.00
-//        conditionNew = true
-//        negotiable = true
-//        exchange = ["Venmo", "Check", "Card"]
-//        transport = ["Mail", "Car"]
-//    }
-//    
-//    func addImage(image: UIImage) {
-//        let convertedImage = Post.getPFFileFromImage(image: image)
-//        self.images?.append(convertedImage!)
-//    }
-
-    class func postItem(images: [UIImage]?, name: String, itemDescription: String, price: Double, conditionNew: Bool, negotiable: Bool, latitude: Double, longitude: Double) -> PFObject? {
-        
-        let post = PFObject(className: "Post")
-        
-        if let images = images {
-            var convertedImages: [PFFile]? = []
-            for image in images {
-                convertedImages?.append(Post.getPFFileFromImage(image: image)!)
-            }
-            post["images"] = convertedImages
-        } else {
-            post["images"] = NSNull()
-        }
-        post["name"] = name
-        post["itemDescription"] = itemDescription
-        post["price"] = price
-        post["conditionNew"] = conditionNew
-        post["negotiable"] = negotiable
-        post["latitude"] = latitude
-        post["longitude"] = longitude
-        
-        post.saveInBackground { (success: Bool, error: Error?) in
-            if let error = error {
-                print (error.localizedDescription)
-                
-            } else {
-                print ("the post should have saved!")
-            }
-        }
     
-        return post
+//        return post
         
     }
     
@@ -121,8 +210,5 @@ class Post: NSObject {
         return nil
     }
     
-//    class func getID() {
-//        return
-//    }
     
 }
