@@ -31,7 +31,7 @@ class TabBarController: UITabBarController {
         
         
         let createPostStoryboard = UIStoryboard(name: "CreatePost", bundle: nil)
-        let createPostController = createPostStoryboard.instantiateViewController(withIdentifier: "CreatePostController") as! UINavigationController
+        let createPostController = createPostStoryboard.instantiateViewController(withIdentifier: "CreatePostController")
         
         let tab3 = UITabBarItem(title: "Post", image: nil, selectedImage: nil)
         createPostController.tabBarItem = tab3

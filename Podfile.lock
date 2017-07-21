@@ -1,11 +1,7 @@
 PODS:
   - Alamofire (4.5.0)
-  - AlamofireImage (3.2.0):
-    - Alamofire (~> 4.1)
   - Bolts/Tasks (1.8.4)
-  - CameraManager (3.1.4)
   - ModernSearchBar (1.4)
-  - MSCodeScanner (1.1.0)
   - Parse (1.14.4):
     - Bolts/Tasks (~> 1.8)
   - ParseUI (1.2.0):
@@ -15,25 +11,19 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire
-  - AlamofireImage
-  - CameraManager
   - ModernSearchBar
-  - MSCodeScanner
   - Parse
   - ParseUI
   - SideMenu
 
 SPEC CHECKSUMS:
   Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
-  AlamofireImage: 157ed682cc81d3b9db4fb90c1f12180ac552d93b
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
-  CameraManager: 837ff54004e37b83533abf0543daf143fae851e4
   ModernSearchBar: d888b62f960c4d91f8662f0720e1544d19847e7f
-  MSCodeScanner: 2486c18bf663f3bf32ead61afef04780a7c860de
   Parse: b0aa91d2c435e53d4a9af26e741e014c9b35c42e
   ParseUI: af2eba584799da4a9fbdac0e178662d7438b502e
   SideMenu: 3fa07dd05d4bade2b6f9889fb1877e312e1ba319
 
-PODFILE CHECKSUM: fd8ac201154dfe9684c2ea1ba4da176180210b46
+PODFILE CHECKSUM: 083e33d5b141937ab717a0f68b85f6106517b578
 
 COCOAPODS: 1.2.1

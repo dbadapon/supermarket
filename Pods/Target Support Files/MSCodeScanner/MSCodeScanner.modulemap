@@ -1,6 +1,0 @@
-framework module MSCodeScanner {
-  umbrella header "MSCodeScanner-umbrella.h"
-
-  export *
-  module * { export * }
-}
