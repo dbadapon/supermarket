@@ -18,9 +18,10 @@ import UIKit
 // import Alamofire
 // import AlamofireImage
 
-class PreviewViewController: UIViewController {
+class PreviewViewController: UIViewController, UITextViewDelegate {
     
     let nameAlertController = UIAlertController(title: "Max Characters Reached", message: "Item name CANNOT exceed 140 characters", preferredStyle: .alert)
+
     
     @IBOutlet weak var itemName: UITextView!
     @IBOutlet weak var charCountLabel: UILabel!
@@ -42,6 +43,8 @@ class PreviewViewController: UIViewController {
         
         print(pictureUrl)
         
+        itemName.delegate = self
+        
         // exactly two possibilites: image from photo vc or from barcode
         
         // if image was passed from photo vc
@@ -61,11 +64,14 @@ class PreviewViewController: UIViewController {
             })
         }
         
+        // border around textbox for user to type item name
+        /*
         let borderColor = UIColor(red: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha:1.0)
         
         itemName.layer.borderColor = borderColor.cgColor;
         itemName.layer.borderWidth = 1.0;
         itemName.layer.cornerRadius = 5.0;
+         */
         
         // create an OK action
         let OKAction = UIAlertAction(title: "OK", style: .default) { (action) in
@@ -74,11 +80,28 @@ class PreviewViewController: UIViewController {
         
         // add the OK action to the alert controller
         nameAlertController.addAction(OKAction)
+        
+        // code for keyboard to make screen scroll up
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            self.view.frame.origin.y -= keyboardSize.height
+        }
+    }
+    
+    func keyboardWillHide(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            self.view.frame.origin.y += keyboardSize.height
+        }
     }
     
     func textViewDidChange(_ itemName: UITextView) {
@@ -96,7 +119,6 @@ class PreviewViewController: UIViewController {
             self.present(self.nameAlertController, animated: true)
         }
     }
-    
     
     /*
      // MARK: - Navigation
