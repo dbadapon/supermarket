@@ -18,36 +18,25 @@ class SellFeedCell: UITableViewCell {
     @IBOutlet weak var priceLabel: UILabel!
     
 
-    var post: PFObject! {
+    var post: Post! {
         didSet {
-            post.fetchInBackground { (post: PFObject?, error: Error?) in
-                if let post = post {
-                    let date = post.createdAt
-                    let dateFormatter = DateFormatter()
-                    dateFormatter.dateStyle = .short
-                    dateFormatter.timeStyle = .short
-                    let dateString = dateFormatter.string(from: date!)
-                    
-                    self.dateLabel.text = "Posted " + dateString
-                    
-                    let name = post["name"]
-                    self.nameLabel.text = name as? String
-                    
-                    let price = post["price"] as! Double
-                    self.priceLabel.text = "$" + String(price)
-                    
-                    let images = post["images"] as! [PFFile]
-                    self.photoImage.file = images[0]
-                    self.photoImage.loadInBackground()
-                    
-                } else if error != nil {
-                    print (error?.localizedDescription)
-                    
-                    
-                } else {
-                    print ("The sell feed cell is just not getting the post. no error though")
-                }
-            }
+            let date = post.parseObject.createdAt
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateStyle = .short
+            dateFormatter.timeStyle = .short
+            let dateString = dateFormatter.string(from: date!)
+            
+            let name = post.name
+            self.nameLabel.text = name as? String
+            
+            let price = post.price
+            self.priceLabel.text = "$" + String(describing: price)
+            
+            let images = post.images
+            self.photoImage.file = images?[0]
+            self.photoImage.loadInBackground()
+            
+            self.dateLabel.text = "Posted " + dateString
             
         }
     }

@@ -9,37 +9,17 @@
 import UIKit
 import Parse
 
-class SellFeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, YSSegmentedControlDelegate {
+class SellFeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
     
     @IBOutlet weak var postTableView: UITableView!
-    var posts: [PFObject]?
+    var posts: [Post]? = []
+    var sellingPosts: [Post]? = []
+    var soldPosts: [Post]? = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let segmented = YSSegmentedControl(
-            frame: CGRect(
-                x: 0,
-                y: 64,
-                width: view.frame.size.width,
-                height: 44),
-            titles: [
-                "First",
-                "Second",
-                "Third"
-            ],
-            action: {
-                control, index in
-                print ("segmented did pressed \(index)")
-        })
-        
-        segmented.delegate = self
-        segmented.appearance.backgroundColor = UIColor.black
-        segmented.layoutSubviews()
-        segmented.draw(CGRect(x: 0, y: 64, width: view.frame.size.width, height: 44))
-        
-        
-        
         
         postTableView.dataSource = self
         postTableView.delegate = self
@@ -60,11 +40,44 @@ class SellFeedViewController: UIViewController, UITableViewDataSource, UITableVi
         
         
         var query = PFQuery(className: "Post")
+        query.whereKey("sold", equalTo: false)
+        // query.whereKey("seller", equalTo: PFUser.current())
         query.limit = 20
         
         query.findObjectsInBackground { (posts: [PFObject]?, error: Error?) in
             if let posts = posts {
-                self.posts = posts
+                print (posts.count)
+                print ("IT FOUND POSTS")
+                for item in posts {
+                    let post = Post(item)
+                    self.sellingPosts!.append(post)
+                }
+                
+                self.posts = self.sellingPosts
+                self.postTableView.reloadData()
+            } else if error != nil {
+                print (error?.localizedDescription)
+            } else {
+                print ("the posts could not be loaded into the sell feed")
+            }
+            
+        }
+        
+        var secondQuery = PFQuery(className: "Post")
+        secondQuery.whereKey("sold", equalTo: true)
+        // query.whereKey("seller", equalTo: PFUser.current())
+        secondQuery.limit = 20
+        
+        secondQuery.findObjectsInBackground { (posts, error) in
+            if let posts = posts {
+                print (posts.count)
+                print ("IT FOUND POSTS")
+                for item in posts {
+                    let post = Post(item)
+                    self.soldPosts!.append(post)
+                }
+                
+                self.posts = self.sellingPosts
                 self.postTableView.reloadData()
             } else if error != nil {
                 print (error?.localizedDescription)
@@ -74,6 +87,8 @@ class SellFeedViewController: UIViewController, UITableViewDataSource, UITableVi
         }
         
     }
+    
+    
     
     
     override func didReceiveMemoryWarning() {
@@ -98,16 +113,15 @@ class SellFeedViewController: UIViewController, UITableViewDataSource, UITableVi
         return cell
     }
     
-    func segmentedControl(_ segmentedControl: YSSegmentedControl, willPressItemAt index: Int) {
-        print (index)
+    @IBAction func segmentDidChange(_ sender: Any) {
+        if segmentedControl.selectedSegmentIndex == 0 {
+            self.posts = sellingPosts
+        } else {
+            self.posts = soldPosts
+        }
+        
+        self.postTableView.reloadData()
     }
-    
-    
-    
-    func segmentedControl(_ segmentedControl: YSSegmentedControl, didPressItemAt index: Int) {
-        print (index)
-    }
-    
     
     /*
      // MARK: - Navigation

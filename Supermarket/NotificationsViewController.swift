@@ -14,6 +14,8 @@ class NotificationsViewController: UIViewController, UITableViewDelegate, UITabl
 
     @IBOutlet weak var tableView: UITableView!
     
+    // var posts: [PFObject]? = nil
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
