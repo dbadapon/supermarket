@@ -50,7 +50,7 @@ class PreviewViewController: UIViewController, UITextViewDelegate {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(PreviewViewController.dismissKeyboard))
         
         // uncomment the line below if you want the tap not not interfere and cancel other interactions.
-        // tap.cancelsTouchesInView = false
+        tap.cancelsTouchesInView = false
         
         view.addGestureRecognizer(tap)
         
