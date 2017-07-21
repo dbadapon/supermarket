@@ -158,6 +158,7 @@ class CreatePostViewController: UIViewController, AVCaptureVideoDataOutputSample
             guard let resNet50Model = try? VNCoreMLModel(for: Resnet50().model) else {
                 fatalError("Could not load model")
             }
+
             // set up the request using our vision model
             let classificationRequest = VNCoreMLRequest(model: resNet50Model, completionHandler: handleClassifications)
             classificationRequest.imageCropAndScaleOption = VNImageCropAndScaleOption.centerCrop

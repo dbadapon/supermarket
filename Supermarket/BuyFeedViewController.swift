@@ -9,7 +9,7 @@
 import UIKit
 import Parse
 import ParseUI
-import SideMenu
+//import SideMenu
 
 
 
@@ -28,7 +28,7 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
     
     var currentMarket: PFObject?
     
-    var sideMenuNC: UISideMenuNavigationController?
+//    var sideMenuNC: UISideMenuNavigationController?
     
     
     
@@ -62,18 +62,18 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
 //        
 //        let sideMenu = UISideMenuNavigationController(rootViewController: sideMenuVC)
         
-        let sideMenuNC = self.storyboard?.instantiateViewController(withIdentifier: "SideMenu") as! UISideMenuNavigationController
+//        let sideMenuNC = self.storyboard?.instantiateViewController(withIdentifier: "SideMenu") as! UISideMenuNavigationController
         
 //        sideMenuNC.topViewController = self.storyboard?.instantiateViewController(withIdentifier: "sideMenuViewController")
         
 //        let sideMenuVC = self.storyboard?.instantiateViewController(withIdentifier: "sideMenuViewController") as! SidebarViewController
         
         
-        self.sideMenuNC = sideMenuNC
-        print("self.sideMenuNC: \(self.sideMenuNC)")
-        
-        sideMenuNC.leftSide = true
-        SideMenuManager.menuLeftNavigationController = sideMenuNC
+//        self.sideMenuNC = sideMenuNC
+//        print("self.sideMenuNC: \(self.sideMenuNC)")
+//
+//        sideMenuNC.leftSide = true
+//        SideMenuManager.menuLeftNavigationController = sideMenuNC
         
         
         
@@ -363,7 +363,8 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
 //            presentedVC!.delegate = self
 //            print("side menu is: \(self.sideMenuVC)")
 //            print("set the delegate!")
-            let destination = segue.destination as! UISideMenuNavigationController
+        
+            let destination = segue.destination as! UINavigationController
             let destinationVC = destination.topViewController as! SidebarViewController
             print("destination VC: \(destinationVC)")
             destinationVC.delegate = self

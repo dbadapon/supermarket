@@ -14,6 +14,7 @@
 		0A5893061F227998001360D3 /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5893051F227998001360D3 /* PreviewViewController.swift */; };
 		0A6966C61F15401200E72FD8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6966C51F15401200E72FD8 /* LoginViewController.swift */; };
 		0A6966C81F15404700E72FD8 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6966C71F15404700E72FD8 /* SignUpViewController.swift */; };
+		0ADBBA841F22AE9200F1D519 /* Resnet50.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 0AEF28871F22ACF900C4528B /* Resnet50.mlmodel */; };
 		4235A579D607D191574DCF4B /* Pods_SupermarketTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AE35AF3621B63A19B9B12F4 /* Pods_SupermarketTests.framework */; };
 		4D114E041F1559B700897FC8 /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D114E031F1559B700897FC8 /* NotificationsViewController.swift */; };
 		4D114E081F1571FD00897FC8 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D114E071F1571FD00897FC8 /* MessageCell.swift */; };
@@ -584,6 +585,7 @@
 				0A6966C81F15404700E72FD8 /* SignUpViewController.swift in Sources */,
 				A0E30DA51F14438D0062B100 /* BuyFeedCell.swift in Sources */,
 				4D44F62C1F2137C10018BF22 /* Item.swift in Sources */,
+				0ADBBA841F22AE9200F1D519 /* Resnet50.mlmodel in Sources */,
 				A07904221F13F098000E4419 /* ViewController.swift in Sources */,
 				0A5893001F22779A001360D3 /* SwiftyRecordButton.swift in Sources */,
 				A0B989F41F1583AA0037EFCF /* MarketCell.swift in Sources */,
