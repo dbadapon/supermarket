@@ -89,7 +89,7 @@
                     <navigationItem key="navigationItem" title="Market Name" id="Lde-4x-prC">
                         <barButtonItem key="leftBarButtonItem" image="Menu Filled-50" id="OWe-ii-zns">
                             <connections>
-                                <segue destination="gaw-1C-xQB" kind="presentation" identifier="sideMenu" id="RUs-SN-LkC"/>
+                                <segue destination="gaw-1C-xQB" kind="presentation" identifier="sideMenu" id="cfL-Du-jpL"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Filter" id="ehW-7w-uU0"/>
@@ -105,7 +105,7 @@
         <!--Your Markets-->
         <scene sceneID="2Hc-Ml-Ecm">
             <objects>
-                <viewController id="0G0-yD-TYX" customClass="SidebarViewController" customModule="Supermarket" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="sideMenuViewController" id="0G0-yD-TYX" customClass="SidebarViewController" customModule="Supermarket" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="68M-V4-HqX"/>
                         <viewControllerLayoutGuide type="bottom" id="KGi-qu-jC9"/>
@@ -174,7 +174,7 @@
         <!--Side Menu Navigation Controller-->
         <scene sceneID="6NG-RO-Aqv">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="gaw-1C-xQB" customClass="UISideMenuNavigationController" customModule="SideMenu" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="SideMenu" automaticallyAdjustsScrollViewInsets="NO" id="gaw-1C-xQB" customClass="UISideMenuNavigationController" customModule="SideMenu" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="EOb-EU-qi3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>

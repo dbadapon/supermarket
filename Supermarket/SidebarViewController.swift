@@ -10,6 +10,10 @@ import UIKit
 import Parse
 import ParseUI
 
+protocol ModalDelegate: class {
+    func changedMarket(market: PFObject)
+}
+
 class SidebarViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var marketTableView: UITableView!
@@ -18,9 +22,14 @@ class SidebarViewController: UIViewController, UITableViewDataSource, UITableVie
     
     var feedViewController: BuyFeedViewController? = nil
     
+    weak var delegate: ModalDelegate?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print("sidebar viewDidLoad")
+        print(self.navigationController)
         
         marketTableView.dataSource = self
         marketTableView.delegate = self
@@ -76,8 +85,26 @@ class SidebarViewController: UIViewController, UITableViewDataSource, UITableVie
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         marketTableView.deselectRow(at: indexPath, animated: true)
+        
+        if let delegate = self.delegate {
+            print("the delegate is not nil!")
+            delegate.changedMarket(market: markets[indexPath.row])
+        } else {
+            print("the delegate is nil :(")
+        }
         dismiss(animated: true, completion: nil)
-        feedViewController?.currentMarket = markets[indexPath.row]
+        
+//        if let presenter = presentingViewController as? BuyFeedViewController {
+//            print("Presenter is not nil!")
+//            presenter.currentMarket = markets[indexPath.row]
+//            presenter.title = presenter.currentMarket?["name"] as! String
+//            presenter.loadPosts()
+//        } else {
+//            print("presenter is nil!")
+//        }
+//        print("About to dismiss!")
+//        
+//        dismiss(animated: true, completion: nil)
     }
     
 

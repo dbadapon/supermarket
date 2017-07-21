@@ -11,7 +11,9 @@ import Parse
 import ParseUI
 import SideMenu
 
-class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchResultsUpdating {
+
+
+class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchResultsUpdating, ModalDelegate {
 
     
     @IBOutlet weak var postTableView: UITableView!
@@ -26,6 +28,22 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
     
     var currentMarket: PFObject?
     
+    var sideMenuNC: UISideMenuNavigationController?
+    
+    
+    
+    func changedMarket(market: PFObject) {
+        currentMarket = market
+        let newMarket = Market(market)
+        self.navigationItem.title = newMarket.name
+        print("current market is now: \(currentMarket)")
+        loadPosts()
+        self.postTableView.reloadData()
+//        print("CURRENT MARKET IS NOW: \(currentMarket["name"])")
+    }
+    
+    
+    
 
     
     
@@ -36,6 +54,28 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         super.viewDidLoad()
         postTableView.dataSource = self
         postTableView.delegate = self
+        
+
+        
+//        let sideMenuVC = self.storyboard?.instantiateViewController(withIdentifier: "sideMenuViewController") as! SidebarViewController
+//        print("sideMenuVC: \(sideMenuVC)")
+//        
+//        let sideMenu = UISideMenuNavigationController(rootViewController: sideMenuVC)
+        
+        let sideMenuNC = self.storyboard?.instantiateViewController(withIdentifier: "SideMenu") as! UISideMenuNavigationController
+        
+//        sideMenuNC.topViewController = self.storyboard?.instantiateViewController(withIdentifier: "sideMenuViewController")
+        
+//        let sideMenuVC = self.storyboard?.instantiateViewController(withIdentifier: "sideMenuViewController") as! SidebarViewController
+        
+        
+        self.sideMenuNC = sideMenuNC
+        print("self.sideMenuNC: \(self.sideMenuNC)")
+        
+        sideMenuNC.leftSide = true
+        SideMenuManager.menuLeftNavigationController = sideMenuNC
+        
+        
         
         let image = UIImage(named: "accounting textbook")!
         
@@ -85,9 +125,7 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         
         searchController.searchBar.layer.borderColor = searchController.searchBar.barTintColor?.cgColor
         
-        navigationController?.navigationBar.titleTextAttributes = [
-            NSFontAttributeName: UIFont.systemFont(ofSize: 17, weight: UIFontWeightHeavy)
-        ]
+        navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont(name: "Avenir", size: 20)]
         
         navigationController?.navigationBar.barTintColor = UIColor.init(colorLiteralRed: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha: 1.0)
         
@@ -118,17 +156,18 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.navigationBar.barTintColor = UIColor.init(colorLiteralRed: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha: 1.0)
+        print("IN VIEW WILL APPEAR")
+//        navigationController?.navigationBar.barTintColor = UIColor.init(colorLiteralRed: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha: 1.0)
         
 //        navigationController?.navigationBar.barStyle = UIBarStyle.black
         
 //        self.navigationController.view.backgroundColor = [UIColor whiteColor]
         
-        navigationController?.view.backgroundColor = UIColor.white
-        
-        navigationController?.navigationBar.tintColor = UIColor.white
-        
-        navigationController?.navigationBar.isTranslucent = false
+//        navigationController?.view.backgroundColor = UIColor.white
+//
+//        navigationController?.navigationBar.tintColor = UIColor.white
+//
+//        navigationController?.navigationBar.isTranslucent = false
         
 //        loadPosts()
 //        postTableView.reloadData()
@@ -173,6 +212,7 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
                 posts.append(post)
             }
         }
+        self.postTableView.reloadData()
 //        query.whereKey("id", containedIn: postIDs)
         
         print(posts)
@@ -295,6 +335,9 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
+
+
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         // clear back button text
@@ -311,11 +354,20 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
                 detailViewController.post = post
             }
         }
-//        if segue.identifier == "sideMenu" {
-////            let feedViewController = self
-//            let sideMenu = segue.destination as! SidebarViewController
-//            sideMenu.feedViewController = self
-//        }
+        
+        
+        if segue.identifier == "sideMenu" {
+//            let sideMenuNC = segue.destination as! UISideMenuNavigationController
+//            let sideMenuVC = sideMenuNC.root
+//            let presentedVC = self.sideMenuVC
+//            presentedVC!.delegate = self
+//            print("side menu is: \(self.sideMenuVC)")
+//            print("set the delegate!")
+            let destination = segue.destination as! UISideMenuNavigationController
+            let destinationVC = destination.topViewController as! SidebarViewController
+            print("destination VC: \(destinationVC)")
+            destinationVC.delegate = self
+        }
         
     }
  

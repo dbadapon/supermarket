@@ -31,12 +31,21 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tableView.delegate = self
         tableView.separatorStyle = .none
         
+//        navigationController?.navigationBar.titleTextAttributes = [
+//            NSFontAttributeName: UIFont.systemFont(ofSize: 17, weight: UIFontWeightHeavy) // change font pls
+//        ]
         
-        // make navigation bar clear
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.isTranslucent = true
-        self.navigationController?.view.backgroundColor = UIColor.clear
+        self.title = "Item Details"
+        
+        navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont(name: "Avenir", size: 20)]
+        
+        navigationController?.navigationBar.barTintColor = UIColor.init(colorLiteralRed: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha: 1.0)
+        
+        navigationController?.navigationBar.barStyle = UIBarStyle.black
+        
+        navigationController?.navigationBar.tintColor = UIColor.white
+        
+        navigationController?.navigationBar.isTranslucent = false
         
         automaticallyAdjustsScrollViewInsets = false
         
