@@ -45,6 +45,15 @@ class PreviewViewController: UIViewController, UITextViewDelegate {
         
         itemName.delegate = self
         
+        // tap gesture recognizer to dismiss keyboard
+        // looks for single or multiple taps.
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(PreviewViewController.dismissKeyboard))
+        
+        // uncomment the line below if you want the tap not not interfere and cancel other interactions.
+        // tap.cancelsTouchesInView = false
+        
+        view.addGestureRecognizer(tap)
+        
         // exactly two possibilites: image from photo vc or from barcode
         
         // if image was passed from photo vc
@@ -65,13 +74,11 @@ class PreviewViewController: UIViewController, UITextViewDelegate {
         }
         
         // border around textbox for user to type item name
-        /*
         let borderColor = UIColor(red: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha:1.0)
         
         itemName.layer.borderColor = borderColor.cgColor;
         itemName.layer.borderWidth = 1.0;
         itemName.layer.cornerRadius = 5.0;
-         */
         
         // create an OK action
         let OKAction = UIAlertAction(title: "OK", style: .default) { (action) in
@@ -90,6 +97,12 @@ class PreviewViewController: UIViewController, UITextViewDelegate {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    //Calls this function when the tap is recognized.
+    func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
     }
     
     func keyboardWillShow(notification: NSNotification) {
