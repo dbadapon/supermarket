@@ -106,13 +106,13 @@ class PreviewViewController: UIViewController, UITextViewDelegate {
     
     func textViewDidChange(_ itemName: UITextView) {
         let text = itemName.text!
-        let remainingCount = 140 - text.characters.count
+        let remainingCount = 50 - text.characters.count
         let count = text.characters.count
         
-        if count == 139
+        if count == 49
         {
             charCountLabel.text = "Item Name: (1 character remaining)"
-        } else if count <= 140 {
+        } else if count <= 50 {
             charCountLabel.text = "Item Name: (" + String(remainingCount) + " characters remaining)"
         } else {
             charCountLabel.text = "Item Name: (0 characters remaining)"
