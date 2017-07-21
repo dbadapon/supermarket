@@ -62,7 +62,8 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
             cell.nameLabel.text = name
             
             let price = post.price!
-            cell.priceLabel.text = "$\(price)"
+            let formattedPrice = String(format: "%.2f", price)
+            cell.priceLabel.text = "$\(formattedPrice)"
             
             let new = post.conditionNew
             var conditionString = ""

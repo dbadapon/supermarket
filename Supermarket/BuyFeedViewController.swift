@@ -9,6 +9,7 @@
 import UIKit
 import Parse
 import ParseUI
+import SideMenu
 
 class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchResultsUpdating {
 
@@ -49,9 +50,9 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         
         // Books, Kitchen, Home, Clothing, Electronics, Supplies
         
-//        let categories: [String: [Post]?]? = ["Books": [], "Kitchen": [], "Home": [], "Clothing": [], "Electronics": [], "Supplies": []]
-//        
-//        Market.postMarket(withName: "UCI Free and For Sale", withCategories: categories, withNewCategory: false, withPublic: true, withLatitude: 33.640495, withLongitude: -117.844296) { (success, error) in
+        let categories: [String: [Post]?]? = ["Books": [], "Kitchen": [], "Home": [], "Clothing": [], "Electronics": [], "Supplies": []]
+        
+//        Market.postMarket(withName: "Yale Class of 2020", withCategories: categories, withNewCategory: false, withPublic: true, withLatitude: 33.640495, withLongitude: -117.844296) { (success, error) in
 //            if success {
 //                print("created new market yay!")
 //            } else {
@@ -128,7 +129,11 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         navigationController?.navigationBar.tintColor = UIColor.white
         
         navigationController?.navigationBar.isTranslucent = false
+        
+//        loadPosts()
+//        postTableView.reloadData()
     }
+    
     
     func setFirstMarket() {
         let query = PFQuery(className: "Market")
@@ -139,7 +144,7 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
             if let markets = markets {
                 self.markets = markets
                 print("Just set markets to: \(markets)")
-                self.currentMarket = self.markets[2]
+                self.currentMarket = self.markets[0]
                 let marketName = self.currentMarket!["name"] as! String
                 self.navigationItem.title = marketName
                 self.loadPosts()
@@ -150,7 +155,6 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
                 print("Error getting markets: \(error?.localizedDescription)")
             }
         }
-        
     }
     
     func loadPosts() {
@@ -228,7 +232,8 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
                 cell.categoryLabel.text = category
                 
                 let price = post.price!
-                cell.priceLabel.text = "$\(price)"
+                let formattedPrice = String(format: "%.2f", price)
+                cell.priceLabel.text = "$\(formattedPrice)"
                 
                 
                 let conditionNew = post.conditionNew!
@@ -306,6 +311,11 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
                 detailViewController.post = post
             }
         }
+//        if segue.identifier == "sideMenu" {
+////            let feedViewController = self
+//            let sideMenu = segue.destination as! SidebarViewController
+//            sideMenu.feedViewController = self
+//        }
         
     }
  

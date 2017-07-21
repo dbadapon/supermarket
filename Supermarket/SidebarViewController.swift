@@ -16,12 +16,17 @@ class SidebarViewController: UIViewController, UITableViewDataSource, UITableVie
     
     var markets: [PFObject] = []
     
+    var feedViewController: BuyFeedViewController? = nil
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         marketTableView.dataSource = self
         marketTableView.delegate = self
+        
+        
+   
         
         navigationController?.navigationBar.barTintColor = UIColor.init(colorLiteralRed: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha: 1.0)
         
@@ -69,15 +74,28 @@ class SidebarViewController: UIViewController, UITableViewDataSource, UITableVie
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        marketTableView.deselectRow(at: indexPath, animated: true)
+        dismiss(animated: true, completion: nil)
+        feedViewController?.currentMarket = markets[indexPath.row]
+    }
+    
 
-    /*
+
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        print("I'm here!")
+        let cell = sender as! UITableViewCell
+        if let indexPath = marketTableView.indexPath(for: cell) {
+            let market = markets[indexPath.row]
+            let feed = segue.destination as! BuyFeedViewController
+            feed.currentMarket = market
+        }
     }
-    */
+
 
 }

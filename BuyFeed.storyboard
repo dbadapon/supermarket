@@ -89,7 +89,7 @@
                     <navigationItem key="navigationItem" title="Market Name" id="Lde-4x-prC">
                         <barButtonItem key="leftBarButtonItem" image="Menu Filled-50" id="OWe-ii-zns">
                             <connections>
-                                <segue destination="gaw-1C-xQB" kind="presentation" id="RUs-SN-LkC"/>
+                                <segue destination="gaw-1C-xQB" kind="presentation" identifier="sideMenu" id="RUs-SN-LkC"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Filter" id="ehW-7w-uU0"/>
