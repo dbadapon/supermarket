@@ -51,7 +51,7 @@
                         <outlet property="previewView" destination="WpK-Xa-Zb8" id="RI0-Xy-XTR"/>
                         <outlet property="resultView" destination="rnP-nm-12b" id="n3w-pQ-SdY"/>
                         <segue destination="ewj-tG-ZsX" kind="show" identifier="capturedSegue" animates="NO" id="jBa-sW-Gnf"/>
-                        <segue destination="EzZ-ra-3zf" kind="show" identifier="toPreviewSegue" animates="NO" id="veg-mV-sRg"/>
+                        <segue destination="EzZ-ra-3zf" kind="show" identifier="barcodeToPreviewSegue" animates="NO" id="veg-mV-sRg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AJR-3o-PaI" sceneMemberID="firstResponder"/>
@@ -166,7 +166,7 @@
         <!--Preview-->
         <scene sceneID="Xd8-6r-CR2">
             <objects>
-                <viewController id="EzZ-ra-3zf" customClass="PreviewViewController" customModule="VisionSample" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="EzZ-ra-3zf" customClass="PreviewViewController" customModule="Supermarket" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="rhc-Ih-0jh"/>
                         <viewControllerLayoutGuide type="bottom" id="QAr-0K-50C"/>
@@ -264,9 +264,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="cameraMask" width="16" height="16"/>
+        <image name="cameraMask" width="512" height="512"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="veg-mV-sRg"/>
+        <segue reference="7UJ-Ht-5qy"/>
     </inferredMetricsTieBreakers>
 </document>

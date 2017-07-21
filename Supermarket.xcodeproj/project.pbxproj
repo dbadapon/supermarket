@@ -183,10 +183,11 @@
 		4D15560B1F1400CA00F70DB3 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				A07904211F13F098000E4419 /* ViewController.swift */,
+				A0E30DE61F144EA00062B100 /* TabBarController.swift */,
 				A0E30DA11F143C020062B100 /* BuyFeedViewController.swift */,
 				4D1556561F153FC800F70DB3 /* DetailViewController.swift */,
 				A0B989F11F15806F0037EFCF /* SidebarViewController.swift */,
-				A0E30DE61F144EA00062B100 /* TabBarController.swift */,
 				0A6966C51F15401200E72FD8 /* LoginViewController.swift */,
 				0A6966C71F15404700E72FD8 /* SignUpViewController.swift */,
 				4D114E031F1559B700897FC8 /* NotificationsViewController.swift */,
@@ -233,12 +234,9 @@
 		A079041E1F13F098000E4419 /* Supermarket */ = {
 			isa = PBXGroup;
 			children = (
-				0A5893011F2277F3001360D3 /* Resnet50.mlmodel */,
 				A0E30DA31F14434B0062B100 /* Views */,
 				4D15560B1F1400CA00F70DB3 /* View Controllers */,
 				4D15560A1F1400A500F70DB3 /* Models */,
-				A079041F1F13F098000E4419 /* AppDelegate.swift */,
-				A07904211F13F098000E4419 /* ViewController.swift */,
 				A07904231F13F098000E4419 /* Main.storyboard */,
 				A0E30D9F1F143A230062B100 /* BuyFeed.storyboard */,
 				4D1556101F143A3B00F70DB3 /* SellFeed.storyboard */,
@@ -246,12 +244,14 @@
 				A07DD39B1F1555E70079C286 /* NotificationStoryboard.storyboard */,
 				A07DD39D1F15573B0079C286 /* Profile.storyboard */,
 				A07904281F13F098000E4419 /* LaunchScreen.storyboard */,
-				A079042B1F13F098000E4419 /* Info.plist */,
+				A079041F1F13F098000E4419 /* AppDelegate.swift */,
 				4DF6982D1F17ED8B008DB9D6 /* MLManager.swift */,
 				4DAF789D1F1ED37C00768EFD /* WalmartAPIManager.swift */,
-				A07904261F13F098000E4419 /* Assets.xcassets */,
 				4D44F6291F21251B0018BF22 /* YSSegmentedControl.swift */,
 				0A5892FF1F22779A001360D3 /* SwiftyRecordButton.swift */,
+				A07904261F13F098000E4419 /* Assets.xcassets */,
+				A079042B1F13F098000E4419 /* Info.plist */,
+				0A5893011F2277F3001360D3 /* Resnet50.mlmodel */,
 			);
 			path = Supermarket;
 			sourceTree = "<group>";

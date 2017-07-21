@@ -53,7 +53,7 @@ class CreatePostViewController: UIViewController, AVCaptureVideoDataOutputSample
     // to run searches on when user captures a picture
     var topMLResult = ""
     
-    var recognitionThreshold : Float = 0.25
+    var recognitionThreshold : Float = 0.20
     
     // @IBOutlet weak var thresholdStackView: UIStackView!
     // @IBOutlet weak var threshholdLabel: UILabel!
@@ -262,7 +262,7 @@ class CreatePostViewController: UIViewController, AVCaptureVideoDataOutputSample
     
     
     
-    func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
+    func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [Any]!, from connection: AVCaptureConnection!) {
         
         // for debugging purposes
         print("CAPTURED BARCODE")
