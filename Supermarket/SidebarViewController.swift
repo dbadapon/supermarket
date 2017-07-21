@@ -11,14 +11,14 @@ import Parse
 import ParseUI
 
 protocol ModalDelegate: class {
-    func changedMarket(market: PFObject)
+    func changedMarket(market: Market)
 }
 
 class SidebarViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var marketTableView: UITableView!
     
-    var markets: [PFObject] = []
+    var markets: [Market] = []
     
     var feedViewController: BuyFeedViewController? = nil
     
@@ -58,7 +58,11 @@ class SidebarViewController: UIViewController, UITableViewDataSource, UITableVie
         query.addAscendingOrder("name")
         query.findObjectsInBackground { (markets: [PFObject]?, error: Error?) in
             if let markets = markets {
-                self.markets = markets
+                for m in markets {
+                    let market = Market(m)
+                    self.markets.append(market)
+                }
+//                self.markets = markets
                 self.marketTableView.reloadData()
             }
             else {
@@ -78,7 +82,7 @@ class SidebarViewController: UIViewController, UITableViewDataSource, UITableVie
         let cell = marketTableView.dequeueReusableCell(withIdentifier: "MarketCell", for: indexPath) as! MarketCell
         
         let market = markets[indexPath.row]
-        cell.marketName.text = market["name"] as! String
+        cell.marketName.text = market.name
         
         return cell
     }

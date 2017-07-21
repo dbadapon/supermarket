@@ -24,18 +24,17 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
     
     var allPosts: [PFObject] = []
     
-    var markets: [PFObject] = []
+    var markets: [Market] = []
     
-    var currentMarket: PFObject?
+    var currentMarket: Market?
     
 //    var sideMenuNC: UISideMenuNavigationController?
     
     
     
-    func changedMarket(market: PFObject) {
-        currentMarket = market
-        let newMarket = Market(market)
-        self.navigationItem.title = newMarket.name
+    func changedMarket(market: Market) {
+        self.currentMarket = market
+        self.navigationItem.title = self.currentMarket!.name
         print("current market is now: \(currentMarket)")
         loadPosts()
         self.postTableView.reloadData()
@@ -181,10 +180,14 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         
         query.findObjectsInBackground { (markets: [PFObject]?, error: Error?) in
             if let markets = markets {
-                self.markets = markets
-                print("Just set markets to: \(markets)")
+                for m in markets {
+                    let market = Market(m)
+                    self.markets.append(market)
+                }
+//                self.markets = markets
+//                print("Just set markets to: \(markets)")
                 self.currentMarket = self.markets[0]
-                let marketName = self.currentMarket!["name"] as! String
+                let marketName = self.currentMarket?.name
                 self.navigationItem.title = marketName
                 self.loadPosts()
 //                print(self.posts)
@@ -200,14 +203,14 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
 //        let query = PFQuery(className: "Post")
         var posts: [Post] = []
         print("current market is: \(currentMarket)")
-        let categories = currentMarket!["categories"] as! [String: [PFObject]]
+        let categories = currentMarket!.categories
         print(type(of: categories))
         for (key, value) in categories {
             print(type(of: value))
 //            print("value is: \(value)")
 //            let postArray: [Post] = value
             print(type(of: value))
-            for p in value {
+            for p in value! {
                 let post = Post(p)
                 posts.append(post)
             }
