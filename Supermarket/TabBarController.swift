@@ -29,7 +29,6 @@ class TabBarController: UITabBarController {
         let tab2 = UITabBarItem(title: "Sell", image: nil, selectedImage: nil)
         sellFeedController.tabBarItem = tab2
         
-        
         let createPostStoryboard = UIStoryboard(name: "CreatePost", bundle: nil)
         let createPostController = createPostStoryboard.instantiateViewController(withIdentifier: "CreatePostController")
         

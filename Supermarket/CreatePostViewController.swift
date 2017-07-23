@@ -79,6 +79,14 @@ class CreatePostViewController: UIViewController, AVCaptureVideoDataOutputSample
         swipeRight.direction = UISwipeGestureRecognizerDirection.right
         self.view.addGestureRecognizer(swipeRight)
         
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture))
+        swipeLeft.direction = UISwipeGestureRecognizerDirection.left
+        self.view.addGestureRecognizer(swipeLeft)
+
+        let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture))
+        swipeUp.direction = UISwipeGestureRecognizerDirection.up
+        self.view.addGestureRecognizer(swipeUp)
+        
         let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture))
         swipeDown.direction = UISwipeGestureRecognizerDirection.down
         self.view.addGestureRecognizer(swipeDown)
@@ -196,10 +204,32 @@ class CreatePostViewController: UIViewController, AVCaptureVideoDataOutputSample
             switch swipeGesture.direction {
             case UISwipeGestureRecognizerDirection.right:
                 print("Swiped right")
+                
+                self.previewLayer.removeFromSuperlayer()
+                // self.previewLayer = nil
+                self.session.stopRunning()
+
+                let storyboard: UIStoryboard = UIStoryboard(name: "SellFeed", bundle: nil)
+                let vc = storyboard.instantiateViewController(withIdentifier: "SellFeedController") as! UINavigationController
+                UIView.performWithoutAnimation {
+                    self.show(vc, sender: self)
+                }
+                
             case UISwipeGestureRecognizerDirection.down:
                 print("Swiped down")
             case UISwipeGestureRecognizerDirection.left:
                 print("Swiped left")
+                
+                self.previewLayer.removeFromSuperlayer()
+                // self.previewLayer = nil
+                self.session.stopRunning()
+                
+                let storyboard: UIStoryboard = UIStoryboard(name: "NotificationStoryboard", bundle: nil)
+                let vc = storyboard.instantiateViewController(withIdentifier: "NotificationController") as! UINavigationController
+                UIView.performWithoutAnimation {
+                    self.show(vc, sender: self)
+                }
+
             case UISwipeGestureRecognizerDirection.up:
                 print("Swiped up")
             default:
