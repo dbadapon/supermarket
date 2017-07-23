@@ -154,11 +154,20 @@
                         <outlet property="postTableView" destination="br7-It-d69" id="fpB-eo-Zi6"/>
                         <outlet property="segmentedControl" destination="gwt-VI-ri4" id="3xo-r2-a4a"/>
                         <outlet property="segmentedView" destination="VXf-yE-gSD" id="pOg-lG-Bhc"/>
+                        <segue destination="ZhM-Dc-zOr" kind="show" identifier="sellToDetail" id="5JT-sn-BuE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KpH-RV-rUu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1231.2" y="-25.637181409295355"/>
+        </scene>
+        <!--DetailViewController-->
+        <scene sceneID="ITp-X9-yNS">
+            <objects>
+                <viewControllerPlaceholder storyboardName="BuyFeed" referencedIdentifier="DetailViewController" id="ZhM-Dc-zOr" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="E1o-0e-RsG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2103" y="-15"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="S8S-oJ-L2i">
