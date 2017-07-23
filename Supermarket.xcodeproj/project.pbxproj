@@ -236,7 +236,6 @@
 		A079041E1F13F098000E4419 /* Supermarket */ = {
 			isa = PBXGroup;
 			children = (
-				A0E718791F22B64A008248F0 /* New Group */,
 				A0E30DA31F14434B0062B100 /* Views */,
 				4D15560B1F1400CA00F70DB3 /* View Controllers */,
 				4D15560A1F1400A500F70DB3 /* Models */,
@@ -289,13 +288,6 @@
 				4DC3C0C71F20166C00B4E2C4 /* SellFeedCell.swift */,
 			);
 			name = Views;
-			sourceTree = "<group>";
-		};
-		A0E718791F22B64A008248F0 /* New Group */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "New Group";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
