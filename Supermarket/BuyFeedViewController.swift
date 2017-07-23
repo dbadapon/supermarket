@@ -212,7 +212,20 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
             print(type(of: value))
             for p in value! {
                 let post = Post(p)
-                posts.append(post)
+                print(post)
+                let parseObject = post.parseObject
+                parseObject.fetchIfNeededInBackground(block: { (parseObject, error) in
+                    if let parseObject = parseObject {
+                        // you have to fix this... it feels wrong lol
+                        let sold = parseObject["sold"] as! Bool
+                        if sold == false {
+                            self.posts.append(post)
+                        }
+                    }
+                })
+//                if post.sold! == false {
+//                    posts.append(post)
+//                }
             }
         }
         self.postTableView.reloadData()
