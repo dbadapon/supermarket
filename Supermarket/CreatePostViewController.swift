@@ -71,6 +71,18 @@ class CreatePostViewController: UIViewController, AVCaptureVideoDataOutputSample
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // hide tab bar
+        self.tabBarController?.tabBar.isHidden = true
+        
+        // add swipe gestures
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture))
+        swipeRight.direction = UISwipeGestureRecognizerDirection.right
+        self.view.addGestureRecognizer(swipeRight)
+        
+        let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture))
+        swipeDown.direction = UISwipeGestureRecognizerDirection.down
+        self.view.addGestureRecognizer(swipeDown)
+        
         // slider for adjusting threshold is hidden
         // self.thresholdStackView.isHidden = true
         addButtons()
@@ -161,7 +173,7 @@ class CreatePostViewController: UIViewController, AVCaptureVideoDataOutputSample
 
             // set up the request using our vision model
             let classificationRequest = VNCoreMLRequest(model: resNet50Model, completionHandler: handleClassifications)
-            classificationRequest.imageCropAndScaleOption = VNImageCropAndScaleOptionCenterCrop
+            classificationRequest.imageCropAndScaleOption = VNImageCropAndScaleOption.centerCrop
 //                = VNImageCropAndScaleOption.centerCrop
             visionRequests = [classificationRequest]
             
@@ -177,6 +189,24 @@ class CreatePostViewController: UIViewController, AVCaptureVideoDataOutputSample
      
      }
      */
+    
+    // for swipe gestures
+    func respondToSwipeGesture(gesture: UIGestureRecognizer) {
+        if let swipeGesture = gesture as? UISwipeGestureRecognizer {
+            switch swipeGesture.direction {
+            case UISwipeGestureRecognizerDirection.right:
+                print("Swiped right")
+            case UISwipeGestureRecognizerDirection.down:
+                print("Swiped down")
+            case UISwipeGestureRecognizerDirection.left:
+                print("Swiped left")
+            case UISwipeGestureRecognizerDirection.up:
+                print("Swiped up")
+            default:
+                break
+            }
+        }
+    }
     
     
     func checkPriceWithName(query: String) {
@@ -254,7 +284,7 @@ class CreatePostViewController: UIViewController, AVCaptureVideoDataOutputSample
         }
         
         // for orientation see kCGImagePropertyOrientation
-        let imageRequestHandler = VNImageRequestHandler(cvPixelBuffer: pixelBuffer, orientation: Int32(CGImagePropertyOrientation(rawValue: 1)!.rawValue), options: requestOptions)
+        let imageRequestHandler = VNImageRequestHandler(cvPixelBuffer: pixelBuffer, orientation: CGImagePropertyOrientation(rawValue: 1)!, options: requestOptions)
         do {
             try imageRequestHandler.perform(self.visionRequests)
         } catch {

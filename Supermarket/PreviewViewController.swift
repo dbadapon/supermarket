@@ -77,7 +77,7 @@ class PreviewViewController: UIViewController, UITextViewDelegate {
         let borderColor = UIColor(red: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha:1.0)
         
         itemName.layer.borderColor = borderColor.cgColor;
-        itemName.layer.borderWidth = 1.0;
+        itemName.layer.borderWidth = 0.5;
         itemName.layer.cornerRadius = 5.0;
         
         // create an OK action

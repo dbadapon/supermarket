@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		0A017A531F143C51001C6B5A /* CreatePost.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A017A521F143C51001C6B5A /* CreatePost.storyboard */; };
+		0A0C160E1F25497D002C29BB /* Pods_SupermarketTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AE35AF3621B63A19B9B12F4 /* Pods_SupermarketTests.framework */; };
+		0A0C160F1F254982002C29BB /* Pods_SupermarketUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80572461216E64975C83358E /* Pods_SupermarketUITests.framework */; };
+		0A0C16101F254984002C29BB /* Pods_SupermarketUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80572461216E64975C83358E /* Pods_SupermarketUITests.framework */; };
+		0A0C16111F254987002C29BB /* Pods_SupermarketTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AE35AF3621B63A19B9B12F4 /* Pods_SupermarketTests.framework */; };
+		0A0C16121F254995002C29BB /* Pods_Supermarket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2533FCA0375016EEE9885993 /* Pods_Supermarket.framework */; };
+		0A0C16131F254995002C29BB /* Pods_Supermarket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2533FCA0375016EEE9885993 /* Pods_Supermarket.framework */; };
 		0A5892FE1F227506001360D3 /* CreatePostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5892FD1F227506001360D3 /* CreatePostViewController.swift */; };
 		0A5893001F22779A001360D3 /* SwiftyRecordButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5892FF1F22779A001360D3 /* SwiftyRecordButton.swift */; };
 		0A5893041F22792F001360D3 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5893031F22792F001360D3 /* PhotoViewController.swift */; };
@@ -96,9 +102,7 @@
 		4D44F62B1F2137C10018BF22 /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		4DAF789D1F1ED37C00768EFD /* WalmartAPIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalmartAPIManager.swift; sourceTree = "<group>"; };
 		4DC3C0C71F20166C00B4E2C4 /* SellFeedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SellFeedCell.swift; sourceTree = "<group>"; };
-		4DC3C0C91F2016B400B4E2C4 /* SellFeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SellFeedViewController.swift; sourceTree = "<group>"; };
 		4DC3C0C91F2016B400B4E2C4 /* SellFeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SellFeedViewController.swift; sourceTree = "<group>"; };
-		4DF6982B1F16E66D008DB9D6 /* ConfirmPhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmPhotoViewController.swift; sourceTree = "<group>"; };
 		4DF6982D1F17ED8B008DB9D6 /* MLManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MLManager.swift; sourceTree = "<group>"; };
 		80572461216E64975C83358E /* Pods_SupermarketUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SupermarketUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		926BE3FB87F2C782821060A8 /* Pods-SupermarketUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SupermarketUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SupermarketUITests/Pods-SupermarketUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -134,6 +138,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A0C160F1F254982002C29BB /* Pods_SupermarketUITests.framework in Frameworks */,
+				0A0C160E1F25497D002C29BB /* Pods_SupermarketTests.framework in Frameworks */,
 				DB316A86A749F02FBC5E3946 /* Pods_Supermarket.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -142,6 +148,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A0C16101F254984002C29BB /* Pods_SupermarketUITests.framework in Frameworks */,
+				0A0C16121F254995002C29BB /* Pods_Supermarket.framework in Frameworks */,
 				4235A579D607D191574DCF4B /* Pods_SupermarketTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -150,6 +158,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A0C16111F254987002C29BB /* Pods_SupermarketTests.framework in Frameworks */,
+				0A0C16131F254995002C29BB /* Pods_Supermarket.framework in Frameworks */,
 				926A42BE122588BD99E6BC61 /* Pods_SupermarketUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -362,7 +372,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 0830;
+				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "Team Triceratops";
 				TargetAttributes = {
 					A079041B1F13F098000E4419 = {
@@ -671,7 +681,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -679,7 +691,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -722,7 +738,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -730,7 +748,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
