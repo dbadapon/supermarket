@@ -12,17 +12,27 @@ import Parse
 class SellFeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var segmentedControl: UISegmentedControl!
+    @IBOutlet weak var segmentedView: UIView!
+    
+    @IBOutlet weak var lineViewOne: UIView!
+    @IBOutlet weak var lineViewTwo: UIView!
     
     @IBOutlet weak var postTableView: UITableView!
     var posts: [Post]? = []
     var sellingPosts: [Post]? = []
     var soldPosts: [Post]? = []
+    
+    var items : [String] = ["Selling", "Sold"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         postTableView.dataSource = self
         postTableView.delegate = self
+        postTableView.separatorStyle = .singleLine
+        
+        lineViewOne.backgroundColor = UIColor.white
+        lineViewTwo.backgroundColor = UIColor.clear
         
         navigationController?.navigationBar.titleTextAttributes = [
             NSFontAttributeName: UIFont.systemFont(ofSize: 17, weight: UIFontWeightHeavy)
@@ -38,6 +48,21 @@ class SellFeedViewController: UIViewController, UITableViewDataSource, UITableVi
         
         definesPresentationContext = true
         
+        segmentedControl.tintColor = UIColor.init(colorLiteralRed: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha: 1.0)
+        segmentedControl.layer.masksToBounds = true
+        
+        segmentedControl.tintColor = UIColor.clear
+        
+        // segmentedView.addTarget(self, action: #selector(SellFeedViewController.segmentedViewControllerValueChanged(_:)), for: .valueChanged)
+
+        segmentedView.backgroundColor = UIColor.init(colorLiteralRed: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha: 1.0)
+        
+        let boldTextAttributes: [NSObject : AnyObject] = [
+            NSForegroundColorAttributeName as NSObject : UIColor.white,
+            NSFontAttributeName as NSObject: UIFont.systemFont(ofSize: 16, weight: UIFontWeightMedium)
+            ]
+        segmentedControl.setTitleTextAttributes(boldTextAttributes, for: .selected)
+        segmentedControl.setTitleTextAttributes(boldTextAttributes, for: .normal)
         
         var query = PFQuery(className: "Post")
         query.whereKey("sold", equalTo: false)
@@ -108,16 +133,28 @@ class SellFeedViewController: UIViewController, UITableViewDataSource, UITableVi
         
         let cell = postTableView.dequeueReusableCell(withIdentifier: "SellFeedCell", for: indexPath) as! SellFeedCell
         
+        cell.preservesSuperviewLayoutMargins = false
+        cell.separatorInset = UIEdgeInsets.zero
+        cell.layoutMargins = UIEdgeInsets.zero
+        
         cell.post = posts![indexPath.row]
         
         return cell
     }
     
+    func segmentedViewControllerValueChanged(_ sender: Any) {
+        
+    }
+    
     @IBAction func segmentDidChange(_ sender: Any) {
         if segmentedControl.selectedSegmentIndex == 0 {
             self.posts = sellingPosts
+            lineViewOne.backgroundColor = UIColor.white
+            lineViewTwo.backgroundColor = UIColor.clear
         } else {
             self.posts = soldPosts
+            lineViewOne.backgroundColor = UIColor.clear
+            lineViewTwo.backgroundColor = UIColor.white
         }
         
         self.postTableView.reloadData()

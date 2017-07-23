@@ -23,14 +23,15 @@ class SellFeedCell: UITableViewCell {
             let date = post.parseObject.createdAt
             let dateFormatter = DateFormatter()
             dateFormatter.dateStyle = .short
-            dateFormatter.timeStyle = .short
+            dateFormatter.timeStyle = .none
             let dateString = dateFormatter.string(from: date!)
             
             let name = post.name
             self.nameLabel.text = name as? String
             
             let price = post.price
-            self.priceLabel.text = "$" + String(describing: price)
+            let formattedPrice = String(format: "%.2f", price!)
+            self.priceLabel.text = "$" + formattedPrice
             
             let images = post.images
             self.photoImage.file = images?[0]
