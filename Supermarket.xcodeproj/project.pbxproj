@@ -33,6 +33,7 @@
 		4D1556571F153FC800F70DB3 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1556561F153FC800F70DB3 /* DetailViewController.swift */; };
 		4D1556591F1540EB00F70DB3 /* DetailPictureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1556581F1540EB00F70DB3 /* DetailPictureCell.swift */; };
 		4D15565B1F1540FD00F70DB3 /* DetailInformationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D15565A1F1540FD00F70DB3 /* DetailInformationCell.swift */; };
+		4D3ED6C11F2598A300E532CD /* GoogleBooksAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3ED6C01F2598A300E532CD /* GoogleBooksAPI.swift */; };
 		4D44F62A1F21251B0018BF22 /* YSSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D44F6291F21251B0018BF22 /* YSSegmentedControl.swift */; };
 		4D44F62C1F2137C10018BF22 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D44F62B1F2137C10018BF22 /* Item.swift */; };
 		4DAF789E1F1ED37C00768EFD /* WalmartAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DAF789D1F1ED37C00768EFD /* WalmartAPIManager.swift */; };
@@ -98,6 +99,7 @@
 		4D1556561F153FC800F70DB3 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		4D1556581F1540EB00F70DB3 /* DetailPictureCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailPictureCell.swift; sourceTree = "<group>"; };
 		4D15565A1F1540FD00F70DB3 /* DetailInformationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailInformationCell.swift; sourceTree = "<group>"; };
+		4D3ED6C01F2598A300E532CD /* GoogleBooksAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleBooksAPI.swift; sourceTree = "<group>"; };
 		4D44F6291F21251B0018BF22 /* YSSegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSSegmentedControl.swift; sourceTree = "<group>"; };
 		4D44F62B1F2137C10018BF22 /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		4DAF789D1F1ED37C00768EFD /* WalmartAPIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalmartAPIManager.swift; sourceTree = "<group>"; };
@@ -264,6 +266,7 @@
 				A07904261F13F098000E4419 /* Assets.xcassets */,
 				A079042B1F13F098000E4419 /* Info.plist */,
 				0AEF28871F22ACF900C4528B /* Resnet50.mlmodel */,
+				4D3ED6C01F2598A300E532CD /* GoogleBooksAPI.swift */,
 			);
 			path = Supermarket;
 			sourceTree = "<group>";
@@ -591,6 +594,7 @@
 				4D114E041F1559B700897FC8 /* NotificationsViewController.swift in Sources */,
 				4D114E0A1F15728800897FC8 /* InterestedCell.swift in Sources */,
 				4DC3C0CA1F2016B400B4E2C4 /* SellFeedViewController.swift in Sources */,
+				4D3ED6C11F2598A300E532CD /* GoogleBooksAPI.swift in Sources */,
 				4D114E081F1571FD00897FC8 /* MessageCell.swift in Sources */,
 				4D44F62A1F21251B0018BF22 /* YSSegmentedControl.swift in Sources */,
 				4DAF789E1F1ED37C00768EFD /* WalmartAPIManager.swift in Sources */,
