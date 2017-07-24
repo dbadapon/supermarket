@@ -19,12 +19,22 @@ import UIKit
 // import AlamofireImage
 
 class PreviewViewController: UIViewController, UITextViewDelegate, UIGestureRecognizerDelegate, UIAlertViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIPopoverControllerDelegate {
+    
+    let postAlertController = UIAlertController(title: "Invalid Action", message: "Please select an image", preferredStyle: .alert)
+    
+    let cameraSelectAlertController = UIAlertController(title: "Camera NOT available", message: "Please select Photo Library", preferredStyle: .alert)
+    
+    let vc = UIImagePickerController()
 
     // to be able to add and change images selected
     @IBOutlet weak var imageViewOne: UIImageView!
     @IBOutlet weak var imageViewTwo: UIImageView!
     @IBOutlet weak var imageViewThree: UIImageView!
     @IBOutlet weak var imageViewFour: UIImageView!
+    
+    // to be able to assign user picked image to correct image view
+    // 0 is cover photo, 1 - 4 would be for images 1 - 4
+    var selectedImage = -1
     
     var picker:UIImagePickerController? = UIImagePickerController()
     var popover:UIPopoverController? = nil
@@ -128,10 +138,20 @@ class PreviewViewController: UIViewController, UITextViewDelegate, UIGestureReco
         itemName.layer.borderWidth = 0.5;
         itemName.layer.cornerRadius = 5.0;
         
+        // for image picker
+        vc.delegate = self
+        vc.allowsEditing = true
+        
         // create an OK action
         let OKAction = UIAlertAction(title: "OK", style: .default) { (action) in
             // handle response here.
         }
+        
+        // add the OK action to the alert controller
+        cameraSelectAlertController.addAction(OKAction)
+        
+        // add the OK action to the alert controller
+        postAlertController.addAction(OKAction)
         
         // add the OK action to the alert controller
         nameAlertController.addAction(OKAction)
@@ -144,23 +164,67 @@ class PreviewViewController: UIViewController, UITextViewDelegate, UIGestureReco
     
     func tappedImageCover(_sender: AnyObject) {
         print("Cover image tapped!")
-        let alert:UIAlertController=UIAlertController(title: "Choose Image", message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
-        let cameraAction = UIAlertAction(title: "Camera", style: UIAlertActionStyle.default)
-        {
-            UIAlertAction in
+        self.selectedImage = 0
+        self.showOptions()
+    }
+    
+    func tappedImageOne(_sender: AnyObject) {
+        print("Image one tapped!")
+        self.selectedImage = 1
+        self.showOptions()
+    }
+    
+    func tappedImageTwo(_sender: AnyObject) {
+        print("Image two tapped!")
+        self.selectedImage = 2
+        self.showOptions()
+    }
+    
+    func tappedImageThree(_sender: AnyObject) {
+        print("Image three tapped!")
+        self.selectedImage = 3
+        self.showOptions()
+    }
+    
+    func tappedImageFour(_sender: AnyObject) {
+        print("Image four tapped!")
+        self.selectedImage = 4
+        self.showOptions()
+    }
+    
+    func showOptions() {
+        let alert:UIAlertController = UIAlertController(title: "Choose Image", message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
+        let deleteAction = UIAlertAction(title: "Delete From Post", style: UIAlertActionStyle.default) {
+            (action) in
+            if self.selectedImage == 0 {
+                self.coverPhoto.image = nil
+            } else if self.selectedImage == 1 {
+                self.imageViewOne.image = nil
+            } else if self.selectedImage == 2 {
+                self.imageViewTwo.image = nil
+            } else if self.selectedImage == 3 {
+                self.imageViewThree.image = nil
+            } else if self.selectedImage == 4 {
+                self.imageViewFour.image = nil
+            } else {
+                print("Something went wrong in showOptions")
+            }
+        }
+        let cameraAction = UIAlertAction(title: "Camera", style: UIAlertActionStyle.default) {
+            (action) in
             self.openCamera()
         }
-        let libraryAction = UIAlertAction(title: "Photo Library", style: UIAlertActionStyle.default)
-        {
-            UIAlertAction in
+        let libraryAction = UIAlertAction(title: "Photo Library", style: UIAlertActionStyle.default) {
+            (action) in
             self.openLibrary()
         }
-        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel)
-        {
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel) {
             (action) in
         }
         // Add the actions
-        picker?.delegate = self
+        // originally in code, but not necessary because now it's in viewDidLoad
+        // picker?.delegate = self
+        alert.addAction(deleteAction)
         alert.addAction(cameraAction)
         alert.addAction(libraryAction)
         alert.addAction(cancelAction)
@@ -176,58 +240,70 @@ class PreviewViewController: UIViewController, UITextViewDelegate, UIGestureReco
         }
     }
     
-    func tappedImageOne(_sender: AnyObject) {
-        print("Image one tapped!")
-    }
-    
-    func tappedImageTwo(_sender: AnyObject) {
-        print("Image two tapped!")
-    }
-    
-    func tappedImageThree(_sender: AnyObject) {
-        print("Image three tapped!")
-    }
-    
-    func tappedImageFour(_sender: AnyObject) {
-        print("Image four tapped!")
-    }
-    
-    func openCamera()
-    {
-        if(UIImagePickerController .isSourceTypeAvailable(UIImagePickerControllerSourceType.camera))
-        {
-            picker!.sourceType = UIImagePickerControllerSourceType.camera
-            self.present(picker!, animated: true, completion: nil)
-        }
-        else
-        {
-            openLibrary()
+    func openCamera() {
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            print("Camera is available 📸")
+            vc.sourceType = .camera
+            self.present(vc, animated: true, completion: nil)
+        } else {
+            self.present(self.cameraSelectAlertController, animated: true)
         }
     }
     
-    func openLibrary()
-    {
-        picker!.sourceType = UIImagePickerControllerSourceType.photoLibrary
-        if UIDevice.current.userInterfaceIdiom == .phone
-        {
-            self.present(picker!, animated: true, completion: nil)
-        }
-        else
-        {
-            popover=UIPopoverController(contentViewController: picker!)
-            popover!.present(from: view.frame, in: self.view, permittedArrowDirections: UIPopoverArrowDirection.any, animated: true)
-        }
+    func openLibrary() {
+        print("Using photo library")
+        vc.sourceType = .photoLibrary
+        self.present(vc, animated: true, completion: nil)
     }
     
     // delegate methods
-    private func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject])
-    {
-        picker.dismiss(animated: true, completion: nil)
-        // imageView.image=info[UIImagePickerControllerOriginalImage] as? UIImage
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        
+        // Get the image captured by the UIImagePickerController
+        // Do something with the images (based on your use case)
+        if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
+            print("edited")
+            if self.selectedImage == 0 {
+                coverPhoto.image = image
+            } else if self.selectedImage == 1 {
+                imageViewOne.image = image
+            } else if self.selectedImage == 2 {
+                imageViewTwo.image = image
+            } else if self.selectedImage == 3 {
+                imageViewThree.image = image
+            } else if self.selectedImage == 4 {
+                imageViewFour.image = image
+            } else {
+                print("Something went wrong in imagePickerController")
+            }
+            //imageToPost.image = image
+        }
+        else if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            print("original")
+            if self.selectedImage == 0 {
+                coverPhoto.image = image
+            } else if self.selectedImage == 1 {
+                imageViewOne.image = image
+            } else if self.selectedImage == 2 {
+                imageViewTwo.image = image
+            } else if self.selectedImage == 3 {
+                imageViewThree.image = image
+            } else if self.selectedImage == 4 {
+                imageViewFour.image = image
+            } else {
+                print("Something went wrong in imagePickerController")
+            }
+        } else{
+            print("Something went wrong in imagePickerController")
+        }
+        
+        // Dismiss UIImagePickerController to go back to your original view controller
+        dismiss(animated: true, completion: nil)
     }
+    
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController)
     {
-        print("picker cancel.")
+        print("picker cancel")
     }
     
     override func didReceiveMemoryWarning() {
