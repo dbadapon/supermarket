@@ -20,7 +20,11 @@ import UIKit
 
 class PreviewViewController: UIViewController, UITextViewDelegate, UIGestureRecognizerDelegate, UIAlertViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIPopoverControllerDelegate {
     
-    let postAlertController = UIAlertController(title: "Invalid Action", message: "Please select an image", preferredStyle: .alert)
+    // color to use for app
+    let textColor = UIColor(red: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha:1.0)
+    
+    // currently not used, but can add this somewhere
+    let postAlertController = UIAlertController(title: "Invalid Action", message: "Cover photo is required", preferredStyle: .alert)
     
     let cameraSelectAlertController = UIAlertController(title: "Camera NOT available", message: "Please select Photo Library", preferredStyle: .alert)
     
@@ -72,6 +76,10 @@ class PreviewViewController: UIViewController, UITextViewDelegate, UIGestureReco
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // set color of alert controllers
+        postAlertController.view.tintColor = textColor
+        cameraSelectAlertController.view.tintColor = textColor
         
         // make tap gestures to be able to add pictures
         // actually no tap gesture for cover photo
@@ -200,7 +208,6 @@ class PreviewViewController: UIViewController, UITextViewDelegate, UIGestureReco
     
     func showOptions() {
         let alert:UIAlertController = UIAlertController(title: "Image Options", message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
-        let textColor = UIColor(red: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha:1.0)
         alert.view.tintColor = textColor
         let deleteAction = UIAlertAction(title: "Delete", style: UIAlertActionStyle.destructive) {
             (action) in
