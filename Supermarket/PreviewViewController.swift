@@ -18,12 +18,16 @@ import UIKit
 // import Alamofire
 // import AlamofireImage
 
-class PreviewViewController: UIViewController, UITextViewDelegate, UIGestureRecognizerDelegate {
+class PreviewViewController: UIViewController, UITextViewDelegate, UIGestureRecognizerDelegate, UIAlertViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIPopoverControllerDelegate {
 
+    // to be able to add and change images selected
     @IBOutlet weak var imageViewOne: UIImageView!
     @IBOutlet weak var imageViewTwo: UIImageView!
     @IBOutlet weak var imageViewThree: UIImageView!
     @IBOutlet weak var imageViewFour: UIImageView!
+    
+    var picker:UIImagePickerController? = UIImagePickerController()
+    var popover:UIPopoverController? = nil
     
     let nameAlertController = UIAlertController(title: "Max Characters Reached", message: "Item name CANNOT exceed 50 characters", preferredStyle: .alert)
     
@@ -60,6 +64,11 @@ class PreviewViewController: UIViewController, UITextViewDelegate, UIGestureReco
         super.viewDidLoad()
         
         // make tap gestures to be able to add pictures
+        let UITapRecognizerCover = UITapGestureRecognizer(target: self, action: #selector(self.tappedImageCover(_sender:)))
+        UITapRecognizerCover.delegate = self
+        self.coverPhoto.addGestureRecognizer(UITapRecognizerCover)
+        self.coverPhoto.isUserInteractionEnabled = true
+        
         let UITapRecognizerOne = UITapGestureRecognizer(target: self, action: #selector(self.tappedImageOne(_sender:)))
         UITapRecognizerOne.delegate = self
         self.imageViewOne.addGestureRecognizer(UITapRecognizerOne)
@@ -133,6 +142,40 @@ class PreviewViewController: UIViewController, UITextViewDelegate, UIGestureReco
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
+    func tappedImageCover(_sender: AnyObject) {
+        print("Cover image tapped!")
+        let alert:UIAlertController=UIAlertController(title: "Choose Image", message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
+        let cameraAction = UIAlertAction(title: "Camera", style: UIAlertActionStyle.default)
+        {
+            UIAlertAction in
+            self.openCamera()
+        }
+        let libraryAction = UIAlertAction(title: "Photo Library", style: UIAlertActionStyle.default)
+        {
+            UIAlertAction in
+            self.openLibrary()
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel)
+        {
+            (action) in
+        }
+        // Add the actions
+        picker?.delegate = self
+        alert.addAction(cameraAction)
+        alert.addAction(libraryAction)
+        alert.addAction(cancelAction)
+        // Present the controller
+        if UIDevice.current.userInterfaceIdiom == .phone
+        {
+            self.present(alert, animated: true, completion: nil)
+        }
+        else
+        {
+            popover = UIPopoverController(contentViewController: alert)
+            popover!.present(from: view.frame, in: self.view, permittedArrowDirections: UIPopoverArrowDirection.any, animated: true)
+        }
+    }
+    
     func tappedImageOne(_sender: AnyObject) {
         print("Image one tapped!")
     }
@@ -147,6 +190,44 @@ class PreviewViewController: UIViewController, UITextViewDelegate, UIGestureReco
     
     func tappedImageFour(_sender: AnyObject) {
         print("Image four tapped!")
+    }
+    
+    func openCamera()
+    {
+        if(UIImagePickerController .isSourceTypeAvailable(UIImagePickerControllerSourceType.camera))
+        {
+            picker!.sourceType = UIImagePickerControllerSourceType.camera
+            self.present(picker!, animated: true, completion: nil)
+        }
+        else
+        {
+            openLibrary()
+        }
+    }
+    
+    func openLibrary()
+    {
+        picker!.sourceType = UIImagePickerControllerSourceType.photoLibrary
+        if UIDevice.current.userInterfaceIdiom == .phone
+        {
+            self.present(picker!, animated: true, completion: nil)
+        }
+        else
+        {
+            popover=UIPopoverController(contentViewController: picker!)
+            popover!.present(from: view.frame, in: self.view, permittedArrowDirections: UIPopoverArrowDirection.any, animated: true)
+        }
+    }
+    
+    // delegate methods
+    private func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject])
+    {
+        picker.dismiss(animated: true, completion: nil)
+        // imageView.image=info[UIImagePickerControllerOriginalImage] as? UIImage
+    }
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController)
+    {
+        print("picker cancel.")
     }
     
     override func didReceiveMemoryWarning() {
