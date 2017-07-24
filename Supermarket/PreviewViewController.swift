@@ -18,7 +18,12 @@ import UIKit
 // import Alamofire
 // import AlamofireImage
 
-class PreviewViewController: UIViewController, UITextViewDelegate {
+class PreviewViewController: UIViewController, UITextViewDelegate, UIGestureRecognizerDelegate {
+
+    @IBOutlet weak var imageViewOne: UIImageView!
+    @IBOutlet weak var imageViewTwo: UIImageView!
+    @IBOutlet weak var imageViewThree: UIImageView!
+    @IBOutlet weak var imageViewFour: UIImageView!
     
     let nameAlertController = UIAlertController(title: "Max Characters Reached", message: "Item name CANNOT exceed 50 characters", preferredStyle: .alert)
     
@@ -53,6 +58,27 @@ class PreviewViewController: UIViewController, UITextViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // make tap gestures to be able to add pictures
+        let UITapRecognizerOne = UITapGestureRecognizer(target: self, action: #selector(self.tappedImageOne(_sender:)))
+        UITapRecognizerOne.delegate = self
+        self.imageViewOne.addGestureRecognizer(UITapRecognizerOne)
+        self.imageViewOne.isUserInteractionEnabled = true
+        
+        let UITapRecognizerTwo = UITapGestureRecognizer(target: self, action: #selector(self.tappedImageTwo(_sender:)))
+        UITapRecognizerTwo.delegate = self
+        self.imageViewTwo.addGestureRecognizer(UITapRecognizerTwo)
+        self.imageViewTwo.isUserInteractionEnabled = true
+        
+        let UITapRecognizerThree = UITapGestureRecognizer(target: self, action: #selector(self.tappedImageThree(_sender:)))
+        UITapRecognizerThree.delegate = self
+        self.imageViewThree.addGestureRecognizer(UITapRecognizerThree)
+        self.imageViewThree.isUserInteractionEnabled = true
+        
+        let UITapRecognizerFour = UITapGestureRecognizer(target: self, action: #selector(self.tappedImageFour(_sender:)))
+        UITapRecognizerFour.delegate = self
+        self.imageViewFour.addGestureRecognizer(UITapRecognizerFour)
+        self.imageViewFour.isUserInteractionEnabled = true
         
         print(pictureUrl)
         
@@ -105,6 +131,22 @@ class PreviewViewController: UIViewController, UITextViewDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    
+    func tappedImageOne(_sender: AnyObject) {
+        print("Image one tapped!")
+    }
+    
+    func tappedImageTwo(_sender: AnyObject) {
+        print("Image two tapped!")
+    }
+    
+    func tappedImageThree(_sender: AnyObject) {
+        print("Image three tapped!")
+    }
+    
+    func tappedImageFour(_sender: AnyObject) {
+        print("Image four tapped!")
     }
     
     override func didReceiveMemoryWarning() {
