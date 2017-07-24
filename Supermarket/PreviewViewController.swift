@@ -74,10 +74,14 @@ class PreviewViewController: UIViewController, UITextViewDelegate, UIGestureReco
         super.viewDidLoad()
         
         // make tap gestures to be able to add pictures
+        // actually no tap gesture for cover photo
+        // or else it interferes with keyboard gesture
+        /*
         let UITapRecognizerCover = UITapGestureRecognizer(target: self, action: #selector(self.tappedImageCover(_sender:)))
         UITapRecognizerCover.delegate = self
         self.coverPhoto.addGestureRecognizer(UITapRecognizerCover)
         self.coverPhoto.isUserInteractionEnabled = true
+        */
         
         let UITapRecognizerOne = UITapGestureRecognizer(target: self, action: #selector(self.tappedImageOne(_sender:)))
         UITapRecognizerOne.delegate = self
@@ -162,11 +166,13 @@ class PreviewViewController: UIViewController, UITextViewDelegate, UIGestureReco
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
+    /*
     func tappedImageCover(_sender: AnyObject) {
         print("Cover image tapped!")
         self.selectedImage = 0
         self.showOptions()
     }
+    */
     
     func tappedImageOne(_sender: AnyObject) {
         print("Image one tapped!")
@@ -193,19 +199,23 @@ class PreviewViewController: UIViewController, UITextViewDelegate, UIGestureReco
     }
     
     func showOptions() {
-        let alert:UIAlertController = UIAlertController(title: "Choose Image", message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
-        let deleteAction = UIAlertAction(title: "Delete From Post", style: UIAlertActionStyle.default) {
+        let alert:UIAlertController = UIAlertController(title: "Image Options", message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
+        let textColor = UIColor(red: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha:1.0)
+        alert.view.tintColor = textColor
+        let deleteAction = UIAlertAction(title: "Delete", style: UIAlertActionStyle.destructive) {
             (action) in
             if self.selectedImage == 0 {
-                self.coverPhoto.image = nil
+                // not a possible option now
+                // because user cannot change cover photo
+                self.coverPhoto.image = #imageLiteral(resourceName: "cameraMask.png")
             } else if self.selectedImage == 1 {
-                self.imageViewOne.image = nil
+                self.imageViewOne.image = #imageLiteral(resourceName: "cameraMask.png")
             } else if self.selectedImage == 2 {
-                self.imageViewTwo.image = nil
+                self.imageViewTwo.image = #imageLiteral(resourceName: "cameraMask.png")
             } else if self.selectedImage == 3 {
-                self.imageViewThree.image = nil
+                self.imageViewThree.image = #imageLiteral(resourceName: "cameraMask.png")
             } else if self.selectedImage == 4 {
-                self.imageViewFour.image = nil
+                self.imageViewFour.image = #imageLiteral(resourceName: "cameraMask.png")
             } else {
                 print("Something went wrong in showOptions")
             }

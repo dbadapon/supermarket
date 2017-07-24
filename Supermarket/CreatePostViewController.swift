@@ -53,7 +53,7 @@ class CreatePostViewController: UIViewController, AVCaptureVideoDataOutputSample
     // to run searches on when user captures a picture
     var topMLResult = ""
     
-    var recognitionThreshold : Float = 0.20
+    var recognitionThreshold : Float = 0.19
     
     // @IBOutlet weak var thresholdStackView: UIStackView!
     // @IBOutlet weak var threshholdLabel: UILabel!
