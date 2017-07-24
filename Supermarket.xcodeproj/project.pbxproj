@@ -40,6 +40,8 @@
 		4D3ED6C11F2598A300E532CD /* GoogleBooksAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3ED6C01F2598A300E532CD /* GoogleBooksAPI.swift */; };
 		4D44F62A1F21251B0018BF22 /* YSSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D44F6291F21251B0018BF22 /* YSSegmentedControl.swift */; };
 		4D44F62C1F2137C10018BF22 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D44F62B1F2137C10018BF22 /* Item.swift */; };
+		4D73A2BB1F2676EE00A5ACDC /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D73A2BA1F2676EE00A5ACDC /* Notification.swift */; };
+		4D73A2BD1F26772700A5ACDC /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D73A2BC1F26772700A5ACDC /* ProfileViewController.swift */; };
 		4DAF789E1F1ED37C00768EFD /* WalmartAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DAF789D1F1ED37C00768EFD /* WalmartAPIManager.swift */; };
 		4DC3C0C81F20166C00B4E2C4 /* SellFeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC3C0C71F20166C00B4E2C4 /* SellFeedCell.swift */; };
 		4DC3C0CA1F2016B400B4E2C4 /* SellFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC3C0C91F2016B400B4E2C4 /* SellFeedViewController.swift */; };
@@ -110,6 +112,8 @@
 		4D3ED6C01F2598A300E532CD /* GoogleBooksAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleBooksAPI.swift; sourceTree = "<group>"; };
 		4D44F6291F21251B0018BF22 /* YSSegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSSegmentedControl.swift; sourceTree = "<group>"; };
 		4D44F62B1F2137C10018BF22 /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		4D73A2BA1F2676EE00A5ACDC /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
+		4D73A2BC1F26772700A5ACDC /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		4DAF789D1F1ED37C00768EFD /* WalmartAPIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalmartAPIManager.swift; sourceTree = "<group>"; };
 		4DC3C0C71F20166C00B4E2C4 /* SellFeedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SellFeedCell.swift; sourceTree = "<group>"; };
 		4DC3C0C91F2016B400B4E2C4 /* SellFeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SellFeedViewController.swift; sourceTree = "<group>"; };
@@ -198,6 +202,7 @@
 				4D15560E1F1402CF00F70DB3 /* Post.swift */,
 				4D1556121F143BCB00F70DB3 /* Market.swift */,
 				4D1556141F143BE500F70DB3 /* Category.swift */,
+				4D73A2BA1F2676EE00A5ACDC /* Notification.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -221,6 +226,7 @@
 				0A36AA391F25A1F9007BE153 /* DescriptionViewController.swift */,
 				0A36AA351F259F49007BE153 /* SelectMarketViewController.swift */,
 				0A36AA371F259F56007BE153 /* ChooseLocationViewController.swift */,
+				4D73A2BC1F26772700A5ACDC /* ProfileViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -608,6 +614,7 @@
 				4DC3C0CA1F2016B400B4E2C4 /* SellFeedViewController.swift in Sources */,
 				4D3ED6C11F2598A300E532CD /* GoogleBooksAPI.swift in Sources */,
 				4D114E081F1571FD00897FC8 /* MessageCell.swift in Sources */,
+				4D73A2BD1F26772700A5ACDC /* ProfileViewController.swift in Sources */,
 				4D44F62A1F21251B0018BF22 /* YSSegmentedControl.swift in Sources */,
 				4DAF789E1F1ED37C00768EFD /* WalmartAPIManager.swift in Sources */,
 				0A36AA3A1F25A1FA007BE153 /* DescriptionViewController.swift in Sources */,
@@ -625,6 +632,7 @@
 				A0E30DE71F144EA00062B100 /* TabBarController.swift in Sources */,
 				0A5892FE1F227506001360D3 /* CreatePostViewController.swift in Sources */,
 				A07904201F13F098000E4419 /* AppDelegate.swift in Sources */,
+				4D73A2BB1F2676EE00A5ACDC /* Notification.swift in Sources */,
 				4DF6982E1F17ED8B008DB9D6 /* MLManager.swift in Sources */,
 				4D15560D1F1402B900F70DB3 /* User.swift in Sources */,
 				4D1556591F1540EB00F70DB3 /* DetailPictureCell.swift in Sources */,

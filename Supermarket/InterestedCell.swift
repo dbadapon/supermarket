@@ -11,9 +11,35 @@ import UIKit
 class InterestedCell: UITableViewCell {
 
     @IBOutlet weak var ignoreButton: UIButton!
-    
     @IBOutlet weak var respondButton: UIButton!
+    @IBOutlet weak var messageLabel: UILabel!
     
+    var notification: Notification! {
+        didSet {            
+            let sender = notification.sender
+            var senderName: String = ""
+            var postName: String = ""
+            sender.fetchInBackground { (sender, error) in
+                if let error = error {
+                    print (error.localizedDescription)
+                } else {
+                    senderName = sender!["username"] as! String
+                    
+                    let post = self.notification.postObject
+                    post.fetchInBackground(block: { (post, error) in
+                        if let error = error {
+                            print (error.localizedDescription)
+                        } else {
+                            postName = post!["name"] as! String
+                            self.messageLabel.text = senderName + self.notification.message + postName
+                        }
+                    })
+                    
+                }
+            }
+            
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()

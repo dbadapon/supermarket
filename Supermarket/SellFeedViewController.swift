@@ -65,6 +65,8 @@ class SellFeedViewController: UIViewController, UITableViewDataSource, UITableVi
         segmentedControl.setTitleTextAttributes(boldTextAttributes, for: .selected)
         segmentedControl.setTitleTextAttributes(boldTextAttributes, for: .normal)
         
+        
+        
         var query = PFQuery(className: "Post")
         query.whereKey("sold", equalTo: false)
         // query.whereKey("seller", equalTo: PFUser.current())
@@ -81,6 +83,8 @@ class SellFeedViewController: UIViewController, UITableViewDataSource, UITableVi
                 
                 self.posts = self.sellingPosts
                 self.postTableView.reloadData()
+                
+                // let notification = Notification.createNotification(withSender: PFUser.current()!, withReceiver: PFUser.current()!, withMessage: "is interested in your", withPostObject: posts[0])
             } else if error != nil {
                 print (error?.localizedDescription)
             } else {

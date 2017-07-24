@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 class NotificationsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -14,7 +15,9 @@ class NotificationsViewController: UIViewController, UITableViewDelegate, UITabl
 
     @IBOutlet weak var tableView: UITableView!
     
-    // var posts: [PFObject]? = nil
+    var notifications: [Notification] = []
+    
+    // var messages: [Message]? = nil
     
     
     override func viewDidLoad() {
@@ -35,6 +38,27 @@ class NotificationsViewController: UIViewController, UITableViewDelegate, UITabl
         tableView.dataSource = self
         tableView.delegate = self
         
+        var query = PFQuery(className: "Notification")
+        query.whereKey("receiver", equalTo: PFUser.current())
+        query.limit = 20
+        
+        query.findObjectsInBackground { (notifications: [PFObject]?, error: Error?) in
+            if let notifications = notifications {
+                print ("it found notifications")
+                print (notifications.count)
+                for item in notifications {
+                    let notification = Notification(item)
+                    self.notifications.append(notification)
+                }
+                print (self.notifications)
+                self.tableView.reloadData()
+            } else if error != nil {
+                print (error?.localizedDescription)
+            } else {
+                print ("the posts could not be loaded into the sell feed")
+            }
+        }
+        
         tableView.reloadData()
     }
 
@@ -45,9 +69,14 @@ class NotificationsViewController: UIViewController, UITableViewDelegate, UITabl
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if segmentedControl.selectedSegmentIndex == 0 {
-            return 20
+            return notifications.count
         } else {
-            return 20
+//            if let messages = self.messages {
+//                return messages.count
+//            } else {
+//                return 0
+//            }
+            return 1
         }
     }
     
@@ -55,14 +84,15 @@ class NotificationsViewController: UIViewController, UITableViewDelegate, UITabl
         
         if segmentedControl.selectedSegmentIndex == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "InterestedCell") as! InterestedCell
+            
+            cell.notification = notifications[indexPath.row]
+            
             return cell
             
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "MessageCell") as! MessageCell
             return cell
-            
         }
-        
     }
 
     @IBAction func indexChanged(_ sender: Any) {
