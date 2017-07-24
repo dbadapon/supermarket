@@ -9,6 +9,14 @@
 import UIKit
 
 class SelectMarketViewController: UIViewController {
+    
+    @IBAction func previousAction(_ sender: UIButton) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func nextAction(_ sender: UIButton) {
+        performSegue(withIdentifier: "toChooseLocationSegue", sender: self)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

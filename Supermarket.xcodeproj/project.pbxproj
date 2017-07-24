@@ -17,6 +17,7 @@
 		0A36AA321F259F15007BE153 /* PriceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A36AA311F259F15007BE153 /* PriceViewController.swift */; };
 		0A36AA361F259F49007BE153 /* SelectMarketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A36AA351F259F49007BE153 /* SelectMarketViewController.swift */; };
 		0A36AA381F259F56007BE153 /* ChooseLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A36AA371F259F56007BE153 /* ChooseLocationViewController.swift */; };
+		0A36AA3A1F25A1FA007BE153 /* DescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A36AA391F25A1F9007BE153 /* DescriptionViewController.swift */; };
 		0A5892FE1F227506001360D3 /* CreatePostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5892FD1F227506001360D3 /* CreatePostViewController.swift */; };
 		0A5893001F22779A001360D3 /* SwiftyRecordButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5892FF1F22779A001360D3 /* SwiftyRecordButton.swift */; };
 		0A5893041F22792F001360D3 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5893031F22792F001360D3 /* PhotoViewController.swift */; };
@@ -84,6 +85,7 @@
 		0A36AA311F259F15007BE153 /* PriceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceViewController.swift; sourceTree = "<group>"; };
 		0A36AA351F259F49007BE153 /* SelectMarketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectMarketViewController.swift; sourceTree = "<group>"; };
 		0A36AA371F259F56007BE153 /* ChooseLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseLocationViewController.swift; sourceTree = "<group>"; };
+		0A36AA391F25A1F9007BE153 /* DescriptionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DescriptionViewController.swift; sourceTree = "<group>"; };
 		0A5892FD1F227506001360D3 /* CreatePostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostViewController.swift; sourceTree = "<group>"; };
 		0A5892FF1F22779A001360D3 /* SwiftyRecordButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyRecordButton.swift; sourceTree = "<group>"; };
 		0A5893031F22792F001360D3 /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
@@ -216,6 +218,7 @@
 				0A5893031F22792F001360D3 /* PhotoViewController.swift */,
 				0A5893051F227998001360D3 /* PreviewViewController.swift */,
 				0A36AA311F259F15007BE153 /* PriceViewController.swift */,
+				0A36AA391F25A1F9007BE153 /* DescriptionViewController.swift */,
 				0A36AA351F259F49007BE153 /* SelectMarketViewController.swift */,
 				0A36AA371F259F56007BE153 /* ChooseLocationViewController.swift */,
 			);
@@ -607,6 +610,7 @@
 				4D114E081F1571FD00897FC8 /* MessageCell.swift in Sources */,
 				4D44F62A1F21251B0018BF22 /* YSSegmentedControl.swift in Sources */,
 				4DAF789E1F1ED37C00768EFD /* WalmartAPIManager.swift in Sources */,
+				0A36AA3A1F25A1FA007BE153 /* DescriptionViewController.swift in Sources */,
 				0A6966C81F15404700E72FD8 /* SignUpViewController.swift in Sources */,
 				A0E30DA51F14438D0062B100 /* BuyFeedCell.swift in Sources */,
 				0A36AA321F259F15007BE153 /* PriceViewController.swift in Sources */,

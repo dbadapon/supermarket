@@ -9,6 +9,14 @@
 import UIKit
 
 class ChooseLocationViewController: UIViewController {
+    
+    @IBAction func previousAction(_ sender: UIButton) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func postAction(_ sender: UIButton) {
+        // performSegue(withIdentifier: "toDescriptionSegue", sender: self)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

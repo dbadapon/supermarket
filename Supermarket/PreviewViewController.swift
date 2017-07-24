@@ -33,7 +33,7 @@ class PreviewViewController: UIViewController, UITextViewDelegate {
     }
     
     @IBAction func nextAction(_ sender: UIButton) {
-        
+        performSegue(withIdentifier: "toPriceSegue", sender: self)
     }
     
     @IBOutlet weak var itemName: UITextView!

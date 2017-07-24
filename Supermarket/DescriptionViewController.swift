@@ -1,23 +1,21 @@
 //
-//  PriceViewController.swift
-//  Supermarket
+//  DescriptionViewController.swift
+//  
 //
 //  Created by Xiuya Yao on 7/23/17.
-//  Copyright © 2017 Team Triceratops. All rights reserved.
 //
 
 import UIKit
 
-class PriceViewController: UIViewController {
+class DescriptionViewController: UIViewController {
     
     @IBAction func previousAction(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
     
     @IBAction func nextAction(_ sender: UIButton) {
-        performSegue(withIdentifier: "toDescriptionSegue", sender: self)
+        performSegue(withIdentifier: "toSelectMarketSegue", sender: self)
     }
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
