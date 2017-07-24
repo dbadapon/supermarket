@@ -14,6 +14,9 @@
 		0A0C16111F254987002C29BB /* Pods_SupermarketTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AE35AF3621B63A19B9B12F4 /* Pods_SupermarketTests.framework */; };
 		0A0C16121F254995002C29BB /* Pods_Supermarket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2533FCA0375016EEE9885993 /* Pods_Supermarket.framework */; };
 		0A0C16131F254995002C29BB /* Pods_Supermarket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2533FCA0375016EEE9885993 /* Pods_Supermarket.framework */; };
+		0A36AA321F259F15007BE153 /* PriceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A36AA311F259F15007BE153 /* PriceViewController.swift */; };
+		0A36AA361F259F49007BE153 /* SelectMarketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A36AA351F259F49007BE153 /* SelectMarketViewController.swift */; };
+		0A36AA381F259F56007BE153 /* ChooseLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A36AA371F259F56007BE153 /* ChooseLocationViewController.swift */; };
 		0A5892FE1F227506001360D3 /* CreatePostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5892FD1F227506001360D3 /* CreatePostViewController.swift */; };
 		0A5893001F22779A001360D3 /* SwiftyRecordButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5892FF1F22779A001360D3 /* SwiftyRecordButton.swift */; };
 		0A5893041F22792F001360D3 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5893031F22792F001360D3 /* PhotoViewController.swift */; };
@@ -78,6 +81,9 @@
 
 /* Begin PBXFileReference section */
 		0A017A521F143C51001C6B5A /* CreatePost.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CreatePost.storyboard; sourceTree = "<group>"; };
+		0A36AA311F259F15007BE153 /* PriceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceViewController.swift; sourceTree = "<group>"; };
+		0A36AA351F259F49007BE153 /* SelectMarketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectMarketViewController.swift; sourceTree = "<group>"; };
+		0A36AA371F259F56007BE153 /* ChooseLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseLocationViewController.swift; sourceTree = "<group>"; };
 		0A5892FD1F227506001360D3 /* CreatePostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostViewController.swift; sourceTree = "<group>"; };
 		0A5892FF1F22779A001360D3 /* SwiftyRecordButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyRecordButton.swift; sourceTree = "<group>"; };
 		0A5893031F22792F001360D3 /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
@@ -209,6 +215,9 @@
 				0A5892FD1F227506001360D3 /* CreatePostViewController.swift */,
 				0A5893031F22792F001360D3 /* PhotoViewController.swift */,
 				0A5893051F227998001360D3 /* PreviewViewController.swift */,
+				0A36AA311F259F15007BE153 /* PriceViewController.swift */,
+				0A36AA351F259F49007BE153 /* SelectMarketViewController.swift */,
+				0A36AA371F259F56007BE153 /* ChooseLocationViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -600,6 +609,7 @@
 				4DAF789E1F1ED37C00768EFD /* WalmartAPIManager.swift in Sources */,
 				0A6966C81F15404700E72FD8 /* SignUpViewController.swift in Sources */,
 				A0E30DA51F14438D0062B100 /* BuyFeedCell.swift in Sources */,
+				0A36AA321F259F15007BE153 /* PriceViewController.swift in Sources */,
 				4D44F62C1F2137C10018BF22 /* Item.swift in Sources */,
 				0ADBBA841F22AE9200F1D519 /* Resnet50.mlmodel in Sources */,
 				A07904221F13F098000E4419 /* ViewController.swift in Sources */,
@@ -607,6 +617,7 @@
 				A0B989F41F1583AA0037EFCF /* MarketCell.swift in Sources */,
 				A0E30DA21F143C020062B100 /* BuyFeedViewController.swift in Sources */,
 				A0B989F21F15806F0037EFCF /* SidebarViewController.swift in Sources */,
+				0A36AA381F259F56007BE153 /* ChooseLocationViewController.swift in Sources */,
 				A0E30DE71F144EA00062B100 /* TabBarController.swift in Sources */,
 				0A5892FE1F227506001360D3 /* CreatePostViewController.swift in Sources */,
 				A07904201F13F098000E4419 /* AppDelegate.swift in Sources */,
@@ -618,6 +629,7 @@
 				4D1556571F153FC800F70DB3 /* DetailViewController.swift in Sources */,
 				4D1556131F143BCB00F70DB3 /* Market.swift in Sources */,
 				4DC3C0C81F20166C00B4E2C4 /* SellFeedCell.swift in Sources */,
+				0A36AA361F259F49007BE153 /* SelectMarketViewController.swift in Sources */,
 				0A6966C61F15401200E72FD8 /* LoginViewController.swift in Sources */,
 				4D1556151F143BE500F70DB3 /* Category.swift in Sources */,
 				4D15565B1F1540FD00F70DB3 /* DetailInformationCell.swift in Sources */,

@@ -20,8 +20,21 @@ import UIKit
 
 class PreviewViewController: UIViewController, UITextViewDelegate {
     
-    let nameAlertController = UIAlertController(title: "Max Characters Reached", message: "Item name CANNOT exceed 140 characters", preferredStyle: .alert)
-
+    let nameAlertController = UIAlertController(title: "Max Characters Reached", message: "Item name CANNOT exceed 50 characters", preferredStyle: .alert)
+    
+    @IBAction func cancelAction(_ sender: UIButton) {
+        // nameString == "" means not from barcode
+        // so dismissing it takes user back to PhotoVC
+        if (nameString == "") {
+            dismiss(animated: false, completion: nil)
+        } else {
+            dismiss(animated: true, completion: nil)
+        }
+    }
+    
+    @IBAction func nextAction(_ sender: UIButton) {
+        
+    }
     
     @IBOutlet weak var itemName: UITextView!
     @IBOutlet weak var charCountLabel: UILabel!

@@ -25,6 +25,11 @@ class PhotoViewController: UIViewController {
     @IBOutlet weak var secondResultPrice: UILabel!
     @IBOutlet weak var thirdResultPrice: UILabel!
     @IBOutlet weak var fourthResultPrice: UILabel!
+    @IBOutlet weak var firstResultName: UILabel!
+    @IBOutlet weak var secondResultName: UILabel!
+    @IBOutlet weak var thirdResultName: UILabel!
+    @IBOutlet weak var fourthResultName: UILabel!
+    
     
     var firstResultImageUrl = ""
     var secondResultImageUrl = ""
@@ -154,7 +159,7 @@ class PhotoViewController: UIViewController {
                         })
                     }
                     
-                    // self.nameLabel.text = String(describing: item["name"]!)
+                    self.firstResultName.text = String(describing: item["name"]!)
                     self.firstResultPrice.text = "$" + String(describing: item["salePrice"]!)
                     print (item["salePrice"]!)
                 }
@@ -191,7 +196,7 @@ class PhotoViewController: UIViewController {
                         })
                     }
                     
-                    // self.nameLabel.text = String(describing: item["name"]!)
+                    self.secondResultName.text = String(describing: item["name"]!)
                     self.secondResultPrice.text = "$" + String(describing: item["salePrice"]!)
                     print (item["salePrice"]!)
                 }
@@ -228,7 +233,7 @@ class PhotoViewController: UIViewController {
                         })
                     }
                     
-                    // self.nameLabel.text = String(describing: item["name"]!)
+                    self.thirdResultName.text = String(describing: item["name"]!)
                     self.thirdResultPrice.text = "$" + String(describing: item["salePrice"]!)
                     print (item["salePrice"]!)
                 }
@@ -265,7 +270,7 @@ class PhotoViewController: UIViewController {
                         })
                     }
                     
-                    // self.nameLabel.text = String(describing: item["name"]!)
+                    self.fourthResultName.text = String(describing: item["name"]!)
                     self.fourthResultPrice.text = "$" + String(describing: item["salePrice"]!)
                     print (item["salePrice"]!)
                 }
