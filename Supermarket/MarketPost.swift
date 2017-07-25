@@ -32,9 +32,9 @@ class MarketPost {
     }
     
     // be careful with ! as opposed to ?, apparently...
-    var post: PFObject? {
+    var post: String? {
         get {
-            return parseObject[Field.Post.key] as? PFObject
+            return parseObject[Field.Post.key] as? String
         }
         set {
             parseObject[Field.Post.key] = newValue
@@ -80,7 +80,7 @@ class MarketPost {
         
         let marketPost = MarketPost()
         
-        marketPost.post = post.parseObject
+        marketPost.post = post.id
         marketPost.price = post.price
         marketPost.market = marketName
         marketPost.category = category

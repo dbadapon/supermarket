@@ -39,7 +39,6 @@
 		4D15565B1F1540FD00F70DB3 /* DetailInformationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D15565A1F1540FD00F70DB3 /* DetailInformationCell.swift */; };
 		4D3ED6C11F2598A300E532CD /* GoogleBooksAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3ED6C01F2598A300E532CD /* GoogleBooksAPI.swift */; };
 		4D44F62A1F21251B0018BF22 /* YSSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D44F6291F21251B0018BF22 /* YSSegmentedControl.swift */; };
-		4D44F62C1F2137C10018BF22 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D44F62B1F2137C10018BF22 /* Item.swift */; };
 		4D73A2BB1F2676EE00A5ACDC /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D73A2BA1F2676EE00A5ACDC /* Notification.swift */; };
 		4D73A2BD1F26772700A5ACDC /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D73A2BC1F26772700A5ACDC /* ProfileViewController.swift */; };
 		4D73A2BF1F26A15C00A5ACDC /* MarketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D73A2BE1F26A15C00A5ACDC /* MarketViewController.swift */; };
@@ -246,6 +245,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		A0542ABA1F2717CA00FA6FE8 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				4D44F62B1F2137C10018BF22 /* Item.swift */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
 		A07904131F13F098000E4419 = {
 			isa = PBXGroup;
 			children = (
@@ -255,6 +262,7 @@
 				A079041D1F13F098000E4419 /* Products */,
 				1E90245A3F51501E2E50A5D3 /* Pods */,
 				7BB5E34F2CED67C39A974A78 /* Frameworks */,
+				A0542ABA1F2717CA00FA6FE8 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -627,7 +635,6 @@
 				0A6966C81F15404700E72FD8 /* SignUpViewController.swift in Sources */,
 				A0E30DA51F14438D0062B100 /* BuyFeedCell.swift in Sources */,
 				0A36AA321F259F15007BE153 /* PriceViewController.swift in Sources */,
-				4D44F62C1F2137C10018BF22 /* Item.swift in Sources */,
 				0ADBBA841F22AE9200F1D519 /* Resnet50.mlmodel in Sources */,
 				A07904221F13F098000E4419 /* ViewController.swift in Sources */,
 				0A5893001F22779A001360D3 /* SwiftyRecordButton.swift in Sources */,

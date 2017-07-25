@@ -14,7 +14,7 @@ import CoreLocation
 class Post {
 
     enum Field {
-        case Name, Images, ItemDescription, Price, Condition, Negotiable, Latitude, Longitude, Sold
+        case Name, Images, ItemDescription, Price, Condition, Negotiable, Latitude, Longitude, Sold, ID
         
         var key: String {
             switch (self) {
@@ -36,6 +36,8 @@ class Post {
                 return "longitude"
             case .Sold:
                 return "sold"
+            case .ID:
+                return "id"
             }
         }
     }
@@ -118,6 +120,12 @@ class Post {
         }
         set {
             parseObject[Field.Images.key] = newValue
+        }
+    }
+    
+    var id: String? {
+        get {
+            return parseObject[Field.ID.key] as? String
         }
     }
 

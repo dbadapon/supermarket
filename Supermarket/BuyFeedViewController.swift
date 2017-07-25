@@ -182,27 +182,63 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         query.whereKey("market", equalTo: currentMarket?.name)
         self.posts = []
         var localPosts: [Post] = []
+        
         query.findObjectsInBackground { (marketPosts, error) in
             if let marketPosts = marketPosts {
+                var idArray: [String] = []
                 for m in marketPosts {
                     let marketPost = MarketPost(m)
-                    let post = Post(marketPost.post)
-                    let parseObject = post.parseObject
-                    parseObject.fetchIfNeededInBackground(block: { (parseObject, error) in
-                        if let parseObject = parseObject {
-                            print("in fetchifneeded")
+                    let postID = marketPost.post
+                    print("POST ID: \(postID)")
+                    idArray.append(postID!)
+                }
+                let postQuery = PFQuery(className: "Post")
+                postQuery.addDescendingOrder("createdAt")
+                postQuery.whereKey("objectId", containedIn: idArray)
+                postQuery.findObjectsInBackground(block: { (posts, error) in
+                    if let posts = posts {
+                        for p in posts {
+                            let post = Post(p)
+                            print("boutta print post!")
+                            print(post)
+                            print(p.objectId)
                             if post.sold == false {
-                                print("DARN THIS ASYNCHRONOUS CRAP")
-//                                print(post.parseObject["createdAt"])
                                 self.posts.append(post)
-                                self.postTableView.reloadData()
-                                localPosts.append(post)
                             }
                         }
-                    })
-                }
+                        print("posts: \(self.posts)")
+                        self.postTableView.reloadData()
+                    } else {
+                        print("Error fetching posts: \(error?.localizedDescription)")
+                    }
+                })
             }
         }
+        
+        // what if you set the post attribute of MarketPosts to the Post ID instead...
+        // and then queried the Post collection
+        
+//        query.findObjectsInBackground { (marketPosts, error) in
+//            if let marketPosts = marketPosts {
+//                for m in marketPosts {
+//                    let marketPost = MarketPost(m)
+//                    let post = Post(marketPost.post)
+//                    let parseObject = post.parseObject
+//                    parseObject.fetchIfNeededInBackground(block: { (parseObject, error) in
+//                        if let parseObject = parseObject {
+//                            print("in fetchifneeded")
+//                            if post.sold == false {
+//                                print("DARN THIS ASYNCHRONOUS CRAP")
+////                                print(post.parseObject["createdAt"])
+//                                self.posts.append(post)
+//                                self.postTableView.reloadData()
+//                                localPosts.append(post)
+//                            }
+//                        }
+//                    })
+//                }
+//            }
+//        }
         
 //        let query = PFQuery(className: "Post")
 ////        query.whereKey
