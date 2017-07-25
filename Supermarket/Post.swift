@@ -99,7 +99,7 @@ class Post {
             return parseObject[Field.Longitude.key] as? Double
         }
         set {
-            parseObject[Field.Latitude.key] = newValue
+            parseObject[Field.Longitude.key] = newValue
         }
     }
     
@@ -130,7 +130,7 @@ class Post {
     }
 
 
-    class func postItem(images: [UIImage], name: String, itemDescription: String, price: Double, conditionNew: Bool, negotiable: Bool, latitude: Double, longitude: Double)  {
+    class func createPost(images: [UIImage], name: String, itemDescription: String, price: Double, conditionNew: Bool, negotiable: Bool, sold: Bool, latitude: Double, longitude: Double) -> Post {
         
 //        let newPost = Post()
 //        newPost.name = "Alvin"
@@ -148,9 +148,12 @@ class Post {
         
         newPost.negotiable = negotiable
         
+        newPost.sold = sold
+        
         newPost.latitude = latitude
         
-        newPost.longitude = latitude
+        newPost.longitude = longitude
+        
         
         var convertedImages: [PFFile] = []
         for image in images {
@@ -197,7 +200,7 @@ class Post {
 //            }
 //        }
     
-//        return post
+        return newPost // should this return the parse object or the Post object? I think the Post object...
         
     }
     

@@ -22,7 +22,7 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
     
     var posts: [Post] = []
     
-    var allPosts: [PFObject] = []
+//    var allPosts: [PFObject] = []
     
     var markets: [Market] = []
     
@@ -37,13 +37,12 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         self.navigationItem.title = self.currentMarket!.name
         print("current market is now: \(currentMarket)")
         loadPosts()
+//        showSelling()
         self.postTableView.reloadData()
 //        print("CURRENT MARKET IS NOW: \(currentMarket["name"])")
     }
     
     
-    
-
     
     
     // try showing all posts for now, then figure out how to show all posts only from the selected market...
@@ -54,62 +53,61 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         postTableView.dataSource = self
         postTableView.delegate = self
         
-
         
-//        let sideMenuVC = self.storyboard?.instantiateViewController(withIdentifier: "sideMenuViewController") as! SidebarViewController
-//        print("sideMenuVC: \(sideMenuVC)")
-//        
-//        let sideMenu = UISideMenuNavigationController(rootViewController: sideMenuVC)
+        // create Rice market; comment out after running once
         
-//        let sideMenuNC = self.storyboard?.instantiateViewController(withIdentifier: "SideMenu") as! UISideMenuNavigationController
+        let categories: [String: [PFObject]]? = ["Books": [], "Kitchen": [], "Home": [], "Clothing": [], "Electronics": [], "Supplies": []]
         
-//        sideMenuNC.topViewController = self.storyboard?.instantiateViewController(withIdentifier: "sideMenuViewController")
-        
-//        let sideMenuVC = self.storyboard?.instantiateViewController(withIdentifier: "sideMenuViewController") as! SidebarViewController
-        
-        
-//        self.sideMenuNC = sideMenuNC
-//        print("self.sideMenuNC: \(self.sideMenuNC)")
 //
-//        sideMenuNC.leftSide = true
-//        SideMenuManager.menuLeftNavigationController = sideMenuNC
-        
-        
-        
-        let image = UIImage(named: "accounting textbook")!
-        
-        
-//        let post = Post.postItem(images: [image], name: "Intermediate Accounting 13th Ed.", itemDescription: "For Accounting 122a.", price: 15.00, conditionNew: false, negotiable: true, latitude: 33.640495, longitude: -117.844296)
-    
-
-//        Post.postItem(images: <#T##[UIImage]?#>, name: <#T##String#>, itemDescription: <#T##String#>, price: <#T##Double#>, conditionNew: <#T##Bool#>, negotiable: <#T##Bool#>, latitude: <#T##Double#>, longitude: <#T##Double#>)
-        
-//        Post.postItem(images: [image], name: "Brita filter", itemDescription: "New and unused! Fresh drinking water for days.", price: 12.25, conditionNew: true, negotiable: false, latitude: 33.640495, longitude: -117.844296)
-        
-        
-        // Books, Kitchen, Home, Clothing, Electronics, Supplies
-        
-        let categories: [String: [Post]?]? = ["Books": [], "Kitchen": [], "Home": [], "Clothing": [], "Electronics": [], "Supplies": []]
-        
-//        Market.postMarket(withName: "Yale Class of 2020", withCategories: categories, withNewCategory: false, withPublic: true, withLatitude: 33.640495, withLongitude: -117.844296) { (success, error) in
+//        Market.postMarket(withName: "Rice Undergrads", withDescription: "A marketplace for all undergraduates at Rice University!", withCategories: categories!,  withLatitude: 29.7174, withLongitude: 95.4018) { (success, error) in
 //            if success {
-//                print("created new market yay!")
+//                print("Created new market!")
 //            } else {
-//                print(error?.localizedDescription)
+//                print("Error posting market: \(error?.localizedDescription)")
 //            }
 //        }
         
-        let marketsToPost: [String: [String]] = ["UCI Free and For Sale": ["Books"]]
+        
+        // creating dummy posts
+        
+//        let image = UIImage(named: "accounting textbook")!
+//
+//        let post1 = Post.createPost(images: [image], name: "Intermediate Accounting 13th Ed.", itemDescription: "For Accounting 122a.", price: 15.00, conditionNew: false, negotiable: true, sold: false, latitude: 33.640495, longitude: -117.844296)
+//
+//
+//        MarketPost.postItem(post: post1, marketName: "UCI Free and For Sale", category: "Books")
         
         
-//        Market.postToMarkets(destinations: marketsToPost, post: post!)
+        
+//        let image2 = UIImage(named: "rice cooker")!
+//
+//        let post2 = Post.createPost(images: [image2], name: "Rice cooker", itemDescription: "Medium-sized, perfect for college dorms!", price: 20.00, conditionNew: false, negotiable: false, sold: false, latitude: 33.640495, longitude: -117.844296)
+//
+//        let marketsToPost = ["UCI Free and For Sale": "Kitchen", "Yale Class of 2020": "Kitchen"]
+//
+//        for (market, category) in marketsToPost {
+//            MarketPost.postItem(post: post2, marketName: market, category: category)
+//        }
+        
+        
+        
+//        let image3 = UIImage(named: "brita")!
+//
+//        let post3 = Post.createPost(images: [image3], name: "Brita Filter", itemDescription: "Drinking water for dayz! New and unused.", price: 12.75, conditionNew: true, negotiable: false, sold: false, latitude: 41.3163, longitude: 72.9223)
+//
+//        let marketsToPost = ["UCI Free and For Sale": "Kitchen", "Yale Class of 2020": "Kitchen", "Rice Undergrads": "Kitchen"]
+//
+//        for (market, category) in marketsToPost {
+//            MarketPost.postItem(post: post3, marketName: market, category: category)
+//        }
         
         
         
         
         
-        // YOU'RE GONNA HAVE TO CHANGE ALL THIS SEARCH STUFF...FIGURE OUT HOW TO DO IT!
-
+        
+//         YOU'RE GONNA HAVE TO CHANGE ALL THIS SEARCH STUFF...FIGURE OUT HOW TO DO IT!
+        
         searchController = UISearchController(searchResultsController: nil)
         searchController.searchResultsUpdater = self
         
@@ -156,6 +154,7 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         print("IN VIEW WILL APPEAR")
+//        posts = []
 //        navigationController?.navigationBar.barTintColor = UIColor.init(colorLiteralRed: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha: 1.0)
         
 //        navigationController?.navigationBar.barStyle = UIBarStyle.black
@@ -190,6 +189,7 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
                 let marketName = self.currentMarket?.name
                 self.navigationItem.title = marketName
                 self.loadPosts()
+//                self.showSelling()
 //                print(self.posts)
                 self.postTableView.reloadData()
             }
@@ -200,40 +200,56 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func loadPosts() {
-//        let query = PFQuery(className: "Post")
+        let query = PFQuery(className: "Post")
+//        query.whereKey
         var posts: [Post] = []
         print("current market is: \(currentMarket)")
         let categories = currentMarket!.categories
-        print(type(of: categories))
-        for (key, value) in categories {
-            print(type(of: value))
-//            print("value is: \(value)")
-//            let postArray: [Post] = value
-            print(type(of: value))
-            for p in value! {
-                let post = Post(p)
-                print(post)
-                let parseObject = post.parseObject
-                parseObject.fetchIfNeededInBackground(block: { (parseObject, error) in
-                    if let parseObject = parseObject {
-                        // you have to fix this... it feels wrong lol
-                        let sold = parseObject["sold"] as! Bool
-                        if sold == false {
-                            self.posts.append(post)
-                        }
-                    }
-                })
-//                if post.sold! == false {
-//                    posts.append(post)
-//                }
-            }
-        }
-        self.postTableView.reloadData()
-//        query.whereKey("id", containedIn: postIDs)
         
-        print(posts)
-        self.posts = posts
+        
+        self.posts = []
+        
+//        query.findObjectsInBackground { (posts, error) in
+//            if let posts = posts {
+//                for (key, value) in categories {
+//                    for p in value! {
+//
+//                        let post = Post(p)
+//                        if post.sold == false {
+//                            self.posts.append(post)
+//                        }
+//                    }
+//                }
+//            }
+//     }
+        
+//        for (key, value) in categories {
+//            for p in value! {
+//                let post = Post(p)
+//                let parseObject = post.parseObject
+//                parseObject.fetchIfNeededInBackground(block: { (parseObject, error) in
+//                    if let parseObject = parseObject {
+//                        // you have to fix this... it feels wrong lol
+////                        let sold = parseObject["sold"] as! Bool
+////                        self.posts = []
+//                        if post.sold == false {
+//                            self.posts.append(post)
+////                            print("appended to local post array...")
+//                            print(self.posts)
+//                            self.postTableView.reloadData()
+//                        }
+//                    }
+//                })
+////                if post.sold! == false {
+////                    posts.append(post)
+////                }
+//            }
+//        }
+////        self.posts = posts
+////        print(self.posts)
+////        self.postTableView.reloadData()
     }
+    
     
     
     

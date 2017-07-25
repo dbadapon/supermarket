@@ -67,6 +67,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "DetailInformationCell") as! DetailInformationCell
             
+            
             let name = post.name
             cell.nameLabel.text = name
             
@@ -82,6 +83,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
             cell.conditionLabel.text = conditionString
             
             let latitude = post.latitude!
+            print("LATITUDE: \(latitude)")
             let longitude = post.longitude!
             cell.locationLabel.text = "Lat: \(latitude), Long: \(longitude)"
             

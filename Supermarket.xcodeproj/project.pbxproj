@@ -56,6 +56,7 @@
 		A07904401F13F098000E4419 /* SupermarketUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A079043F1F13F098000E4419 /* SupermarketUITests.swift */; };
 		A07DD39C1F1555E70079C286 /* NotificationStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A07DD39B1F1555E70079C286 /* NotificationStoryboard.storyboard */; };
 		A07DD39E1F15573B0079C286 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A07DD39D1F15573B0079C286 /* Profile.storyboard */; };
+		A093EE5F1F26DCBB00B0B170 /* MarketPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = A093EE5E1F26DCBB00B0B170 /* MarketPost.swift */; };
 		A0B989F21F15806F0037EFCF /* SidebarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B989F11F15806F0037EFCF /* SidebarViewController.swift */; };
 		A0B989F41F1583AA0037EFCF /* MarketCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B989F31F1583AA0037EFCF /* MarketCell.swift */; };
 		A0E30DA01F143A230062B100 /* BuyFeed.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A0E30D9F1F143A230062B100 /* BuyFeed.storyboard */; };
@@ -136,6 +137,7 @@
 		A07904411F13F098000E4419 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A07DD39B1F1555E70079C286 /* NotificationStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = NotificationStoryboard.storyboard; sourceTree = "<group>"; };
 		A07DD39D1F15573B0079C286 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
+		A093EE5E1F26DCBB00B0B170 /* MarketPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketPost.swift; sourceTree = "<group>"; };
 		A0B989F11F15806F0037EFCF /* SidebarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarViewController.swift; sourceTree = "<group>"; };
 		A0B989F31F1583AA0037EFCF /* MarketCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarketCell.swift; sourceTree = "<group>"; };
 		A0E30D9F1F143A230062B100 /* BuyFeed.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = BuyFeed.storyboard; path = ../BuyFeed.storyboard; sourceTree = "<group>"; };
@@ -198,11 +200,11 @@
 			isa = PBXGroup;
 			children = (
 				4D15560C1F1402B900F70DB3 /* User.swift */,
-				4D44F62B1F2137C10018BF22 /* Item.swift */,
 				4D15560E1F1402CF00F70DB3 /* Post.swift */,
 				4D1556121F143BCB00F70DB3 /* Market.swift */,
 				4D1556141F143BE500F70DB3 /* Category.swift */,
 				4D73A2BA1F2676EE00A5ACDC /* Notification.swift */,
+				A093EE5E1F26DCBB00B0B170 /* MarketPost.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -640,6 +642,7 @@
 				0A5893061F227998001360D3 /* PreviewViewController.swift in Sources */,
 				4D1556571F153FC800F70DB3 /* DetailViewController.swift in Sources */,
 				4D1556131F143BCB00F70DB3 /* Market.swift in Sources */,
+				A093EE5F1F26DCBB00B0B170 /* MarketPost.swift in Sources */,
 				4DC3C0C81F20166C00B4E2C4 /* SellFeedCell.swift in Sources */,
 				0A36AA361F259F49007BE153 /* SelectMarketViewController.swift in Sources */,
 				0A6966C61F15401200E72FD8 /* LoginViewController.swift in Sources */,

@@ -61,12 +61,12 @@ class Market{
         }
     }
     
-    var categories: [String: [PFObject]?] {
+    var categories: [String] {
         get {
-            return parseObject[Field.Categories.key] as! [String: [PFObject]]
+            return parseObject[Field.Categories.key] as! [String]
         }
         set {
-            
+            parseObject[Field.Categories.key] = newValue
         }
     }
     
@@ -97,8 +97,7 @@ class Market{
     }
 
     
-    class func postMarket(withName name: String, withDescription description: String, withCategories categories: [String: [PFObject]?], withNewCategory newCategory: Bool, withPublic isPublic: Bool, withLatitude latitude: Double?, withLongitude longitude: Double?, withCompletion completion: PFBooleanResultBlock?) {
-        // Create Parse object PFObject
+    class func createMarket(withName name: String, withDescription description: String, withCategories categories: [String], withLatitude latitude: Double?, withLongitude longitude: Double?, withCompletion completion: PFBooleanResultBlock?) {
         
         let newMarket = Market()
         newMarket.name = name
@@ -116,33 +115,46 @@ class Market{
                 print ("there was no error, but the market was not successful saving")
             }
         }
-        
-        
-//        let market = PFObject(className: "Market")
-//        
-//        market["name"] = name
-//        market["admin"] = PFUser.current()
-//        var members: [PFUser] = []
-//        members.append(PFUser.current()!)
-//        market["members"] = members
-//        if categories == nil {
-//            market["categories"] = NSNull()
-//        } else {
-//            market["categories"] = categories
-//        }
-//        
-//        market["memberCanCreateNewCategory"] = newCategory
-//        market["public"] = isPublic
-//        
-//        if let latitude = latitude {
-//            market["latitude"] = latitude
-//            market["longitude"] = longitude!
-//        }
-//        
-//        
-//        // Save object (following function will save the object in Parse asynchronously)
-//        market.saveInBackground(block: completion)
     
+    }
+    
+/*
+    class func postToMarkets(destinations: [String: String], post: Post) {
+        let postObject = post.parseObject
+//        let query = PFQuery(className: "Market")
+//        for (market, category) in destinations {
+//            let query = PFQuery(className: "Market")
+//            query.whereKey("name", equalTo: market)
+//            query.findObjectsInBackground(block: { (markets, error) in
+//                if let markets = markets {
+//                    markets
+//                }
+//            })
+//        }
+        let query = PFQuery(className: "Market")
+        query.findObjectsInBackground { (markets, error) in
+            if let markets = markets {
+                for m in markets {
+                    let market = Market(m)
+                    if let category = destinations[market.name!] {
+                        var categoryArray = market.categories[category] as? [PFObject]
+                        categoryArray!.append(postObject)
+                        market.categories[category] = categoryArray
+                        
+                        market.parseObject.saveInBackground(block: { (success, error) in
+                            if success {
+                                print("Posted to \(category)!")
+                            } else {
+                                print("Error saving post to market: \(error?.localizedDescription)")
+                            }
+                        })
+                    }
+                }
+            }
+            else {
+                print("Error posting to market: \(error?.localizedDescription)")
+            }
+        }
     }
     
     func postToMarket(category: String, postObject: Post) {
@@ -159,54 +171,10 @@ class Market{
             marketCategories[category] = newPosts
         }
         self.categories = marketCategories
-        
-        
-        
-        
-//            var query = PFQuery(className: "Market")
-//
-//            query.findObjectsInBackground { (markets: [PFObject]?, error: Error?) in
-//                if let error = error {
-//                    print (error.localizedDescription)
-//                } else {
-//                    print (markets!.count)
-//                    var count = 1
-//                    for market in markets! {
-//                        print (String(count))
-//                        count = count + 1
-//                        if categories.contains(market["name"] as! String) { // only go through markets in destinations
-//                            
-//                            let categoryDestinations = destinations[market["name"] as! String]
-//                            
-//                            var categories = market["categories"] as! [String: [PFObject]?]
-//                            
-//                            for category in categoryDestinations! {
-//                                var posts = categories[category] as? [PFObject]
-//                                if posts == nil {
-//                                    posts = []
-//                                    posts?.append(post)
-//                                } else {
-//                                    posts!.append(post)
-//                                }
-//                                categories[category] = posts
-//                            }
-//                            market["categories"] = categories
-//                            market.saveInBackground(block: { (saveSuccess, saveError: Error?) in
-//                                if let saveError = saveError {
-//                                    print ("this is the save error \(saveError.localizedDescription)")
-//                                } else {
-//                                    print ("")
-//                                }
-//                            })
-//                            
-//                        } else {
-//                            // If this market is NOT one of the destinations, nothing should happen
-//                        }
-//                    }
-//                }
-//            }
 
         }
+     
+    */
     
     func save() {
         self.parseObject.saveInBackground { (success, error: Error?) in
