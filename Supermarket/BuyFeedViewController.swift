@@ -141,7 +141,6 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
 //        Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.queryParse), userInfo: nil, repeats: true)
         
         setFirstMarket()
-        print(markets)
 
 //        currentMarket = self.markets[0]
 //        let marketName = currentMarket!["name"] as! String
@@ -151,25 +150,6 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
 //        loadPosts()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        print("IN VIEW WILL APPEAR")
-//        posts = []
-//        navigationController?.navigationBar.barTintColor = UIColor.init(colorLiteralRed: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha: 1.0)
-        
-//        navigationController?.navigationBar.barStyle = UIBarStyle.black
-        
-//        self.navigationController.view.backgroundColor = [UIColor whiteColor]
-        
-//        navigationController?.view.backgroundColor = UIColor.white
-//
-//        navigationController?.navigationBar.tintColor = UIColor.white
-//
-//        navigationController?.navigationBar.isTranslucent = false
-        
-//        loadPosts()
-//        postTableView.reloadData()
-    }
     
     
     func setFirstMarket() {
@@ -183,14 +163,11 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
                     let market = Market(m)
                     self.markets.append(market)
                 }
-//                self.markets = markets
-//                print("Just set markets to: \(markets)")
                 self.currentMarket = self.markets[0]
                 let marketName = self.currentMarket?.name
                 self.navigationItem.title = marketName
                 self.loadPosts()
-//                self.showSelling()
-//                print(self.posts)
+                
                 self.postTableView.reloadData()
             }
             else {
@@ -200,28 +177,43 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func loadPosts() {
-        let query = PFQuery(className: "Post")
-//        query.whereKey
-        var posts: [Post] = []
-        print("current market is: \(currentMarket)")
-        let categories = currentMarket!.categories
-        
-        
+        let query = PFQuery(className: "MarketPost")
+        query.addDescendingOrder("createdAt")
+        query.whereKey("market", equalTo: currentMarket?.name)
         self.posts = []
+        var localPosts: [Post] = []
+        query.findObjectsInBackground { (marketPosts, error) in
+            if let marketPosts = marketPosts {
+                for m in marketPosts {
+                    let marketPost = MarketPost(m)
+                    let post = Post(marketPost.post)
+                    let parseObject = post.parseObject
+                    parseObject.fetchIfNeededInBackground(block: { (parseObject, error) in
+                        if let parseObject = parseObject {
+                            print("in fetchifneeded")
+                            if post.sold == false {
+                                print("DARN THIS ASYNCHRONOUS CRAP")
+//                                print(post.parseObject["createdAt"])
+                                self.posts.append(post)
+                                self.postTableView.reloadData()
+                                localPosts.append(post)
+                            }
+                        }
+                    })
+                }
+            }
+        }
         
-//        query.findObjectsInBackground { (posts, error) in
-//            if let posts = posts {
-//                for (key, value) in categories {
-//                    for p in value! {
+//        let query = PFQuery(className: "Post")
+////        query.whereKey
+//        var posts: [Post] = []
+//        print("current market is: \(currentMarket)")
+//        let categories = currentMarket!.categories
 //
-//                        let post = Post(p)
-//                        if post.sold == false {
-//                            self.posts.append(post)
-//                        }
-//                    }
-//                }
-//            }
-//     }
+//
+//        self.posts = []
+        
+        
         
 //        for (key, value) in categories {
 //            for p in value! {
@@ -229,9 +221,6 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
 //                let parseObject = post.parseObject
 //                parseObject.fetchIfNeededInBackground(block: { (parseObject, error) in
 //                    if let parseObject = parseObject {
-//                        // you have to fix this... it feels wrong lol
-////                        let sold = parseObject["sold"] as! Bool
-////                        self.posts = []
 //                        if post.sold == false {
 //                            self.posts.append(post)
 ////                            print("appended to local post array...")
@@ -248,6 +237,8 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
 ////        self.posts = posts
 ////        print(self.posts)
 ////        self.postTableView.reloadData()
+        
+        // end bracket:
     }
     
     
