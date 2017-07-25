@@ -20,24 +20,25 @@ class SellFeedCell: UITableViewCell {
 
     var post: Post! {
         didSet {
-            let date = post.parseObject.createdAt
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateStyle = .short
-            dateFormatter.timeStyle = .none
-            let dateString = dateFormatter.string(from: date!)
-            
-            let name = post.name
-            self.nameLabel.text = name as? String
-            
-            let price = post.price
+                let date = post.parseObject.createdAt
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateStyle = .short
+                dateFormatter.timeStyle = .none
+                let dateString = dateFormatter.string(from: date!)
+                
+                let name = post.name
+                self.nameLabel.text = name as? String
+                
+                let price = post.price
             let formattedPrice = String(format: "%.2f", price!)
-            self.priceLabel.text = "$" + formattedPrice
-            
+                self.priceLabel.text = "$" + formattedPrice
+                
             let images = post.images
             self.photoImage.file = images?[0]
             self.photoImage.loadInBackground()
+                
+                self.dateLabel.text = "Posted " + dateString
             
-            self.dateLabel.text = "Posted " + dateString
             
         }
     }

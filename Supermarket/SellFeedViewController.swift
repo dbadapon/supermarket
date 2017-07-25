@@ -9,7 +9,7 @@
 import UIKit
 import Parse
 
-class SellFeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class SellFeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, ModalDelegate {
     
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var segmentedView: UIView!
@@ -18,9 +18,11 @@ class SellFeedViewController: UIViewController, UITableViewDataSource, UITableVi
     @IBOutlet weak var lineViewTwo: UIView!
     
     @IBOutlet weak var postTableView: UITableView!
-    var posts: [Post]? = []
-    var sellingPosts: [Post]? = []
-    var soldPosts: [Post]? = []
+    var posts: [Post] = []
+    var sellingPosts: [Post] = []
+    var soldPosts: [Post] = []
+    var currentMarket: Market?
+    var markets: [Market] = []
     
     var items : [String] = ["Selling", "Sold"]
     var detailPost: Post?
@@ -65,83 +67,83 @@ class SellFeedViewController: UIViewController, UITableViewDataSource, UITableVi
         segmentedControl.setTitleTextAttributes(boldTextAttributes, for: .selected)
         segmentedControl.setTitleTextAttributes(boldTextAttributes, for: .normal)
         
-        var marketQuery = PFQuery(className: "Market")
-        marketQuery.whereKey("name", equalTo: "Yale Class of 2020")
-        marketQuery.findObjectsInBackground { (markets, error) in
-            if let error = error {
-                print (error.localizedDescription)
-            } else {
-                var market = markets![0]
-                let image = UIImage(named: "yale_bulldogs.jpg")
-                var file: PFFile? = nil
-                if let image = image {
-                    file = Post.getPFFileFromImage(image: image)
-                } else {
-                    print ("no ui image was created")
-                }
-                market["profileImage"] = file
-                market.saveInBackground(block: { (success, error) in
-                    if let error = error {
-                        print (error.localizedDescription)
-                    } else {
-                        print ("the image should have been saved")
-                    }
-                })
-            }
-        }
+//        var marketQuery = PFQuery(className: "Market")
+//        marketQuery.whereKey("name", equalTo: "Yale Class of 2020")
+//        marketQuery.findObjectsInBackground { (markets, error) in
+//            if let error = error {
+//                print (error.localizedDescription)
+//            } else {
+//                var market = markets![0]
+//                let image = UIImage(named: "yale_bulldogs.jpg")
+//                var file: PFFile? = nil
+//                if let image = image {
+//                    file = Post.getPFFileFromImage(image: image)
+//                } else {
+//                    print ("no ui image was created")
+//                }
+//                market["profileImage"] = file
+//                market.saveInBackground(block: { (success, error) in
+//                    if let error = error {
+//                        print (error.localizedDescription)
+//                    } else {
+//                        print ("the image should have been saved")
+//                    }
+//                })
+//            }
+//        }
         
-        var query = PFQuery(className: "Post")
-        query.whereKey("sold", equalTo: false)
-        // query.whereKey("seller", equalTo: PFUser.current())
-        query.limit = 20
+        setFirstMarket()
         
-        query.findObjectsInBackground { (posts: [PFObject]?, error: Error?) in
-            if let posts = posts {
-                print (posts.count)
-                print ("IT FOUND POSTS")
-                for item in posts {
-                    let post = Post(item)
-                    self.sellingPosts!.append(post)
-                }
-                
-                self.posts = self.sellingPosts
-                self.postTableView.reloadData()
-                
-                // let notification = Notification.createNotification(withSender: PFUser.current()!, withReceiver: PFUser.current()!, withMessage: "is interested in your", withPostObject: posts[0])
-            } else if error != nil {
-                print (error?.localizedDescription)
-            } else {
-                print ("the posts could not be loaded into the sell feed")
-            }
-            
-        }
-        
-        var secondQuery = PFQuery(className: "Post")
-        secondQuery.whereKey("sold", equalTo: true)
-        // query.whereKey("seller", equalTo: PFUser.current())
-        secondQuery.limit = 20
-        
-        secondQuery.findObjectsInBackground { (posts, error) in
-            if let posts = posts {
-                print (posts.count)
-                print ("IT FOUND POSTS")
-                for item in posts {
-                    let post = Post(item)
-                    self.soldPosts!.append(post)
-                }
-                
-                self.posts = self.sellingPosts
-                self.postTableView.reloadData()
-            } else if error != nil {
-                print (error?.localizedDescription)
-            } else {
-                print ("the posts could not be loaded into the sell feed")
-            }
-        }
+//        var query = PFQuery(className: "Post")
+//        query.whereKey("sold", equalTo: false)
+//        // query.whereKey("seller", equalTo: PFUser.current())
+//        query.limit = 20
+//
+//        query.findObjectsInBackground { (posts: [PFObject]?, error: Error?) in
+//            if let posts = posts {
+//                print (posts.count)
+//                print ("IT FOUND POSTS")
+//                for item in posts {
+//                    let post = Post(item)
+//                    self.sellingPosts.append(post)
+//                }
+//
+//                self.posts = self.sellingPosts
+//                self.postTableView.reloadData()
+//
+//                // let notification = Notification.createNotification(withSender: PFUser.current()!, withReceiver: PFUser.current()!, withMessage: "is interested in your", withPostObject: posts[0])
+//            } else if error != nil {
+//                print (error?.localizedDescription)
+//            } else {
+//                print ("the posts could not be loaded into the sell feed")
+//            }
+//
+//        }
+//
+//        var secondQuery = PFQuery(className: "Post")
+//        secondQuery.whereKey("sold", equalTo: true)
+//        // query.whereKey("seller", equalTo: PFUser.current())
+//        secondQuery.limit = 20
+//
+//        secondQuery.findObjectsInBackground { (posts, error) in
+//            if let posts = posts {
+//                print (posts.count)
+//                print ("IT FOUND POSTS")
+//                for item in posts {
+//                    let post = Post(item)
+//                    self.soldPosts.append(post)
+//                }
+//
+//                self.posts = self.sellingPosts
+//                self.postTableView.reloadData()
+//            } else if error != nil {
+//                print (error?.localizedDescription)
+//            } else {
+//                print ("the posts could not be loaded into the sell feed")
+//            }
+//        }
         
     }
-    
-    
     
     
     override func didReceiveMemoryWarning() {
@@ -150,11 +152,7 @@ class SellFeedViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let posts = self.posts {
-            return posts.count
-        } else {
-            return 0
-        }
+        return posts.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -164,8 +162,8 @@ class SellFeedViewController: UIViewController, UITableViewDataSource, UITableVi
         cell.preservesSuperviewLayoutMargins = false
         cell.separatorInset = UIEdgeInsets.zero
         cell.layoutMargins = UIEdgeInsets.zero
-        
-        cell.post = posts![indexPath.row]
+                
+        cell.post = posts[indexPath.row]
         
         return cell
     }
@@ -189,10 +187,91 @@ class SellFeedViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.detailPost = posts![indexPath.row]
+        postTableView.deselectRow(at: indexPath, animated: true)
+        self.detailPost = posts[indexPath.row]
         
         self.performSegue(withIdentifier: "sellToDetail", sender: self)
         
+    }
+    
+    func changedMarket(market: Market) {
+        currentMarket = market
+        print (currentMarket?.name)
+        self.navigationItem.title = self.currentMarket!.name
+        loadPosts()
+        
+    }
+    
+    func setFirstMarket() {
+        let query = PFQuery(className: "Market")
+        //        query.addAscendingOrder("name")
+        query.addAscendingOrder("name")
+        
+        query.findObjectsInBackground { (markets: [PFObject]?, error: Error?) in
+            if let markets = markets {
+                for m in markets {
+                    let market = Market(m)
+                    self.markets.append(market)
+                }
+                self.currentMarket = self.markets[0]
+                let marketName = self.currentMarket?.name
+                self.navigationItem.title = marketName
+                self.loadPosts()
+                // self.postTableView.reloadData()
+            }
+            else {
+                print("Error getting markets: \(error?.localizedDescription)")
+            }
+        }
+    }
+    
+    func loadPosts() {
+        if self.segmentedControl.selectedSegmentIndex == 0 {
+            self.posts = self.sellingPosts
+        } else {
+            self.posts = self.soldPosts
+        }
+        
+        let query = PFQuery(className: "MarketPost")
+        query.addDescendingOrder("createdAt")
+        query.whereKey("market", equalTo: currentMarket?.name)
+        self.posts = []
+        // var localPosts: [Post] = []
+        query.findObjectsInBackground { (marketPosts, error) in
+            if let marketPosts = marketPosts {
+                print ("it found \(marketPosts.count) market posts")
+                var idArray: [String] = []
+                for m in marketPosts {
+                    let marketPost = MarketPost(m)
+                    let postID = marketPost.post
+                    idArray.append(postID!)
+                }
+                let postQuery PFQuery(className: "Post")
+                postQuery.addDescendingOrder("createdAt")
+                postQuery.whereKey("objectID": containedIn: idArray)
+                
+//                for m in marketPosts {
+//                    let marketPost = MarketPost(m)
+//                    let post = Post(marketPost.post)
+//                    let parseObject = post.parseObject
+//                    parseObject.fetchInBackground(block: { (parseObject, error) in
+//                        if let parseObject = parseObject {
+//                            print("in fetchifneeded")
+//                            if post.sold == false {
+//                                print ("post sold was false")
+//                                self.sellingPosts.append( Post(parseObject) )
+//                                // self.postTableView.reloadData()
+//                                // localPosts.append(post)
+//                            } else {
+//                                print ("post sold was true")
+//                                self.soldPosts.append( Post(parseObject) )
+//                            }
+//                            self.postTableView.reloadData()
+//                        }
+//                    })
+//                }
+            }
+        }
     }
     
     
@@ -206,6 +285,21 @@ class SellFeedViewController: UIViewController, UITableViewDataSource, UITableVi
             let destination = segue.destination as! DetailViewController
             destination.post = self.detailPost!
         }
+        
+        if segue.identifier == "sideMenu" {
+            //            let sideMenuNC = segue.destination as! UISideMenuNavigationController
+            //            let sideMenuVC = sideMenuNC.root
+            //            let presentedVC = self.sideMenuVC
+            //            presentedVC!.delegate = self
+            //            print("side menu is: \(self.sideMenuVC)")
+            //            print("set the delegate!")
+            
+            let destination = segue.destination as! UINavigationController
+            let destinationVC = destination.topViewController as! SidebarViewController
+            print("destination VC: \(destinationVC)")
+            destinationVC.delegate = self
+        }
+        
      }
     
 

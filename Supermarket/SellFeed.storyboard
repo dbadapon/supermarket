@@ -145,7 +145,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Market Name" id="eUg-CN-LqP">
-                        <barButtonItem key="leftBarButtonItem" image="Menu-50" id="m3H-d3-qd0"/>
+                        <barButtonItem key="leftBarButtonItem" image="Menu-50" id="m3H-d3-qd0">
+                            <connections>
+                                <segue destination="zcu-kN-IiR" kind="presentation" identifier="sideMenu" id="YSR-Wk-cVN"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Search" id="EtK-gH-ftT"/>
                     </navigationItem>
                     <connections>
@@ -242,6 +246,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E1o-0e-RsG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2103" y="-15"/>
+        </scene>
+        <!--SideMenu-->
+        <scene sceneID="MD9-eF-GJV">
+            <objects>
+                <viewControllerPlaceholder storyboardName="BuyFeed" referencedIdentifier="SideMenu" id="zcu-kN-IiR" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0TT-0p-XcO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2050" y="119"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="S8S-oJ-L2i">
