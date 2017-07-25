@@ -9,6 +9,9 @@ import UIKit
 
 class DescriptionViewController: UIViewController {
     
+    @IBOutlet weak var conditionSegCtrl: UISegmentedControl!
+    
+    
     @IBAction func previousAction(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
@@ -21,6 +24,11 @@ class DescriptionViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        // change font of words in segmented control
+        let font = UIFont.systemFont(ofSize: 24, weight: UIFontWeightSemibold)
+        conditionSegCtrl.setTitleTextAttributes([NSFontAttributeName: font], for: .normal)
+ 
     }
 
     override func didReceiveMemoryWarning() {

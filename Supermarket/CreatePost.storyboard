@@ -438,33 +438,41 @@
                                     <action selector="nextAction:" destination="EzZ-ra-3zf" eventType="touchUpInside" id="x7f-Ez-QJq"/>
                                 </connections>
                             </button>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="fHH-g0-LiE">
-                                <rect key="frame" x="16" y="63" width="343" height="29"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="fHH-g0-LiE">
+                                <rect key="frame" x="16" y="63" width="343" height="51"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="YWU-6D-UfX"/>
+                                </constraints>
                                 <segments>
                                     <segment title="Used"/>
                                     <segment title="New"/>
                                 </segments>
                                 <color key="tintColor" red="0.36550331120000001" green="0.79173368219999996" blue="0.80787837510000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </segmentedControl>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="FAn-Ks-k92">
-                                <rect key="frame" x="16" y="124" width="343" height="535"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Item Description: (500 characters remaining)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Zo-3t-YfB">
-                                <rect key="frame" x="16" y="99" width="286" height="17"/>
+                                <rect key="frame" x="16" y="121" width="286" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="14"/>
                                 <color key="textColor" red="0.36550331120000001" green="0.79173368219999996" blue="0.80787837510000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="FAn-Ks-k92">
+                                <rect key="frame" x="16" y="146" width="343" height="181"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="fHH-g0-LiE" firstAttribute="top" secondItem="3g7-ik-glt" secondAttribute="topMargin" constant="43" id="RMR-1s-Y5Z"/>
+                            <constraint firstItem="fHH-g0-LiE" firstAttribute="trailing" secondItem="3g7-ik-glt" secondAttribute="trailingMargin" id="o3Y-sX-YDG"/>
+                            <constraint firstItem="fHH-g0-LiE" firstAttribute="leading" secondItem="3g7-ik-glt" secondAttribute="leadingMargin" id="zpY-8J-ehz"/>
+                        </constraints>
                     </view>
                     <connections>
+                        <outlet property="conditionSegCtrl" destination="fHH-g0-LiE" id="AaT-0Q-ou3"/>
                         <segue destination="chS-rj-eHH" kind="show" identifier="toSelectMarketSegue" id="r4m-1h-pqr"/>
                     </connections>
                 </viewController>

@@ -17,7 +17,7 @@ class WalmartAPIManager {
         let endUrl = "&format=json&apiKey=yva6f6yprac42rsp44tjvxjg"
         
         let newString = query.replacingOccurrences(of: " ", with: "+")
-        var wholeUrl = baseURL + newString + endUrl
+        let wholeUrl = baseURL + newString + endUrl
         
         request(wholeUrl, method: .get).validate().responseJSON { (response) in
             if response.result.isSuccess,
@@ -26,13 +26,13 @@ class WalmartAPIManager {
                 if numberOfItems > 0 {
                     let itemArray = responseDictionary["items"] as! [[String: Any]]
                     
-                    let items = itemArray[0] as! [String: Any]
+                    let items = itemArray[0]
                     
                     price = items["salesPrice"] as! Double
                 }
             } else {
                 print ("it's not getting a response")
-                print (response.result.error)
+                print (response.result.error!)
             }
             
         }
@@ -47,7 +47,7 @@ class WalmartAPIManager {
         let endUrl = "&format=json&apiKey=yva6f6yprac42rsp44tjvxjg"
         
         let newString = query.replacingOccurrences(of: " ", with: "+")
-        var wholeUrl = baseURL + newString + endUrl
+        let wholeUrl = baseURL + newString + endUrl
         
         request(wholeUrl, method: .get).validate().responseJSON { (response) in
             if response.result.isSuccess,
@@ -56,13 +56,13 @@ class WalmartAPIManager {
                 if numberOfItems > 0 {
                     let itemArray = responseDictionary["items"] as! [[String: Any]]
                     
-                    let items = itemArray[0] as! [String: Any]
+                    let items = itemArray[0]
                     
                     name = String(describing: items["name"]!)
                 }
             } else {
                 print ("it's not getting a response")
-                print (response.result.error)
+                print (response.result.error!)
             }
             
         }
@@ -76,7 +76,7 @@ class WalmartAPIManager {
         let endUrl = "&format=json&apiKey=yva6f6yprac42rsp44tjvxjg"
         
         let newString = query.replacingOccurrences(of: " ", with: "+")
-        var wholeUrl = baseURL + newString + endUrl
+        let wholeUrl = baseURL + newString + endUrl
         
         request(wholeUrl, method: .get).validate().responseJSON { (response) in
             if response.result.isSuccess,
@@ -85,7 +85,7 @@ class WalmartAPIManager {
                 if numberOfItems > 0 {
                     let itemArray = responseDictionary["items"] as! [[String: Any]]
                     
-                    let item = itemArray[0] as! [String: Any]
+                    let item = itemArray[0]
                     
                     let imageEntities = item["imageEntities"] as! [[String: Any]]
                     var realEntity: [String: Any]? = nil
@@ -98,14 +98,14 @@ class WalmartAPIManager {
                     }
                     
                     if realEntity == nil {
-                        realEntity = imageEntities[0] as! [String : Any]
+                        realEntity = imageEntities[0]
                     }
                     
                     urlString = realEntity!["largeImage"] as! String
                 }
             } else {
                 print ("it's not getting a response")
-                print (response.result.error)
+                print (response.result.error!)
             }
             
         }
@@ -113,5 +113,4 @@ class WalmartAPIManager {
         return urlString
 
     }
-    
 }
