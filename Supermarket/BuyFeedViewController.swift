@@ -141,20 +141,12 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
 //        Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.queryParse), userInfo: nil, repeats: true)
         
         setFirstMarket()
-
-//        currentMarket = self.markets[0]
-//        let marketName = currentMarket!["name"] as! String
-//        self.title = marketName
-        
-//        queryParse()
-//        loadPosts()
     }
     
     
     
     func setFirstMarket() {
         let query = PFQuery(className: "Market")
-//        query.addAscendingOrder("name")
         query.addAscendingOrder("name")
         
         query.findObjectsInBackground { (markets: [PFObject]?, error: Error?) in
@@ -180,8 +172,6 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         let query = PFQuery(className: "MarketPost")
         query.addDescendingOrder("createdAt")
         query.whereKey("market", equalTo: currentMarket?.name)
-        self.posts = []
-        var localPosts: [Post] = []
         
         query.findObjectsInBackground { (marketPosts, error) in
             if let marketPosts = marketPosts {
@@ -189,7 +179,6 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
                 for m in marketPosts {
                     let marketPost = MarketPost(m)
                     let postID = marketPost.post
-                    print("POST ID: \(postID)")
                     idArray.append(postID!)
                 }
                 let postQuery = PFQuery(className: "Post")
@@ -199,9 +188,6 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
                     if let posts = posts {
                         for p in posts {
                             let post = Post(p)
-                            print("boutta print post!")
-                            print(post)
-                            print(p.objectId)
                             if post.sold == false {
                                 self.posts.append(post)
                             }
@@ -209,94 +195,15 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
                         print("posts: \(self.posts)")
                         self.postTableView.reloadData()
                     } else {
-                        print("Error fetching posts: \(error?.localizedDescription)")
+                        print("Error fetching Posts: \(error?.localizedDescription)")
                     }
                 })
+            } else {
+                print("Error fetching MarketPosts: \(error?.localizedDescription)")
             }
         }
-        
-        // what if you set the post attribute of MarketPosts to the Post ID instead...
-        // and then queried the Post collection
-        
-//        query.findObjectsInBackground { (marketPosts, error) in
-//            if let marketPosts = marketPosts {
-//                for m in marketPosts {
-//                    let marketPost = MarketPost(m)
-//                    let post = Post(marketPost.post)
-//                    let parseObject = post.parseObject
-//                    parseObject.fetchIfNeededInBackground(block: { (parseObject, error) in
-//                        if let parseObject = parseObject {
-//                            print("in fetchifneeded")
-//                            if post.sold == false {
-//                                print("DARN THIS ASYNCHRONOUS CRAP")
-////                                print(post.parseObject["createdAt"])
-//                                self.posts.append(post)
-//                                self.postTableView.reloadData()
-//                                localPosts.append(post)
-//                            }
-//                        }
-//                    })
-//                }
-//            }
-//        }
-        
-//        let query = PFQuery(className: "Post")
-////        query.whereKey
-//        var posts: [Post] = []
-//        print("current market is: \(currentMarket)")
-//        let categories = currentMarket!.categories
-//
-//
-//        self.posts = []
-        
-        
-        
-//        for (key, value) in categories {
-//            for p in value! {
-//                let post = Post(p)
-//                let parseObject = post.parseObject
-//                parseObject.fetchIfNeededInBackground(block: { (parseObject, error) in
-//                    if let parseObject = parseObject {
-//                        if post.sold == false {
-//                            self.posts.append(post)
-////                            print("appended to local post array...")
-//                            print(self.posts)
-//                            self.postTableView.reloadData()
-//                        }
-//                    }
-//                })
-////                if post.sold! == false {
-////                    posts.append(post)
-////                }
-//            }
-//        }
-////        self.posts = posts
-////        print(self.posts)
-////        self.postTableView.reloadData()
-        
-        // end bracket:
     }
     
-    
-    
-    
-//    func queryParse() {
-//        let query = PFQuery(className: "Post")
-//        query.addDescendingOrder("createdAt")
-////        query.limit = 20
-//        //includekey stuff... do you need that?
-//        query.findObjectsInBackground { (posts: [PFObject]?, error: Error?) in
-//            if let posts = posts {
-//                self.posts = posts
-//                self.postTableView.reloadData()
-//                print("POSTS: \(self.posts)")
-//            }
-//            else {
-//                print("Error loading posts: \(error?.localizedDescription)")
-//            }
-//        }
-//        
-//    }
     
 
     override func didReceiveMemoryWarning() {
@@ -318,7 +225,6 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         let post = posts[indexPath.row]
         let parseObject = post.parseObject
         
-        // maybe Post needs a fetchInBackground method so you don't have to do this...
         post.parseObject.fetchInBackground { (parseObject, error) in
             if let parseObject  = parseObject {
                 cell.itemImage = parseObject
@@ -345,39 +251,6 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
                 print(error?.localizedDescription)
             }
         }
-        
-
-
-        
-//        post.fetchInBackground { (post, error) in
-//            if let post = post {
-//                cell.itemImage = post
-//                
-//                let name = post.name
-//                cell.nameLabel.text = name
-//                
-//                
-//                let category = "Category"
-//                cell.categoryLabel.text = category
-//                
-//                let price = post.price
-//                cell.priceLabel.text = "$\(price)"
-//                
-//                
-//                let conditionNew = post.conditionNew
-//                var newString = ""
-//                if conditionNew {
-//                    newString = "New"
-//                }
-//                cell.conditionLabel.text = newString
-//            }
-//            else {
-//                print(error?.localizedDescription)
-//            }
-//        }
-        
-
-        
         
         return cell
     }
@@ -416,16 +289,8 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         
         
         if segue.identifier == "sideMenu" {
-//            let sideMenuNC = segue.destination as! UISideMenuNavigationController
-//            let sideMenuVC = sideMenuNC.root
-//            let presentedVC = self.sideMenuVC
-//            presentedVC!.delegate = self
-//            print("side menu is: \(self.sideMenuVC)")
-//            print("set the delegate!")
-        
             let destination = segue.destination as! UINavigationController
             let destinationVC = destination.topViewController as! SidebarViewController
-            print("destination VC: \(destinationVC)")
             destinationVC.delegate = self
         }
         
