@@ -14,7 +14,7 @@ import CoreLocation
 class Post {
 
     enum Field {
-        case Name, Images, ItemDescription, Price, Condition, Negotiable, Latitude, Longitude, Sold, ID
+        case Name, Images, ItemDescription, Price, Condition, Negotiable, Latitude, Longitude, Sold, City, ID
         
         var key: String {
             switch (self) {
@@ -38,6 +38,8 @@ class Post {
                 return "sold"
             case .ID:
                 return "id"
+            case .City:
+                return "city"
             }
         }
     }
@@ -123,6 +125,15 @@ class Post {
         }
     }
     
+    var city: String? {
+        get {
+            return parseObject[Field.City.key] as? String
+        }
+        set {
+            parseObject[Field.City.key] = newValue
+        }
+    }
+    
     var id: String? {
         get {
             return parseObject[Field.ID.key] as? String
@@ -138,7 +149,7 @@ class Post {
     }
 
 
-    class func createPost(images: [UIImage], name: String, itemDescription: String, price: Double, conditionNew: Bool, negotiable: Bool, sold: Bool, latitude: Double, longitude: Double) -> Post {
+    class func createPost(images: [UIImage], name: String, itemDescription: String, price: Double, conditionNew: Bool, negotiable: Bool, sold: Bool, city: String, latitude: Double, longitude: Double) -> Post {
         
 //        let newPost = Post()
 //        newPost.name = "Alvin"
@@ -160,7 +171,10 @@ class Post {
         
         newPost.latitude = latitude
         
+        newPost.city = city
+        
         newPost.longitude = longitude
+        
         
         
         var convertedImages: [PFFile] = []

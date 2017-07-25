@@ -31,9 +31,6 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tableView.delegate = self
         tableView.separatorStyle = .none
         
-//        navigationController?.navigationBar.titleTextAttributes = [
-//            NSFontAttributeName: UIFont.systemFont(ofSize: 17, weight: UIFontWeightHeavy) // change font pls
-//        ]
         
         self.title = "Item Details"
         
@@ -82,10 +79,10 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
             }
             cell.conditionLabel.text = conditionString
             
-            let latitude = post.latitude!
-            print("LATITUDE: \(latitude)")
-            let longitude = post.longitude!
-            cell.locationLabel.text = "Lat: \(latitude), Long: \(longitude)"
+//            let latitude = post.latitude!
+//            print("LATITUDE: \(latitude)")
+//            let longitude = post.longitude!
+            cell.locationLabel.text = post.city!
             
             let timestamp = post.parseObject["_created_at"] as? String // change this...
             // maybe change this to a var so you can format it...

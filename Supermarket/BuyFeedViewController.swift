@@ -22,30 +22,21 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
     
     var posts: [Post] = []
     
-//    var allPosts: [PFObject] = []
-    
     var markets: [Market] = []
     
     var currentMarket: Market?
     
-//    var sideMenuNC: UISideMenuNavigationController?
     
     
     
     func changedMarket(market: Market) {
         self.currentMarket = market
         self.navigationItem.title = self.currentMarket!.name
-        print("current market is now: \(currentMarket)")
         loadPosts()
-//        showSelling()
         self.postTableView.reloadData()
-//        print("CURRENT MARKET IS NOW: \(currentMarket["name"])")
     }
     
     
-    
-    
-    // try showing all posts for now, then figure out how to show all posts only from the selected market...
     
 
     override func viewDidLoad() {
@@ -172,6 +163,7 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         let query = PFQuery(className: "MarketPost")
         query.addDescendingOrder("createdAt")
         query.whereKey("market", equalTo: currentMarket?.name)
+        self.posts = []
         
         query.findObjectsInBackground { (marketPosts, error) in
             if let marketPosts = marketPosts {
@@ -192,7 +184,7 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
                                 self.posts.append(post)
                             }
                         }
-                        print("posts: \(self.posts)")
+//                        print("posts: \(self.posts)")
                         self.postTableView.reloadData()
                     } else {
                         print("Error fetching Posts: \(error?.localizedDescription)")

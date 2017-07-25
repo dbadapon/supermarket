@@ -98,17 +98,6 @@ class SidebarViewController: UIViewController, UITableViewDataSource, UITableVie
         }
         dismiss(animated: true, completion: nil)
         
-//        if let presenter = presentingViewController as? BuyFeedViewController {
-//            print("Presenter is not nil!")
-//            presenter.currentMarket = markets[indexPath.row]
-//            presenter.title = presenter.currentMarket?["name"] as! String
-//            presenter.loadPosts()
-//        } else {
-//            print("presenter is nil!")
-//        }
-//        print("About to dismiss!")
-//        
-//        dismiss(animated: true, completion: nil)
     }
     
 
