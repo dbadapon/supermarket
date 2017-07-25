@@ -65,7 +65,30 @@ class SellFeedViewController: UIViewController, UITableViewDataSource, UITableVi
         segmentedControl.setTitleTextAttributes(boldTextAttributes, for: .selected)
         segmentedControl.setTitleTextAttributes(boldTextAttributes, for: .normal)
         
-        
+        var marketQuery = PFQuery(className: "Market")
+        marketQuery.whereKey("name", equalTo: "Yale Class of 2020")
+        marketQuery.findObjectsInBackground { (markets, error) in
+            if let error = error {
+                print (error.localizedDescription)
+            } else {
+                var market = markets![0]
+                let image = UIImage(named: "yale_bulldogs.jpg")
+                var file: PFFile? = nil
+                if let image = image {
+                    file = Post.getPFFileFromImage(image: image)
+                } else {
+                    print ("no ui image was created")
+                }
+                market["profileImage"] = file
+                market.saveInBackground(block: { (success, error) in
+                    if let error = error {
+                        print (error.localizedDescription)
+                    } else {
+                        print ("the image should have been saved")
+                    }
+                })
+            }
+        }
         
         var query = PFQuery(className: "Post")
         query.whereKey("sold", equalTo: false)

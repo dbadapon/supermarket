@@ -42,6 +42,7 @@
 		4D44F62C1F2137C10018BF22 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D44F62B1F2137C10018BF22 /* Item.swift */; };
 		4D73A2BB1F2676EE00A5ACDC /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D73A2BA1F2676EE00A5ACDC /* Notification.swift */; };
 		4D73A2BD1F26772700A5ACDC /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D73A2BC1F26772700A5ACDC /* ProfileViewController.swift */; };
+		4D73A2BF1F26A15C00A5ACDC /* MarketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D73A2BE1F26A15C00A5ACDC /* MarketViewController.swift */; };
 		4DAF789E1F1ED37C00768EFD /* WalmartAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DAF789D1F1ED37C00768EFD /* WalmartAPIManager.swift */; };
 		4DC3C0C81F20166C00B4E2C4 /* SellFeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC3C0C71F20166C00B4E2C4 /* SellFeedCell.swift */; };
 		4DC3C0CA1F2016B400B4E2C4 /* SellFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC3C0C91F2016B400B4E2C4 /* SellFeedViewController.swift */; };
@@ -115,6 +116,7 @@
 		4D44F62B1F2137C10018BF22 /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		4D73A2BA1F2676EE00A5ACDC /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		4D73A2BC1F26772700A5ACDC /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		4D73A2BE1F26A15C00A5ACDC /* MarketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketViewController.swift; sourceTree = "<group>"; };
 		4DAF789D1F1ED37C00768EFD /* WalmartAPIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalmartAPIManager.swift; sourceTree = "<group>"; };
 		4DC3C0C71F20166C00B4E2C4 /* SellFeedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SellFeedCell.swift; sourceTree = "<group>"; };
 		4DC3C0C91F2016B400B4E2C4 /* SellFeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SellFeedViewController.swift; sourceTree = "<group>"; };
@@ -229,6 +231,7 @@
 				0A36AA351F259F49007BE153 /* SelectMarketViewController.swift */,
 				0A36AA371F259F56007BE153 /* ChooseLocationViewController.swift */,
 				4D73A2BC1F26772700A5ACDC /* ProfileViewController.swift */,
+				4D73A2BE1F26A15C00A5ACDC /* MarketViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -610,6 +613,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4D73A2BF1F26A15C00A5ACDC /* MarketViewController.swift in Sources */,
 				0A5893041F22792F001360D3 /* PhotoViewController.swift in Sources */,
 				4D114E041F1559B700897FC8 /* NotificationsViewController.swift in Sources */,
 				4D114E0A1F15728800897FC8 /* InterestedCell.swift in Sources */,
