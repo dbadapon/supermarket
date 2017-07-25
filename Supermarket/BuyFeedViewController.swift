@@ -49,52 +49,52 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         
         let categories: [String: [PFObject]]? = ["Books": [], "Kitchen": [], "Home": [], "Clothing": [], "Electronics": [], "Supplies": []]
         
-//
-//        Market.postMarket(withName: "Rice Undergrads", withDescription: "A marketplace for all undergraduates at Rice University!", withCategories: categories!,  withLatitude: 29.7174, withLongitude: 95.4018) { (success, error) in
-//            if success {
-//                print("Created new market!")
-//            } else {
-//                print("Error posting market: \(error?.localizedDescription)")
-//            }
-//        }
+        
         
         
         // creating dummy posts
         
-        let image = UIImage(named: "accounting textbook")!
-        
-        let post1 = Post.createPost(images: [image], name: "Intermediate Accounting 13th Ed.", seller: PFUser.current()!, itemDescription: "For Accounting 122a.", price: 15.00, conditionNew: false, negotiable: true, sold: false, city: "Irvine, CA", latitude: 33.640495, longitude: -117.844296)
-        
-        
-        let marketsToPost = ["UCI Free and For Sale": "Books"]
-        
-        post1.parseObject.saveInBackground { (success, error) in // so you don't want to save in backround in the class itself... you want to save in background whenever you create a new post outside the class!
-            if success {
-                for (market, category) in marketsToPost {
-                    post1.parseObject.fetchIfNeededInBackground(block: { (post, error) in
-                        if let post = post {
-                            print("just fetched: \(post)")
-                            let newPost = Post(post)
-                            print("about to post to market!")
-                            print("post id: \(newPost.parseObject.objectId)")
-                            MarketPost.postItem(post: newPost, marketName: market, category: category)
-                            print("Posted to market!")
-                        }
-                    })
-                }
-            }
-        }
+//        let image = UIImage(named: "accounting textbook")!
+//
+//        let post1 = Post.createPost(images: [image], name: "Intermediate Accounting 13th Ed.", seller: PFUser.current()!, itemDescription: "For Accounting 122a.", price: 15.00, conditionNew: false, negotiable: true, sold: false, city: "Irvine, CA", latitude: 33.640495, longitude: -117.844296)
+//
+//
+//        let marketsToPost = ["UCI Free and For Sale": "Books"]
+//
+//        post1.parseObject.saveInBackground { (success, error) in // so you don't want to save in backround in the class itself... you want to save in background whenever you create a new post outside the class!
+//            if success {
+//                for (market, category) in marketsToPost {
+//                    post1.parseObject.fetchIfNeededInBackground(block: { (post, error) in
+//                        if let post = post {
+//                            print("just fetched: \(post)")
+//                            let newPost = Post(post)
+//                            MarketPost.postItem(post: newPost, marketName: market, category: category)
+//                        }
+//                    })
+//                }
+//            }
+//        }
         
         
         
 //        let image2 = UIImage(named: "rice cooker")!
 //
-//        let post2 = Post.createPost(images: [image2], name: "Rice cooker", itemDescription: "Medium-sized, perfect for college dorms!", price: 20.00, conditionNew: false, negotiable: false, sold: false, latitude: 33.640495, longitude: -117.844296)
+//        let post2 = Post.createPost(images: [image2], name: "Rice cooker", seller: PFUser.current()!, itemDescription: "Medium-sized, perfect for college dorms!", price: 20.00, conditionNew: false, negotiable: false, sold: false, city: "New Haven, CT", latitude: 41.3163, longitude: 72.9223)
 //
 //        let marketsToPost = ["UCI Free and For Sale": "Kitchen", "Yale Class of 2020": "Kitchen"]
 //
-//        for (market, category) in marketsToPost {
-//            MarketPost.postItem(post: post2, marketName: market, category: category)
+//        post2.parseObject.saveInBackground { (success, error) in // so you don't want to save in backround in the class itself... you want to save in background whenever you create a new post outside the class!
+//            if success {
+//                for (market, category) in marketsToPost {
+//                    post2.parseObject.fetchIfNeededInBackground(block: { (post, error) in
+//                        if let post = post {
+//                            print("just fetched: \(post)")
+//                            let newPost = Post(post)
+//                            MarketPost.postItem(post: newPost, marketName: market, category: category)
+//                        }
+//                    })
+//                }
+//            }
 //        }
         
         
@@ -105,8 +105,18 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
 //
 //        let marketsToPost = ["UCI Free and For Sale": "Kitchen", "Yale Class of 2020": "Kitchen", "Rice Undergrads": "Kitchen"]
 //
-//        for (market, category) in marketsToPost {
-//            MarketPost.postItem(post: post3, marketName: market, category: category)
+//        post3.parseObject.saveInBackground { (success, error) in // so you don't want to save in backround in the class itself... you want to save in background whenever you create a new post outside the class!
+//            if success {
+//                for (market, category) in marketsToPost {
+//                    post3.parseObject.fetchIfNeededInBackground(block: { (post, error) in
+//                        if let post = post {
+//                            print("just fetched: \(post)")
+//                            let newPost = Post(post)
+//                            MarketPost.postItem(post: newPost, marketName: market, category: category)
+//                        }
+//                    })
+//                }
+//            }
 //        }
         
         

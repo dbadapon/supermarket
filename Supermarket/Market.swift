@@ -12,7 +12,7 @@ import Parse
 class Market{
     
     enum Field {
-        case Name, Description, Admin, Members, Categories, Latitude, Longitude
+        case Name, Description, Admin, Members, MemberCount, Categories, City, ProfileImage, Latitude, Longitude
         
         var key: String {
             switch (self) {
@@ -24,12 +24,18 @@ class Market{
                 return "admin"
             case .Members:
                 return "members"
+            case .MemberCount:
+                return "memberCount"
             case .Categories:
                 return "categories"
+            case .City:
+                return "city"
             case .Latitude:
                 return "latitude"
             case .Longitude:
                 return "longitude"
+            case .ProfileImage:
+                return "profileImage"
             }
         }
     }
@@ -61,6 +67,15 @@ class Market{
         }
     }
     
+    var memberCount: Int64? {
+        get {
+            return parseObject[Field.MemberCount.key] as? Int64
+        }
+        set {
+            parseObject[Field.MemberCount.key] = newValue
+        }
+    }
+    
     var categories: [String] {
         get {
             return parseObject[Field.Categories.key] as! [String]
@@ -69,6 +84,16 @@ class Market{
             parseObject[Field.Categories.key] = newValue
         }
     }
+    
+    var city: String? {
+        get {
+            return parseObject[Field.City.key] as? String
+        }
+        set {
+            parseObject[Field.City.key] = newValue
+        }
+    }
+    
     
     var latitude: Double? { // so why do all of these things have to be optional?
         get {
@@ -88,6 +113,14 @@ class Market{
         }
     }
     
+    var profileImage: PFFile? {
+        get {
+            return parseObject[Field.ProfileImage.key] as? PFFile
+        }
+        set {
+            parseObject[Field.ProfileImage.key] = newValue
+        }
+    }
     
 
     var parseObject: PFObject
@@ -97,7 +130,7 @@ class Market{
     }
 
     
-    class func createMarket(withName name: String, withDescription description: String, withCategories categories: [String], withLatitude latitude: Double?, withLongitude longitude: Double?, withCompletion completion: PFBooleanResultBlock?) {
+    class func createMarket(profileImage: UIImage, withName name: String, withDescription description: String, withCategories categories: [String], withLatitude latitude: Double?, withLongitude longitude: Double?, withCompletion completion: PFBooleanResultBlock?) {
         
         let newMarket = Market()
         newMarket.name = name
@@ -105,6 +138,9 @@ class Market{
         newMarket.latitude = latitude
         newMarket.longitude = longitude
         newMarket.description = description
+        newMarket.profileImage = getPFFileFromImage(image: profileImage)
+        
+        
         
         newMarket.parseObject.saveInBackground { (success, error: Error?) in
             if let error = error {
@@ -116,6 +152,17 @@ class Market{
             }
         }
     
+    }
+    
+    class func getPFFileFromImage(image: UIImage?) -> PFFile? {
+        // check if image is not nil
+        if let image = image {
+            // get image data and check if that is not nil
+            if let imageData = UIImagePNGRepresentation(image) {
+                return PFFile(name: "image.png", data: imageData)
+            }
+        }
+        return nil
     }
     
 /*
