@@ -9,6 +9,7 @@
 import UIKit
 import Parse
 import ParseUI
+import MapKit
 
 class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     

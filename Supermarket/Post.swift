@@ -14,12 +14,14 @@ import CoreLocation
 class Post {
 
     enum Field {
-        case Name, Images, ItemDescription, Price, Condition, Negotiable, Latitude, Longitude, Sold, City, ID
+        case Name, Seller, Images, ItemDescription, Price, Condition, Negotiable, Latitude, Longitude, Sold, City, ID
         
         var key: String {
             switch (self) {
             case .Name:
                 return "name"
+            case .Seller:
+                return "seller"
             case .Images:
                 return "images"
             case .ItemDescription:
@@ -36,11 +38,20 @@ class Post {
                 return "longitude"
             case .Sold:
                 return "sold"
-            case .ID:
-                return "id"
             case .City:
                 return "city"
+            case .ID:
+                return "id"
             }
+        }
+    }
+    
+    var seller: PFUser? {
+        get {
+            return parseObject[Field.Seller.key] as? PFUser
+        }
+        set {
+            parseObject[Field.Seller.key] = newValue ?? NSNull()
         }
     }
     
@@ -134,6 +145,7 @@ class Post {
         }
     }
     
+    
     var id: String? {
         get {
             return parseObject[Field.ID.key] as? String
@@ -149,13 +161,15 @@ class Post {
     }
 
 
-    class func createPost(images: [UIImage], name: String, itemDescription: String, price: Double, conditionNew: Bool, negotiable: Bool, sold: Bool, city: String, latitude: Double, longitude: Double) -> Post {
+    class func createPost(images: [UIImage], name: String, seller: PFUser, itemDescription: String, price: Double, conditionNew: Bool, negotiable: Bool, sold: Bool, city: String, latitude: Double, longitude: Double) -> Post {
         
 //        let newPost = Post()
 //        newPost.name = "Alvin"
 //        let postKey = Post.Field.Name.key
         
         let newPost = Post()
+        
+        newPost.seller = seller
         
         newPost.name = name
         
@@ -193,34 +207,7 @@ class Post {
             }
         }
         
-    
         
-//        if let images = images {
-//            var convertedImages: [PFFile]? = []
-//            for image in images {
-//                convertedImages?.append(Post.getPFFileFromImage(image: image)!)
-//            }
-//            post["images"] = convertedImages
-//        } else {
-//            post["images"] = NSNull()
-//        }
-//        post["name"] = name
-//        post["itemDescription"] = itemDescription
-//        post["price"] = price
-//        post["conditionNew"] = conditionNew
-//        post["negotiable"] = negotiable
-//        post["latitude"] = latitude
-//        post["longitude"] = longitude
-        
-        
-//        post.saveInBackground { (success: Bool, error: Error?) in
-//            if let error = error {
-//                print (error.localizedDescription)
-//                
-//            } else {
-//                print ("the post should have saved!")
-//            }
-//        }
     
         return newPost // should this return the parse object or the Post object? I think the Post object...
         

@@ -80,7 +80,7 @@ class MarketPost {
         
         let marketPost = MarketPost()
         
-        marketPost.post = post.id
+        marketPost.post = post.parseObject.objectId
         marketPost.price = post.price
         marketPost.market = marketName
         marketPost.category = category
