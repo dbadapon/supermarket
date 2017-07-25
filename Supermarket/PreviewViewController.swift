@@ -18,17 +18,8 @@ import UIKit
 // import Alamofire
 // import AlamofireImage
 
-class PreviewViewController: UIViewController, UITextViewDelegate, UIGestureRecognizerDelegate, UIAlertViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIPopoverControllerDelegate {
-    
-    /*
-    // tap gesture to dismiss keyboard
-    @IBAction func tapToDismissKeyboard(_ sender: Any) {
-        print("tapped to dismiss keyboard")
-        view.endEditing(true)
-    }
-    */
-    
-    
+class PreviewViewController: UIViewController, UITextViewDelegate, UIGestureRecognizerDelegate, UIAlertViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPopoverControllerDelegate {
+
     // color to use for app
     let textColor = UIColor(red: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha:1.0)
     
@@ -36,6 +27,8 @@ class PreviewViewController: UIViewController, UITextViewDelegate, UIGestureReco
     let postAlertController = UIAlertController(title: "Invalid Action", message: "Cover photo is required", preferredStyle: .alert)
     
     let cameraSelectAlertController = UIAlertController(title: "Camera NOT available", message: "Please select Photo Library", preferredStyle: .alert)
+    
+    let nameAlertController = UIAlertController(title: "Max Characters Reached", message: "Item name CANNOT exceed 50 characters", preferredStyle: .alert)
     
     let vc = UIImagePickerController()
 
@@ -51,8 +44,6 @@ class PreviewViewController: UIViewController, UITextViewDelegate, UIGestureReco
     
     var picker:UIImagePickerController? = UIImagePickerController()
     var popover:UIPopoverController? = nil
-    
-    let nameAlertController = UIAlertController(title: "Max Characters Reached", message: "Item name CANNOT exceed 50 characters", preferredStyle: .alert)
     
     @IBAction func cancelAction(_ sender: UIButton) {
         // nameString == "" means not from barcode
@@ -90,15 +81,6 @@ class PreviewViewController: UIViewController, UITextViewDelegate, UIGestureReco
         postAlertController.view.tintColor = textColor
         cameraSelectAlertController.view.tintColor = textColor
         
-        // tap gesture to show keyboard
-        /*
-        let UITapRecognizerTextBox = UITapGestureRecognizer(target: self, action: #selector(self.tappedTextBox(_sender:)))
-        UITapRecognizerTextBox.delegate = self
-        self.itemName.addGestureRecognizer(UITapRecognizerTextBox)
-        self.itemName.isUserInteractionEnabled = true
-        */
-        
-        // tap gesture to dismiss keyboard
         let UITapRecognizerCover = UITapGestureRecognizer(target: self, action: #selector(self.tappedImageCover(_sender:)))
         UITapRecognizerCover.delegate = self
         self.coverPhoto.addGestureRecognizer(UITapRecognizerCover)
@@ -128,17 +110,6 @@ class PreviewViewController: UIViewController, UITextViewDelegate, UIGestureReco
         print(pictureUrl)
         
         itemName.delegate = self
-        
-        // tap gesture recognizer to dismiss keyboard
-        // looks for single or multiple taps.
-        // let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(PreviewViewController.dismissKeyboard))
-        
-        // uncomment the line below if you want the tap not not interfere and cancel other interactions.
-        // tap.cancelsTouchesInView = false
-        
-        // view.addGestureRecognizer(tap)
-        
-        // exactly two possibilites: image from photo vc or from barcode
         
         // if image was passed from photo vc
         if backgroundImage != nil {
@@ -190,16 +161,11 @@ class PreviewViewController: UIViewController, UITextViewDelegate, UIGestureReco
         */
     }
     
-    /*
-    func tappedTextBox(_sender: AnyObject) {
-        print("tapped to show keyboard")
-        self.view.endEditing(false)
-    }
-    */
     
     func tappedImageCover(_sender: AnyObject) {
-        print("tapped to dismiss keyboard")
-        self.view.endEditing(true)
+        print("Cover image tapped!")
+        self.selectedImage = 0
+        self.showOptions()
     }
     
     func tappedImageOne(_sender: AnyObject) {
@@ -266,12 +232,10 @@ class PreviewViewController: UIViewController, UITextViewDelegate, UIGestureReco
         alert.addAction(libraryAction)
         alert.addAction(cancelAction)
         // Present the controller
-        if UIDevice.current.userInterfaceIdiom == .phone
-        {
+        if UIDevice.current.userInterfaceIdiom == .phone {
             self.present(alert, animated: true, completion: nil)
         }
-        else
-        {
+        else {
             popover = UIPopoverController(contentViewController: alert)
             popover!.present(from: view.frame, in: self.view, permittedArrowDirections: UIPopoverArrowDirection.any, animated: true)
         }
@@ -338,8 +302,7 @@ class PreviewViewController: UIViewController, UITextViewDelegate, UIGestureReco
         dismiss(animated: true, completion: nil)
     }
     
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController)
-    {
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         print("picker cancel")
     }
     
@@ -347,14 +310,6 @@ class PreviewViewController: UIViewController, UITextViewDelegate, UIGestureReco
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    //Calls this function when the tap is recognized.
-    /*
-    func dismissKeyboard() {
-        //Causes the view (or one of its embedded text fields) to resign the first responder status.
-        view.endEditing(true)
-    }
-    */
     
     /*
     func keyboardWillShow(notification: NSNotification) {

@@ -7,7 +7,12 @@
 
 import UIKit
 
-class DescriptionViewController: UIViewController {
+class DescriptionViewController: UIViewController, UITextViewDelegate {
+    
+    let nameAlertController = UIAlertController(title: "Max Characters Reached", message: "Item name CANNOT exceed 500 characters", preferredStyle: .alert)
+    
+    @IBOutlet weak var itemDescription: UITextView!
+    @IBOutlet weak var charCountLabel: UILabel!
     
     @IBOutlet weak var conditionSegCtrl: UISegmentedControl!
     
@@ -25,6 +30,8 @@ class DescriptionViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         
+        itemDescription.delegate = self
+        
         // change font of words in segmented control
         let font = UIFont.systemFont(ofSize: 24, weight: UIFontWeightSemibold)
         conditionSegCtrl.setTitleTextAttributes([NSFontAttributeName: font], for: .normal)
@@ -36,6 +43,21 @@ class DescriptionViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func textViewDidChange(_ itemName: UITextView) {
+        let text = itemName.text!
+        let remainingCount = 500 - text.characters.count
+        let count = text.characters.count
+        
+        if count == 499
+        {
+            charCountLabel.text = "Item Name: (1 character remaining)"
+        } else if count <= 500 {
+            charCountLabel.text = "Item Name: (" + String(remainingCount) + " characters remaining)"
+        } else {
+            charCountLabel.text = "Item Name: (0 characters remaining)"
+            self.present(self.nameAlertController, animated: true)
+        }
+    }
 
     /*
     // MARK: - Navigation

@@ -472,7 +472,9 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="charCountLabel" destination="0Zo-3t-YfB" id="b16-Na-SXx"/>
                         <outlet property="conditionSegCtrl" destination="fHH-g0-LiE" id="AaT-0Q-ou3"/>
+                        <outlet property="itemDescription" destination="FAn-Ks-k92" id="boG-fI-GDU"/>
                         <segue destination="chS-rj-eHH" kind="show" identifier="toSelectMarketSegue" id="r4m-1h-pqr"/>
                     </connections>
                 </viewController>
