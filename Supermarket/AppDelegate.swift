@@ -10,6 +10,7 @@ import UIKit
 import Parse
 import ParseUI
 import IQKeyboardManagerSwift
+import GoogleMaps
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -41,6 +42,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        /*
+        // for Google Maps API
+        GMSServices.provideAPIKey("AIzaSyDHETw8wUHW58Ub5og6yfMStpYob8sOyL4")
+        
+        // if using Places API
+        GMSPlacesClient.provideAPIKey("AIzaSyDHETw8wUHW58Ub5og6yfMStpYob8sOyL4")
+        */
         
         // This is the only line of code you need to manually add
         // in order for IQKeybaordManager to work. Thats it.
