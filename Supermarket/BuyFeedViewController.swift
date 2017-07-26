@@ -65,7 +65,8 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
     func changedMarket(market: Market) {
         self.currentMarket = market
         self.navigationItem.title = self.currentMarket!.name
-        loadPosts()
+//        loadPosts()
+        filterPosts()
         self.postTableView.reloadData()
     }
     
@@ -84,14 +85,16 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         
         // let categories: [String: [PFObject]]? = ["Books": [], "Kitchen": [], "Home": [], "Clothing": [], "Electronics": [], "Supplies": []]
         
-        /*
-        let yaleTextbookExchangeMarket = Market.createMarket(profileImage: #imageLiteral(resourceName: "yale_circle_logo.jpg"), withName: "Yale Textbook Exchange", withDescription: "Buy, sell, and exchange textbooks with other Yalies", withCategories: ["Anthropology", "Archaeology", "Architecture", "Art & Art History", "Astronomy", "Biology", "Biomedical Engineering", "Chemical Engineering", "Chemistry", "Cognitive Science", "Computer Science", "Computing and the Arts", "East Asian Studies", "East European Studies", "Economics", "Electrical Engineering", "English", "Environmental Science", "Film and Media Studies", "French", "Geology & Geophysics", "German Studies", "Global Affairs", "History", "Humanities", "Italian", "Judaic Studies", "Latin American Studies", "Linguistics", "Literature", "Mathematics", "Mechanical Engineering", "Music", "Neuroscience", "Philosophy", "Physics", "Political Science", "Portuguese", "Psychology", "Religious Studies", "Russian", "Sociology", "South Asian Studies", "Spanish", "Statistics and Data", "Theater Studies"], withLatitude: 41.3163244, withLongitude: -72.92234309999998) { (success, error) in
+        print("about to create market!")
+        Market.createMarket(profileImage: #imageLiteral(resourceName: "yale_circle_logo.jpg"), withName: "Yale Textbook Exchange", withDescription: "Buy, sell, and exchange textbooks with other Yalies", withCategories: ["Anthropology", "Archaeology", "Architecture", "Art & Art History", "Astronomy", "Biology", "Biomedical Engineering", "Chemical Engineering", "Chemistry", "Cognitive Science", "Computer Science", "Computing and the Arts", "East Asian Studies", "East European Studies", "Economics", "Electrical Engineering", "English", "Environmental Science", "Film and Media Studies", "French", "Geology & Geophysics", "German Studies", "Global Affairs", "History", "Humanities", "Italian", "Judaic Studies", "Latin American Studies", "Linguistics", "Literature", "Mathematics", "Mechanical Engineering", "Music", "Neuroscience", "Philosophy", "Physics", "Political Science", "Portuguese", "Psychology", "Religious Studies", "Russian", "Sociology", "South Asian Studies", "Spanish", "Statistics and Data", "Theater Studies"], withLatitude: 41.3163244, withCity: "New Haven, CT", withLongitude: -72.92234309999998) { (success, error) in
             if success {
-                print(success)
+                print("Successfully created market!")
             } else {
                 print("Error with yaleTextbookExchangeMarket")
             }
         }
+        
+        /*
 
         let uciSchoolSuppliesMarket = Market.createMarket(profileImage: #imageLiteral(resourceName: "uci_circle_logo.png"), withName: "UCI Office/Desk Supplies", withDescription: "Have extra school supplies? Need school supplies? Sell and buy them here!", withCategories: ["Agendas", "Binders", "Colored Pencils", "Envelopes", "Highlighters", "Index Cards", "Markers", "Notebooks", "Paper/Binder Clips", "Pencils", "Pens", "Rubberbands", "Scissors", "Staplers/Staples", "Sticky Notes", "Tape", "USBs"], withLatitude: 33.6404952, withLongitude: -117.8442962) { (success, error) in
             if success {
@@ -294,7 +297,8 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
                 self.currentMarket = self.markets[0]
                 let marketName = self.currentMarket?.name
                 self.navigationItem.title = marketName
-                self.loadPosts()
+//                self.loadPosts()
+                self.filterPosts()
                 
                 self.postTableView.reloadData()
                 self.filterTableView!.reloadData()
@@ -306,30 +310,28 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         }
     }
     
-    func filterPosts() { // find some way to break this down...
+    func filterPosts() {
         
-        if self.category == "All" {
-            let query = PFQuery(className: "MarketPost")
-            // get all MarketPosts in the current market
-            query.whereKey("market", equalTo: currentMarket?.name)
-            self.posts = []
-            query.findObjectsInBackground(block: { (marketPosts, error) in
-                if let marketPosts = marketPosts {
-                    var idArray: [String] = []
-                    for m in marketPosts {
-                        let marketPost = MarketPost(m)
-                        let postID = marketPost.post
-                        idArray.append(postID!)
-                    }
-                    self.fetchFilteredPosts(idArray: idArray)
-                } else {
-                    print("Error fetching MarketPost according to category: \(error?.localizedDescription)")
-                }
-            })
-            
-        } else {
-            print("Show another category!")
+        self.posts = []
+        let query = PFQuery(className: "MarketPost")
+        query.whereKey("market", equalTo: currentMarket?.name)
+        
+        if self.category != "All" {
+            query.whereKey("category", equalTo: self.category)
         }
+        query.findObjectsInBackground(block: { (marketPosts, error) in
+            if let marketPosts = marketPosts {
+                var idArray: [String] = []
+                for m in marketPosts {
+                    let marketPost = MarketPost(m)
+                    let postID = marketPost.post
+                    idArray.append(postID!)
+                }
+                self.fetchFilteredPosts(idArray: idArray)
+            } else {
+                print("Error fetching MarketPost according to category: \(error?.localizedDescription)")
+            }
+        })
     }
     
     func fetchFilteredPosts(idArray: [String]) {
@@ -351,10 +353,6 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
                     let post = Post(p)
                     self.posts.append(post)
                 }
-//                print("POSTS:")
-//                for post in self.posts {
-//                    print(post.name)
-//                }
                 self.postTableView.reloadData()
             } else {
                 print("Error fetching filtered posts: \(error?.localizedDescription)")
@@ -363,7 +361,10 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         
     }
     
-    func loadPosts() {
+    
+    
+    /*
+    func loadPosts() { // SO YOU SHOULD JUST CALL FILTEREDPOSTS() EVERYWHERE INSTEAD OF LOADPOSTS TO AVOID REDUNDANT CODE
         let query = PFQuery(className: "MarketPost")
 //        query.addDescendingOrder("createdAt")
         query.whereKey("market", equalTo: currentMarket?.name)
@@ -402,6 +403,7 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
             }
         }
     }
+ */
     
     
 
@@ -511,7 +513,14 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
             }
             dropView?.hideMenu()
         } else {
+            if indexPath.row == 0 {
+                self.category = "All"
+            } else {
+                self.category = currentMarket!.categories[indexPath.row-1]
+            }
             categoryTableView?.deselectRow(at: indexPath, animated: true)
+//            self.category = currentMarket!.categories[indexPath.row]
+            filterPosts()
             print ("the new category is \(currentMarket!.categories[indexPath.row])")
             dropView?.hideMenu()
         }

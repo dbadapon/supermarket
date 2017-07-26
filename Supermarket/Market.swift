@@ -130,15 +130,18 @@ class Market{
     }
 
     
-    class func createMarket(profileImage: UIImage, withName name: String, withDescription description: String, withCategories categories: [String], withLatitude latitude: Double?, withLongitude longitude: Double?, withCompletion completion: PFBooleanResultBlock?) {
+    class func createMarket(profileImage: UIImage, withName name: String, withDescription description: String, withCategories categories: [String], withLatitude latitude: Double?, withCity city: String, withLongitude longitude: Double?, withCompletion completion: PFBooleanResultBlock?) {
         
         let newMarket = Market()
         newMarket.name = name
         newMarket.categories = categories
+        newMarket.city = city
         newMarket.latitude = latitude
         newMarket.longitude = longitude
         newMarket.description = description
         newMarket.profileImage = getPFFileFromImage(image: profileImage)
+        
+        newMarket.memberCount = 1027
         
         
         
