@@ -168,11 +168,6 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         
         
         
-        
-        
-        
-        
-        
 //         YOU'RE GONNA HAVE TO CHANGE ALL THIS SEARCH STUFF...FIGURE OUT HOW TO DO IT!
         
         searchController = UISearchController(searchResultsController: nil)

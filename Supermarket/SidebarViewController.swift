@@ -105,17 +105,9 @@ class SidebarViewController: UIViewController, UITableViewDataSource, UITableVie
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-        print("I'm here!")
-        let cell = sender as! UITableViewCell
-        if let indexPath = marketTableView.indexPath(for: cell) {
-            let market = markets[indexPath.row]
-            let feed = segue.destination as! BuyFeedViewController
-            feed.currentMarket = market
-        }
-    }
-
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//
+//    }
+    
 
 }
