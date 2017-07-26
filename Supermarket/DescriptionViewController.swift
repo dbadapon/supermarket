@@ -9,6 +9,20 @@ import UIKit
 
 class DescriptionViewController: UIViewController, UITextViewDelegate {
     
+    // to receive from price vc
+    var itemName: UITextView!
+    var coverPhoto: UIImageView!
+    var imageOne: UIImageView!
+    var imageTwo: UIImageView!
+    var imageThree: UIImageView!
+    var imageFour: UIImageView!
+    var isNegotiable: Bool!
+    var itemPrice: Double!
+    
+    // tp pass onto next vc
+    var isNew: Bool!
+    // as well as itemDescription
+    
     let nameAlertController = UIAlertController(title: "Max Characters Reached", message: "Item name CANNOT exceed 500 characters", preferredStyle: .alert)
     
     @IBOutlet weak var itemDescription: UITextView!
@@ -59,14 +73,20 @@ class DescriptionViewController: UIViewController, UITextViewDelegate {
         }
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "toChooseLocationSegue" {
+            let dvc = segue.destination as! ChooseLocationViewController
+            dvc.itemName = self.itemName
+            dvc.coverPhoto = self.coverPhoto
+            dvc.imageOne = self.imageViewOne
+            dvc.imageTwo = self.imageViewTwo
+            dvc.imageThree = self.imageViewThree
+            dvc.imageFour = self.imageViewFour
+            dvc.isNegotiable = self.isNegotiable
+            dvc.itemPrice = self.itemPrice
+            dvc.isNew = self.isNew
+            dvc.itemDescription = self.itemDescription
+        }
     }
-    */
 
 }

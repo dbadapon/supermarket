@@ -10,6 +10,18 @@ import UIKit
 
 class PriceViewController: UIViewController, UITextFieldDelegate {
     
+    // to receive from preview vc
+    var itemName: UITextView!
+    var coverPhoto: UIImageView!
+    var imageOne: UIImageView!
+    var imageTwo: UIImageView!
+    var imageThree: UIImageView!
+    var imageFour: UIImageView!
+    
+    // to pass onto next vc
+    var isNegotiable: Bool!
+    var itemPrice: Double!
+    
     // color to use for app
     let textColor = UIColor(red: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha:1.0)
     
@@ -50,6 +62,12 @@ class PriceViewController: UIViewController, UITextFieldDelegate {
         
         // add the OK action to the alert controller
         priceAlertController.addAction(OKAction)
+        
+        if negotiableSwitch == true {
+            isNegotiable = true
+        } else {
+            isNegotiable = false
+        }
 
     }
 
@@ -90,15 +108,18 @@ class PriceViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "toDescriptionSegue" {
+            let dvc = segue.destination as! DescriptionViewController
+            dvc.itemName = self.itemName
+            dvc.coverPhoto = self.coverPhoto
+            dvc.imageOne = self.imageViewOne
+            dvc.imageTwo = self.imageViewTwo
+            dvc.imageThree = self.imageViewThree
+            dvc.imageFour = self.imageViewFour
+            dvc.isNegotiable = self.isNegotiable
+            dvc.itemPrice = self.itemPrice
+        }
     }
-    */
 
 }

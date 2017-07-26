@@ -224,15 +224,15 @@
 				0A6966C71F15404700E72FD8 /* SignUpViewController.swift */,
 				4D114E031F1559B700897FC8 /* NotificationsViewController.swift */,
 				4DC3C0C91F2016B400B4E2C4 /* SellFeedViewController.swift */,
-				0A5892FD1F227506001360D3 /* CreatePostViewController.swift */,
+				4D73A2BC1F26772700A5ACDC /* ProfileViewController.swift */,
+				4D73A2BE1F26A15C00A5ACDC /* MarketViewController.swift */,
 				0A5893031F22792F001360D3 /* PhotoViewController.swift */,
+				0A5892FD1F227506001360D3 /* CreatePostViewController.swift */,
 				0A5893051F227998001360D3 /* PreviewViewController.swift */,
 				0A36AA311F259F15007BE153 /* PriceViewController.swift */,
 				0A36AA391F25A1F9007BE153 /* DescriptionViewController.swift */,
-				0A36AA351F259F49007BE153 /* SelectMarketViewController.swift */,
 				0A36AA371F259F56007BE153 /* ChooseLocationViewController.swift */,
-				4D73A2BC1F26772700A5ACDC /* ProfileViewController.swift */,
-				4D73A2BE1F26A15C00A5ACDC /* MarketViewController.swift */,
+				0A36AA351F259F49007BE153 /* SelectMarketViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";

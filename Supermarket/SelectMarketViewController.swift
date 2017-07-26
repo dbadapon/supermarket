@@ -10,6 +10,24 @@ import UIKit
 
 class SelectMarketViewController: UIViewController {
     
+    // to receive from choose location vc
+    var itemName: UITextView!
+    var coverPhoto: UIImageView!
+    var imageOne: UIImageView!
+    var imageTwo: UIImageView!
+    var imageThree: UIImageView!
+    var imageFour: UIImageView!
+    var isNegotiable: Bool!
+    var itemPrice: Double!
+    var isNew: Bool!
+    var itemDescription: UITextView!
+    var latitude: Double?
+    var longitude: Double?
+    var city: String?
+    
+    // before making post, check if any images are the placeholder image
+    // meaning user did not select their own image
+    
     @IBAction func previousAction(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
