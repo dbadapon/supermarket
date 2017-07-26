@@ -9,7 +9,14 @@
 import UIKit
 import Parse
 
-class NotificationsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+protocol InterestedCellDelegate: class {
+    func didTapPhoto(of post: Post)
+}
+
+class NotificationsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, InterestedCellDelegate {
+    
+    
+    
     
     @IBOutlet weak var segmentedControl: UISegmentedControl!
 
@@ -23,6 +30,7 @@ class NotificationsViewController: UIViewController, UITableViewDelegate, UITabl
     
     @IBOutlet weak var lineViewOne: UIView!
     @IBOutlet weak var lineViewTwo: UIView!
+    var clickedPost: Post!
     
     
     
@@ -119,6 +127,7 @@ class NotificationsViewController: UIViewController, UITableViewDelegate, UITabl
             let cell = tableView.dequeueReusableCell(withIdentifier: "InterestedCell") as! InterestedCell
             
             cell.notification = notifications[indexPath.row]
+            cell.delegate = self
             
             return cell
             
@@ -143,14 +152,27 @@ class NotificationsViewController: UIViewController, UITableViewDelegate, UITabl
         
         tableView.reloadData()
     }
-    /*
+    
+    func didTapPhoto(of post: Post) {
+        self.clickedPost = post
+        self.performSegue(withIdentifier: "notificationToDetail", sender: self)
+    }
+    
+    
+    
+    
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        if segue.identifier == "notificationToDetail" {
+            let destination = segue.destination as! DetailViewController
+            destination.post = self.clickedPost
+        }
     }
-    */
+    
 
 }

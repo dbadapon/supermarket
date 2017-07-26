@@ -90,6 +90,9 @@
                                                         <constraint firstAttribute="width" constant="75" id="EsA-DO-lYg"/>
                                                         <constraint firstAttribute="height" constant="75" id="Icx-Pl-QtM"/>
                                                     </constraints>
+                                                    <connections>
+                                                        <action selector="didPressPhoto:" destination="ADG-We-PUn" eventType="touchUpInside" id="FJy-Fr-zx7"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -178,11 +181,20 @@
                         <outlet property="lineViewTwo" destination="PLS-yL-5Yt" id="2jx-og-5do"/>
                         <outlet property="segmentedControl" destination="NTy-yd-xe1" id="OmE-8F-irk"/>
                         <outlet property="tableView" destination="FPX-9d-g14" id="uLX-oF-2yN"/>
+                        <segue destination="LjZ-Ph-Lmi" kind="show" identifier="notificationToDetail" id="ecn-bs-KzS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k0F-gV-W4S" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1084" y="42.728635682158924"/>
+        </scene>
+        <!--DetailViewController-->
+        <scene sceneID="fp9-Rk-5AM">
+            <objects>
+                <viewControllerPlaceholder storyboardName="BuyFeed" referencedIdentifier="DetailViewController" id="LjZ-Ph-Lmi" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KNI-Iq-9lm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1643" y="40"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Gqv-O7-CSV">

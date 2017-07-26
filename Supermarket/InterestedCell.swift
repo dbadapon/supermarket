@@ -16,6 +16,8 @@ class InterestedCell: UITableViewCell {
     @IBOutlet weak var respondButton: UIButton!
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var postPhotoImage: PFImageView!
+    weak var delegate: InterestedCellDelegate?
+    var post: Post!
     
     var notification: SupermarketNotification! {
         didSet {
@@ -35,11 +37,11 @@ class InterestedCell: UITableViewCell {
                         if let error = error {
                             print ("this is the post error \(error.localizedDescription)")
                         } else {
-                            let post = Post(post)
+                            self.post = Post(post)
                             print ("it's actually getting here")
-                            postName = post.name as! String
+                            postName = self.post.name as! String
                             self.messageLabel.text = "'" + senderName + "'" + self.notification.message + postName + "."
-                            let images = post.images as! [PFFile]
+                            let images = self.post.images as! [PFFile]
                             self.postPhotoImage.file = images[0] as! PFFile
                             self.postPhotoImage.loadInBackground()
                             
@@ -69,5 +71,11 @@ class InterestedCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+    @IBAction func didPressPhoto(_ sender: Any) {
+        self.delegate?.didTapPhoto(of: self.post)
+    }
+    
+    
 
 }
