@@ -46,6 +46,7 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
     @IBOutlet weak var postTableView: UITableView!
     var filterTableView: UITableView?
     var categoryTableView: UITableView?
+    var dropView: YNDropDownMenu?
     
     var searchController: UISearchController!
     
@@ -232,16 +233,24 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         
         
         var dropDownViews: [UIView] = []
-        let frame1 = CGRect(x: 0, y: 64, width: self.view.frame.width, height: 300)
+        let frame1 = CGRect(x: 0, y: 64, width: self.view.frame.width, height: 200)
         filterTableView = UITableView(frame: frame1)
         categoryTableView = UITableView(frame: frame1)
+       
+        
         dropDownViews.append(filterTableView!)
         dropDownViews.append(categoryTableView!)
+        
+        filterTableView!.delegate = self
+        filterTableView!.dataSource = self
+        categoryTableView!.delegate = self
+        categoryTableView!.dataSource = self
+        
         let frame = CGRect(x: 0, y: 0, width: dropDownView.frame.width, height: dropDownView.frame.height)
         
-        let view = YNDropDownMenu(frame:frame, dropDownViews: dropDownViews, dropDownViewTitles: ["Filter by", "Categories"])
-        self.view.addSubview(view)
-        view.setLabelColorWhen(normal: UIColor.black, selected: ourColor, disabled: UIColor.gray)
+        dropView = YNDropDownMenu(frame:frame, dropDownViews: dropDownViews, dropDownViewTitles: ["Filter by", "Categories"])
+        self.view.addSubview(dropView!)
+        dropView?.setLabelColorWhen(normal: UIColor.black, selected: ourColor, disabled: UIColor.gray)
         
 
 //        Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.queryParse), userInfo: nil, repeats: true)
@@ -278,6 +287,8 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
                 self.loadPosts()
                 
                 self.postTableView.reloadData()
+                self.filterTableView!.reloadData()
+                self.categoryTableView!.reloadData()
             }
             else {
                 print("Error getting markets: \(error?.localizedDescription)")
@@ -333,8 +344,15 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView == postTableView {
             return posts.count
-        } else {
+        } else if tableView == filterTableView {
+            print ("got here")
             return 3
+        } else {
+            print ("hey hey hey")
+            print (currentMarket!)
+            print (currentMarket!.categories)
+            print (currentMarket!.categories.count)
+            return currentMarket!.categories.count
         }
     }
     
@@ -350,40 +368,72 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         
         post.parseObject.fetchInBackground { (parseObject, error) in
             if let parseObject  = parseObject {
-                cell.itemImage = parseObject
+                    cell.itemImage = parseObject
                 
-                let name = post.name
-                cell.nameLabel.text = name
+                    let name = post.name
+                    cell.nameLabel.text = name
                 
-                let category = "Category"
-                cell.categoryLabel.text = category
+                    let category = "Category"
+                    cell.categoryLabel.text = category
                 
-                let price = post.price!
-                let formattedPrice = String(format: "%.2f", price)
-                cell.priceLabel.text = "$\(formattedPrice)"
+                    let price = post.price!
+                    let formattedPrice = String(format: "%.2f", price)
+                    cell.priceLabel.text = "$\(formattedPrice)"
                 
                 
-                let conditionNew = post.conditionNew!
-                var newString = ""
-                if conditionNew {
-                    newString = "New"
+                    let conditionNew = post.conditionNew!
+                    var newString = ""
+                    if conditionNew {
+                        newString = "New"
+                    }
+                    cell.conditionLabel.text = newString
+                } else {
+                    print(error?.localizedDescription)
                 }
-                cell.conditionLabel.text = newString
-            } else {
-                print(error?.localizedDescription)
             }
-        }
         
-        return cell
+            return cell
+        } else if tableView == filterTableView {
+            let frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 40)
+            var cell = CustomCell(frame: frame, title: "hey")
+            if indexPath.row == 0{
+                cell.cellLabel.text = "Price up"
+            } else if indexPath.row == 1 {
+                cell.cellLabel.text = "Price down"
+            } else {
+                cell.cellLabel.text = "Most recent"
+            }
+            
+            return cell
         } else {
-            print ("it got here")
-            let cell = UITableViewCell()
+            
+            let frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 40)
+            var cell = CustomCell(frame: frame, title: "just testing this out")
+            cell.cellLabel.text = currentMarket!.categories[indexPath.row]
+            
             return cell
         }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        postTableView.deselectRow(at: indexPath, animated: true)
+        if tableView == postTableView {
+            postTableView.deselectRow(at: indexPath, animated: true)
+        }
+        else if tableView == filterTableView {
+            filterTableView?.deselectRow(at: indexPath, animated: true)
+            if indexPath.row == 0 {
+                print ("filter by price up")
+            } else if indexPath.row == 1 {
+                print ("filter by price down")
+            } else {
+                print ("filter by when it was made")
+            }
+            dropView?.hideMenu()
+        } else {
+            categoryTableView?.deselectRow(at: indexPath, animated: true)
+            print ("the new category is \(currentMarket!.categories[indexPath.row])")
+            dropView?.hideMenu()
+        }
     }
     
 //    func updateSearchResults(for searchController: UISearchController) {
