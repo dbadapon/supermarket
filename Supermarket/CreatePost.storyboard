@@ -348,7 +348,7 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter item price here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kzm-z9-LlM">
-                                <rect key="frame" x="41" y="63" width="318" height="34"/>
+                                <rect key="frame" x="16" y="63" width="343" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
@@ -371,13 +371,6 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="12"/>
                                 <color key="textColor" red="0.36550331120000001" green="0.79173368219999996" blue="0.80787837510000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="$" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IDo-jh-gQZ">
-                                <rect key="frame" x="17" y="66" width="16" height="29"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
-                                <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -587,6 +580,6 @@
         <image name="cameraMask" width="512" height="512"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="7UJ-Ht-5qy"/>
+        <segue reference="veg-mV-sRg"/>
     </inferredMetricsTieBreakers>
 </document>

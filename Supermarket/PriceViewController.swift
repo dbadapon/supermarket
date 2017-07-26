@@ -25,7 +25,9 @@ class PriceViewController: UIViewController, UITextFieldDelegate {
     // color to use for app
     let textColor = UIColor(red: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha:1.0)
     
-    let priceAlertController = UIAlertController(title: "Error", message: "Please set a valid price", preferredStyle: .alert)
+    let priceAlertController = UIAlertController(title: "Invalid Price", message: "Please set a valid price", preferredStyle: .alert)
+    
+    let nextAlertController = UIAlertController(title: "No Price Set", message: "Please set a price to continue", preferredStyle: .alert)
     
     @IBOutlet weak var inputPrice: UITextField!
     
@@ -36,7 +38,11 @@ class PriceViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func nextAction(_ sender: UIButton) {
-        performSegue(withIdentifier: "toDescriptionSegue", sender: self)
+        if (inputPrice.text != "" && inputPrice.text != nil) {
+            performSegue(withIdentifier: "toDescriptionSegue", sender: self)
+        } else {
+            self.present(self.nextAlertController, animated: true)
+        }
     }
     
 
@@ -62,6 +68,7 @@ class PriceViewController: UIViewController, UITextFieldDelegate {
         
         // add the OK action to the alert controller
         priceAlertController.addAction(OKAction)
+        nextAlertController.addAction(OKAction)
         
         if negotiableSwitch.isOn {
             isNegotiable = true
@@ -82,8 +89,8 @@ class PriceViewController: UIViewController, UITextFieldDelegate {
         view.endEditing(true)
     }
     
-    func textFieldDidBeginEditing(_ inputPrice: UITextField) {
-        print("MOO")
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        print("text field ended editing")
         
         let text = inputPrice.text!
         let num = Double(inputPrice.text!)
@@ -92,20 +99,26 @@ class PriceViewController: UIViewController, UITextFieldDelegate {
         if count <= 38 && num != nil
         {
             // value is okay
-            // running into errors here
-            // can't switch back to number
-            /*
-            let price = Double(inputPrice.text!)! as NSNumber
             
+            let price = Double(inputPrice.text!)! as NSNumber
             let formatter = NumberFormatter()
             formatter.numberStyle = .currency
             // formatter.locale = NSLocale.currentLocale() // This is the default
             // In Swift 4, this ^ has been renamed to simply NSLocale.current
             self.inputPrice.text = formatter.string(from: price) // ex. "$123.44"
-            */
+            
         } else {
             // insert alert controller because number is too large or invalid
+            print("invalid price, try again!")
+            self.present(self.priceAlertController, animated: true)
+            inputPrice.text = ""
         }
+    }
+    
+    func textFieldDidBeginEditing(_ inputPrice: UITextField) {
+        print("text field began editing")
+        
+        inputPrice.text = ""
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

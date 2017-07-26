@@ -36,7 +36,7 @@ class DescriptionViewController: UIViewController, UITextViewDelegate {
     }
     
     @IBAction func nextAction(_ sender: UIButton) {
-        performSegue(withIdentifier: "toSelectMarketSegue", sender: self)
+        performSegue(withIdentifier: "toChooseLocationSegue", sender: self)
     }
 
     override func viewDidLoad() {

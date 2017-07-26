@@ -154,7 +154,7 @@ class PreviewViewController: UIViewController, UITextViewDelegate, UIGestureReco
         nameAlertController.addAction(OKAction)
         
         /*
-        // code for keyboard to make screen scroll up
+        // code for keyboard to make screen scroll the old method
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
