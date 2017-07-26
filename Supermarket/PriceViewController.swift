@@ -49,6 +49,10 @@ class PriceViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // set color of negotiable switch
+        negotiableSwitch.onTintColor = textColor
+        negotiableSwitch.tintColor = textColor
+        
         inputPrice.keyboardType = UIKeyboardType.decimalPad
         inputPrice.tintColor = textColor
         inputPrice.delegate = self

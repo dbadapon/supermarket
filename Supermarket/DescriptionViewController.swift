@@ -49,6 +49,7 @@ class DescriptionViewController: UIViewController, UITextViewDelegate {
         // change font of words in segmented control
         let font = UIFont.systemFont(ofSize: 24, weight: UIFontWeightSemibold)
         conditionSegCtrl.setTitleTextAttributes([NSFontAttributeName: font], for: .normal)
+        
  
     }
 

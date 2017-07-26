@@ -23,6 +23,9 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // make sure tab bar is there
+        self.tabBarController?.tabBar.isHidden = false
 
         // Do any additional setup after loading the view.
         if user == nil {

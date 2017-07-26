@@ -71,6 +71,9 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
     
     override func viewDidLoad() {
         
+        // make sure tab bar is there
+        self.tabBarController?.tabBar.isHidden = false
+        
         super.viewDidLoad()
         
         postTableView.dataSource = self
