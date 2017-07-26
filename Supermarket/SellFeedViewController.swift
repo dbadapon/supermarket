@@ -152,6 +152,7 @@ class SellFeedViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print ("the count is \(posts.count)")
         return posts.count
     }
     
@@ -189,12 +190,14 @@ class SellFeedViewController: UIViewController, UITableViewDataSource, UITableVi
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         postTableView.deselectRow(at: indexPath, animated: true)
         self.detailPost = posts[indexPath.row]
-        
         self.performSegue(withIdentifier: "sellToDetail", sender: self)
         
     }
     
     func changedMarket(market: Market) {
+        self.posts = []
+        self.sellingPosts = []
+        self.soldPosts = []
         currentMarket = market
         print (currentMarket?.name)
         self.navigationItem.title = self.currentMarket!.name
@@ -226,11 +229,7 @@ class SellFeedViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func loadPosts() {
-        if self.segmentedControl.selectedSegmentIndex == 0 {
-            self.posts = self.sellingPosts
-        } else {
-            self.posts = self.soldPosts
-        }
+        
         
         let query = PFQuery(className: "MarketPost")
         query.addDescendingOrder("createdAt")
@@ -246,10 +245,29 @@ class SellFeedViewController: UIViewController, UITableViewDataSource, UITableVi
                     let postID = marketPost.post
                     idArray.append(postID!)
                 }
-                let postQuery PFQuery(className: "Post")
+                let postQuery = PFQuery(className: "Post")
                 postQuery.addDescendingOrder("createdAt")
-                postQuery.whereKey("objectID": containedIn: idArray)
-                
+                postQuery.whereKey("objectId", containedIn: idArray)
+                postQuery.whereKey("seller", equalTo: "_User$" + (PFUser.current()?.objectId)!)
+                postQuery.findObjectsInBackground(block: { (posts, error) in
+                    if let posts = posts {
+                        for p in posts {
+                            let post = Post(p)
+                            if post.sold == true {
+                                self.soldPosts.append(post)
+                            } else {
+                                self.sellingPosts.append(post)
+                            }
+                        }
+                        if self.segmentedControl.selectedSegmentIndex == 0 {
+                            self.posts = self.sellingPosts
+                        } else {
+                            self.posts = self.soldPosts
+                        }
+                        self.postTableView.reloadData()
+                        
+                    }
+                })
 //                for m in marketPosts {
 //                    let marketPost = MarketPost(m)
 //                    let post = Post(marketPost.post)
