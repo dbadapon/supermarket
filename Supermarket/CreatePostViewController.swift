@@ -181,7 +181,7 @@ class CreatePostViewController: UIViewController, AVCaptureVideoDataOutputSample
 
             // set up the request using our vision model
             let classificationRequest = VNCoreMLRequest(model: resNet50Model, completionHandler: handleClassifications)
-            classificationRequest.imageCropAndScaleOption = VNImageCropAndScaleOption.centerCrop
+            classificationRequest.imageCropAndScaleOption = VNImageCropAndScaleOptionCenterCrop
             // dom: it won't build if I use the stuff below...
 //                VNImageCropAndScaleOption.centerCrop
 //                = VNImageCropAndScaleOption.centerCrop
@@ -316,7 +316,7 @@ class CreatePostViewController: UIViewController, AVCaptureVideoDataOutputSample
         }
         
         // for orientation see kCGImagePropertyOrientation
-        let imageRequestHandler = VNImageRequestHandler(cvPixelBuffer: pixelBuffer, orientation: CGImagePropertyOrientation(rawValue: 1)!, options: requestOptions)
+        let imageRequestHandler = VNImageRequestHandler(cvPixelBuffer: pixelBuffer, orientation: Int32(CGImagePropertyOrientation(rawValue: 1)!.rawValue), options: requestOptions)
         do {
             try imageRequestHandler.perform(self.visionRequests)
         } catch {
