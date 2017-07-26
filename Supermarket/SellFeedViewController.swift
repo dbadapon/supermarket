@@ -32,6 +32,21 @@ class SellFeedViewController: UIViewController, UITableViewDataSource, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
+//        let image = UIImage(named: "TeamProfileImage.jpg")
+//        print ("this is the image: \(image)")
+//        let file = Post.getPFFileFromImage(image: image)
+//        PFUser.current()!["profileImage"] = file
+//        PFUser.current()?.saveInBackground(block: { (success, error) in
+//            if let error = error {
+//                print (error.localizedDescription)
+//            } else if success {
+//                print ("success")
+//            } else {
+//                print ("WHAAAAAAT")
+//            }
+//        })
+        
+        
         postTableView.dataSource = self
         postTableView.delegate = self
         postTableView.separatorStyle = .singleLine

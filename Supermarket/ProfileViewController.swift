@@ -7,13 +7,41 @@
 //
 
 import UIKit
+import Parse
+import ParseUI
 
 class ProfileViewController: UIViewController {
 
+    var user: PFUser!
+    
+    @IBOutlet weak var profileImage: PFImageView!
+    @IBOutlet weak var fullNameLabel: UILabel!
+    @IBOutlet weak var usernameLabel: UILabel!
+    @IBOutlet weak var emailLabel: UILabel!
+    @IBOutlet weak var phoneNumberLabel: UILabel!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        if user == nil {
+            user = PFUser.current()!
+        }
+        
+        
+        profileImage.layer.cornerRadius = profileImage.frame.width * 0.5
+        profileImage.layer.masksToBounds = true
+        
+        profileImage.file = user.value(forKey: "profileImage") as! PFFile
+        profileImage.loadInBackground()
+        
+        fullNameLabel.text = user.value(forKey: "fullname") as! String
+        usernameLabel.text = user.value(forKey: "username") as! String
+        emailLabel.text = user.value(forKey: "email") as! String
+        phoneNumberLabel.text = user.value(forKey: "phoneNumber") as! String
+        
+        
     }
 
     override func didReceiveMemoryWarning() {

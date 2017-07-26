@@ -5,10 +5,12 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13137.5"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Profile View Controller-->
+        <!--Profile-->
         <scene sceneID="B0Y-a7-0od">
             <objects>
                 <viewController id="enI-WW-S9f" customClass="ProfileViewController" customModule="Supermarket" customModuleProvider="target" sceneMemberID="viewController">
@@ -19,9 +21,57 @@
                     <view key="view" contentMode="scaleToFill" id="9mc-MD-DfW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Xqw-DN-5E6" customClass="PFImageView">
+                                <rect key="frame" x="66" y="114" width="242" height="241"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Xqw-DN-5E6" secondAttribute="height" multiplier="1:1" constant="1" id="MPP-Mo-mtc"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Alvin Magee" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Dj-c8-lDr">
+                                <rect key="frame" x="93" y="378" width="190" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="amagee12@gmail.com" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gl9-8b-VYF">
+                                <rect key="frame" x="79" y="452" width="217" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="almagee16" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="21g-g9-6ff">
+                                <rect key="frame" x="91" y="407" width="192" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="(504) 418-0607" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h7A-3U-oV8">
+                                <rect key="frame" x="88" y="481" width="198" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Xqw-DN-5E6" firstAttribute="centerX" secondItem="9mc-MD-DfW" secondAttribute="centerX" id="CdY-Vo-ZiX"/>
+                            <constraint firstItem="Xqw-DN-5E6" firstAttribute="top" secondItem="BUC-KW-OaE" secondAttribute="bottom" constant="50" id="VbW-dd-Ydu"/>
+                            <constraint firstItem="Xqw-DN-5E6" firstAttribute="leading" secondItem="9mc-MD-DfW" secondAttribute="leadingMargin" constant="50" id="rJK-ts-8gJ"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="jxn-pM-NEb"/>
+                    <navigationItem key="navigationItem" title="Profile" id="jxn-pM-NEb"/>
+                    <connections>
+                        <outlet property="emailLabel" destination="Gl9-8b-VYF" id="jvP-ZW-upF"/>
+                        <outlet property="fullNameLabel" destination="7Dj-c8-lDr" id="euP-Xa-Hfq"/>
+                        <outlet property="phoneNumberLabel" destination="h7A-3U-oV8" id="afR-eG-bVT"/>
+                        <outlet property="profileImage" destination="Xqw-DN-5E6" id="key-0v-vzK"/>
+                        <outlet property="usernameLabel" destination="21g-g9-6ff" id="RZt-VG-CL1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Twr-8f-OgJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
