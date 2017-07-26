@@ -90,6 +90,7 @@ class NotificationsViewController: UIViewController, UITableViewDelegate, UITabl
         navigationController?.navigationBar.tintColor = UIColor.white
         
         navigationController?.navigationBar.isTranslucent = false
+        self.tableView.tableFooterView = UIView()
         
         tableView.reloadData()
     }
