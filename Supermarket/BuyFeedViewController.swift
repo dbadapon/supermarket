@@ -15,7 +15,6 @@ import ParseUI
 
 class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchResultsUpdating, ModalDelegate {
 
-    
     @IBOutlet weak var postTableView: UITableView!
     
     var searchController: UISearchController!
@@ -26,9 +25,6 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
     
     var currentMarket: Market?
     
-    
-    
-    
     func changedMarket(market: Market) {
         self.currentMarket = market
         self.navigationItem.title = self.currentMarket!.name
@@ -36,20 +32,43 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         self.postTableView.reloadData()
     }
     
-    
-    
-
     override func viewDidLoad() {
+        
         super.viewDidLoad()
+        
         postTableView.dataSource = self
         postTableView.delegate = self
         
         
         // create Rice market; comment out after running once
         
-        let categories: [String: [PFObject]]? = ["Books": [], "Kitchen": [], "Home": [], "Clothing": [], "Electronics": [], "Supplies": []]
+        // let categories: [String: [PFObject]]? = ["Books": [], "Kitchen": [], "Home": [], "Clothing": [], "Electronics": [], "Supplies": []]
         
+        let yaleTextbookExchangeMarket = Market.createMarket(profileImage: #imageLiteral(resourceName: "yale_circle_logo.jpg"), withName: "Yale Textbook Exchange", withDescription: "Buy, sell, and exchange textbooks with other Yalies", withCategories: ["Anthropology", "Archaeology", "Architecture", "Art & Art History", "Astronomy", "Biology", "Biomedical Engineering", "Chemical Engineering", "Chemistry", "Cognitive Science", "Computer Science", "Computing and the Arts", "East Asian Studies", "East European Studies", "Economics", "Electrical Engineering", "English", "Environmental Science", "Film and Media Studies", "French", "Geology & Geophysics", "German Studies", "Global Affairs", "History", "Humanities", "Italian", "Judaic Studies", "Latin American Studies", "Linguistics", "Literature", "Mathematics", "Mechanical Engineering", "Music", "Neuroscience", "Philosophy", "Physics", "Political Science", "Portuguese", "Psychology", "Religious Studies", "Russian", "Sociology", "South Asian Studies", "Spanish", "Statistics and Data", "Theater Studies"], withLatitude: 41.3163244, withLongitude: -72.92234309999998) { (success, error) in
+            if success {
+                print(success)
+            } else {
+                print("Error with yaleTextbookExchangeMarket")
+            }
+        }
+
+        /*
+        let uciSchoolSuppliesMarket = Market.createMarket(profileImage: #imageLiteral(resourceName: "uci_circle_logo.png"), withName: "UCI Office/Desk Supplies", withDescription: "Have extra school supplies? Need school supplies? Sell and buy them here!", withCategories: ["Agendas", "Binders", "Colored Pencils", "Envelopes", "Highlighters", "Index Cards", "Markers", "Notebooks", "Paper/Binder Clips", "Pencils", "Pens", "Rubberbands", "Scissors", "Staplers/Staples", "Sticky Notes", "Tape", "USBs"], withLatitude: 33.6404952, withLongitude: -117.8442962) { (success, error) in
+            if success {
+                print(success)
+            } else {
+                print("Error with uciSchoolSuppliesMarket")
+            }
+        }
         
+        let riceUndergraduatesMarket = Market.createMarket(profileImage: #imageLiteral(resourceName: "rice_circle_logo.png"), withName: "Rice Undergraduate Students", withDescription: "Free and for sale dorm items", withCategories: ["Bedding", "Chairs", "Clothing", "Decorations", "Desks", "Electronics", "Fans", "Food/Snacks", "Household", "Kitchen Utensils", "Lamps", "Laundry", "Lights", "Microwaves", "Refrigerators", "School Supplies", "Shoes", "Speakers", "Storage", "Toiletries"], withLatitude: 29.7173941, withLongitude: -95.4018312) { (success, error) in
+            if success {
+                print(success)
+            } else {
+                print("Error with riceUndergraduatesMarket")
+            }
+        }
+ */
         
         
         // creating dummy posts
@@ -282,7 +301,6 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
                 let name = post.name
                 cell.nameLabel.text = name
                 
-                
                 let category = "Category"
                 cell.categoryLabel.text = category
                 
@@ -312,13 +330,10 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
     func updateSearchResults(for searchController: UISearchController) {
 
     }
-
     
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-
-
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
@@ -337,14 +352,10 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
             }
         }
         
-        
         if segue.identifier == "sideMenu" {
             let destination = segue.destination as! UINavigationController
             let destinationVC = destination.topViewController as! SidebarViewController
             destinationVC.delegate = self
         }
-        
     }
- 
-
 }
