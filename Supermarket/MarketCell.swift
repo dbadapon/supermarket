@@ -11,6 +11,8 @@ import UIKit
 class MarketCell: UITableViewCell {
 
     @IBOutlet weak var marketName: UILabel!
+    var market: Market?
+    weak var delegate: MarketCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -22,5 +24,9 @@ class MarketCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
+    
+    @IBAction func onInfo(_ sender: Any) {
+        delegate?.didTapInfo(of: market!)
+    }
+    
 }

@@ -38,6 +38,22 @@ class MarketViewController: UIViewController {
         marketProfileImage.layer.masksToBounds = true
         
         
+        marketProfileImage.file = market.profileImage!
+        marketProfileImage.loadInBackground()
+        
+        
+        marketNameLabel.text = market.name
+        inviteFriendsButton.setTitleColor(UIColor.clear, for: .disabled)
+        
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.view.backgroundColor = .clear
+        
+        memberCountLabel.text = String(describing: market.memberCount!)
+        marketDescriptionLabel.text = market.description!
+        
+        
     }
 
     override func didReceiveMemoryWarning() {

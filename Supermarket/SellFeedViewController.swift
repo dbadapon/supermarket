@@ -149,6 +149,18 @@ class SellFeedViewController: UIViewController, UITableViewDataSource, UITableVi
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont(name: "Avenir", size: 20)]
+        
+        navigationController?.navigationBar.barTintColor = UIColor.init(colorLiteralRed: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha: 1.0)
+        
+        navigationController?.navigationBar.barStyle = UIBarStyle.black
+        
+        navigationController?.navigationBar.tintColor = UIColor.white
+        
+        navigationController?.navigationBar.isTranslucent = false
+    }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

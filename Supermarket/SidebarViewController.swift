@@ -14,7 +14,11 @@ protocol ModalDelegate: class {
     func changedMarket(market: Market)
 }
 
-class SidebarViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+protocol MarketCellDelegate: class {
+    func didTapInfo(of market: Market)
+}
+
+class SidebarViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, MarketCellDelegate {
 
     @IBOutlet weak var marketTableView: UITableView!
     
@@ -23,6 +27,8 @@ class SidebarViewController: UIViewController, UITableViewDataSource, UITableVie
     var feedViewController: BuyFeedViewController? = nil
     
     weak var delegate: ModalDelegate?
+    
+    var infoMarket: Market?
     
     
     override func viewDidLoad() {
@@ -82,6 +88,8 @@ class SidebarViewController: UIViewController, UITableViewDataSource, UITableVie
         let cell = marketTableView.dequeueReusableCell(withIdentifier: "MarketCell", for: indexPath) as! MarketCell
         
         let market = markets[indexPath.row]
+        cell.market = market
+        cell.delegate = self
         cell.marketName.text = market.name
         
         return cell
@@ -100,14 +108,22 @@ class SidebarViewController: UIViewController, UITableViewDataSource, UITableVie
         
     }
     
+    func didTapInfo(of: Market) {
+        self.infoMarket = of
+        self.performSegue(withIdentifier: "toMarketDetail", sender: self)
+    }
+    
 
 
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//
-//    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toMarketDetail" {
+            let destination = segue.destination as! MarketViewController
+            destination.market = self.infoMarket 
+        }
+    }
     
 
 }

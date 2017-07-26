@@ -140,11 +140,11 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E6S-eN-q5G">
-                                                    <rect key="frame" x="321" y="3" width="46" height="30"/>
+                                                    <rect key="frame" x="209" y="6" width="46" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" title="Info"/>
                                                     <connections>
-                                                        <segue destination="coq-iD-u5P" kind="show" id="Tsf-5t-EvP"/>
+                                                        <action selector="onInfo:" destination="hcK-Zc-zY3" eventType="touchUpInside" id="cVo-9G-YtQ"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -161,16 +161,17 @@
                     <navigationItem key="navigationItem" title="Your Markets" id="qYe-3n-wt1"/>
                     <connections>
                         <outlet property="marketTableView" destination="p8x-I7-ZCZ" id="zww-L0-cT3"/>
+                        <segue destination="coq-iD-u5P" kind="show" identifier="toMarketDetail" id="zTW-PG-Q1V"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nlw-aM-G9B" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2796" y="-106.59670164917542"/>
         </scene>
-        <!--Storyboard Reference-->
+        <!--MarketViewController-->
         <scene sceneID="Vdq-r8-4Go">
             <objects>
-                <viewControllerPlaceholder id="coq-iD-u5P" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="SellFeed" referencedIdentifier="MarketViewController" id="coq-iD-u5P" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HwU-yG-jVD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3625" y="-72"/>
