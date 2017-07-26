@@ -55,6 +55,11 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
     var markets: [Market] = []
     
     var currentMarket: Market?
+    
+    var category: String = "All"
+    
+    var filter: String = "Most Recent"
+    
     let ourColor = UIColor.init(colorLiteralRed: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha: 1.0)
     
     func changedMarket(market: Market) {
@@ -216,6 +221,8 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
 //        
 //        searchController.searchBar.layer.borderColor = searchController.searchBar.barTintColor?.cgColor
         
+        
+        
         navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont(name: "Avenir", size: 20)]
         
         navigationController?.navigationBar.barTintColor = UIColor.init(colorLiteralRed: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha: 1.0)
@@ -296,9 +303,66 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         }
     }
     
+    func filterPosts() { // find some way to break this down...
+        
+        if self.category == "All" {
+            let query = PFQuery(className: "MarketPost")
+            // get all MarketPosts in the current market
+            query.whereKey("market", equalTo: currentMarket?.name)
+            self.posts = []
+            query.findObjectsInBackground(block: { (marketPosts, error) in
+                if let marketPosts = marketPosts {
+                    var idArray: [String] = []
+                    for m in marketPosts {
+                        let marketPost = MarketPost(m)
+                        let postID = marketPost.post
+                        idArray.append(postID!)
+                    }
+                    self.fetchFilteredPosts(idArray: idArray)
+                } else {
+                    print("Error fetching MarketPost according to category: \(error?.localizedDescription)")
+                }
+            })
+            
+        } else {
+            print("Show another category!")
+        }
+    }
+    
+    func fetchFilteredPosts(idArray: [String]) {
+        
+        let postQuery = PFQuery(className: "Post")
+        if self.filter == "Most Recent" {
+            postQuery.addDescendingOrder("createdAt")
+        } else if self.filter == "Price: Low to High" {
+            postQuery.addAscendingOrder("price")
+        } else if self.filter == "Price: High to Low" {
+            postQuery.addDescendingOrder("price")
+        }
+        postQuery.whereKey("objectId", containedIn: idArray)
+        postQuery.whereKey("sold", equalTo: false)
+        postQuery.findObjectsInBackground { (posts, error) in
+            if let posts = posts {
+                print(posts)
+                for p in posts {
+                    let post = Post(p)
+                    self.posts.append(post)
+                }
+//                print("POSTS:")
+//                for post in self.posts {
+//                    print(post.name)
+//                }
+                self.postTableView.reloadData()
+            } else {
+                print("Error fetching filtered posts: \(error?.localizedDescription)")
+            }
+        }
+        
+    }
+    
     func loadPosts() {
         let query = PFQuery(className: "MarketPost")
-        query.addDescendingOrder("createdAt")
+//        query.addDescendingOrder("createdAt")
         query.whereKey("market", equalTo: currentMarket?.name)
         self.posts = []
         
@@ -313,15 +377,17 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
                 let postQuery = PFQuery(className: "Post")
                 postQuery.addDescendingOrder("createdAt")
                 postQuery.whereKey("objectId", containedIn: idArray)
+                postQuery.whereKey("sold", equalTo: false)
                 postQuery.findObjectsInBackground(block: { (posts, error) in
                     if let posts = posts {
                         for p in posts {
                             let post = Post(p)
-                            if post.sold == false {
-                                self.posts.append(post)
-                            }
+//                            if post.sold == false {
+//                                self.posts.append(post)
+//                            }
+                            self.posts.append(post)
                         }
-                        print("posts: \(self.posts)")
+//                        print("posts: \(self.posts)")
 //                        print("first post: \(self.posts[0].parseObject)")
                         self.postTableView.reloadData()
                     } else {
@@ -352,17 +418,17 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
             print (currentMarket!)
             print (currentMarket!.categories)
             print (currentMarket!.categories.count)
-            return currentMarket!.categories.count
+            return currentMarket!.categories.count + 1
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if tableView == postTableView {
         let cell = postTableView.dequeueReusableCell(withIdentifier: "BuyFeedCell", for: indexPath) as! BuyFeedCell
-        
-        
+            
+            
 //        let cell = postTableView.dequeueReusableCell(withIdentifier: "BuyFeedCell", for: indexPath) as! BuyFeedCell
-        
+            
         let post = posts[indexPath.row]
         let parseObject = post.parseObject
         
@@ -397,11 +463,11 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
             let frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 40)
             var cell = CustomCell(frame: frame, title: "hey")
             if indexPath.row == 0{
-                cell.cellLabel.text = "Price up"
+                cell.cellLabel.text = "Most Recent"
             } else if indexPath.row == 1 {
-                cell.cellLabel.text = "Price down"
+                cell.cellLabel.text = "Price: Low to High"
             } else {
-                cell.cellLabel.text = "Most recent"
+                cell.cellLabel.text = "Price: High to Low"
             }
             
             return cell
@@ -409,7 +475,13 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
             
             let frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 40)
             var cell = CustomCell(frame: frame, title: "just testing this out")
-            cell.cellLabel.text = currentMarket!.categories[indexPath.row]
+            if indexPath.row == 0 {
+                self.category = "All"
+                cell.cellLabel.text = "All"
+            } else {
+                self.category = currentMarket!.categories[indexPath.row - 1]
+                cell.cellLabel.text = self.category
+            }
             
             return cell
         }
@@ -422,11 +494,17 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         else if tableView == filterTableView {
             filterTableView?.deselectRow(at: indexPath, animated: true)
             if indexPath.row == 0 {
-                print ("filter by price up")
+                self.filter = "Most Recent"
+                print ("filter by Most Recent")
+                filterPosts()
             } else if indexPath.row == 1 {
-                print ("filter by price down")
+                self.filter = "Price: Low to High"
+                print ("filter by lowest price")
+                filterPosts()
             } else {
-                print ("filter by when it was made")
+                self.filter = "Price: High to Low"
+                print ("filter by highest price")
+                filterPosts()
             }
             dropView?.hideMenu()
         } else {
