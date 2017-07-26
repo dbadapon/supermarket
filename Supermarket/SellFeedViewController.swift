@@ -26,6 +26,8 @@ class SellFeedViewController: UIViewController, UITableViewDataSource, UITableVi
     
     var items : [String] = ["Selling", "Sold"]
     var detailPost: Post?
+    
+    let ourColor = UIColor.init(colorLiteralRed: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha: 1.0)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,7 +36,7 @@ class SellFeedViewController: UIViewController, UITableViewDataSource, UITableVi
         postTableView.delegate = self
         postTableView.separatorStyle = .singleLine
         
-        lineViewOne.backgroundColor = UIColor.white
+        lineViewOne.backgroundColor = ourColor
         lineViewTwo.backgroundColor = UIColor.clear
         
         navigationController?.navigationBar.titleTextAttributes = [
@@ -58,10 +60,12 @@ class SellFeedViewController: UIViewController, UITableViewDataSource, UITableVi
         
         // segmentedView.addTarget(self, action: #selector(SellFeedViewController.segmentedViewControllerValueChanged(_:)), for: .valueChanged)
 
-        segmentedView.backgroundColor = UIColor.init(colorLiteralRed: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha: 1.0)
+        // segmentedView.backgroundColor = UIColor.init(colorLiteralRed: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha: 1.0)
+        
+        
         
         let boldTextAttributes: [NSObject : AnyObject] = [
-            NSForegroundColorAttributeName as NSObject : UIColor.white,
+            NSForegroundColorAttributeName as NSObject : ourColor,
             NSFontAttributeName as NSObject: UIFont.systemFont(ofSize: 16, weight: UIFontWeightMedium)
             ]
         segmentedControl.setTitleTextAttributes(boldTextAttributes, for: .selected)
@@ -176,12 +180,12 @@ class SellFeedViewController: UIViewController, UITableViewDataSource, UITableVi
     @IBAction func segmentDidChange(_ sender: Any) {
         if segmentedControl.selectedSegmentIndex == 0 {
             self.posts = sellingPosts
-            lineViewOne.backgroundColor = UIColor.white
+            lineViewOne.backgroundColor = ourColor
             lineViewTwo.backgroundColor = UIColor.clear
         } else {
             self.posts = soldPosts
             lineViewOne.backgroundColor = UIColor.clear
-            lineViewTwo.backgroundColor = UIColor.white
+            lineViewTwo.backgroundColor = ourColor
         }
         
         self.postTableView.reloadData()

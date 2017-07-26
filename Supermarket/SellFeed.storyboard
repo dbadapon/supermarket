@@ -96,7 +96,7 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="35"/>
                                 <subviews>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="gwt-VI-ri4">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="32"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="34"/>
                                         <segments>
                                             <segment title="Selling"/>
                                             <segment title="Sold"/>
@@ -106,20 +106,19 @@
                                         </connections>
                                     </segmentedControl>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q70-Fd-XfJ">
-                                        <rect key="frame" x="0.0" y="31" width="187.5" height="2"/>
+                                        <rect key="frame" x="0.0" y="33" width="187.5" height="2"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tbT-SO-bhb">
-                                        <rect key="frame" x="187.5" y="31" width="187.5" height="2"/>
+                                        <rect key="frame" x="187.5" y="33" width="187.5" height="2"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" red="0.36550331120000001" green="0.79173368219999996" blue="0.80787837510000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <color key="tintColor" red="0.36550331120000001" green="0.79173368219999996" blue="0.80787837510000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="tintColor" red="1" green="0.9999879599" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstItem="tbT-SO-bhb" firstAttribute="top" secondItem="gwt-VI-ri4" secondAttribute="bottom" id="223-g4-Vdl"/>
-                                    <constraint firstAttribute="bottom" secondItem="tbT-SO-bhb" secondAttribute="bottom" constant="2" id="6EO-8g-E4h"/>
-                                    <constraint firstAttribute="bottom" secondItem="q70-Fd-XfJ" secondAttribute="bottom" constant="2" id="77f-GL-a8D"/>
+                                    <constraint firstAttribute="bottom" secondItem="tbT-SO-bhb" secondAttribute="bottom" id="6EO-8g-E4h"/>
+                                    <constraint firstAttribute="bottom" secondItem="q70-Fd-XfJ" secondAttribute="bottom" id="77f-GL-a8D"/>
                                     <constraint firstAttribute="height" constant="35" id="JhC-A0-eRg"/>
                                     <constraint firstItem="gwt-VI-ri4" firstAttribute="leading" secondItem="VXf-yE-gSD" secondAttribute="leading" id="O3U-KD-7Gq"/>
                                     <constraint firstAttribute="trailing" secondItem="gwt-VI-ri4" secondAttribute="trailing" id="QQi-b6-cxl"/>
@@ -128,7 +127,7 @@
                                     <constraint firstItem="q70-Fd-XfJ" firstAttribute="leading" secondItem="VXf-yE-gSD" secondAttribute="leading" id="fiT-qM-3SN"/>
                                     <constraint firstItem="gwt-VI-ri4" firstAttribute="top" secondItem="VXf-yE-gSD" secondAttribute="top" id="mld-z4-ITN"/>
                                     <constraint firstItem="q70-Fd-XfJ" firstAttribute="top" secondItem="gwt-VI-ri4" secondAttribute="bottom" id="qJx-S7-2Gt"/>
-                                    <constraint firstAttribute="bottom" secondItem="gwt-VI-ri4" secondAttribute="bottom" constant="4" id="smo-0r-qIp"/>
+                                    <constraint firstAttribute="bottom" secondItem="gwt-VI-ri4" secondAttribute="bottom" constant="2" id="smo-0r-qIp"/>
                                 </constraints>
                             </view>
                         </subviews>
