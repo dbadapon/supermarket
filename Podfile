@@ -12,6 +12,7 @@ target 'Supermarket' do
 	pod 'ModernSearchBar'
 	pod 'Alamofire'
 	pod 'IQKeyboardManagerSwift', '4.0.10'
+	pod 'YNDropDownMenu'
 
   target 'SupermarketTests' do
     inherit! :search_paths

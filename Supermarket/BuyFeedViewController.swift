@@ -10,12 +10,42 @@ import UIKit
 import Parse
 import ParseUI
 //import SideMenu
+import YNDropDownMenu
 
-
-
-class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchResultsUpdating, ModalDelegate {
-
+class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, ModalDelegate, YNDropDownDelegate {
+    
+    func hideMenu() {
+        print ("hey")
+    }
+    
+    func changeMenu(title: String, at index: Int) {
+        print (title)
+    }
+    
+    func changeMenu(title: String, status: YNStatus, at index: Int) {
+        print (title)
+    }
+    
+    func changeView(view: UIView, at index: Int) {
+        print (index)
+    }
+    
+    func alwaysSelected(at index: Int) {
+        print (index)
+    }
+    
+    func normalSelected(at index: Int) {
+        print (index)
+    }
+    
+    
+    @IBOutlet weak var dropDownView: UIView!
+    @IBOutlet weak var filterDropDownView: UIView!
+    @IBOutlet weak var categoryDropDownView: UIView!
+    
     @IBOutlet weak var postTableView: UITableView!
+    var filterTableView: UITableView?
+    var categoryTableView: UITableView?
     
     var searchController: UISearchController!
     
@@ -24,6 +54,7 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
     var markets: [Market] = []
     
     var currentMarket: Market?
+    let ourColor = UIColor.init(colorLiteralRed: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha: 1.0)
     
     func changedMarket(market: Market) {
         self.currentMarket = market
@@ -170,19 +201,19 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         
 //         YOU'RE GONNA HAVE TO CHANGE ALL THIS SEARCH STUFF...FIGURE OUT HOW TO DO IT!
         
-        searchController = UISearchController(searchResultsController: nil)
-        searchController.searchResultsUpdater = self
-        
-        searchController.dimsBackgroundDuringPresentation = false
-        searchController.searchBar.sizeToFit()
-        
-        postTableView.tableHeaderView = searchController.searchBar
-        
-        searchController.searchBar.barTintColor = UIColor.white
-        
-        searchController.searchBar.layer.borderWidth = 1
-        
-        searchController.searchBar.layer.borderColor = searchController.searchBar.barTintColor?.cgColor
+//        searchController = UISearchController(searchResultsController: nil)
+//        searchController.searchResultsUpdater = self
+//        
+//        searchController.dimsBackgroundDuringPresentation = false
+//        searchController.searchBar.sizeToFit()
+//        
+//        postTableView.tableHeaderView = searchController.searchBar
+//        
+//        searchController.searchBar.barTintColor = UIColor.white
+//        
+//        searchController.searchBar.layer.borderWidth = 1
+//        
+//        searchController.searchBar.layer.borderColor = searchController.searchBar.barTintColor?.cgColor
         
         navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont(name: "Avenir", size: 20)]
         
@@ -195,9 +226,22 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         navigationController?.navigationBar.isTranslucent = false
         
         
-        searchController.searchBar.clipsToBounds = true
+        // searchController.searchBar.clipsToBounds = true
         
         definesPresentationContext = true
+        
+        
+        var dropDownViews: [UIView] = []
+        let frame1 = CGRect(x: 0, y: 64, width: self.view.frame.width, height: 300)
+        filterTableView = UITableView(frame: frame1)
+        categoryTableView = UITableView(frame: frame1)
+        dropDownViews.append(filterTableView!)
+        dropDownViews.append(categoryTableView!)
+        let frame = CGRect(x: 0, y: 0, width: dropDownView.frame.width, height: dropDownView.frame.height)
+        
+        let view = YNDropDownMenu(frame:frame, dropDownViews: dropDownViews, dropDownViewTitles: ["Filter by", "Categories"])
+        self.view.addSubview(view)
+        view.setLabelColorWhen(normal: UIColor.black, selected: ourColor, disabled: UIColor.gray)
         
 
 //        Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.queryParse), userInfo: nil, repeats: true)
@@ -287,11 +331,15 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return posts.count
+        if tableView == postTableView {
+            return posts.count
+        } else {
+            return 3
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+        if tableView == postTableView {
         let cell = postTableView.dequeueReusableCell(withIdentifier: "BuyFeedCell", for: indexPath) as! BuyFeedCell
         
         
@@ -327,15 +375,20 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         }
         
         return cell
+        } else {
+            print ("it got here")
+            let cell = UITableViewCell()
+            return cell
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         postTableView.deselectRow(at: indexPath, animated: true)
     }
     
-    func updateSearchResults(for searchController: UISearchController) {
-
-    }
+//    func updateSearchResults(for searchController: UISearchController) {
+//
+//    }
     
     // MARK: - Navigation
 

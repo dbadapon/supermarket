@@ -9,6 +9,7 @@ PODS:
     - Bolts/Tasks (~> 1.3)
     - Parse (~> 1.9)
   - SideMenu (2.3.2)
+  - YNDropDownMenu (2.3.2)
 
 DEPENDENCIES:
   - Alamofire
@@ -17,6 +18,7 @@ DEPENDENCIES:
   - Parse
   - ParseUI
   - SideMenu
+  - YNDropDownMenu
 
 SPEC CHECKSUMS:
   Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
@@ -26,7 +28,8 @@ SPEC CHECKSUMS:
   Parse: b0aa91d2c435e53d4a9af26e741e014c9b35c42e
   ParseUI: af2eba584799da4a9fbdac0e178662d7438b502e
   SideMenu: 3fa07dd05d4bade2b6f9889fb1877e312e1ba319
+  YNDropDownMenu: 9d9f1ae71a408d0e7c66a55da2a52232545fca5a
 
-PODFILE CHECKSUM: a532071f2a3e6179b578bdfb194fb0909735e449
+PODFILE CHECKSUM: e0c6a87264a82f82d9bb545fdfc1308eb5ed6d14
 
 COCOAPODS: 1.2.1
