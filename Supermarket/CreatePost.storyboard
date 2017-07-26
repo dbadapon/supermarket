@@ -334,7 +334,6 @@
                                 <color key="tintColor" red="0.36550331120000001" green="0.79173368219999996" blue="0.80787837510000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <state key="normal" title="Previous"/>
                                 <connections>
-                                    <action selector="cancelAction:" destination="EzZ-ra-3zf" eventType="touchUpInside" id="z3T-rJ-Wg3"/>
                                     <action selector="previousAction:" destination="b9Y-7E-WvB" eventType="touchUpInside" id="Wdq-WB-keO"/>
                                 </connections>
                             </button>
@@ -345,7 +344,6 @@
                                 <color key="tintColor" red="0.36550331120000001" green="0.79173368219999996" blue="0.80787837510000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <state key="normal" title="Next"/>
                                 <connections>
-                                    <action selector="nextAction:" destination="EzZ-ra-3zf" eventType="touchUpInside" id="0Oj-N6-mHa"/>
                                     <action selector="nextAction:" destination="b9Y-7E-WvB" eventType="touchUpInside" id="ehd-J9-p6v"/>
                                 </connections>
                             </button>
@@ -421,8 +419,6 @@
                                 <color key="tintColor" red="0.36550331120000001" green="0.79173368219999996" blue="0.80787837510000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <state key="normal" title="Previous"/>
                                 <connections>
-                                    <action selector="cancelAction:" destination="EzZ-ra-3zf" eventType="touchUpInside" id="E0s-9R-983"/>
-                                    <action selector="previousAction:" destination="b9Y-7E-WvB" eventType="touchUpInside" id="FYx-Ug-tys"/>
                                     <action selector="previousAction:" destination="dpL-HY-zbE" eventType="touchUpInside" id="KyX-Gk-OtZ"/>
                                 </connections>
                             </button>
@@ -433,9 +429,7 @@
                                 <color key="tintColor" red="0.36550331120000001" green="0.79173368219999996" blue="0.80787837510000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <state key="normal" title="Next"/>
                                 <connections>
-                                    <action selector="nextAction:" destination="b9Y-7E-WvB" eventType="touchUpInside" id="CMY-FG-uxa"/>
                                     <action selector="nextAction:" destination="dpL-HY-zbE" eventType="touchUpInside" id="sLN-WZ-vDv"/>
-                                    <action selector="nextAction:" destination="EzZ-ra-3zf" eventType="touchUpInside" id="x7f-Ez-QJq"/>
                                 </connections>
                             </button>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="fHH-g0-LiE">
@@ -475,7 +469,7 @@
                         <outlet property="charCountLabel" destination="0Zo-3t-YfB" id="b16-Na-SXx"/>
                         <outlet property="conditionSegCtrl" destination="fHH-g0-LiE" id="AaT-0Q-ou3"/>
                         <outlet property="itemDescription" destination="FAn-Ks-k92" id="boG-fI-GDU"/>
-                        <segue destination="chS-rj-eHH" kind="show" identifier="toSelectMarketSegue" id="r4m-1h-pqr"/>
+                        <segue destination="IRi-An-o7B" kind="show" identifier="toChooseLocationSegue" id="Ryw-1j-ad2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IYz-Jp-zvx" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -508,35 +502,26 @@
                                 <color key="tintColor" red="0.36550331120000001" green="0.79173368219999996" blue="0.80787837510000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <state key="normal" title="Previous"/>
                                 <connections>
-                                    <action selector="cancelAction:" destination="EzZ-ra-3zf" eventType="touchUpInside" id="AZf-3t-srP"/>
-                                    <action selector="previousAction:" destination="dpL-HY-zbE" eventType="touchUpInside" id="85Q-9d-K7X"/>
                                     <action selector="previousAction:" destination="chS-rj-eHH" eventType="touchUpInside" id="869-PI-PD4"/>
-                                    <action selector="previousAction:" destination="b9Y-7E-WvB" eventType="touchUpInside" id="JzP-03-3sj"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8sc-eC-YoM">
-                                <rect key="frame" x="325" y="23" width="34" height="32"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b4c-li-4jo">
+                                <rect key="frame" x="322" y="23" width="37" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="16"/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="16"/>
                                 <color key="tintColor" red="0.36550331120000001" green="0.79173368219999996" blue="0.80787837510000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <state key="normal" title="Next"/>
+                                <state key="normal" title="Post"/>
                                 <connections>
-                                    <action selector="nextAction:" destination="EzZ-ra-3zf" eventType="touchUpInside" id="Z8o-nt-oIQ"/>
-                                    <action selector="nextAction:" destination="b9Y-7E-WvB" eventType="touchUpInside" id="bmI-Bs-hXT"/>
-                                    <action selector="nextAction:" destination="dpL-HY-zbE" eventType="touchUpInside" id="hkb-Do-mmo"/>
-                                    <action selector="nextAction:" destination="chS-rj-eHH" eventType="touchUpInside" id="xCE-fK-LY7"/>
+                                    <action selector="postAction:" destination="chS-rj-eHH" eventType="touchUpInside" id="vSI-Iy-RWH"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <connections>
-                        <segue destination="IRi-An-o7B" kind="show" identifier="toChooseLocationSegue" id="Loq-NL-Af8"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uLp-Gc-WZY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="916" y="2855"/>
+            <point key="canvasLocation" x="916" y="3542"/>
         </scene>
         <!--Choose Location View Controller-->
         <scene sceneID="XYz-Bi-Gi1">
@@ -557,25 +542,7 @@
                                 <color key="tintColor" red="0.36550331120000001" green="0.79173368219999996" blue="0.80787837510000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <state key="normal" title="Previous"/>
                                 <connections>
-                                    <action selector="cancelAction:" destination="EzZ-ra-3zf" eventType="touchUpInside" id="xXJ-Zc-bXy"/>
-                                    <action selector="previousAction:" destination="chS-rj-eHH" eventType="touchUpInside" id="RCa-9J-10Z"/>
-                                    <action selector="previousAction:" destination="dpL-HY-zbE" eventType="touchUpInside" id="Yzg-ew-SIA"/>
                                     <action selector="previousAction:" destination="IRi-An-o7B" eventType="touchUpInside" id="nq2-k2-uYc"/>
-                                    <action selector="previousAction:" destination="b9Y-7E-WvB" eventType="touchUpInside" id="qjj-6M-64X"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b4c-li-4jo">
-                                <rect key="frame" x="324" y="24" width="37" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="16"/>
-                                <color key="tintColor" red="0.36550331120000001" green="0.79173368219999996" blue="0.80787837510000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <state key="normal" title="Post"/>
-                                <connections>
-                                    <action selector="nextAction:" destination="dpL-HY-zbE" eventType="touchUpInside" id="0m6-tn-gyj"/>
-                                    <action selector="nextAction:" destination="chS-rj-eHH" eventType="touchUpInside" id="O7W-kQ-bI8"/>
-                                    <action selector="nextAction:" destination="b9Y-7E-WvB" eventType="touchUpInside" id="gkb-Q7-sOm"/>
-                                    <action selector="nextAction:" destination="EzZ-ra-3zf" eventType="touchUpInside" id="lp0-Ag-2w5"/>
-                                    <action selector="postAction:" destination="IRi-An-o7B" eventType="touchUpInside" id="wNW-Te-iYP"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XYt-CG-x2G">
@@ -585,13 +552,26 @@
                                 <color key="textColor" red="0.36550331120000001" green="0.79173368219999996" blue="0.80787837510000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8sc-eC-YoM">
+                                <rect key="frame" x="325" y="24" width="34" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="16"/>
+                                <color key="tintColor" red="0.36550331120000001" green="0.79173368219999996" blue="0.80787837510000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <state key="normal" title="Next"/>
+                                <connections>
+                                    <action selector="nextAction:" destination="IRi-An-o7B" eventType="touchUpInside" id="rFz-tA-ged"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <segue destination="chS-rj-eHH" kind="show" identifier="toSelectMarketSegue" id="Mwd-UO-KT1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kPe-Z6-amf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="916" y="3588.7556221889058"/>
+            <point key="canvasLocation" x="916" y="2831"/>
         </scene>
     </scenes>
     <resources>

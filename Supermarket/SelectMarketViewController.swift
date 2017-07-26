@@ -14,8 +14,8 @@ class SelectMarketViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func nextAction(_ sender: UIButton) {
-        performSegue(withIdentifier: "toChooseLocationSegue", sender: self)
+    @IBAction func postAction(_ sender: UIButton) {
+        // performSegue(withIdentifier: "toChooseLocationSegue", sender: self)
     }
 
     override func viewDidLoad() {

@@ -24,7 +24,7 @@ class PreviewViewController: UIViewController, UITextViewDelegate, UIGestureReco
     let textColor = UIColor(red: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha:1.0)
     
     // currently not used, but can add this somewhere
-    let postAlertController = UIAlertController(title: "Invalid Action", message: "Cover photo is required", preferredStyle: .alert)
+    let nextAlertController = UIAlertController(title: "Invalid Action", message: "Cover photo is required", preferredStyle: .alert)
     
     let cameraSelectAlertController = UIAlertController(title: "Camera NOT available", message: "Please select Photo Library", preferredStyle: .alert)
     
@@ -78,7 +78,7 @@ class PreviewViewController: UIViewController, UITextViewDelegate, UIGestureReco
         super.viewDidLoad()
         
         // set color of alert controllers
-        postAlertController.view.tintColor = textColor
+        nextAlertController.view.tintColor = textColor
         cameraSelectAlertController.view.tintColor = textColor
         
         let UITapRecognizerCover = UITapGestureRecognizer(target: self, action: #selector(self.tappedImageCover(_sender:)))
@@ -148,7 +148,7 @@ class PreviewViewController: UIViewController, UITextViewDelegate, UIGestureReco
         cameraSelectAlertController.addAction(OKAction)
         
         // add the OK action to the alert controller
-        postAlertController.addAction(OKAction)
+        nextAlertController.addAction(OKAction)
         
         // add the OK action to the alert controller
         nameAlertController.addAction(OKAction)
