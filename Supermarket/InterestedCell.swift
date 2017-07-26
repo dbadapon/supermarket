@@ -38,7 +38,7 @@ class InterestedCell: UITableViewCell {
                             let post = Post(post)
                             print ("it's actually getting here")
                             postName = post.name as! String
-                            self.messageLabel.text = senderName + self.notification.message + postName
+                            self.messageLabel.text = "'" + senderName + "'" + self.notification.message + postName + "."
                             let images = post.images as! [PFFile]
                             self.postPhotoImage.file = images[0] as! PFFile
                             self.postPhotoImage.loadInBackground()

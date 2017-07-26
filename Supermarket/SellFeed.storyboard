@@ -23,9 +23,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="254" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="br7-It-d69">
-                                <rect key="frame" x="0.0" y="219" width="375" height="448"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="254" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="br7-It-d69">
+                                <rect key="frame" x="0.0" y="99" width="375" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SellFeedCell" rowHeight="254" id="Cm9-dr-fEM" customClass="SellFeedCell" customModule="Supermarket" customModuleProvider="target">
@@ -136,8 +135,12 @@
                         <constraints>
                             <constraint firstItem="VXf-yE-gSD" firstAttribute="leading" secondItem="14O-Yr-6nr" secondAttribute="leading" id="1Zg-2w-rDq"/>
                             <constraint firstItem="VXf-yE-gSD" firstAttribute="top" secondItem="BcK-4t-xQ8" secondAttribute="bottom" id="40M-9B-xhc"/>
+                            <constraint firstItem="br7-It-d69" firstAttribute="top" secondItem="VXf-yE-gSD" secondAttribute="bottom" id="4eF-fj-ymD"/>
+                            <constraint firstAttribute="trailing" secondItem="br7-It-d69" secondAttribute="trailing" id="CZx-08-DhD"/>
                             <constraint firstAttribute="trailing" secondItem="VXf-yE-gSD" secondAttribute="trailing" id="RaU-cV-4R7"/>
+                            <constraint firstItem="dQQ-av-rKS" firstAttribute="top" secondItem="br7-It-d69" secondAttribute="bottom" id="UA1-CM-692"/>
                             <constraint firstItem="q70-Fd-XfJ" firstAttribute="width" secondItem="14O-Yr-6nr" secondAttribute="width" multiplier="1:2" id="X18-9G-UlU"/>
+                            <constraint firstItem="br7-It-d69" firstAttribute="leading" secondItem="14O-Yr-6nr" secondAttribute="leading" id="b4H-A3-gK0"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Market Name" id="eUg-CN-LqP">

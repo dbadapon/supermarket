@@ -53,7 +53,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="110.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="insta_camera_btn" translatesAutoresizingMaskIntoConstraints="NO" id="Kdx-BS-8Nj" customClass="PFImageView">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Kdx-BS-8Nj" customClass="PFImageView">
                                                     <rect key="frame" x="8" y="8" width="75" height="75"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="75" id="c7T-kf-xln"/>
@@ -61,7 +61,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IbF-TB-2eE">
-                                                    <rect key="frame" x="91" y="57" width="100" height="30"/>
+                                                    <rect key="frame" x="91" y="36.5" width="100" height="30"/>
                                                     <color key="backgroundColor" red="0.36550331120000001" green="0.79173368219999996" blue="0.80787837510000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="100" id="6YR-Rm-fv9"/>
@@ -71,23 +71,31 @@
                                                         <color key="titleColor" red="1" green="0.9999879599" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     </state>
                                                 </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dominique is interested in your Foldable Chair!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="04w-xf-dw0">
-                                                    <rect key="frame" x="91" y="8" width="276" height="41"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="04w-xf-dw0">
+                                                    <rect key="frame" x="91" y="8" width="276" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ghe-Nn-iCL">
-                                                    <rect key="frame" x="199" y="57.5" width="100" height="30"/>
+                                                    <rect key="frame" x="199" y="37" width="100" height="30"/>
                                                     <color key="backgroundColor" red="0.36550331120000001" green="0.79173368219999996" blue="0.80787837510000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <state key="normal" title="Respond">
                                                         <color key="titleColor" red="1" green="0.9999879599" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     </state>
                                                 </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tr5-1y-CRM">
+                                                    <rect key="frame" x="8" y="19.5" width="75" height="75"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="75" id="EsA-DO-lYg"/>
+                                                        <constraint firstAttribute="height" constant="75" id="Icx-Pl-QtM"/>
+                                                    </constraints>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="Kdx-BS-8Nj" secondAttribute="bottom" constant="8" id="3Z9-CS-b2S"/>
                                                 <constraint firstItem="Kdx-BS-8Nj" firstAttribute="top" secondItem="a5v-44-Ge5" secondAttribute="top" constant="8" id="MHf-wp-HlN"/>
+                                                <constraint firstItem="tr5-1y-CRM" firstAttribute="top" relation="greaterThanOrEqual" secondItem="a5v-44-Ge5" secondAttribute="top" constant="8" id="ObL-Gg-pXw"/>
                                                 <constraint firstItem="ghe-Nn-iCL" firstAttribute="leading" secondItem="IbF-TB-2eE" secondAttribute="trailing" constant="8" id="QqQ-zY-NbL"/>
                                                 <constraint firstItem="IbF-TB-2eE" firstAttribute="leading" secondItem="04w-xf-dw0" secondAttribute="leading" id="TfY-IV-B7y"/>
                                                 <constraint firstItem="ghe-Nn-iCL" firstAttribute="height" secondItem="IbF-TB-2eE" secondAttribute="height" id="VgS-f0-n3r"/>
@@ -96,6 +104,8 @@
                                                 <constraint firstItem="04w-xf-dw0" firstAttribute="leading" secondItem="Kdx-BS-8Nj" secondAttribute="trailing" constant="8" id="bJz-0A-K2X"/>
                                                 <constraint firstItem="Kdx-BS-8Nj" firstAttribute="leading" secondItem="a5v-44-Ge5" secondAttribute="leading" constant="8" id="eAo-CT-w5w"/>
                                                 <constraint firstItem="ghe-Nn-iCL" firstAttribute="top" secondItem="IbF-TB-2eE" secondAttribute="top" id="gxJ-8x-7pM"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="tr5-1y-CRM" secondAttribute="bottom" constant="8" id="kGS-Ra-hHf"/>
+                                                <constraint firstItem="tr5-1y-CRM" firstAttribute="leading" secondItem="a5v-44-Ge5" secondAttribute="leading" constant="8" id="lTD-pf-vfl"/>
                                                 <constraint firstItem="04w-xf-dw0" firstAttribute="top" secondItem="a5v-44-Ge5" secondAttribute="top" constant="8" id="mhd-1f-N3L"/>
                                                 <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="IbF-TB-2eE" secondAttribute="bottom" constant="8" id="w0R-br-oNE"/>
                                                 <constraint firstItem="ghe-Nn-iCL" firstAttribute="width" secondItem="IbF-TB-2eE" secondAttribute="width" id="xuy-6N-Vo4"/>

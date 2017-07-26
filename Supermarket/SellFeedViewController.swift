@@ -50,6 +50,7 @@ class SellFeedViewController: UIViewController, UITableViewDataSource, UITableVi
         postTableView.dataSource = self
         postTableView.delegate = self
         postTableView.separatorStyle = .singleLine
+        self.postTableView.tableFooterView = UIView()
         
         lineViewOne.backgroundColor = ourColor
         lineViewTwo.backgroundColor = UIColor.clear
