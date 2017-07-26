@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.19" systemVersion="16F2073" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13156.6" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.16"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13137.5"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -139,6 +139,14 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E6S-eN-q5G">
+                                                    <rect key="frame" x="321" y="3" width="46" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" title="Info"/>
+                                                    <connections>
+                                                        <segue destination="coq-iD-u5P" kind="show" id="Tsf-5t-EvP"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
@@ -158,6 +166,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nlw-aM-G9B" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2796" y="-106.59670164917542"/>
+        </scene>
+        <!--Storyboard Reference-->
+        <scene sceneID="Vdq-r8-4Go">
+            <objects>
+                <viewControllerPlaceholder id="coq-iD-u5P" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HwU-yG-jVD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3625" y="-72"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="atP-oI-SDc">
@@ -226,7 +242,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="insta_camera_btn" translatesAutoresizingMaskIntoConstraints="NO" id="uLJ-BU-cZc" customClass="PFImageView">
-                                                    <rect key="frame" x="0.0" y="0.0" width="16" height="16"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="uLJ-BU-cZc" secondAttribute="height" multiplier="1:1" id="Een-cV-CrB"/>
                                                     </constraints>
