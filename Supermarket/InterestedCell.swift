@@ -7,31 +7,43 @@
 //
 
 import UIKit
+import Parse
+import ParseUI
 
 class InterestedCell: UITableViewCell {
 
     @IBOutlet weak var ignoreButton: UIButton!
     @IBOutlet weak var respondButton: UIButton!
     @IBOutlet weak var messageLabel: UILabel!
+    @IBOutlet weak var postPhotoImage: PFImageView!
     
-    var notification: Notification! {
-        didSet {            
+    var notification: SupermarketNotification! {
+        didSet {
+            print ("getting to notification did set method")
             let sender = notification.sender
+            print (sender)
             var senderName: String = ""
             var postName: String = ""
             sender.fetchInBackground { (sender, error) in
                 if let error = error {
-                    print (error.localizedDescription)
+                    print ("this is the error for sender: \(error.localizedDescription)")
                 } else {
                     senderName = sender!["username"] as! String
                     
                     let post = self.notification.postObject
                     post.fetchInBackground(block: { (post, error) in
                         if let error = error {
-                            print (error.localizedDescription)
+                            print ("this is the post error \(error.localizedDescription)")
                         } else {
-                            postName = post!["name"] as! String
+                            let post = Post(post)
+                            print ("it's actually getting here")
+                            postName = post.name as! String
                             self.messageLabel.text = senderName + self.notification.message + postName
+                            let images = post.images as! [PFFile]
+                            self.postPhotoImage.file = images[0] as! PFFile
+                            self.postPhotoImage.loadInBackground()
+                            
+                            
                         }
                     })
                     

@@ -15,9 +15,15 @@ class NotificationsViewController: UIViewController, UITableViewDelegate, UITabl
 
     @IBOutlet weak var tableView: UITableView!
     
-    var notifications: [Notification] = []
+    var notifications: [SupermarketNotification] = []
     
     // var messages: [Message]? = nil
+    
+    let ourColor = UIColor.init(colorLiteralRed: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha: 1.0)
+    
+    @IBOutlet weak var lineViewOne: UIView!
+    @IBOutlet weak var lineViewTwo: UIView!
+    
     
     
     override func viewDidLoad() {
@@ -25,12 +31,12 @@ class NotificationsViewController: UIViewController, UITableViewDelegate, UITabl
 
         // Do any additional setup after loading the view.
         
-        navigationController?.navigationBar.titleTextAttributes = [
-            NSFontAttributeName: UIFont.systemFont(ofSize: 17, weight: UIFontWeightHeavy)
-        ]
-        
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-        self.navigationController?.navigationBar.shadowImage = UIImage()
+//        navigationController?.navigationBar.titleTextAttributes = [
+//            NSFontAttributeName: UIFont.systemFont(ofSize: 17, weight: UIFontWeightHeavy)
+//        ]
+//        
+//        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+//        self.navigationController?.navigationBar.shadowImage = UIImage()
         
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 100
@@ -38,7 +44,7 @@ class NotificationsViewController: UIViewController, UITableViewDelegate, UITabl
         tableView.dataSource = self
         tableView.delegate = self
         
-        var query = PFQuery(className: "Notification")
+        var query = PFQuery(className: "SupermarketNotification")
         query.whereKey("receiver", equalTo: PFUser.current())
         query.limit = 20
         
@@ -47,7 +53,7 @@ class NotificationsViewController: UIViewController, UITableViewDelegate, UITabl
                 print ("it found notifications")
                 print (notifications.count)
                 for item in notifications {
-                    let notification = Notification(item)
+                    let notification = SupermarketNotification(item)
                     self.notifications.append(notification)
                 }
                 print (self.notifications)
@@ -58,6 +64,32 @@ class NotificationsViewController: UIViewController, UITableViewDelegate, UITabl
                 print ("the posts could not be loaded into the sell feed")
             }
         }
+        
+        lineViewOne.backgroundColor = ourColor
+        lineViewTwo.backgroundColor = UIColor.clear
+        
+        segmentedControl.tintColor = UIColor.init(colorLiteralRed: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha: 1.0)
+        segmentedControl.layer.masksToBounds = true
+        
+        segmentedControl.tintColor = UIColor.clear
+        let boldTextAttributes: [NSObject : AnyObject] = [
+            NSForegroundColorAttributeName as NSObject : ourColor,
+            NSFontAttributeName as NSObject: UIFont.systemFont(ofSize: 16, weight: UIFontWeightMedium)
+        ]
+        segmentedControl.setTitleTextAttributes(boldTextAttributes, for: .selected)
+        segmentedControl.setTitleTextAttributes(boldTextAttributes, for: .normal)
+        
+        navigationController?.navigationBar.titleTextAttributes = [
+            NSFontAttributeName: UIFont.systemFont(ofSize: 17, weight: UIFontWeightHeavy)
+        ]
+        
+        navigationController?.navigationBar.barTintColor = UIColor.init(colorLiteralRed: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha: 1.0)
+        
+        navigationController?.navigationBar.barStyle = UIBarStyle.black
+        
+        navigationController?.navigationBar.tintColor = UIColor.white
+        
+        navigationController?.navigationBar.isTranslucent = false
         
         tableView.reloadData()
     }
@@ -96,10 +128,16 @@ class NotificationsViewController: UIViewController, UITableViewDelegate, UITabl
     }
 
     @IBAction func indexChanged(_ sender: Any) {
+
         if segmentedControl.selectedSegmentIndex == 0 {
             self.title = "Notifications"
+            lineViewOne.backgroundColor = ourColor
+            lineViewTwo.backgroundColor = UIColor.clear
+            
         } else {
             self.title = "Messages"
+            lineViewOne.backgroundColor = UIColor.clear
+            lineViewTwo.backgroundColor = ourColor
         }
         
         tableView.reloadData()

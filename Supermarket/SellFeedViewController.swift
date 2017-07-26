@@ -147,6 +147,7 @@ class SellFeedViewController: UIViewController, UITableViewDataSource, UITableVi
 //            }
 //        }
         
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -267,6 +268,7 @@ class SellFeedViewController: UIViewController, UITableViewDataSource, UITableVi
                 postQuery.whereKey("seller", equalTo: "_User$" + (PFUser.current()?.objectId)!)
                 postQuery.findObjectsInBackground(block: { (posts, error) in
                     if let posts = posts {
+//                        let notification = SupermarketNotification.createNotification(withSender: PFUser.current()!, withReceiver: PFUser.current()!, withMessage: " is interested in your ", withPostObject: posts[0])
                         for p in posts {
                             let post = Post(p)
                             if post.sold == true {

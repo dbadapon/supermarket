@@ -40,7 +40,7 @@
 		4D31B7181F290E4800C5240A /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D31B7171F290E4800C5240A /* CustomCell.swift */; };
 		4D3ED6C11F2598A300E532CD /* GoogleBooksAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3ED6C01F2598A300E532CD /* GoogleBooksAPI.swift */; };
 		4D44F62A1F21251B0018BF22 /* YSSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D44F6291F21251B0018BF22 /* YSSegmentedControl.swift */; };
-		4D73A2BB1F2676EE00A5ACDC /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D73A2BA1F2676EE00A5ACDC /* Notification.swift */; };
+		4D73A2BB1F2676EE00A5ACDC /* SupermarketNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D73A2BA1F2676EE00A5ACDC /* SupermarketNotification.swift */; };
 		4D73A2BD1F26772700A5ACDC /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D73A2BC1F26772700A5ACDC /* ProfileViewController.swift */; };
 		4D73A2BF1F26A15C00A5ACDC /* MarketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D73A2BE1F26A15C00A5ACDC /* MarketViewController.swift */; };
 		4DAF789E1F1ED37C00768EFD /* WalmartAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DAF789D1F1ED37C00768EFD /* WalmartAPIManager.swift */; };
@@ -115,7 +115,7 @@
 		4D3ED6C01F2598A300E532CD /* GoogleBooksAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleBooksAPI.swift; sourceTree = "<group>"; };
 		4D44F6291F21251B0018BF22 /* YSSegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YSSegmentedControl.swift; sourceTree = "<group>"; };
 		4D44F62B1F2137C10018BF22 /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
-		4D73A2BA1F2676EE00A5ACDC /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
+		4D73A2BA1F2676EE00A5ACDC /* SupermarketNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupermarketNotification.swift; sourceTree = "<group>"; };
 		4D73A2BC1F26772700A5ACDC /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		4D73A2BE1F26A15C00A5ACDC /* MarketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketViewController.swift; sourceTree = "<group>"; };
 		4DAF789D1F1ED37C00768EFD /* WalmartAPIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalmartAPIManager.swift; sourceTree = "<group>"; };
@@ -206,7 +206,7 @@
 				4D15560E1F1402CF00F70DB3 /* Post.swift */,
 				4D1556121F143BCB00F70DB3 /* Market.swift */,
 				4D1556141F143BE500F70DB3 /* Category.swift */,
-				4D73A2BA1F2676EE00A5ACDC /* Notification.swift */,
+				4D73A2BA1F2676EE00A5ACDC /* SupermarketNotification.swift */,
 				A093EE5E1F26DCBB00B0B170 /* MarketPost.swift */,
 			);
 			name = Models;
@@ -657,7 +657,7 @@
 				A0E30DE71F144EA00062B100 /* TabBarController.swift in Sources */,
 				0A5892FE1F227506001360D3 /* CreatePostViewController.swift in Sources */,
 				A07904201F13F098000E4419 /* AppDelegate.swift in Sources */,
-				4D73A2BB1F2676EE00A5ACDC /* Notification.swift in Sources */,
+				4D73A2BB1F2676EE00A5ACDC /* SupermarketNotification.swift in Sources */,
 				4DF6982E1F17ED8B008DB9D6 /* MLManager.swift in Sources */,
 				4D15560D1F1402B900F70DB3 /* User.swift in Sources */,
 				4D1556591F1540EB00F70DB3 /* DetailPictureCell.swift in Sources */,

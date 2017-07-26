@@ -9,7 +9,7 @@
 import Foundation
 import Parse
 
-class Notification {
+class SupermarketNotification {
     
     enum Field {
         case Sender, Receiver, Message, Seen, PostObject
@@ -80,13 +80,13 @@ class Notification {
     
     
     init(_ parseObject: PFObject? = nil) {
-        self.parseObject = parseObject ?? PFObject(className: "Notification")
+        self.parseObject = parseObject ?? PFObject(className: "SupermarketNotification")
     }
     
     
-    class func createNotification(withSender sender: PFUser, withReceiver receiver: PFUser, withMessage message: String, withPostObject postObject: PFObject) -> Notification {
+    class func createNotification(withSender sender: PFUser, withReceiver receiver: PFUser, withMessage message: String, withPostObject postObject: PFObject) -> SupermarketNotification {
         
-        let newNotification = Notification()
+        let newNotification = SupermarketNotification()
         newNotification.sender = sender
         newNotification.receiver = receiver
         newNotification.message = message
