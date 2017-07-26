@@ -51,10 +51,10 @@ class ChooseLocationViewController: UIViewController {
             let dvc = segue.destination as! SelectMarketViewController
             dvc.itemName = self.itemName
             dvc.coverPhoto = self.coverPhoto
-            dvc.imageOne = self.imageViewOne
-            dvc.imageTwo = self.imageViewTwo
-            dvc.imageThree = self.imageViewThree
-            dvc.imageFour = self.imageViewFour
+            dvc.imageOne = self.imageOne
+            dvc.imageTwo = self.imageTwo
+            dvc.imageThree = self.imageThree
+            dvc.imageFour = self.imageFour
             dvc.isNegotiable = self.isNegotiable
             dvc.itemPrice = self.itemPrice
             dvc.isNew = self.isNew

@@ -10,7 +10,7 @@ import UIKit
 import Parse
 import ParseUI
 import IQKeyboardManagerSwift
-import GoogleMaps
+// import GoogleMaps
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
