@@ -27,6 +27,20 @@ class ChooseLocationViewController: UIViewController {
     var longitude: Double?
     var city: String?
     
+    @IBOutlet weak var mapView: UIView!
+    
+    @IBOutlet weak var tempMap: UIImageView!
+    @IBOutlet weak var blur: UIVisualEffectView!
+    @IBOutlet weak var getLocationButton: UIButton!
+    @IBOutlet weak var zipCodeField: UITextField!
+    
+    @IBAction func didTapLocation(_ sender: Any) {
+        print("get current location")
+    }
+    
+    
+    
+    
     @IBAction func previousAction(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
@@ -37,8 +51,10 @@ class ChooseLocationViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        getLocationButton.layer.cornerRadius = 3
+        zipCodeField.layer.cornerRadius = 3
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
