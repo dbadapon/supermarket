@@ -233,5 +233,41 @@ class Post {
         return nil
     }
     
+    class func getRelativeDate(date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "E MMM d HH:mm:ss Z y"
+        // Configure output format
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .short
+        dateFormatter.timeStyle = .short
+        var createdAtString = ""
+        
+        let interval = -1 * Int(date.timeIntervalSinceNow)
+        if interval < 60 {
+            let intervalString = String(interval)
+            createdAtString = intervalString + "s"
+            
+        } else if interval < 3600 {
+            let intervalString = String(interval / 60)
+            createdAtString = intervalString + "m"
+            
+        } else if interval < 86400 {
+            let intervalString = String(interval / 60 / 60)
+            createdAtString = intervalString + "h"
+            
+        } else if interval < 604800 {
+            let intervalString = String( interval / 60 / 60 / 24)
+            createdAtString = intervalString + "d"
+            
+        } else {
+            formatter.dateStyle = .short
+            formatter.timeStyle = .none
+            // Convert Date to String
+            createdAtString = formatter.string(from: date)
+        }
+
+        return createdAtString
+    }
+    
     
 }

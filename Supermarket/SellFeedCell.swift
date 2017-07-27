@@ -21,11 +21,13 @@ class SellFeedCell: UITableViewCell {
     var post: Post! {
         didSet {
                 let date = post.parseObject.createdAt
-                let dateFormatter = DateFormatter()
-                dateFormatter.dateStyle = .short
-                dateFormatter.timeStyle = .none
-                let dateString = dateFormatter.string(from: date!)
-                
+            let dateString = Post.getRelativeDate(date: date!)
+            self.dateLabel.text = dateString
+//                let dateFormatter = DateFormatter()
+//                dateFormatter.dateStyle = .short
+//                dateFormatter.timeStyle = .none
+//                let dateString = dateFormatter.string(from: date!)
+            
                 let name = post.name
                 self.nameLabel.text = name as? String
                 
@@ -37,7 +39,7 @@ class SellFeedCell: UITableViewCell {
             self.photoImage.file = images?[0]
             self.photoImage.loadInBackground()
                 
-                self.dateLabel.text = "Posted " + dateString
+//                self.dateLabel.text = "Posted " + dateString
             
             
         }
