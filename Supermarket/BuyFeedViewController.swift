@@ -85,14 +85,14 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         
         // let categories: [String: [PFObject]]? = ["Books": [], "Kitchen": [], "Home": [], "Clothing": [], "Electronics": [], "Supplies": []]
         
-        print("about to create market!")
-        Market.createMarket(profileImage: #imageLiteral(resourceName: "yale_circle_logo.jpg"), withName: "Yale Textbook Exchange", withDescription: "Buy, sell, and exchange textbooks with other Yalies", withCategories: ["Anthropology", "Archaeology", "Architecture", "Art & Art History", "Astronomy", "Biology", "Biomedical Engineering", "Chemical Engineering", "Chemistry", "Cognitive Science", "Computer Science", "Computing and the Arts", "East Asian Studies", "East European Studies", "Economics", "Electrical Engineering", "English", "Environmental Science", "Film and Media Studies", "French", "Geology & Geophysics", "German Studies", "Global Affairs", "History", "Humanities", "Italian", "Judaic Studies", "Latin American Studies", "Linguistics", "Literature", "Mathematics", "Mechanical Engineering", "Music", "Neuroscience", "Philosophy", "Physics", "Political Science", "Portuguese", "Psychology", "Religious Studies", "Russian", "Sociology", "South Asian Studies", "Spanish", "Statistics and Data", "Theater Studies"], withLatitude: 41.3163244, withCity: "New Haven, CT", withLongitude: -72.92234309999998) { (success, error) in
-            if success {
-                print("Successfully created market!")
-            } else {
-                print("Error with yaleTextbookExchangeMarket")
-            }
-        }
+//        print("about to create market!")
+//        Market.createMarket(profileImage: #imageLiteral(resourceName: "yale_circle_logo.jpg"), withName: "Yale Textbook Exchange", withDescription: "Buy, sell, and exchange textbooks with other Yalies", withCategories: ["Anthropology", "Archaeology", "Architecture", "Art & Art History", "Astronomy", "Biology", "Biomedical Engineering", "Chemical Engineering", "Chemistry", "Cognitive Science", "Computer Science", "Computing and the Arts", "East Asian Studies", "East European Studies", "Economics", "Electrical Engineering", "English", "Environmental Science", "Film and Media Studies", "French", "Geology & Geophysics", "German Studies", "Global Affairs", "History", "Humanities", "Italian", "Judaic Studies", "Latin American Studies", "Linguistics", "Literature", "Mathematics", "Mechanical Engineering", "Music", "Neuroscience", "Philosophy", "Physics", "Political Science", "Portuguese", "Psychology", "Religious Studies", "Russian", "Sociology", "South Asian Studies", "Spanish", "Statistics and Data", "Theater Studies"], withLatitude: 41.3163244, withCity: "New Haven, CT", withLongitude: -72.92234309999998) { (success, error) in
+//            if success {
+//                print("Successfully created market!")
+//            } else {
+//                print("Error with yaleTextbookExchangeMarket")
+//            }
+//        }
         
         /*
 
