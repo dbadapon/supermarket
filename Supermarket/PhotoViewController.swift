@@ -30,7 +30,6 @@ class PhotoViewController: UIViewController {
     @IBOutlet weak var thirdResultName: UILabel!
     @IBOutlet weak var fourthResultName: UILabel!
     
-    
     var firstResultImageUrl = ""
     var secondResultImageUrl = ""
     var thirdResultImageUrl = ""

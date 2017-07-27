@@ -7,8 +7,28 @@
 //
 
 import UIKit
+import Alamofire
 
 class PriceViewController: UIViewController, UITextFieldDelegate {
+    
+    // for query using itemName
+    @IBOutlet weak var firstResultImage: UIImageView!
+    @IBOutlet weak var secondResultImage: UIImageView!
+    @IBOutlet weak var thirdResultImage: UIImageView!
+    @IBOutlet weak var fourthResultImage: UIImageView!
+    @IBOutlet weak var firstResultPrice: UILabel!
+    @IBOutlet weak var secondResultPrice: UILabel!
+    @IBOutlet weak var thirdResultPrice: UILabel!
+    @IBOutlet weak var fourthResultPrice: UILabel!
+    @IBOutlet weak var firstResultName: UILabel!
+    @IBOutlet weak var secondResultName: UILabel!
+    @IBOutlet weak var thirdResultName: UILabel!
+    @IBOutlet weak var fourthResultName: UILabel!
+    
+    var firstResultImageUrl = ""
+    var secondResultImageUrl = ""
+    var thirdResultImageUrl = ""
+    var fourthResultImageUrl = ""
     
     // to receive from preview vc
     var itemName: UITextView!
@@ -27,7 +47,7 @@ class PriceViewController: UIViewController, UITextFieldDelegate {
     
     let priceAlertController = UIAlertController(title: "Invalid Price", message: "Please set a valid price", preferredStyle: .alert)
     
-    let nextAlertController = UIAlertController(title: "No Price Set", message: "Please set a price to continue", preferredStyle: .alert)
+    let nextAlertController = UIAlertController(title: "Price Required", message: "Please set a price to continue", preferredStyle: .alert)
     
     @IBOutlet weak var inputPrice: UITextField!
     
@@ -48,6 +68,9 @@ class PriceViewController: UIViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // make query
+        checkPriceWithName(query: itemName.text)
         
         // set color of negotiable switch
         negotiableSwitch.onTintColor = textColor
@@ -80,6 +103,181 @@ class PriceViewController: UIViewController, UITextFieldDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+ 
+    func checkPriceWithName(query: String) {
+        
+        let baseURL = "http://api.walmartlabs.com/v1/search?query="
+        let endUrl = "&format=json&apiKey=yva6f6yprac42rsp44tjvxjg"
+        
+        let newString = query.replacingOccurrences(of: " ", with: "+")
+        
+        print (newString)
+        let wholeUrl = baseURL + newString + endUrl
+        
+        request(wholeUrl, method: .get).validate().responseJSON { (response) in
+            if response.result.isSuccess,
+                let responseDictionary = response.result.value as? [String: Any] {
+                
+                let numberOfItems = responseDictionary["numItems"] as! Int
+                
+                // number of items from query
+                if numberOfItems == 0 {
+                    print ("it's not getting a response")
+                    print (response.result.error!)
+                }
+                // at least one result from query
+                if numberOfItems > 0 {
+                    let itemArray = responseDictionary["items"] as! [[String: Any]]
+                    
+                    let item = itemArray[0]
+                    
+                    let imageEntities = item["imageEntities"] as! [[String: Any]]
+                    var realEntity: [String: Any]? = nil
+                    for entity in imageEntities {
+                        let entityType = entity["entityType"] as! String
+                        if entityType == "PRIMARY" {
+                            realEntity = entity
+                            break
+                        }
+                    }
+                    
+                    if realEntity == nil {
+                        realEntity = imageEntities[0]
+                    }
+                    
+                    let imageUrl = realEntity!["largeImage"] as! String
+                    self.firstResultImageUrl = imageUrl
+                    print ("THIS IS THE IMAGE URL: \(imageUrl)")
+                    
+                    if self.firstResultImageUrl != "" {
+                        let request: URLRequest = URLRequest(url: URL(string: self.firstResultImageUrl)!)
+                        NSURLConnection.sendAsynchronousRequest(request, queue: OperationQueue.main, completionHandler: {(response: URLResponse!,data: Data!,error: Error!) -> Void in
+                            if error == nil {
+                                self.firstResultImage.image = UIImage(data: data)
+                            }
+                        })
+                    }
+                    
+                    self.firstResultName.text = String(describing: item["name"]!)
+                    self.firstResultPrice.text = "$" + String(describing: item["salePrice"]!)
+                    print (item["salePrice"]!)
+                }
+                // more than one result from query
+                if numberOfItems > 1 {
+                    let itemArray = responseDictionary["items"] as! [[String: Any]]
+                    
+                    let item = itemArray[1]
+                    
+                    let imageEntities = item["imageEntities"] as! [[String: Any]]
+                    var realEntity: [String: Any]? = nil
+                    for entity in imageEntities {
+                        let entityType = entity["entityType"] as! String
+                        if entityType == "PRIMARY" {
+                            realEntity = entity
+                            break
+                        }
+                    }
+                    
+                    if realEntity == nil {
+                        realEntity = imageEntities[0]
+                    }
+                    
+                    let imageUrl = realEntity!["largeImage"] as! String
+                    self.secondResultImageUrl = imageUrl
+                    print ("THIS IS THE IMAGE URL: \(imageUrl)")
+                    
+                    if self.secondResultImageUrl != "" {
+                        let request: URLRequest = URLRequest(url: URL(string: self.secondResultImageUrl)!)
+                        NSURLConnection.sendAsynchronousRequest(request, queue: OperationQueue.main, completionHandler: {(response: URLResponse!,data: Data!,error: Error!) -> Void in
+                            if error == nil {
+                                self.secondResultImage.image = UIImage(data: data)
+                            }
+                        })
+                    }
+                    
+                    self.secondResultName.text = String(describing: item["name"]!)
+                    self.secondResultPrice.text = "$" + String(describing: item["salePrice"]!)
+                    print (item["salePrice"]!)
+                }
+                // more than two results from query
+                if numberOfItems > 2 {
+                    let itemArray = responseDictionary["items"] as! [[String: Any]]
+                    
+                    let item = itemArray[2]
+                    
+                    let imageEntities = item["imageEntities"] as! [[String: Any]]
+                    var realEntity: [String: Any]? = nil
+                    for entity in imageEntities {
+                        let entityType = entity["entityType"] as! String
+                        if entityType == "PRIMARY" {
+                            realEntity = entity
+                            break
+                        }
+                    }
+                    
+                    if realEntity == nil {
+                        realEntity = imageEntities[0]
+                    }
+                    
+                    let imageUrl = realEntity!["largeImage"] as! String
+                    self.thirdResultImageUrl = imageUrl
+                    print ("THIS IS THE IMAGE URL: \(imageUrl)")
+                    
+                    if self.thirdResultImageUrl != "" {
+                        let request: URLRequest = URLRequest(url: URL(string: self.thirdResultImageUrl)!)
+                        NSURLConnection.sendAsynchronousRequest(request, queue: OperationQueue.main, completionHandler: {(response: URLResponse!,data: Data!,error: Error!) -> Void in
+                            if error == nil {
+                                self.thirdResultImage.image = UIImage(data: data)
+                            }
+                        })
+                    }
+                    
+                    self.thirdResultName.text = String(describing: item["name"]!)
+                    self.thirdResultPrice.text = "$" + String(describing: item["salePrice"]!)
+                    print (item["salePrice"]!)
+                }
+                // more than three results from query
+                if numberOfItems > 3 {
+                    let itemArray = responseDictionary["items"] as! [[String: Any]]
+                    
+                    let item = itemArray[3]
+                    
+                    let imageEntities = item["imageEntities"] as! [[String: Any]]
+                    var realEntity: [String: Any]? = nil
+                    for entity in imageEntities {
+                        let entityType = entity["entityType"] as! String
+                        if entityType == "PRIMARY" {
+                            realEntity = entity
+                            break
+                        }
+                    }
+                    
+                    if realEntity == nil {
+                        realEntity = imageEntities[0]
+                    }
+                    
+                    let imageUrl = realEntity!["largeImage"] as! String
+                    self.fourthResultImageUrl = imageUrl
+                    print ("THIS IS THE IMAGE URL: \(imageUrl)")
+                    
+                    if self.fourthResultImageUrl != "" {
+                        let request: URLRequest = URLRequest(url: URL(string: self.fourthResultImageUrl)!)
+                        NSURLConnection.sendAsynchronousRequest(request, queue: OperationQueue.main, completionHandler: {(response: URLResponse!,data: Data!,error: Error!) -> Void in
+                            if error == nil {
+                                self.fourthResultImage.image = UIImage(data: data)
+                            }
+                        })
+                    }
+                    
+                    self.fourthResultName.text = String(describing: item["name"]!)
+                    self.fourthResultPrice.text = "$" + String(describing: item["salePrice"]!)
+                    print (item["salePrice"]!)
+                }
+            }
+        }
+    }
+
     
     //Calls this function when the tap is recognized.
     func dismissKeyboard() {
