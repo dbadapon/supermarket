@@ -23,8 +23,9 @@ class PreviewViewController: UIViewController, UITextViewDelegate, UIGestureReco
     // color to use for app
     let textColor = UIColor(red: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha:1.0)
     
-    // currently not used, but can add this somewhere
     let nextAlertController = UIAlertController(title: "Invalid Action", message: "Cover photo is required", preferredStyle: .alert)
+    
+    let nameRequiredAlertController = UIAlertController(title: "Name Required", message: "Please enter an item name to continue", preferredStyle: .alert)
     
     let cameraSelectAlertController = UIAlertController(title: "Camera NOT available", message: "Please select Photo Library", preferredStyle: .alert)
     
@@ -56,7 +57,13 @@ class PreviewViewController: UIViewController, UITextViewDelegate, UIGestureReco
     }
     
     @IBAction func nextAction(_ sender: UIButton) {
-        performSegue(withIdentifier: "toPriceSegue", sender: self)
+        if itemName == nil || itemName.text == "" {
+            self.present(self.nameRequiredAlertController, animated: true)
+        } else if coverPhoto.image == #imageLiteral(resourceName: "cameraMask.png") {
+            self.present(self.nextAlertController, animated: true)
+        } else {
+            performSegue(withIdentifier: "toPriceSegue", sender: self)
+        }
     }
     
     @IBOutlet weak var itemName: UITextView!
@@ -152,6 +159,9 @@ class PreviewViewController: UIViewController, UITextViewDelegate, UIGestureReco
         
         // add the OK action to the alert controller
         nameAlertController.addAction(OKAction)
+        
+        // add the OK action to the alert controller
+        nameRequiredAlertController.addAction(OKAction)
         
         /*
         // code for keyboard to make screen scroll the old method
