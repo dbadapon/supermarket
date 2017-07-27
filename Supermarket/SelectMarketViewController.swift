@@ -87,8 +87,6 @@ class SelectMarketViewController: UIViewController {
                 }
             }
         }
-        
-        
     }
 
     override func viewDidLoad() {

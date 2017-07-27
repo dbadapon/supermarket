@@ -108,10 +108,9 @@ class PhotoViewController: UIViewController {
         
         let baseURL = "http://api.walmartlabs.com/v1/search?query="
         let endUrl = "&format=json&apiKey=yva6f6yprac42rsp44tjvxjg"
-        
         let newString = query.replacingOccurrences(of: " ", with: "+")
         
-        print (newString)
+        // print (newString)
         let wholeUrl = baseURL + newString + endUrl
         
         request(wholeUrl, method: .get).validate().responseJSON { (response) in
@@ -278,6 +277,7 @@ class PhotoViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
         if segue.identifier == "toPreviewSegue" {
             let dvc = segue.destination as! PreviewViewController
             dvc.backgroundImage = self.backgroundImage

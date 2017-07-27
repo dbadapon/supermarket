@@ -74,6 +74,7 @@ class DescriptionViewController: UIViewController, UITextViewDelegate {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
         if segue.identifier == "toChooseLocationSegue" {
             if self.conditionSegCtrl.selectedSegmentIndex == 1 {
                 self.isNew = true
