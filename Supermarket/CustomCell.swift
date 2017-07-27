@@ -13,7 +13,7 @@ class CustomCell: UITableViewCell {
     
     init(frame: CGRect, title: String) {
         super.init(style: UITableViewCellStyle.default, reuseIdentifier: "cell")
-        let frame = CGRect(x: 0, y: 0, width: 100, height: 40)
+        let frame = CGRect(x: 8, y: 0, width: 250, height: 40)
         cellLabel = UILabel(frame: frame)
         cellLabel.textColor = UIColor.black
         cellLabel.font = UIFont(name: "Avenir", size: 16)

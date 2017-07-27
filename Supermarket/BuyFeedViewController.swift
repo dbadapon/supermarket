@@ -247,9 +247,10 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         
         
         var dropDownViews: [UIView] = []
-        let frame1 = CGRect(x: 0, y: 64, width: self.view.frame.width, height: 200)
+        let frame1 = CGRect(x: 0, y: 64, width: self.view.frame.width, height: 135)
+        let frame2 = CGRect(x: 0, y: 64, width: self.view.frame.width, height: 250)
         filterTableView = UITableView(frame: frame1)
-        categoryTableView = UITableView(frame: frame1)
+        categoryTableView = UITableView(frame: frame2)
        
         
         dropDownViews.append(filterTableView!)
