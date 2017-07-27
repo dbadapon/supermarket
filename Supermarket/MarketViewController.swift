@@ -26,14 +26,18 @@ class MarketViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "MarketBackground.jpg")!)
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background")!)
         
         inviteFriendsButton.layer.cornerRadius = inviteFriendsButton.frame.width * 0.03
         inviteFriendsButton.layer.masksToBounds = true
-        inviteFriendsButton.setTitleColor(UIColor.clear , for: .normal)
+        inviteFriendsButton.backgroundColor = UIColor.white
         
         leaveMarketButton.layer.cornerRadius = leaveMarketButton.frame.width * 0.03
         leaveMarketButton.layer.masksToBounds = true
+        leaveMarketButton.backgroundColor = .clear
+        leaveMarketButton.layer.cornerRadius = 5
+        leaveMarketButton.layer.borderWidth = 1
+        leaveMarketButton.layer.borderColor = UIColor.white.cgColor
         
         marketProfileImage.layer.cornerRadius = marketProfileImage.frame.width * 0.5
         marketProfileImage.layer.masksToBounds = true
