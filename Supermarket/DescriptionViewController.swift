@@ -50,7 +50,6 @@ class DescriptionViewController: UIViewController, UITextViewDelegate {
         let font = UIFont.systemFont(ofSize: 24, weight: UIFontWeightSemibold)
         conditionSegCtrl.setTitleTextAttributes([NSFontAttributeName: font], for: .normal)
         
- 
     }
 
     override func didReceiveMemoryWarning() {
@@ -76,6 +75,12 @@ class DescriptionViewController: UIViewController, UITextViewDelegate {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toChooseLocationSegue" {
+            if self.conditionSegCtrl.selectedSegmentIndex == 1 {
+                self.isNew = true
+            } else {
+                self.isNew = false
+            }
+            
             let dvc = segue.destination as! ChooseLocationViewController
             dvc.itemName = self.itemName
             dvc.coverPhoto = self.coverPhoto

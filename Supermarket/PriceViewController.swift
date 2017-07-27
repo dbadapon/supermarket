@@ -73,12 +73,6 @@ class PriceViewController: UIViewController, UITextFieldDelegate {
         // add the OK action to the alert controller
         priceAlertController.addAction(OKAction)
         nextAlertController.addAction(OKAction)
-        
-        if negotiableSwitch.isOn {
-            isNegotiable = true
-        } else {
-            isNegotiable = false
-        }
 
     }
 
@@ -103,6 +97,7 @@ class PriceViewController: UIViewController, UITextFieldDelegate {
         if count <= 38 && num != nil
         {
             // value is okay
+            self.itemPrice = num
             
             let price = Double(inputPrice.text!)! as NSNumber
             let formatter = NumberFormatter()
@@ -127,6 +122,12 @@ class PriceViewController: UIViewController, UITextFieldDelegate {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toDescriptionSegue" {
+            if self.negotiableSwitch.isOn {
+                self.isNegotiable = true
+            } else {
+                self.isNegotiable = false
+            }
+            
             let dvc = segue.destination as! DescriptionViewController
             dvc.itemName = self.itemName
             dvc.coverPhoto = self.coverPhoto

@@ -34,14 +34,12 @@ class SelectMarketViewController: UIViewController {
     }
     
     @IBAction func postAction(_ sender: UIButton) {
-        // performSegue(withIdentifier: "toChooseLocationSegue", sender: self)
         
         // let's hard-code the latitude and longitude for now... and city lol
         latitude = 33.640495
         longitude = -117.844296
         city = "Irvine, CA"
-        isNew = true
-        itemPrice = 25.70
+        //isNew = true
         
         var tempImageList: [UIImage] = []
         tempImageList.append(coverPhoto.image!) // should I force unwrap this?
