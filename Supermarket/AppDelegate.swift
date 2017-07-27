@@ -53,7 +53,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // This is the only line of code you need to manually add
         // in order for IQKeybaordManager to work. Thats it.
+//        var sharedKeyboardManager = IQKeyboardManager.sharedManager()
+//        sharedKeyboardManager.enable = false
+//        sharedKeyboardManager.toolbarTintColor = UIColor.black
+//        sharedKeyboardManager.toolbarDoneBarButtonItemText = "Done"
+        
         IQKeyboardManager.sharedManager().enable = true
+//        IQKeyboardManager.sharedManager().enableAutoToolbar = true
         
         // Initialize Parse
         // Set applicationId and server based on the values in the Heroku settings.
