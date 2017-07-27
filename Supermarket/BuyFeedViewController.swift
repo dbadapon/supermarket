@@ -79,6 +79,7 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         
         postTableView.dataSource = self
         postTableView.delegate = self
+        postTableView.tableFooterView = UIView()
         
         
         // create Rice market; comment out after running once

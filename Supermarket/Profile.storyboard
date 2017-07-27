@@ -22,7 +22,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Xqw-DN-5E6" customClass="PFImageView">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Xqw-DN-5E6" customClass="PFImageView">
                                 <rect key="frame" x="66" y="114" width="242" height="241"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Xqw-DN-5E6" secondAttribute="height" multiplier="1:1" constant="1" id="MPP-Mo-mtc"/>

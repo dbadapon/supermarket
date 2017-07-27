@@ -28,10 +28,11 @@ class MarketViewController: UIViewController {
         // Do any additional setup after loading the view.
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "MarketBackground.jpg")!)
         
-        inviteFriendsButton.layer.cornerRadius = inviteFriendsButton.frame.width * 0.05
+        inviteFriendsButton.layer.cornerRadius = inviteFriendsButton.frame.width * 0.03
         inviteFriendsButton.layer.masksToBounds = true
+        inviteFriendsButton.setTitleColor(UIColor.clear , for: .normal)
         
-        leaveMarketButton.layer.cornerRadius = leaveMarketButton.frame.width * 0.05
+        leaveMarketButton.layer.cornerRadius = leaveMarketButton.frame.width * 0.03
         leaveMarketButton.layer.masksToBounds = true
         
         marketProfileImage.layer.cornerRadius = marketProfileImage.frame.width * 0.5
@@ -43,9 +44,8 @@ class MarketViewController: UIViewController {
         
         
         marketNameLabel.text = market.name
-        inviteFriendsButton.setTitleColor(UIColor.clear, for: .disabled)
         
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+    self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.view.backgroundColor = .clear

@@ -1,0 +1,271 @@
+2017-07-27 17:53:14 +0000  Initial pipeline context: <IDEDistributionProcessingPipelineContext: 0x7fbbc869f3b0; archive(resolved)='<IDEArchive: 0x7fbbe60d8da0>', distributionTask(resolved)='2', distributionMethod(resolved)='<IDEDistributionMethodDevelopmentSignedMac: 0x7fbbc7bf1fe0>', team(resolved)='<IDEProvisioningDisambiguatableBasicTeam: 0x7fbbe0546030; teamID='CWH8WCS8Y4', teamName='Alvin Magee (Personal Team - awm5@rice.edu)', username='awm5@rice.edu', teamType='Personal Team', isFreeProvisioningTeam='1'>'>
+	Chain (10, self inclusive):
+	<IDEDistributionProcessingPipelineContext: 0x7fbbc869f3b0; archive = '(null)', distributionMethod='(null)', team='(null)'>
+	<IDEDistributionProcessingPipelineContext: 0x7fbbc86d5480; archive = '(null)', distributionMethod='(null)', team='(null)'>
+	<IDEDistributionContext: 0x7fbbc877ed70; archive = '(null)', distributionMethod='(null)', team='(null)'>
+	<IDEDistributionContext: 0x7fbbc80c56b0; archive = '(null)', distributionMethod='(null)', team='(null)'>
+	<IDEDistributionContext: 0x7fbbc7e45580; archive = '(null)', distributionMethod='(null)', team='(null)'>
+	<IDEDistributionContext: 0x7fbbc7fb3610; archive = '(null)', distributionMethod='(null)', team='(null)'>
+	<IDEDistributionContext: 0x7fbbc7fc4950; archive = '(null)', distributionMethod='(null)', team='<IDEProvisioningDisambiguatableBasicTeam: 0x7fbbe0546030; teamID='CWH8WCS8Y4', teamName='Alvin Magee (Personal Team - awm5@rice.edu)', username='awm5@rice.edu', teamType='Personal Team', isFreeProvisioningTeam='1'>'>
+	<IDEDistributionContext: 0x7fbbc816b4d0; archive = '(null)', distributionMethod='(null)', team='<null>'>
+	<IDEDistributionContext: 0x7fbbc6c88000; archive = '(null)', distributionMethod='<IDEDistributionMethodDevelopmentSignedMac: 0x7fbbc7bf1fe0>', team='(null)'>
+	<IDEDistributionContext: 0x7fbbc79ab8d0; archive = '<IDEArchive: 0x7fbbe60d8da0>', distributionMethod='(null)', team='(null)'>
+</IDEDistributionProcessingPipelineContext: 0x7fbbc869f3b0>
+2017-07-27 17:53:14 +0000  Processing step: IDEDistributionCreateDestRootStep
+2017-07-27 17:53:14 +0000  Processing step: IDEDistributionCopyItemStep
+2017-07-27 17:53:14 +0000  Running /usr/bin/ditto '-V' '/Users/alvinmagee/Library/Developer/Xcode/Archives/2017-07-27/BuildTimeAnalyzer 7-27-17, 10.51 AM.xcarchive/Products/Applications/BuildTimeAnalyzer.app' '/var/folders/dj/n2fsyhvs1dx9dqcc655963vdp6m9v7/T/XcodeDistPipeline.v6b/Root/Applications/BuildTimeAnalyzer.app'
+2017-07-27 17:53:14 +0000  >>> Copying /Users/alvinmagee/Library/Developer/Xcode/Archives/2017-07-27/BuildTimeAnalyzer 7-27-17, 10.51 AM.xcarchive/Products/Applications/BuildTimeAnalyzer.app 
+2017-07-27 17:53:14 +0000  copying file ./Contents/_CodeSignature/CodeResources ... 
+2017-07-27 17:53:14 +0000  8368 bytes for ./Contents/_CodeSignature/CodeResources
+2017-07-27 17:53:14 +0000  copying file ./Contents/Frameworks/libswiftAppKit.dylib ... 
+2017-07-27 17:53:14 +0000  134352 bytes for ./Contents/Frameworks/libswiftAppKit.dylib
+2017-07-27 17:53:14 +0000  copying file ./Contents/Frameworks/libswiftCore.dylib ... 
+2017-07-27 17:53:14 +0000  6723072 bytes for ./Contents/Frameworks/libswiftCore.dylib
+2017-07-27 17:53:14 +0000  copying file ./Contents/Frameworks/libswiftCoreData.dylib ... 
+89024 bytes for ./Contents/Frameworks/libswiftCoreData.dylib
+copying file ./Contents/Frameworks/libswiftCoreFoundation.dylib ... 
+2017-07-27 17:53:14 +0000  31600 bytes for ./Contents/Frameworks/libswiftCoreFoundation.dylib
+copying file ./Contents/Frameworks/libswiftCoreGraphics.dylib ... 
+2017-07-27 17:53:14 +0000  148688 bytes for ./Contents/Frameworks/libswiftCoreGraphics.dylib
+2017-07-27 17:53:14 +0000  copying file ./Contents/Frameworks/libswiftCoreImage.dylib ... 
+2017-07-27 17:53:14 +0000  35776 bytes for ./Contents/Frameworks/libswiftCoreImage.dylib
+2017-07-27 17:53:14 +0000  copying file ./Contents/Frameworks/libswiftDarwin.dylib ... 
+2017-07-27 17:53:14 +0000  71968 bytes for ./Contents/Frameworks/libswiftDarwin.dylib
+copying file ./Contents/Frameworks/libswiftDispatch.dylib ... 
+2017-07-27 17:53:14 +0000  307936 bytes for ./Contents/Frameworks/libswiftDispatch.dylib
+2017-07-27 17:53:14 +0000  copying file ./Contents/Frameworks/libswiftFoundation.dylib ... 
+2017-07-27 17:53:14 +0000  2760096 bytes for ./Contents/Frameworks/libswiftFoundation.dylib
+copying file ./Contents/Frameworks/libswiftIOKit.dylib ... 
+2017-07-27 17:53:14 +0000  35808 bytes for ./Contents/Frameworks/libswiftIOKit.dylib
+2017-07-27 17:53:14 +0000  copying file ./Contents/Frameworks/libswiftObjectiveC.dylib ... 
+2017-07-27 17:53:14 +0000  52448 bytes for ./Contents/Frameworks/libswiftObjectiveC.dylib
+2017-07-27 17:53:14 +0000  copying file ./Contents/Frameworks/libswiftQuartzCore.dylib ... 
+2017-07-27 17:53:14 +0000  48240 bytes for ./Contents/Frameworks/libswiftQuartzCore.dylib
+2017-07-27 17:53:14 +0000  copying file ./Contents/Frameworks/libswiftXPC.dylib ... 
+2017-07-27 17:53:14 +0000  35888 bytes for ./Contents/Frameworks/libswiftXPC.dylib
+2017-07-27 17:53:14 +0000  copying file ./Contents/Info.plist ... 
+2017-07-27 17:53:14 +0000  1596 bytes for ./Contents/Info.plist
+2017-07-27 17:53:14 +0000  copying file ./Contents/MacOS/BuildTimeAnalyzer ... 
+2017-07-27 17:53:14 +0000  285808 bytes for ./Contents/MacOS/BuildTimeAnalyzer
+2017-07-27 17:53:14 +0000  copying file ./Contents/PkgInfo ... 
+2017-07-27 17:53:14 +0000  8 bytes for ./Contents/PkgInfo
+copying file ./Contents/Resources/AppIcon.icns ... 
+2017-07-27 17:53:14 +0000  316672 bytes for ./Contents/Resources/AppIcon.icns
+copying file ./Contents/Resources/archived-expanded-entitlements.xcent ... 
+2017-07-27 17:53:14 +0000  243 bytes for ./Contents/Resources/archived-expanded-entitlements.xcent
+2017-07-27 17:53:14 +0000  copying file ./Contents/Resources/Assets.car ... 
+2017-07-27 17:53:14 +0000  26902 bytes for ./Contents/Resources/Assets.car
+2017-07-27 17:53:14 +0000  copying file ./Contents/Resources/Main.storyboardc/Info.plist ... 
+2017-07-27 17:53:14 +0000  445 bytes for ./Contents/Resources/Main.storyboardc/Info.plist
+2017-07-27 17:53:14 +0000  copying file ./Contents/Resources/Main.storyboardc/MainMenu.nib ... 
+2017-07-27 17:53:14 +0000  8686 bytes for ./Contents/Resources/Main.storyboardc/MainMenu.nib
+2017-07-27 17:53:14 +0000  copying file ./Contents/Resources/Main.storyboardc/NSWindowController-B8D-0N-5wS.nib ... 
+2017-07-27 17:53:14 +0000  4054 bytes for ./Contents/Resources/Main.storyboardc/NSWindowController-B8D-0N-5wS.nib
+copying file ./Contents/Resources/Main.storyboardc/XfG-lQ-9wD-view-TUB-te-74g.nib ... 
+2017-07-27 17:53:14 +0000  47802 bytes for ./Contents/Resources/Main.storyboardc/XfG-lQ-9wD-view-TUB-te-74g.nib
+2017-07-27 17:53:14 +0000  /usr/bin/ditto exited with 0
+2017-07-27 17:53:14 +0000  Processing step: IDEDistributionEmbedProfileStep
+2017-07-27 17:53:14 +0000  Skipping profile for item: <IDEDistributionItem: 0x7fbbc7d6f450 'com.apple.dt.runtime.swiftAppKit' '<DVTFilePath:0x7fbbe49f2470:'/Users/alvinmagee/Library/Developer/Xcode/Archives/2017-07-27/BuildTimeAnalyzer 7-27-17, 10.51 AM.xcarchive/Products/Applications/BuildTimeAnalyzer.app/Contents/Frameworks/libswiftAppKit.dylib'>'>
+2017-07-27 17:53:14 +0000  Skipping profile for item: <IDEDistributionItem: 0x7fbbc7fb8750 'com.apple.dt.runtime.swiftCore' '<DVTFilePath:0x7fbbc7850000:'/Users/alvinmagee/Library/Developer/Xcode/Archives/2017-07-27/BuildTimeAnalyzer 7-27-17, 10.51 AM.xcarchive/Products/Applications/BuildTimeAnalyzer.app/Contents/Frameworks/libswiftCore.dylib'>'>
+2017-07-27 17:53:14 +0000  Skipping profile for item: <IDEDistributionItem: 0x7fbbc7ece080 'com.apple.dt.runtime.swiftCoreData' '<DVTFilePath:0x7fbbc7981870:'/Users/alvinmagee/Library/Developer/Xcode/Archives/2017-07-27/BuildTimeAnalyzer 7-27-17, 10.51 AM.xcarchive/Products/Applications/BuildTimeAnalyzer.app/Contents/Frameworks/libswiftCoreData.dylib'>'>
+2017-07-27 17:53:14 +0000  Skipping profile for item: <IDEDistributionItem: 0x7fbbc81dd2e0 'com.apple.dt.runtime.swiftCoreFoundation' '<DVTFilePath:0x7fbbc7962700:'/Users/alvinmagee/Library/Developer/Xcode/Archives/2017-07-27/BuildTimeAnalyzer 7-27-17, 10.51 AM.xcarchive/Products/Applications/BuildTimeAnalyzer.app/Contents/Frameworks/libswiftCoreFoundation.dylib'>'>
+2017-07-27 17:53:14 +0000  Skipping profile for item: <IDEDistributionItem: 0x7fbbc8192130 'com.apple.dt.runtime.swiftCoreGraphics' '<DVTFilePath:0x7fbbe64872f0:'/Users/alvinmagee/Library/Developer/Xcode/Archives/2017-07-27/BuildTimeAnalyzer 7-27-17, 10.51 AM.xcarchive/Products/Applications/BuildTimeAnalyzer.app/Contents/Frameworks/libswiftCoreGraphics.dylib'>'>
+2017-07-27 17:53:14 +0000  Skipping profile for item: <IDEDistributionItem: 0x7fbbc7dcc7b0 'com.apple.dt.runtime.swiftCoreImage' '<DVTFilePath:0x7fbbc7983660:'/Users/alvinmagee/Library/Developer/Xcode/Archives/2017-07-27/BuildTimeAnalyzer 7-27-17, 10.51 AM.xcarchive/Products/Applications/BuildTimeAnalyzer.app/Contents/Frameworks/libswiftCoreImage.dylib'>'>
+2017-07-27 17:53:14 +0000  Skipping profile for item: <IDEDistributionItem: 0x7fbbc81f72f0 'com.apple.dt.runtime.swiftDarwin' '<DVTFilePath:0x7fbbc79bf0e0:'/Users/alvinmagee/Library/Developer/Xcode/Archives/2017-07-27/BuildTimeAnalyzer 7-27-17, 10.51 AM.xcarchive/Products/Applications/BuildTimeAnalyzer.app/Contents/Frameworks/libswiftDarwin.dylib'>'>
+2017-07-27 17:53:14 +0000  Skipping profile for item: <IDEDistributionItem: 0x7fbbc7f0e600 'com.apple.dt.runtime.swiftDispatch' '<DVTFilePath:0x7fbbc797f2f0:'/Users/alvinmagee/Library/Developer/Xcode/Archives/2017-07-27/BuildTimeAnalyzer 7-27-17, 10.51 AM.xcarchive/Products/Applications/BuildTimeAnalyzer.app/Contents/Frameworks/libswiftDispatch.dylib'>'>
+2017-07-27 17:53:14 +0000  Skipping profile for item: <IDEDistributionItem: 0x7fbbc794c550 'com.apple.dt.runtime.swiftFoundation' '<DVTFilePath:0x7fbbe6460250:'/Users/alvinmagee/Library/Developer/Xcode/Archives/2017-07-27/BuildTimeAnalyzer 7-27-17, 10.51 AM.xcarchive/Products/Applications/BuildTimeAnalyzer.app/Contents/Frameworks/libswiftFoundation.dylib'>'>
+2017-07-27 17:53:14 +0000  Skipping profile for item: <IDEDistributionItem: 0x7fbbc79b7ba0 'com.apple.dt.runtime.swiftIOKit' '<DVTFilePath:0x7fbbc7983890:'/Users/alvinmagee/Library/Developer/Xcode/Archives/2017-07-27/BuildTimeAnalyzer 7-27-17, 10.51 AM.xcarchive/Products/Applications/BuildTimeAnalyzer.app/Contents/Frameworks/libswiftIOKit.dylib'>'>
+2017-07-27 17:53:14 +0000  Skipping profile for item: <IDEDistributionItem: 0x7fbbc7d212a0 'com.apple.dt.runtime.swiftObjectiveC' '<DVTFilePath:0x7fbbc7974b40:'/Users/alvinmagee/Library/Developer/Xcode/Archives/2017-07-27/BuildTimeAnalyzer 7-27-17, 10.51 AM.xcarchive/Products/Applications/BuildTimeAnalyzer.app/Contents/Frameworks/libswiftObjectiveC.dylib'>'>
+2017-07-27 17:53:14 +0000  Skipping profile for item: <IDEDistributionItem: 0x7fbbc79afdb0 'com.apple.dt.runtime.swiftQuartzCore' '<DVTFilePath:0x7fbbc7971950:'/Users/alvinmagee/Library/Developer/Xcode/Archives/2017-07-27/BuildTimeAnalyzer 7-27-17, 10.51 AM.xcarchive/Products/Applications/BuildTimeAnalyzer.app/Contents/Frameworks/libswiftQuartzCore.dylib'>'>
+2017-07-27 17:53:14 +0000  Skipping profile for item: <IDEDistributionItem: 0x7fbbc6f62d30 'com.apple.dt.runtime.swiftXPC' '<DVTFilePath:0x7fbbe6477910:'/Users/alvinmagee/Library/Developer/Xcode/Archives/2017-07-27/BuildTimeAnalyzer 7-27-17, 10.51 AM.xcarchive/Products/Applications/BuildTimeAnalyzer.app/Contents/Frameworks/libswiftXPC.dylib'>'>
+2017-07-27 17:53:14 +0000  Skipping profile for item: <IDEDistributionItem: 0x7fbbc81ecb80 'uk.co.canemedia.BuildTimeAnalyzer' '<DVTFilePath:0x7fbbc806b3c0:'/Users/alvinmagee/Library/Developer/Xcode/Archives/2017-07-27/BuildTimeAnalyzer 7-27-17, 10.51 AM.xcarchive/Products/Applications/BuildTimeAnalyzer.app'>'>
+2017-07-27 17:53:14 +0000  Processing step: IDEDistributionAppThinningPlistStep
+2017-07-27 17:53:14 +0000  Processing step: IDEDistributionCompileBitcodeStep
+2017-07-27 17:53:14 +0000  Skipping step: IDEDistributionCompileBitcodeStep because it said so
+2017-07-27 17:53:14 +0000  Processing step: IDEDistributionCodeSlimmingStep
+2017-07-27 17:53:14 +0000  Processing step: IDEDistributionCopyBCSymbolMapsStep
+2017-07-27 17:53:14 +0000  Skipping step: IDEDistributionCopyBCSymbolMapsStep because it said so
+2017-07-27 17:53:14 +0000  Skipping step: IDEDistributionCopyBCSymbolMapsStep because it said so
+2017-07-27 17:53:14 +0000  Skipping step: IDEDistributionCopyBCSymbolMapsStep because it said so
+2017-07-27 17:53:14 +0000  Skipping step: IDEDistributionCopyBCSymbolMapsStep because it said so
+2017-07-27 17:53:14 +0000  Skipping step: IDEDistributionCopyBCSymbolMapsStep because it said so
+2017-07-27 17:53:14 +0000  Skipping step: IDEDistributionCopyBCSymbolMapsStep because it said so
+2017-07-27 17:53:14 +0000  Skipping step: IDEDistributionCopyBCSymbolMapsStep because it said so
+2017-07-27 17:53:14 +0000  Skipping step: IDEDistributionCopyBCSymbolMapsStep because it said so
+2017-07-27 17:53:14 +0000  Skipping step: IDEDistributionCopyBCSymbolMapsStep because it said so
+2017-07-27 17:53:14 +0000  Skipping step: IDEDistributionCopyBCSymbolMapsStep because it said so
+2017-07-27 17:53:14 +0000  Skipping step: IDEDistributionCopyBCSymbolMapsStep because it said so
+2017-07-27 17:53:14 +0000  Skipping step: IDEDistributionCopyBCSymbolMapsStep because it said so
+2017-07-27 17:53:14 +0000  Skipping step: IDEDistributionCopyBCSymbolMapsStep because it said so
+2017-07-27 17:53:14 +0000  Skipping step: IDEDistributionCopyBCSymbolMapsStep because it said so
+2017-07-27 17:53:14 +0000  Processing step: IDEDistributionSymbolsStep
+2017-07-27 17:53:14 +0000  Skipping step: IDEDistributionSymbolsStep because it said so
+2017-07-27 17:53:14 +0000  Skipping step: IDEDistributionSymbolsStep because it said so
+2017-07-27 17:53:14 +0000  Skipping step: IDEDistributionSymbolsStep because it said so
+2017-07-27 17:53:14 +0000  Skipping step: IDEDistributionSymbolsStep because it said so
+2017-07-27 17:53:14 +0000  Skipping step: IDEDistributionSymbolsStep because it said so
+2017-07-27 17:53:14 +0000  Skipping step: IDEDistributionSymbolsStep because it said so
+2017-07-27 17:53:14 +0000  Skipping step: IDEDistributionSymbolsStep because it said so
+2017-07-27 17:53:14 +0000  Skipping step: IDEDistributionSymbolsStep because it said so
+2017-07-27 17:53:14 +0000  Skipping step: IDEDistributionSymbolsStep because it said so
+2017-07-27 17:53:14 +0000  Skipping step: IDEDistributionSymbolsStep because it said so
+2017-07-27 17:53:14 +0000  Skipping step: IDEDistributionSymbolsStep because it said so
+2017-07-27 17:53:14 +0000  Skipping step: IDEDistributionSymbolsStep because it said so
+2017-07-27 17:53:14 +0000  Skipping step: IDEDistributionSymbolsStep because it said so
+2017-07-27 17:53:14 +0000  Skipping step: IDEDistributionSymbolsStep because it said so
+2017-07-27 17:53:14 +0000  Processing step: IDEDistributionAppThinningStep
+2017-07-27 17:53:14 +0000  Skipping step: IDEDistributionAppThinningStep because it said so
+2017-07-27 17:53:14 +0000  Processing step: IDEDistributionODRStep
+2017-07-27 17:53:14 +0000  Processing step: IDEDistributionStripXattrsStep
+2017-07-27 17:53:14 +0000  Running /usr/bin/xattr '-cr' '/var/folders/dj/n2fsyhvs1dx9dqcc655963vdp6m9v7/T/XcodeDistPipeline.v6b/Root/Applications/BuildTimeAnalyzer.app'
+2017-07-27 17:53:14 +0000  /usr/bin/xattr exited with 0
+2017-07-27 17:53:14 +0000  Processing step: IDEDistributionCodesignStep
+2017-07-27 17:53:14 +0000  Applying entitlements delta for <IDEDistributionItem: 0x7fbbc7d6f450 'com.apple.dt.runtime.swiftAppKit' '<DVTFilePath:0x7fbbe49f2470:'/Users/alvinmagee/Library/Developer/Xcode/Archives/2017-07-27/BuildTimeAnalyzer 7-27-17, 10.51 AM.xcarchive/Products/Applications/BuildTimeAnalyzer.app/Contents/Frameworks/libswiftAppKit.dylib'>'> from <IDEiCloudEntitlementsProcessor: 0x7fbbc7d02e10>: {
+}
+2017-07-27 17:53:14 +0000  Entitlements for <IDEDistributionItem: 0x7fbbc7d6f450 'com.apple.dt.runtime.swiftAppKit' '<DVTFilePath:0x7fbbe49f2470:'/Users/alvinmagee/Library/Developer/Xcode/Archives/2017-07-27/BuildTimeAnalyzer 7-27-17, 10.51 AM.xcarchive/Products/Applications/BuildTimeAnalyzer.app/Contents/Frameworks/libswiftAppKit.dylib'>'>: {
+}
+2017-07-27 17:53:14 +0000  Writing entitlements for <IDEDistributionItem: 0x7fbbc7d6f450 'com.apple.dt.runtime.swiftAppKit' '<DVTFilePath:0x7fbbe49f2470:'/Users/alvinmagee/Library/Developer/Xcode/Archives/2017-07-27/BuildTimeAnalyzer 7-27-17, 10.51 AM.xcarchive/Products/Applications/BuildTimeAnalyzer.app/Contents/Frameworks/libswiftAppKit.dylib'>'> to: /var/folders/dj/n2fsyhvs1dx9dqcc655963vdp6m9v7/T/XcodeDistPipeline.v6b/entitlementsnHnAIr
+2017-07-27 17:53:14 +0000  Running /usr/bin/codesign '-vvv' '--force' '--sign' '1CC9AB8048817E7ED98E8F541829A2188BD8BF66' '--preserve-metadata=identifier,flags' '--entitlements' '/var/folders/dj/n2fsyhvs1dx9dqcc655963vdp6m9v7/T/XcodeDistPipeline.v6b/entitlementsnHnAIr' '/var/folders/dj/n2fsyhvs1dx9dqcc655963vdp6m9v7/T/XcodeDistPipeline.v6b/Root/Applications/BuildTimeAnalyzer.app/Contents/Frameworks/libswiftAppKit.dylib'
+2017-07-27 17:53:14 +0000  /var/folders/dj/n2fsyhvs1dx9dqcc655963vdp6m9v7/T/XcodeDistPipeline.v6b/Root/Applications/BuildTimeAnalyzer.app/Contents/Frameworks/libswiftAppKit.dylib: replacing existing signature
+2017-07-27 17:53:14 +0000  /var/folders/dj/n2fsyhvs1dx9dqcc655963vdp6m9v7/T/XcodeDistPipeline.v6b/Root/Applications/BuildTimeAnalyzer.app/Contents/Frameworks/libswiftAppKit.dylib: signed Mach-O thin (x86_64) [com.apple.dt.runtime.swiftAppKit]
+2017-07-27 17:53:15 +0000  /usr/bin/codesign exited with 0
+2017-07-27 17:53:15 +0000  Applying entitlements delta for <IDEDistributionItem: 0x7fbbc7fb8750 'com.apple.dt.runtime.swiftCore' '<DVTFilePath:0x7fbbc7850000:'/Users/alvinmagee/Library/Developer/Xcode/Archives/2017-07-27/BuildTimeAnalyzer 7-27-17, 10.51 AM.xcarchive/Products/Applications/BuildTimeAnalyzer.app/Contents/Frameworks/libswiftCore.dylib'>'> from <IDEiCloudEntitlementsProcessor: 0x7fbbc7ef0b80>: {
+}
+2017-07-27 17:53:15 +0000  Entitlements for <IDEDistributionItem: 0x7fbbc7fb8750 'com.apple.dt.runtime.swiftCore' '<DVTFilePath:0x7fbbc7850000:'/Users/alvinmagee/Library/Developer/Xcode/Archives/2017-07-27/BuildTimeAnalyzer 7-27-17, 10.51 AM.xcarchive/Products/Applications/BuildTimeAnalyzer.app/Contents/Frameworks/libswiftCore.dylib'>'>: {
+}
+2017-07-27 17:53:15 +0000  Writing entitlements for <IDEDistributionItem: 0x7fbbc7fb8750 'com.apple.dt.runtime.swiftCore' '<DVTFilePath:0x7fbbc7850000:'/Users/alvinmagee/Library/Developer/Xcode/Archives/2017-07-27/BuildTimeAnalyzer 7-27-17, 10.51 AM.xcarchive/Products/Applications/BuildTimeAnalyzer.app/Contents/Frameworks/libswiftCore.dylib'>'> to: /var/folders/dj/n2fsyhvs1dx9dqcc655963vdp6m9v7/T/XcodeDistPipeline.v6b/entitlementsc0NVSC
+2017-07-27 17:53:15 +0000  Running /usr/bin/codesign '-vvv' '--force' '--sign' '1CC9AB8048817E7ED98E8F541829A2188BD8BF66' '--preserve-metadata=identifier,flags' '--entitlements' '/var/folders/dj/n2fsyhvs1dx9dqcc655963vdp6m9v7/T/XcodeDistPipeline.v6b/entitlementsc0NVSC' '/var/folders/dj/n2fsyhvs1dx9dqcc655963vdp6m9v7/T/XcodeDistPipeline.v6b/Root/Applications/BuildTimeAnalyzer.app/Contents/Frameworks/libswiftCore.dylib'
+2017-07-27 17:53:15 +0000  /var/folders/dj/n2fsyhvs1dx9dqcc655963vdp6m9v7/T/XcodeDistPipeline.v6b/Root/Applications/BuildTimeAnalyzer.app/Contents/Frameworks/libswiftCore.dylib: replacing existing signature
+2017-07-27 17:53:15 +0000  /var/folders/dj/n2fsyhvs1dx9dqcc655963vdp6m9v7/T/XcodeDistPipeline.v6b/Root/Applications/BuildTimeAnalyzer.app/Contents/Frameworks/libswiftCore.dylib: signed Mach-O thin (x86_64) [com.apple.dt.runtime.swiftCore]
+2017-07-27 17:53:15 +0000  /usr/bin/codesign exited with 0
+2017-07-27 17:53:15 +0000  Applying entitlements delta for <IDEDistributionItem: 0x7fbbc7ece080 'com.apple.dt.runtime.swiftCoreData' '<DVTFilePath:0x7fbbc7981870:'/Users/alvinmagee/Library/Developer/Xcode/Archives/2017-07-27/BuildTimeAnalyzer 7-27-17, 10.51 AM.xcarchive/Products/Applications/BuildTimeAnalyzer.app/Contents/Frameworks/libswiftCoreData.dylib'>'> from <IDEiCloudEntitlementsProcessor: 0x7fbbc7f33b30>: {
+}
+2017-07-27 17:53:15 +0000  Entitlements for <IDEDistributionItem: 0x7fbbc7ece080 'com.apple.dt.runtime.swiftCoreData' '<DVTFilePath:0x7fbbc7981870:'/Users/alvinmagee/Library/Developer/Xcode/Archives/2017-07-27/BuildTimeAnalyzer 7-27-17, 10.51 AM.xcarchive/Products/Applications/BuildTimeAnalyzer.app/Contents/Frameworks/libswiftCoreData.dylib'>'>: {
+}
+2017-07-27 17:53:15 +0000  Writing entitlements for <IDEDistributionItem: 0x7fbbc7ece080 'com.apple.dt.runtime.swiftCoreData' '<DVTFilePath:0x7fbbc7981870:'/Users/alvinmagee/Library/Developer/Xcode/Archives/2017-07-27/BuildTimeAnalyzer 7-27-17, 10.51 AM.xcarchive/Products/Applications/BuildTimeAnalyzer.app/Contents/Frameworks/libswiftCoreData.dylib'>'> to: /var/folders/dj/n2fsyhvs1dx9dqcc655963vdp6m9v7/T/XcodeDistPipeline.v6b/entitlementsQwxfkE
+2017-07-27 17:53:15 +0000  Running /usr/bin/codesign '-vvv' '--force' '--sign' '1CC9AB8048817E7ED98E8F541829A2188BD8BF66' '--preserve-metadata=identifier,flags' '--entitlements' '/var/folders/dj/n2fsyhvs1dx9dqcc655963vdp6m9v7/T/XcodeDistPipeline.v6b/entitlementsQwxfkE' '/var/folders/dj/n2fsyhvs1dx9dqcc655963vdp6m9v7/T/XcodeDistPipeline.v6b/Root/Applications/BuildTimeAnalyzer.app/Contents/Frameworks/libswiftCoreData.dylib'
+2017-07-27 17:53:15 +0000  /var/folders/dj/n2fsyhvs1dx9dqcc655963vdp6m9v7/T/XcodeDistPipeline.v6b/Root/Applications/BuildTimeAnalyzer.app/Contents/Frameworks/libswiftCoreData.dylib: replacing existing signature
+2017-07-27 17:53:15 +0000  
+2017-07-27 17:53:15 +0000  /var/folders/dj/n2fsyhvs1dx9dqcc655963vdp6m9v7/T/XcodeDistPipeline.v6b/Root/Applications/BuildTimeAnalyzer.app/Contents/Frameworks/libswiftCoreData.dylib: signed Mach-O thin (x86_64) [com.apple.dt.runtime.swiftCoreData]
+2017-07-27 17:53:15 +0000  /usr/bin/codesign exited with 0
+2017-07-27 17:53:15 +0000  Applying entitlements delta for <IDEDistributionItem: 0x7fbbc81dd2e0 'com.apple.dt.runtime.swiftCoreFoundation' '<DVTFilePath:0x7fbbc7962700:'/Users/alvinmagee/Library/Developer/Xcode/Archives/2017-07-27/BuildTimeAnalyzer 7-27-17, 10.51 AM.xcarchive/Products/Applications/BuildTimeAnalyzer.app/Contents/Frameworks/libswiftCoreFoundation.dylib'>'> from <IDEiCloudEntitlementsProcessor: 0x7fbbc7d6c8e0>: {
+}
+2017-07-27 17:53:15 +0000  Entitlements for <IDEDistributionItem: 0x7fbbc81dd2e0 'com.apple.dt.runtime.swiftCoreFoundation' '<DVTFilePath:0x7fbbc7962700:'/Users/alvinmagee/Library/Developer/Xcode/Archives/2017-07-27/BuildTimeAnalyzer 7-27-17, 10.51 AM.xcarchive/Products/Applications/BuildTimeAnalyzer.app/Contents/Frameworks/libswiftCoreFoundation.dylib'>'>: {
+}
+2017-07-27 17:53:15 +0000  Writing entitlements for <IDEDistributionItem: 0x7fbbc81dd2e0 'com.apple.dt.runtime.swiftCoreFoundation' '<DVTFilePath:0x7fbbc7962700:'/Users/alvinmagee/Library/Developer/Xcode/Archives/2017-07-27/BuildTimeAnalyzer 7-27-17, 10.51 AM.xcarchive/Products/Applications/BuildTimeAnalyzer.app/Contents/Frameworks/libswiftCoreFoundation.dylib'>'> to: /var/folders/dj/n2fsyhvs1dx9dqcc655963vdp6m9v7/T/XcodeDistPipeline.v6b/entitlementsPB7Slc
+2017-07-27 17:53:15 +0000  Running /usr/bin/codesign '-vvv' '--force' '--sign' '1CC9AB8048817E7ED98E8F541829A2188BD8BF66' '--preserve-metadata=identifier,flags' '--entitlements' '/var/folders/dj/n2fsyhvs1dx9dqcc655963vdp6m9v7/T/XcodeDistPipeline.v6b/entitlementsPB7Slc' '/var/folders/dj/n2fsyhvs1dx9dqcc655963vdp6m9v7/T/XcodeDistPipeline.v6b/Root/Applications/BuildTimeAnalyzer.app/Contents/Frameworks/libswiftCoreFoundation.dylib'
+2017-07-27 17:53:15 +0000  /var/folders/dj/n2fsyhvs1dx9dqcc655963vdp6m9v7/T/XcodeDistPipeline.v6b/Root/Applications/BuildTimeAnalyzer.app/Contents/Frameworks/libswiftCoreFoundation.dylib: replacing existing signature
+2017-07-27 17:53:15 +0000  
+2017-07-27 17:53:15 +0000  /var/folders/dj/n2fsyhvs1dx9dqcc655963vdp6m9v7/T/XcodeDistPipeline.v6b/Root/Applications/BuildTimeAnalyzer.app/Contents/Frameworks/libswiftCoreFoundation.dylib: signed Mach-O thin (x86_64) [com.apple.dt.runtime.swiftCoreFoundation]
+2017-07-27 17:53:15 +0000  /usr/bin/codesign exited with 0
+2017-07-27 17:53:15 +0000  Applying entitlements delta for <IDEDistributionItem: 0x7fbbc8192130 'com.apple.dt.runtime.swiftCoreGraphics' '<DVTFilePath:0x7fbbe64872f0:'/Users/alvinmagee/Library/Developer/Xcode/Archives/2017-07-27/BuildTimeAnalyzer 7-27-17, 10.51 AM.xcarchive/Products/Applications/BuildTimeAnalyzer.app/Contents/Frameworks/libswiftCoreGraphics.dylib'>'> from <IDEiCloudEntitlementsProcessor: 0x7fbbc7f19360>: {
+}
+2017-07-27 17:53:15 +0000  Entitlements for <IDEDistributionItem: 0x7fbbc8192130 'com.apple.dt.runtime.swiftCoreGraphics' '<DVTFilePath:0x7fbbe64872f0:'/Users/alvinmagee/Library/Developer/Xcode/Archives/2017-07-27/BuildTimeAnalyzer 7-27-17, 10.51 AM.xcarchive/Products/Applications/BuildTimeAnalyzer.app/Contents/Frameworks/libswiftCoreGraphics.dylib'>'>: {
+}
+2017-07-27 17:53:15 +0000  Writing entitlements for <IDEDistributionItem: 0x7fbbc8192130 'com.apple.dt.runtime.swiftCoreGraphics' '<DVTFilePath:0x7fbbe64872f0:'/Users/alvinmagee/Library/Developer/Xcode/Archives/2017-07-27/BuildTimeAnalyzer 7-27-17, 10.51 AM.xcarchive/Products/Applications/BuildTimeAnalyzer.app/Contents/Frameworks/libswiftCoreGraphics.dylib'>'> to: /var/folders/dj/n2fsyhvs1dx9dqcc655963vdp6m9v7/T/XcodeDistPipeline.v6b/entitlementsHo5SOo
+2017-07-27 17:53:15 +0000  Running /usr/bin/codesign '-vvv' '--force' '--sign' '1CC9AB8048817E7ED98E8F541829A2188BD8BF66' '--preserve-metadata=identifier,flags' '--entitlements' '/var/folders/dj/n2fsyhvs1dx9dqcc655963vdp6m9v7/T/XcodeDistPipeline.v6b/entitlementsHo5SOo' '/var/folders/dj/n2fsyhvs1dx9dqcc655963vdp6m9v7/T/XcodeDistPipeline.v6b/Root/Applications/BuildTimeAnalyzer.app/Contents/Frameworks/libswiftCoreGraphics.dylib'
+2017-07-27 17:53:15 +0000  /var/folders/dj/n2fsyhvs1dx9dqcc655963vdp6m9v7/T/XcodeDistPipeline.v6b/Root/Applications/BuildTimeAnalyzer.app/Contents/Frameworks/libswiftCoreGraphics.dylib: replacing existing signature
+2017-07-27 17:53:15 +0000  /var/folders/dj/n2fsyhvs1dx9dqcc655963vdp6m9v7/T/XcodeDistPipeline.v6b/Root/Applications/BuildTimeAnalyzer.app/Contents/Frameworks/libswiftCoreGraphics.dylib: signed Mach-O thin (x86_64) [com.apple.dt.runtime.swiftCoreGraphics]
+2017-07-27 17:53:15 +0000  /usr/bin/codesign exited with 0
+2017-07-27 17:53:15 +0000  Applying entitlements delta for <IDEDistributionItem: 0x7fbbc7dcc7b0 'com.apple.dt.runtime.swiftCoreImage' '<DVTFilePath:0x7fbbc7983660:'/Users/alvinmagee/Library/Developer/Xcode/Archives/2017-07-27/BuildTimeAnalyzer 7-27-17, 10.51 AM.xcarchive/Products/Applications/BuildTimeAnalyzer.app/Contents/Frameworks/libswiftCoreImage.dylib'>'> from <IDEiCloudEntitlementsProcessor: 0x7fbbc7fa7290>: {
+}
+2017-07-27 17:53:15 +0000  Entitlements for <IDEDistributionItem: 0x7fbbc7dcc7b0 'com.apple.dt.runtime.swiftCoreImage' '<DVTFilePath:0x7fbbc7983660:'/Users/alvinmagee/Library/Developer/Xcode/Archives/2017-07-27/BuildTimeAnalyzer 7-27-17, 10.51 AM.xcarchive/Products/Applications/BuildTimeAnalyzer.app/Contents/Frameworks/libswiftCoreImage.dylib'>'>: {
+}
+2017-07-27 17:53:15 +0000  Writing entitlements for <IDEDistributionItem: 0x7fbbc7dcc7b0 'com.apple.dt.runtime.swiftCoreImage' '<DVTFilePath:0x7fbbc7983660:'/Users/alvinmagee/Library/Developer/Xcode/Archives/2017-07-27/BuildTimeAnalyzer 7-27-17, 10.51 AM.xcarchive/Products/Applications/BuildTimeAnalyzer.app/Contents/Frameworks/libswiftCoreImage.dylib'>'> to: /var/folders/dj/n2fsyhvs1dx9dqcc655963vdp6m9v7/T/XcodeDistPipeline.v6b/entitlementszuMGY4
+2017-07-27 17:53:15 +0000  Running /usr/bin/codesign '-vvv' '--force' '--sign' '1CC9AB8048817E7ED98E8F541829A2188BD8BF66' '--preserve-metadata=identifier,flags' '--entitlements' '/var/folders/dj/n2fsyhvs1dx9dqcc655963vdp6m9v7/T/XcodeDistPipeline.v6b/entitlementszuMGY4' '/var/folders/dj/n2fsyhvs1dx9dqcc655963vdp6m9v7/T/XcodeDistPipeline.v6b/Root/Applications/BuildTimeAnalyzer.app/Contents/Frameworks/libswiftCoreImage.dylib'
+2017-07-27 17:53:15 +0000  /var/folders/dj/n2fsyhvs1dx9dqcc655963vdp6m9v7/T/XcodeDistPipeline.v6b/Root/Applications/BuildTimeAnalyzer.app/Contents/Frameworks/libswiftCoreImage.dylib: replacing existing signature
+2017-07-27 17:53:15 +0000  
+2017-07-27 17:53:16 +0000  /var/folders/dj/n2fsyhvs1dx9dqcc655963vdp6m9v7/T/XcodeDistPipeline.v6b/Root/Applications/BuildTimeAnalyzer.app/Contents/Frameworks/libswiftCoreImage.dylib: signed Mach-O thin (x86_64) [com.apple.dt.runtime.swiftCoreImage]
+2017-07-27 17:53:16 +0000  /usr/bin/codesign exited with 0
+2017-07-27 17:53:16 +0000  Applying entitlements delta for <IDEDistributionItem: 0x7fbbc81f72f0 'com.apple.dt.runtime.swiftDarwin' '<DVTFilePath:0x7fbbc79bf0e0:'/Users/alvinmagee/Library/Developer/Xcode/Archives/2017-07-27/BuildTimeAnalyzer 7-27-17, 10.51 AM.xcarchive/Products/Applications/BuildTimeAnalyzer.app/Contents/Frameworks/libswiftDarwin.dylib'>'> from <IDEiCloudEntitlementsProcessor: 0x7fbbc7f457d0>: {
+}
+2017-07-27 17:53:16 +0000  Entitlements for <IDEDistributionItem: 0x7fbbc81f72f0 'com.apple.dt.runtime.swiftDarwin' '<DVTFilePath:0x7fbbc79bf0e0:'/Users/alvinmagee/Library/Developer/Xcode/Archives/2017-07-27/BuildTimeAnalyzer 7-27-17, 10.51 AM.xcarchive/Products/Applications/BuildTimeAnalyzer.app/Contents/Frameworks/libswiftDarwin.dylib'>'>: {
+}
+2017-07-27 17:53:16 +0000  Writing entitlements for <IDEDistributionItem: 0x7fbbc81f72f0 'com.apple.dt.runtime.swiftDarwin' '<DVTFilePath:0x7fbbc79bf0e0:'/Users/alvinmagee/Library/Developer/Xcode/Archives/2017-07-27/BuildTimeAnalyzer 7-27-17, 10.51 AM.xcarchive/Products/Applications/BuildTimeAnalyzer.app/Contents/Frameworks/libswiftDarwin.dylib'>'> to: /var/folders/dj/n2fsyhvs1dx9dqcc655963vdp6m9v7/T/XcodeDistPipeline.v6b/entitlementsiFPSFM
+2017-07-27 17:53:16 +0000  Running /usr/bin/codesign '-vvv' '--force' '--sign' '1CC9AB8048817E7ED98E8F541829A2188BD8BF66' '--preserve-metadata=identifier,flags' '--entitlements' '/var/folders/dj/n2fsyhvs1dx9dqcc655963vdp6m9v7/T/XcodeDistPipeline.v6b/entitlementsiFPSFM' '/var/folders/dj/n2fsyhvs1dx9dqcc655963vdp6m9v7/T/XcodeDistPipeline.v6b/Root/Applications/BuildTimeAnalyzer.app/Contents/Frameworks/libswiftDarwin.dylib'
+2017-07-27 17:53:16 +0000  /var/folders/dj/n2fsyhvs1dx9dqcc655963vdp6m9v7/T/XcodeDistPipeline.v6b/Root/Applications/BuildTimeAnalyzer.app/Contents/Frameworks/libswiftDarwin.dylib: replacing existing signature
+2017-07-27 17:53:16 +0000  /var/folders/dj/n2fsyhvs1dx9dqcc655963vdp6m9v7/T/XcodeDistPipeline.v6b/Root/Applications/BuildTimeAnalyzer.app/Contents/Frameworks/libswiftDarwin.dylib: signed Mach-O thin (x86_64) [com.apple.dt.runtime.swiftDarwin]
+2017-07-27 17:53:16 +0000  /usr/bin/codesign exited with 0
+2017-07-27 17:53:16 +0000  Applying entitlements delta for <IDEDistributionItem: 0x7fbbc7f0e600 'com.apple.dt.runtime.swiftDispatch' '<DVTFilePath:0x7fbbc797f2f0:'/Users/alvinmagee/Library/Developer/Xcode/Archives/2017-07-27/BuildTimeAnalyzer 7-27-17, 10.51 AM.xcarchive/Products/Applications/BuildTimeAnalyzer.app/Contents/Frameworks/libswiftDispatch.dylib'>'> from <IDEiCloudEntitlementsProcessor: 0x7fbbc7df95e0>: {
+}
+2017-07-27 17:53:16 +0000  Entitlements for <IDEDistributionItem: 0x7fbbc7f0e600 'com.apple.dt.runtime.swiftDispatch' '<DVTFilePath:0x7fbbc797f2f0:'/Users/alvinmagee/Library/Developer/Xcode/Archives/2017-07-27/BuildTimeAnalyzer 7-27-17, 10.51 AM.xcarchive/Products/Applications/BuildTimeAnalyzer.app/Contents/Frameworks/libswiftDispatch.dylib'>'>: {
+}
+2017-07-27 17:53:16 +0000  Writing entitlements for <IDEDistributionItem: 0x7fbbc7f0e600 'com.apple.dt.runtime.swiftDispatch' '<DVTFilePath:0x7fbbc797f2f0:'/Users/alvinmagee/Library/Developer/Xcode/Archives/2017-07-27/BuildTimeAnalyzer 7-27-17, 10.51 AM.xcarchive/Products/Applications/BuildTimeAnalyzer.app/Contents/Frameworks/libswiftDispatch.dylib'>'> to: /var/folders/dj/n2fsyhvs1dx9dqcc655963vdp6m9v7/T/XcodeDistPipeline.v6b/entitlementsoo5O5t
+2017-07-27 17:53:16 +0000  Running /usr/bin/codesign '-vvv' '--force' '--sign' '1CC9AB8048817E7ED98E8F541829A2188BD8BF66' '--preserve-metadata=identifier,flags' '--entitlements' '/var/folders/dj/n2fsyhvs1dx9dqcc655963vdp6m9v7/T/XcodeDistPipeline.v6b/entitlementsoo5O5t' '/var/folders/dj/n2fsyhvs1dx9dqcc655963vdp6m9v7/T/XcodeDistPipeline.v6b/Root/Applications/BuildTimeAnalyzer.app/Contents/Frameworks/libswiftDispatch.dylib'
+2017-07-27 17:53:16 +0000  /var/folders/dj/n2fsyhvs1dx9dqcc655963vdp6m9v7/T/XcodeDistPipeline.v6b/Root/Applications/BuildTimeAnalyzer.app/Contents/Frameworks/libswiftDispatch.dylib: replacing existing signature
+2017-07-27 17:53:16 +0000  
+2017-07-27 17:53:16 +0000  /var/folders/dj/n2fsyhvs1dx9dqcc655963vdp6m9v7/T/XcodeDistPipeline.v6b/Root/Applications/BuildTimeAnalyzer.app/Contents/Frameworks/libswiftDispatch.dylib: signed Mach-O thin (x86_64) [com.apple.dt.runtime.swiftDispatch]
+2017-07-27 17:53:16 +0000  /usr/bin/codesign exited with 0
+2017-07-27 17:53:16 +0000  Applying entitlements delta for <IDEDistributionItem: 0x7fbbc794c550 'com.apple.dt.runtime.swiftFoundation' '<DVTFilePath:0x7fbbe6460250:'/Users/alvinmagee/Library/Developer/Xcode/Archives/2017-07-27/BuildTimeAnalyzer 7-27-17, 10.51 AM.xcarchive/Products/Applications/BuildTimeAnalyzer.app/Contents/Frameworks/libswiftFoundation.dylib'>'> from <IDEiCloudEntitlementsProcessor: 0x7fbbe32a60a0>: {
+}
+2017-07-27 17:53:16 +0000  Entitlements for <IDEDistributionItem: 0x7fbbc794c550 'com.apple.dt.runtime.swiftFoundation' '<DVTFilePath:0x7fbbe6460250:'/Users/alvinmagee/Library/Developer/Xcode/Archives/2017-07-27/BuildTimeAnalyzer 7-27-17, 10.51 AM.xcarchive/Products/Applications/BuildTimeAnalyzer.app/Contents/Frameworks/libswiftFoundation.dylib'>'>: {
+}
+2017-07-27 17:53:16 +0000  Writing entitlements for <IDEDistributionItem: 0x7fbbc794c550 'com.apple.dt.runtime.swiftFoundation' '<DVTFilePath:0x7fbbe6460250:'/Users/alvinmagee/Library/Developer/Xcode/Archives/2017-07-27/BuildTimeAnalyzer 7-27-17, 10.51 AM.xcarchive/Products/Applications/BuildTimeAnalyzer.app/Contents/Frameworks/libswiftFoundation.dylib'>'> to: /var/folders/dj/n2fsyhvs1dx9dqcc655963vdp6m9v7/T/XcodeDistPipeline.v6b/entitlementsKFoWrV
+2017-07-27 17:53:16 +0000  Running /usr/bin/codesign '-vvv' '--force' '--sign' '1CC9AB8048817E7ED98E8F541829A2188BD8BF66' '--preserve-metadata=identifier,flags' '--entitlements' '/var/folders/dj/n2fsyhvs1dx9dqcc655963vdp6m9v7/T/XcodeDistPipeline.v6b/entitlementsKFoWrV' '/var/folders/dj/n2fsyhvs1dx9dqcc655963vdp6m9v7/T/XcodeDistPipeline.v6b/Root/Applications/BuildTimeAnalyzer.app/Contents/Frameworks/libswiftFoundation.dylib'
+2017-07-27 17:53:16 +0000  /var/folders/dj/n2fsyhvs1dx9dqcc655963vdp6m9v7/T/XcodeDistPipeline.v6b/Root/Applications/BuildTimeAnalyzer.app/Contents/Frameworks/libswiftFoundation.dylib: replacing existing signature
+2017-07-27 17:53:16 +0000  
+2017-07-27 17:53:16 +0000  /var/folders/dj/n2fsyhvs1dx9dqcc655963vdp6m9v7/T/XcodeDistPipeline.v6b/Root/Applications/BuildTimeAnalyzer.app/Contents/Frameworks/libswiftFoundation.dylib: signed Mach-O thin (x86_64) [com.apple.dt.runtime.swiftFoundation]
+2017-07-27 17:53:16 +0000  /usr/bin/codesign exited with 0
+2017-07-27 17:53:16 +0000  Applying entitlements delta for <IDEDistributionItem: 0x7fbbc79b7ba0 'com.apple.dt.runtime.swiftIOKit' '<DVTFilePath:0x7fbbc7983890:'/Users/alvinmagee/Library/Developer/Xcode/Archives/2017-07-27/BuildTimeAnalyzer 7-27-17, 10.51 AM.xcarchive/Products/Applications/BuildTimeAnalyzer.app/Contents/Frameworks/libswiftIOKit.dylib'>'> from <IDEiCloudEntitlementsProcessor: 0x7fbbe602aa00>: {
+}
+2017-07-27 17:53:16 +0000  Entitlements for <IDEDistributionItem: 0x7fbbc79b7ba0 'com.apple.dt.runtime.swiftIOKit' '<DVTFilePath:0x7fbbc7983890:'/Users/alvinmagee/Library/Developer/Xcode/Archives/2017-07-27/BuildTimeAnalyzer 7-27-17, 10.51 AM.xcarchive/Products/Applications/BuildTimeAnalyzer.app/Contents/Frameworks/libswiftIOKit.dylib'>'>: {
+}
+2017-07-27 17:53:16 +0000  Writing entitlements for <IDEDistributionItem: 0x7fbbc79b7ba0 'com.apple.dt.runtime.swiftIOKit' '<DVTFilePath:0x7fbbc7983890:'/Users/alvinmagee/Library/Developer/Xcode/Archives/2017-07-27/BuildTimeAnalyzer 7-27-17, 10.51 AM.xcarchive/Products/Applications/BuildTimeAnalyzer.app/Contents/Frameworks/libswiftIOKit.dylib'>'> to: /var/folders/dj/n2fsyhvs1dx9dqcc655963vdp6m9v7/T/XcodeDistPipeline.v6b/entitlementsK4M0ZM
+2017-07-27 17:53:16 +0000  Running /usr/bin/codesign '-vvv' '--force' '--sign' '1CC9AB8048817E7ED98E8F541829A2188BD8BF66' '--preserve-metadata=identifier,flags' '--entitlements' '/var/folders/dj/n2fsyhvs1dx9dqcc655963vdp6m9v7/T/XcodeDistPipeline.v6b/entitlementsK4M0ZM' '/var/folders/dj/n2fsyhvs1dx9dqcc655963vdp6m9v7/T/XcodeDistPipeline.v6b/Root/Applications/BuildTimeAnalyzer.app/Contents/Frameworks/libswiftIOKit.dylib'
+2017-07-27 17:53:16 +0000  /var/folders/dj/n2fsyhvs1dx9dqcc655963vdp6m9v7/T/XcodeDistPipeline.v6b/Root/Applications/BuildTimeAnalyzer.app/Contents/Frameworks/libswiftIOKit.dylib: replacing existing signature
+2017-07-27 17:53:17 +0000  /var/folders/dj/n2fsyhvs1dx9dqcc655963vdp6m9v7/T/XcodeDistPipeline.v6b/Root/Applications/BuildTimeAnalyzer.app/Contents/Frameworks/libswiftIOKit.dylib: signed Mach-O thin (x86_64) [com.apple.dt.runtime.swiftIOKit]
+2017-07-27 17:53:17 +0000  /usr/bin/codesign exited with 0
+2017-07-27 17:53:17 +0000  Applying entitlements delta for <IDEDistributionItem: 0x7fbbc7d212a0 'com.apple.dt.runtime.swiftObjectiveC' '<DVTFilePath:0x7fbbc7974b40:'/Users/alvinmagee/Library/Developer/Xcode/Archives/2017-07-27/BuildTimeAnalyzer 7-27-17, 10.51 AM.xcarchive/Products/Applications/BuildTimeAnalyzer.app/Contents/Frameworks/libswiftObjectiveC.dylib'>'> from <IDEiCloudEntitlementsProcessor: 0x7fbbc7d0d540>: {
+}
+2017-07-27 17:53:17 +0000  Entitlements for <IDEDistributionItem: 0x7fbbc7d212a0 'com.apple.dt.runtime.swiftObjectiveC' '<DVTFilePath:0x7fbbc7974b40:'/Users/alvinmagee/Library/Developer/Xcode/Archives/2017-07-27/BuildTimeAnalyzer 7-27-17, 10.51 AM.xcarchive/Products/Applications/BuildTimeAnalyzer.app/Contents/Frameworks/libswiftObjectiveC.dylib'>'>: {
+}
+2017-07-27 17:53:17 +0000  Writing entitlements for <IDEDistributionItem: 0x7fbbc7d212a0 'com.apple.dt.runtime.swiftObjectiveC' '<DVTFilePath:0x7fbbc7974b40:'/Users/alvinmagee/Library/Developer/Xcode/Archives/2017-07-27/BuildTimeAnalyzer 7-27-17, 10.51 AM.xcarchive/Products/Applications/BuildTimeAnalyzer.app/Contents/Frameworks/libswiftObjectiveC.dylib'>'> to: /var/folders/dj/n2fsyhvs1dx9dqcc655963vdp6m9v7/T/XcodeDistPipeline.v6b/entitlements51Mf9d
+2017-07-27 17:53:17 +0000  Running /usr/bin/codesign '-vvv' '--force' '--sign' '1CC9AB8048817E7ED98E8F541829A2188BD8BF66' '--preserve-metadata=identifier,flags' '--entitlements' '/var/folders/dj/n2fsyhvs1dx9dqcc655963vdp6m9v7/T/XcodeDistPipeline.v6b/entitlements51Mf9d' '/var/folders/dj/n2fsyhvs1dx9dqcc655963vdp6m9v7/T/XcodeDistPipeline.v6b/Root/Applications/BuildTimeAnalyzer.app/Contents/Frameworks/libswiftObjectiveC.dylib'
+2017-07-27 17:53:17 +0000  /var/folders/dj/n2fsyhvs1dx9dqcc655963vdp6m9v7/T/XcodeDistPipeline.v6b/Root/Applications/BuildTimeAnalyzer.app/Contents/Frameworks/libswiftObjectiveC.dylib: replacing existing signature
+2017-07-27 17:53:17 +0000  /var/folders/dj/n2fsyhvs1dx9dqcc655963vdp6m9v7/T/XcodeDistPipeline.v6b/Root/Applications/BuildTimeAnalyzer.app/Contents/Frameworks/libswiftObjectiveC.dylib: signed Mach-O thin (x86_64) [com.apple.dt.runtime.swiftObjectiveC]
+2017-07-27 17:53:17 +0000  /usr/bin/codesign exited with 0
+2017-07-27 17:53:17 +0000  Applying entitlements delta for <IDEDistributionItem: 0x7fbbc79afdb0 'com.apple.dt.runtime.swiftQuartzCore' '<DVTFilePath:0x7fbbc7971950:'/Users/alvinmagee/Library/Developer/Xcode/Archives/2017-07-27/BuildTimeAnalyzer 7-27-17, 10.51 AM.xcarchive/Products/Applications/BuildTimeAnalyzer.app/Contents/Frameworks/libswiftQuartzCore.dylib'>'> from <IDEiCloudEntitlementsProcessor: 0x7fbbc7d3f570>: {
+}
+2017-07-27 17:53:17 +0000  Entitlements for <IDEDistributionItem: 0x7fbbc79afdb0 'com.apple.dt.runtime.swiftQuartzCore' '<DVTFilePath:0x7fbbc7971950:'/Users/alvinmagee/Library/Developer/Xcode/Archives/2017-07-27/BuildTimeAnalyzer 7-27-17, 10.51 AM.xcarchive/Products/Applications/BuildTimeAnalyzer.app/Contents/Frameworks/libswiftQuartzCore.dylib'>'>: {
+}
+2017-07-27 17:53:17 +0000  Writing entitlements for <IDEDistributionItem: 0x7fbbc79afdb0 'com.apple.dt.runtime.swiftQuartzCore' '<DVTFilePath:0x7fbbc7971950:'/Users/alvinmagee/Library/Developer/Xcode/Archives/2017-07-27/BuildTimeAnalyzer 7-27-17, 10.51 AM.xcarchive/Products/Applications/BuildTimeAnalyzer.app/Contents/Frameworks/libswiftQuartzCore.dylib'>'> to: /var/folders/dj/n2fsyhvs1dx9dqcc655963vdp6m9v7/T/XcodeDistPipeline.v6b/entitlementsv0rXSx
+2017-07-27 17:53:17 +0000  Running /usr/bin/codesign '-vvv' '--force' '--sign' '1CC9AB8048817E7ED98E8F541829A2188BD8BF66' '--preserve-metadata=identifier,flags' '--entitlements' '/var/folders/dj/n2fsyhvs1dx9dqcc655963vdp6m9v7/T/XcodeDistPipeline.v6b/entitlementsv0rXSx' '/var/folders/dj/n2fsyhvs1dx9dqcc655963vdp6m9v7/T/XcodeDistPipeline.v6b/Root/Applications/BuildTimeAnalyzer.app/Contents/Frameworks/libswiftQuartzCore.dylib'
+2017-07-27 17:53:17 +0000  /var/folders/dj/n2fsyhvs1dx9dqcc655963vdp6m9v7/T/XcodeDistPipeline.v6b/Root/Applications/BuildTimeAnalyzer.app/Contents/Frameworks/libswiftQuartzCore.dylib: replacing existing signature
+2017-07-27 17:53:17 +0000  /var/folders/dj/n2fsyhvs1dx9dqcc655963vdp6m9v7/T/XcodeDistPipeline.v6b/Root/Applications/BuildTimeAnalyzer.app/Contents/Frameworks/libswiftQuartzCore.dylib: signed Mach-O thin (x86_64) [com.apple.dt.runtime.swiftQuartzCore]
+2017-07-27 17:53:17 +0000  /usr/bin/codesign exited with 0
+2017-07-27 17:53:17 +0000  Applying entitlements delta for <IDEDistributionItem: 0x7fbbc6f62d30 'com.apple.dt.runtime.swiftXPC' '<DVTFilePath:0x7fbbe6477910:'/Users/alvinmagee/Library/Developer/Xcode/Archives/2017-07-27/BuildTimeAnalyzer 7-27-17, 10.51 AM.xcarchive/Products/Applications/BuildTimeAnalyzer.app/Contents/Frameworks/libswiftXPC.dylib'>'> from <IDEiCloudEntitlementsProcessor: 0x7fbbe4c17850>: {
+}
+2017-07-27 17:53:17 +0000  Entitlements for <IDEDistributionItem: 0x7fbbc6f62d30 'com.apple.dt.runtime.swiftXPC' '<DVTFilePath:0x7fbbe6477910:'/Users/alvinmagee/Library/Developer/Xcode/Archives/2017-07-27/BuildTimeAnalyzer 7-27-17, 10.51 AM.xcarchive/Products/Applications/BuildTimeAnalyzer.app/Contents/Frameworks/libswiftXPC.dylib'>'>: {
+}
+2017-07-27 17:53:17 +0000  Writing entitlements for <IDEDistributionItem: 0x7fbbc6f62d30 'com.apple.dt.runtime.swiftXPC' '<DVTFilePath:0x7fbbe6477910:'/Users/alvinmagee/Library/Developer/Xcode/Archives/2017-07-27/BuildTimeAnalyzer 7-27-17, 10.51 AM.xcarchive/Products/Applications/BuildTimeAnalyzer.app/Contents/Frameworks/libswiftXPC.dylib'>'> to: /var/folders/dj/n2fsyhvs1dx9dqcc655963vdp6m9v7/T/XcodeDistPipeline.v6b/entitlementswjaLFe
+2017-07-27 17:53:17 +0000  Running /usr/bin/codesign '-vvv' '--force' '--sign' '1CC9AB8048817E7ED98E8F541829A2188BD8BF66' '--preserve-metadata=identifier,flags' '--entitlements' '/var/folders/dj/n2fsyhvs1dx9dqcc655963vdp6m9v7/T/XcodeDistPipeline.v6b/entitlementswjaLFe' '/var/folders/dj/n2fsyhvs1dx9dqcc655963vdp6m9v7/T/XcodeDistPipeline.v6b/Root/Applications/BuildTimeAnalyzer.app/Contents/Frameworks/libswiftXPC.dylib'
+2017-07-27 17:53:17 +0000  /var/folders/dj/n2fsyhvs1dx9dqcc655963vdp6m9v7/T/XcodeDistPipeline.v6b/Root/Applications/BuildTimeAnalyzer.app/Contents/Frameworks/libswiftXPC.dylib: replacing existing signature
+2017-07-27 17:53:17 +0000  /var/folders/dj/n2fsyhvs1dx9dqcc655963vdp6m9v7/T/XcodeDistPipeline.v6b/Root/Applications/BuildTimeAnalyzer.app/Contents/Frameworks/libswiftXPC.dylib: signed Mach-O thin (x86_64) [com.apple.dt.runtime.swiftXPC]
+2017-07-27 17:53:17 +0000  /usr/bin/codesign exited with 0
+2017-07-27 17:53:17 +0000  Applying entitlements delta for <IDEDistributionItem: 0x7fbbc81ecb80 'uk.co.canemedia.BuildTimeAnalyzer' '<DVTFilePath:0x7fbbc806b3c0:'/Users/alvinmagee/Library/Developer/Xcode/Archives/2017-07-27/BuildTimeAnalyzer 7-27-17, 10.51 AM.xcarchive/Products/Applications/BuildTimeAnalyzer.app'>'> from <IDEiCloudEntitlementsProcessor: 0x7fbbc7ec3f40>: {
+}
+2017-07-27 17:53:17 +0000  Entitlements for <IDEDistributionItem: 0x7fbbc81ecb80 'uk.co.canemedia.BuildTimeAnalyzer' '<DVTFilePath:0x7fbbc806b3c0:'/Users/alvinmagee/Library/Developer/Xcode/Archives/2017-07-27/BuildTimeAnalyzer 7-27-17, 10.51 AM.xcarchive/Products/Applications/BuildTimeAnalyzer.app'>'>: {
+}
+2017-07-27 17:53:17 +0000  Writing entitlements for <IDEDistributionItem: 0x7fbbc81ecb80 'uk.co.canemedia.BuildTimeAnalyzer' '<DVTFilePath:0x7fbbc806b3c0:'/Users/alvinmagee/Library/Developer/Xcode/Archives/2017-07-27/BuildTimeAnalyzer 7-27-17, 10.51 AM.xcarchive/Products/Applications/BuildTimeAnalyzer.app'>'> to: /var/folders/dj/n2fsyhvs1dx9dqcc655963vdp6m9v7/T/XcodeDistPipeline.v6b/entitlementsyceVqR
+2017-07-27 17:53:17 +0000  Running /usr/bin/codesign '-vvv' '--force' '--sign' '1CC9AB8048817E7ED98E8F541829A2188BD8BF66' '--preserve-metadata=identifier,flags' '--entitlements' '/var/folders/dj/n2fsyhvs1dx9dqcc655963vdp6m9v7/T/XcodeDistPipeline.v6b/entitlementsyceVqR' '/var/folders/dj/n2fsyhvs1dx9dqcc655963vdp6m9v7/T/XcodeDistPipeline.v6b/Root/Applications/BuildTimeAnalyzer.app'
+2017-07-27 17:53:18 +0000  /var/folders/dj/n2fsyhvs1dx9dqcc655963vdp6m9v7/T/XcodeDistPipeline.v6b/Root/Applications/BuildTimeAnalyzer.app: replacing existing signature
+2017-07-27 17:53:18 +0000  /var/folders/dj/n2fsyhvs1dx9dqcc655963vdp6m9v7/T/XcodeDistPipeline.v6b/Root/Applications/BuildTimeAnalyzer.app: signed app bundle with Mach-O thin (x86_64) [uk.co.canemedia.BuildTimeAnalyzer]
+2017-07-27 17:53:18 +0000  /usr/bin/codesign exited with 0
+2017-07-27 17:53:18 +0000  Processing step: IDEDistributionStreamingZipItemStep
+2017-07-27 17:53:18 +0000  Skipping step: IDEDistributionStreamingZipItemStep because it said so
+2017-07-27 17:53:18 +0000  Skipping step: IDEDistributionStreamingZipItemStep because it said so
+2017-07-27 17:53:18 +0000  Skipping step: IDEDistributionStreamingZipItemStep because it said so
+2017-07-27 17:53:18 +0000  Skipping step: IDEDistributionStreamingZipItemStep because it said so
+2017-07-27 17:53:18 +0000  Skipping step: IDEDistributionStreamingZipItemStep because it said so
+2017-07-27 17:53:18 +0000  Skipping step: IDEDistributionStreamingZipItemStep because it said so
+2017-07-27 17:53:18 +0000  Skipping step: IDEDistributionStreamingZipItemStep because it said so
+2017-07-27 17:53:18 +0000  Skipping step: IDEDistributionStreamingZipItemStep because it said so
+2017-07-27 17:53:18 +0000  Skipping step: IDEDistributionStreamingZipItemStep because it said so
+2017-07-27 17:53:18 +0000  Skipping step: IDEDistributionStreamingZipItemStep because it said so
+2017-07-27 17:53:18 +0000  Skipping step: IDEDistributionStreamingZipItemStep because it said so
+2017-07-27 17:53:18 +0000  Skipping step: IDEDistributionStreamingZipItemStep because it said so
+2017-07-27 17:53:18 +0000  Skipping step: IDEDistributionStreamingZipItemStep because it said so
+2017-07-27 17:53:18 +0000  Skipping step: IDEDistributionStreamingZipItemStep because it said so
+2017-07-27 17:53:18 +0000  Processing step: IDEDistributionSkipPackagingStep
+2017-07-27 17:53:18 +0000  Processing step: IDEDistributionCreateManifestStep
+2017-07-27 17:53:18 +0000  Skipping step: IDEDistributionCreateManifestStep because it said so
