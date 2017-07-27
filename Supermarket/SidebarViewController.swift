@@ -39,6 +39,7 @@ class SidebarViewController: UIViewController, UITableViewDataSource, UITableVie
         
         marketTableView.dataSource = self
         marketTableView.delegate = self
+        marketTableView.separatorStyle = .singleLine
         marketTableView.tableFooterView = UIView()
    
         
@@ -90,6 +91,10 @@ class SidebarViewController: UIViewController, UITableViewDataSource, UITableVie
         cell.market = market
         cell.delegate = self
         cell.marketName.text = market.name
+        
+        cell.preservesSuperviewLayoutMargins = false
+        cell.separatorInset = UIEdgeInsets.zero
+        cell.layoutMargins = UIEdgeInsets.zero
         
         return cell
     }
