@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 class DetailInformationCell: UITableViewCell {
 
@@ -21,6 +22,8 @@ class DetailInformationCell: UITableViewCell {
     @IBOutlet weak var timestampLabel: UILabel!
     
     @IBOutlet weak var descriptionLabel: UILabel!
+    
+    var post: Post!
     
     
     override func awakeFromNib() {
@@ -38,5 +41,6 @@ class DetailInformationCell: UITableViewCell {
     }
     
     @IBAction func onInterested(_ sender: Any) {
+        let notification = SupermarketNotification.createNotification(withSender: PFUser.current()!, withReceiver: PFUser.current()!, withMessage: " is interested in your ", withPostObject: post.parseObject)
     }
 }

@@ -548,8 +548,8 @@ class CreatePostViewController: UIViewController, AVCaptureVideoDataOutputSample
         photoSettings.flashMode = .on
         photoSettings.isHighResolutionPhotoEnabled = true
         photoSettings.isAutoStillImageStabilizationEnabled = true
-        if photoSettings.__availablePreviewPhotoPixelFormatTypes.count > 0 {
-            photoSettings.previewPhotoFormat = [ kCVPixelBufferPixelFormatTypeKey as String : photoSettings.__availablePreviewPhotoPixelFormatTypes.first!]
+        if photoSettings.availablePreviewPhotoPixelFormatTypes.count > 0 {
+            photoSettings.previewPhotoFormat = [ kCVPixelBufferPixelFormatTypeKey as String : photoSettings.availablePreviewPhotoPixelFormatTypes.first!]
         }
         
         if let videoConnection = self.stillImageOutput.connection(withMediaType: AVMediaTypeVideo) {

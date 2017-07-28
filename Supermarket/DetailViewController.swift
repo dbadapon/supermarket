@@ -92,6 +92,8 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
             let description = post.itemDescription
             cell.descriptionLabel.text = description
             
+            cell.post = self.post
+            
             return cell
         }
         
