@@ -55,28 +55,6 @@ class PreviewViewController: UIViewController, UITextViewDelegate, UIGestureReco
     }
     
     
-    @IBAction func next(_ sender: Any) {
-        print("HIT NEXT")
-        if itemName == nil || itemName.text == "" {
-            self.present(self.nameRequiredAlertController, animated: true)
-        } else if coverPhoto.image == #imageLiteral(resourceName: "cameraMask.png") {
-            self.present(self.nextAlertController, animated: true)
-        } else {
-            performSegue(withIdentifier: "toPriceSegue", sender: self)
-        }
-    }
-    
-    
-    @IBAction func nextAction(_ sender: UIButton) {
-        if itemName == nil || itemName.text == "" {
-            self.present(self.nameRequiredAlertController, animated: true)
-        } else if coverPhoto.image == #imageLiteral(resourceName: "cameraMask.png") {
-            self.present(self.nextAlertController, animated: true)
-        } else {
-            performSegue(withIdentifier: "toPriceSegue", sender: self)
-        }
-    }
-    
     @IBOutlet weak var itemName: UITextView!
     @IBOutlet weak var charCountLabel: UILabel!
     
@@ -94,6 +72,26 @@ class PreviewViewController: UIViewController, UITextViewDelegate, UIGestureReco
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Style navigation bar
+        
+        let font = UIFontDescriptor(fontAttributes: [UIFontDescriptorFaceAttribute : "Medium", UIFontDescriptorFamilyAttribute: "Avenir"])
+        
+        navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont(descriptor: font, size: 20)]
+        navigationController?.navigationBar.barTintColor = UIColor.white
+        
+        // make navbar translucent (remove bottom line)
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+
+        
+        
+//        navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont(descriptor: font, size: 20)]
+//
+//        navigationController?.navigationBar.barTintColor = UIColor.white
+//        navigationController?.navigationBar.barStyle = UIBarStyle.black
+//        navigationController?.navigationBar.tintColor = UIColor.black
+//        navigationController?.navigationBar.isTranslucent = false
         
         // set color of alert controllers
         nextAlertController.view.tintColor = textColor
@@ -372,8 +370,18 @@ class PreviewViewController: UIViewController, UITextViewDelegate, UIGestureReco
             dvc.imageThree = self.imageViewThree
             dvc.imageFour = self.imageViewFour
         }
-        
+    }
     
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        print("Tapped next...")
+        if itemName == nil || itemName.text == "" {
+            self.present(self.nameRequiredAlertController, animated: true)
+            return false
+        } else if coverPhoto.image == #imageLiteral(resourceName: "cameraMask.png") {
+            self.present(self.nextAlertController, animated: true)
+            return false
+        }
+        return true
     }
 }
 
