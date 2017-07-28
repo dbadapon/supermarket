@@ -107,11 +107,23 @@ class SelectMarketViewController: UIViewController, UICollectionViewDelegate, UI
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
         
         collectionView.delegate = self
         collectionView.dataSource = self
+        
+        // Style collection view
+//        let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+        
+        let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+        
+        layout.minimumInteritemSpacing = 5
+        layout.minimumLineSpacing = layout.minimumInteritemSpacing
+        
+        let cellsPerLine: CGFloat = 2
+        let interItemSpacingTotal = layout.minimumInteritemSpacing * (cellsPerLine - 1)
+        let width = collectionView.frame.size.width / cellsPerLine - interItemSpacingTotal / cellsPerLine
+        
+        layout.itemSize = CGSize(width: width, height: width * 3/2)
         
         
         
@@ -191,7 +203,12 @@ class SelectMarketViewController: UIViewController, UICollectionViewDelegate, UI
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         print ("it's getting here")
         
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MarketChoiceCell", for: indexPath) as! MarketChoiceCell
+        
+        
+        cell.layer.borderWidth = 1
+        cell.layer.borderColor = UIColor.black.cgColor
         
         let market = markets[indexPath.row]
         

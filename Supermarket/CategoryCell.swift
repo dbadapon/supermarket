@@ -14,7 +14,9 @@ class CategoryCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+//       categoryNameLabel.textColor = UIColor.blue
+//        print("Category name label is now: \(categoryNameLabel.text)")
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
