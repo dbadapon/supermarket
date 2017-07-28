@@ -205,7 +205,7 @@ class CreatePostViewController: UIViewController, AVCaptureVideoDataOutputSample
             // set up the request using our vision model
 
             let classificationRequest = VNCoreMLRequest(model: resNet50Model, completionHandler: handleClassifications)
-            classificationRequest.imageCropAndScaleOption = VNImageCropAndScaleOptionCenterCrop
+            classificationRequest.imageCropAndScaleOption = VNImageCropAndScaleOption.centerCrop
             // dom: it won't build if I use the stuff below...
 //            VNImageCropAndScaleOption.centerCrop
             visionRequests = [classificationRequest]
@@ -337,7 +337,7 @@ class CreatePostViewController: UIViewController, AVCaptureVideoDataOutputSample
         }
     }
     
-    
+    // check if barcode is in Walmart API
     func checkPriceWithName(query: String) {
         
         let baseURL = "http://api.walmartlabs.com/v1/search?query="
@@ -357,7 +357,7 @@ class CreatePostViewController: UIViewController, AVCaptureVideoDataOutputSample
                 // number of items from query
                 if numberOfItems == 0 {
                     print ("it's not getting a response")
-                    print (response.result.error!)
+                    // print (response.result.error!)
                 }
                 // at least one result from query
                 if numberOfItems > 0 {
@@ -365,6 +365,7 @@ class CreatePostViewController: UIViewController, AVCaptureVideoDataOutputSample
                     
                     let item = itemArray[0]
                     
+                    if item["imageEntities"] != nil {
                     let imageEntities = item["imageEntities"] as! [[String: Any]]
                     var realEntity: [String: Any]? = nil
                     for entity in imageEntities {
@@ -388,7 +389,10 @@ class CreatePostViewController: UIViewController, AVCaptureVideoDataOutputSample
                     print (item["salePrice"]!)
                     
                     self.performSegue(withIdentifier: "barcodeToPreviewSegue", sender: self)
+                    }
                 }
+            } else {
+                print("barcode not found in Walmart API")
             }
         }
     }
@@ -413,7 +417,7 @@ class CreatePostViewController: UIViewController, AVCaptureVideoDataOutputSample
         }
         
         // for orientation see kCGImagePropertyOrientation
-        let imageRequestHandler = VNImageRequestHandler(cvPixelBuffer: pixelBuffer, orientation: Int32(CGImagePropertyOrientation(rawValue: 1)!.rawValue), options: requestOptions)
+        let imageRequestHandler = VNImageRequestHandler(cvPixelBuffer: pixelBuffer, orientation: CGImagePropertyOrientation(rawValue: 1)!, options: requestOptions)
         do {
             try imageRequestHandler.perform(self.visionRequests)
         } catch {
