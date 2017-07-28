@@ -21,12 +21,13 @@ class SelectCategoryViewController: UIViewController, UITableViewDelegate, UITab
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
         tableView.delegate = self
         tableView.dataSource = self
         tableView.tableFooterView = UIView()
         tableView.reloadData()
+        
+        // Style navigation bar
     }
 
     override func didReceiveMemoryWarning() {

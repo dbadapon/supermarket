@@ -118,10 +118,12 @@ class SelectMarketViewController: UIViewController, UICollectionViewDelegate, UI
         
         let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
         
-        layout.minimumInteritemSpacing = 5
+        layout.minimumInteritemSpacing = 16
         layout.minimumLineSpacing = layout.minimumInteritemSpacing
         
         let cellsPerLine: CGFloat = 2
+        // this is fine, just lock the orientation
+        
         let interItemSpacingTotal = layout.minimumInteritemSpacing * (cellsPerLine - 1)
         let width = collectionView.frame.size.width / cellsPerLine - interItemSpacingTotal / cellsPerLine
         
@@ -211,6 +213,7 @@ class SelectMarketViewController: UIViewController, UICollectionViewDelegate, UI
         
 //        cell.layer.borderWidth = 1
 //        cell.layer.borderColor = UIColor.black.cgColor
+        cell.layer.cornerRadius = 10
         
         let market = markets[indexPath.row]
         
@@ -219,10 +222,17 @@ class SelectMarketViewController: UIViewController, UICollectionViewDelegate, UI
         cell.marketProfileImage.loadInBackground()
         cell.marketName.text = market.name
         
+        cell.categoryLabel.textColor = UIColor.white
+        
         if let selectedCategory = marketsToPost[market.name!] {
             cell.categoryLabel.text = selectedCategory
+            cell.layer.backgroundColor = UIColor.init(colorLiteralRed: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha: 1.0).cgColor
+            cell.marketName.textColor = UIColor.white
+            
         } else {
             cell.categoryLabel.text = ""
+            cell.layer.backgroundColor = UIColor.white.cgColor
+            cell.marketName.textColor = UIColor.black
         }
         
         

@@ -11,6 +11,7 @@
     <customFonts key="customFonts">
         <array key="Avenir.ttc">
             <string>Avenir-Book</string>
+            <string>Avenir-BookOblique</string>
             <string>Avenir-Medium</string>
             <string>Avenir-Roman</string>
         </array>
@@ -636,7 +637,7 @@
                                 </connections>
                             </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="klm-Cq-x9F">
-                                <rect key="frame" x="0.0" y="57" width="375" height="537"/>
+                                <rect key="frame" x="16" y="64" width="343" height="530"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="oNM-vl-9z0">
@@ -647,32 +648,42 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MarketChoiceCell" id="tR7-rr-qlK" customClass="MarketChoiceCell" customModule="Supermarket" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="182" height="240"/>
+                                        <rect key="frame" x="80.5" y="0.0" width="182" height="240"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="182" height="240"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wrh-as-mlM" customClass="PFImageView">
-                                                    <rect key="frame" x="29" y="20" width="125" height="125"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wrh-as-mlM" customClass="PFImageView">
+                                                    <rect key="frame" x="28" y="12" width="125" height="125"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="125" id="9vV-Rm-67Z"/>
+                                                        <constraint firstAttribute="height" constant="125" id="Voy-SL-EFA"/>
+                                                    </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c3a-3Q-beS">
-                                                    <rect key="frame" x="44" y="163" width="94" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="18"/>
-                                                    <nil key="textColor"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hJh-rh-md2">
+                                                    <rect key="frame" x="8" y="182" width="166" height="25"/>
+                                                    <fontDescription key="fontDescription" name="Avenir-BookOblique" family="Avenir" pointSize="18"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hJh-rh-md2">
-                                                    <rect key="frame" x="54" y="195" width="75" height="25"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="18"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Market Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c3a-3Q-beS">
+                                                    <rect key="frame" x="8" y="149" width="166" height="25"/>
+                                                    <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="18"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                         </view>
+                                        <constraints>
+                                            <constraint firstItem="hJh-rh-md2" firstAttribute="leading" secondItem="tR7-rr-qlK" secondAttribute="leading" constant="8" id="CG6-yq-GjL"/>
+                                            <constraint firstItem="hJh-rh-md2" firstAttribute="top" secondItem="c3a-3Q-beS" secondAttribute="bottom" constant="8" id="DEm-6y-rpc"/>
+                                            <constraint firstItem="c3a-3Q-beS" firstAttribute="top" secondItem="wrh-as-mlM" secondAttribute="bottom" constant="12" id="Exx-rs-RJN"/>
+                                            <constraint firstItem="c3a-3Q-beS" firstAttribute="leading" secondItem="tR7-rr-qlK" secondAttribute="leading" constant="8" id="YT1-cL-Gq9"/>
+                                            <constraint firstAttribute="trailing" secondItem="hJh-rh-md2" secondAttribute="trailing" constant="8" id="Z6K-pr-akq"/>
+                                            <constraint firstAttribute="trailing" secondItem="c3a-3Q-beS" secondAttribute="trailing" constant="8" id="fnE-Vc-9Zf"/>
+                                            <constraint firstItem="wrh-as-mlM" firstAttribute="top" secondItem="tR7-rr-qlK" secondAttribute="top" constant="12" id="wFO-w5-B5f"/>
+                                            <constraint firstItem="wrh-as-mlM" firstAttribute="centerX" secondItem="tR7-rr-qlK" secondAttribute="centerX" id="wKI-7z-bWz"/>
+                                        </constraints>
                                         <connections>
                                             <outlet property="categoryLabel" destination="hJh-rh-md2" id="Ksn-p4-fe3"/>
                                             <outlet property="marketName" destination="c3a-3Q-beS" id="xPy-dA-9CX"/>
@@ -686,7 +697,7 @@
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="klm-Cq-x9F" id="Tc2-L3-vJO"/>
-                        <segue destination="UeP-8l-Lad" kind="show" identifier="toCategorySelection" id="Tv7-3G-xqu"/>
+                        <segue destination="UeP-8l-Lad" kind="presentation" identifier="toCategorySelection" id="Tv7-3G-xqu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uLp-Gc-WZY" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -712,14 +723,6 @@
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zuD-qv-9hN">
-                                <rect key="frame" x="313" y="20" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Ok"/>
-                                <connections>
-                                    <action selector="onOk:" destination="UeP-8l-Lad" eventType="touchUpInside" id="4fy-Vc-UB1"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GRm-5Y-3yF">
                                 <rect key="frame" x="16" y="20" width="72" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -757,9 +760,19 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zuD-qv-9hN">
+                                <rect key="frame" x="313" y="11" width="46" height="47"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Ok"/>
+                                <connections>
+                                    <action selector="onOk:" destination="UeP-8l-Lad" eventType="touchUpInside" id="4fy-Vc-UB1"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="tableView" destination="9oL-nv-5NA" id="iI1-2D-OC5"/>
                     </connections>
