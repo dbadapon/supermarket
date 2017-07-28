@@ -40,6 +40,9 @@ class SelectMarketViewController: UIViewController, UICollectionViewDelegate, UI
     
     @IBOutlet weak var collectionView: UICollectionView!
     
+    @IBOutlet weak var postButton: UIButton!
+    
+    
     // before making post, check if any images are the placeholder image
     // meaning user did not select their own image
     
@@ -128,6 +131,9 @@ class SelectMarketViewController: UIViewController, UICollectionViewDelegate, UI
         let width = collectionView.frame.size.width / cellsPerLine - interItemSpacingTotal / cellsPerLine
         
         layout.itemSize = CGSize(width: width, height: width * 3/2)
+        
+        // Style Post button
+        postButton.layer.cornerRadius = 5
         
         
         
