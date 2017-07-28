@@ -12,6 +12,7 @@ import Parse
 protocol CategoryDelegate: class {
     func choseCategory(category: [String: String])
     func deselectCategory(marketName: String)
+    func reloadCollectionView()
 }
 
 class SelectMarketViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, CategoryDelegate {
@@ -218,6 +219,12 @@ class SelectMarketViewController: UIViewController, UICollectionViewDelegate, UI
         cell.marketProfileImage.loadInBackground()
         cell.marketName.text = market.name
         
+        if let selectedCategory = marketsToPost[market.name!] {
+            cell.categoryLabel.text = selectedCategory
+        } else {
+            cell.categoryLabel.text = ""
+        }
+        
         
         if marketsToPost.keys.contains(market.name!) {
             cell.isSelected = true
@@ -243,6 +250,10 @@ class SelectMarketViewController: UIViewController, UICollectionViewDelegate, UI
         marketsToPost.removeValue(forKey: marketName)
         print("pls delete this marketcategory")
         print(marketsToPost)
+    }
+    
+    func reloadCollectionView() {
+         collectionView.reloadData()
     }
     
     
