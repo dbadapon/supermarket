@@ -63,7 +63,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AJR-3o-PaI" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="86" y="-101"/>
+            <point key="canvasLocation" x="85.599999999999994" y="-101.19940029985008"/>
         </scene>
         <!--Photo View Controller-->
         <scene sceneID="brI-ny-9pi">
@@ -878,6 +878,6 @@
         <image name="temp map" width="750" height="1334"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="7UJ-Ht-5qy"/>
+        <segue reference="veg-mV-sRg"/>
     </inferredMetricsTieBreakers>
 </document>

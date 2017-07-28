@@ -11,8 +11,15 @@ import UIKit
 import Vision
 import Alamofire
 import AVFoundation
+import ARKit
+import SceneKit
+import ModelIO
+import SceneKit.ModelIO
 
 class CreatePostViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate, AVCapturePhotoCaptureDelegate, AVCaptureMetadataOutputObjectsDelegate {
+    
+    // for ARKit stuff
+    // @IBOutlet weak var sceneView: ARSCNView!
     
     // for barcode scanner
     // private var scanner: MSCodeScanner!
@@ -103,6 +110,19 @@ class CreatePostViewController: UIViewController, AVCaptureVideoDataOutputSample
             fatalError("No video camera available")
         }
         do {
+            
+            /*
+            // for ARKit stuff
+            let configuration = ARWorldTrackingSessionConfiguration()
+            configuration.planeDetection = .horizontal
+            
+            // runs view session
+            // basic AR tracking
+            sceneView.session.run(configuration)
+            print("running AR sesh")
+ 
+ */
+ 
             // add the preview layer
             // also configure live preview layer
             previewLayer = AVCaptureVideoPreviewLayer(session: session)
@@ -179,7 +199,7 @@ class CreatePostViewController: UIViewController, AVCaptureVideoDataOutputSample
             
             // set up the vision model
             guard let resNet50Model = try? VNCoreMLModel(for: Resnet50().model) else {
-                fatalError("Could not load model")
+                fatalError("could not load model")
             }
 
             // set up the request using our vision model
@@ -195,6 +215,50 @@ class CreatePostViewController: UIViewController, AVCaptureVideoDataOutputSample
         }
         // updateThreshholdLabel()
     }
+/*
+    // for ARKit stuff
+    @IBAction func addCube(_ sender: Any) {
+        
+        // cube will with 0.1^3 meters
+        let cubeNode = SCNNode(geometry: SCNBox(width: 0.1, height: 0.1, length: 0.1, chamferRadius: 0))
+        // cube will appear 20 centimeters in front of camera
+        // cube gets placed in place relative to root node not camera
+        // line of code below would place cubes in same place everytime you tapped
+        // cubeNode.position = SCNVector3(0, 0, -0.2)
+        
+        // code below will place cubes in one line
+        // let zCoords = randomFloat(min: -2, max: -0.2)
+        // print(String(zCoords))
+        // cubeNode.position = SCNVector3(0, 0, zCoords)
+        
+        let cc = getCameraCoordinates(sceneView: sceneView)
+        
+        // place cube 0.2m in front of camera
+        
+        // place cube where camera is
+        cubeNode.position = SCNVector3(cc.x, cc.y, cc.z)
+        
+        sceneView.scene.rootNode.addChildNode(cubeNode)
+    }
+*/
+    
+    struct myCameraCoordinates {
+        var x = Float()
+        var y = Float()
+        var z = Float()
+    }
+    
+    func getCameraCoordinates(sceneView: ARSCNView) -> myCameraCoordinates {
+        let cameraTransform = sceneView.session.currentFrame?.camera.transform
+        let cameraCoordinates = MDLTransform(matrix: cameraTransform!)
+        
+        var cc = myCameraCoordinates()
+        cc.x = cameraCoordinates.translation.x
+        cc.y = cameraCoordinates.translation.y
+        cc.z = cameraCoordinates.translation.z
+        
+        return cc
+    }
     
     /*
      func updateThreshholdLabel () {
@@ -208,7 +272,7 @@ class CreatePostViewController: UIViewController, AVCaptureVideoDataOutputSample
         if let swipeGesture = gesture as? UISwipeGestureRecognizer {
             switch swipeGesture.direction {
             case UISwipeGestureRecognizerDirection.right:
-                print("Swiped right")
+                print("swiped right")
                 
                 self.previewLayer.removeFromSuperlayer()
                 // self.previewLayer = nil
@@ -222,9 +286,9 @@ class CreatePostViewController: UIViewController, AVCaptureVideoDataOutputSample
                 }
                 
             case UISwipeGestureRecognizerDirection.down:
-                print("Swiped down")
+                print("swiped down")
             case UISwipeGestureRecognizerDirection.left:
-                print("Swiped left")
+                print("swiped left")
                 
                 self.previewLayer.removeFromSuperlayer()
                 // self.previewLayer = nil
@@ -238,7 +302,35 @@ class CreatePostViewController: UIViewController, AVCaptureVideoDataOutputSample
                 }
 
             case UISwipeGestureRecognizerDirection.up:
-                print("Swiped up")
+                print("swiped up")
+
+                /*
+                // TEMPORARY!!!!! CHANGE THIS LATER
+                // JUST CHECKING TO SEE IF AVCAPTURE SESH
+                // AND SCN SCENE WORKS SIMULTANEOUSLY
+                
+                // cube will with 0.1^3 meters
+                let cubeNode = SCNNode(geometry: SCNBox(width: 0.1, height: 0.1, length: 0.1, chamferRadius: 0))
+                // cube will appear 20 centimeters in front of camera
+                // cube gets placed in place relative to root node not camera
+                // line of code below would place cubes in same place everytime you tapped
+                // cubeNode.position = SCNVector3(0, 0, -0.2)
+                
+                // code below will place cubes in one line
+                // let zCoords = randomFloat(min: -2, max: -0.2)
+                // print(String(zCoords))
+                // cubeNode.position = SCNVector3(0, 0, zCoords)
+                
+                let cc = getCameraCoordinates(sceneView: sceneView)
+                
+                // place cube 0.2m in front of camera
+                
+                // place cube where camera is
+                cubeNode.position = SCNVector3(cc.x, cc.y, cc.z)
+                
+                self.sceneView.scene.rootNode.addChildNode(cubeNode)
+ */
+                
             default:
                 break
             }
@@ -452,8 +544,8 @@ class CreatePostViewController: UIViewController, AVCaptureVideoDataOutputSample
         photoSettings.flashMode = .on
         photoSettings.isHighResolutionPhotoEnabled = true
         photoSettings.isAutoStillImageStabilizationEnabled = true
-        if photoSettings.availablePreviewPhotoPixelFormatTypes.count > 0 {
-            photoSettings.previewPhotoFormat = [ kCVPixelBufferPixelFormatTypeKey as String : photoSettings.availablePreviewPhotoPixelFormatTypes.first!]
+        if photoSettings.__availablePreviewPhotoPixelFormatTypes.count > 0 {
+            photoSettings.previewPhotoFormat = [ kCVPixelBufferPixelFormatTypeKey as String : photoSettings.__availablePreviewPhotoPixelFormatTypes.first!]
         }
         
         if let videoConnection = self.stillImageOutput.connection(withMediaType: AVMediaTypeVideo) {
