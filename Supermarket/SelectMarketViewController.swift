@@ -11,6 +11,7 @@ import Parse
 
 protocol CategoryDelegate: class {
     func choseCategory(category: [String: String])
+    func deselectCategory(marketName: String)
 }
 
 class SelectMarketViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, CategoryDelegate {
@@ -207,8 +208,8 @@ class SelectMarketViewController: UIViewController, UICollectionViewDelegate, UI
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MarketChoiceCell", for: indexPath) as! MarketChoiceCell
         
         
-        cell.layer.borderWidth = 1
-        cell.layer.borderColor = UIColor.black.cgColor
+//        cell.layer.borderWidth = 1
+//        cell.layer.borderColor = UIColor.black.cgColor
         
         let market = markets[indexPath.row]
         
@@ -235,6 +236,13 @@ class SelectMarketViewController: UIViewController, UICollectionViewDelegate, UI
         let categoryName = category[marketName!]
         marketsToPost[marketName!] = categoryName
         print (marketsToPost)
+    }
+    
+    func deselectCategory(marketName: String) {
+//        dict.removeValue(forKey: willRemoveKey)
+        marketsToPost.removeValue(forKey: marketName)
+        print("pls delete this marketcategory")
+        print(marketsToPost)
     }
     
     

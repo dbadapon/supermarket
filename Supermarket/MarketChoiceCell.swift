@@ -15,6 +15,9 @@ class MarketChoiceCell: UICollectionViewCell {
     @IBOutlet weak var marketProfileImage: PFImageView!
     @IBOutlet weak var marketName: UILabel!
     
+    @IBOutlet weak var categoryLabel: UILabel!
+    
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()

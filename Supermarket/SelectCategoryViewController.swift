@@ -12,8 +12,12 @@ class SelectCategoryViewController: UIViewController, UITableViewDelegate, UITab
 
     var market: Market!
     var selectedCategory: String?
+    var oldCategory: String?
+    
     @IBOutlet weak var tableView: UITableView!
-    weak var delegate: CategoryDelegate? 
+    weak var delegate: CategoryDelegate?
+    
+    // have a var for "categoryChanged"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,12 +52,9 @@ class SelectCategoryViewController: UIViewController, UITableViewDelegate, UITab
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if selectedCategory != nil {
-            
-            selectedCategory = market.categories[indexPath.row]
-        } else {
-            
-            selectedCategory = market.categories[indexPath.row]
+            oldCategory = selectedCategory
         }
+        selectedCategory = market.categories[indexPath.row]
         print (selectedCategory)
     }
     
@@ -64,7 +65,10 @@ class SelectCategoryViewController: UIViewController, UITableViewDelegate, UITab
     @IBAction func onOk(_ sender: Any) {
         if let selectedCategory = selectedCategory {
             print ("it to the inside")
-            var dict = [market.name! : selectedCategory]
+            if let oldCategory = oldCategory {
+                delegate?.deselectCategory(marketName: market.name!)
+            }
+            let dict = [market.name! : selectedCategory]
             delegate?.choseCategory(category: dict)
             self.dismiss(animated: true, completion: nil)
         }

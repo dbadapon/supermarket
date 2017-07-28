@@ -664,6 +664,7 @@
                                             </subviews>
                                         </view>
                                         <connections>
+                                            <outlet property="categoryLabel" destination="hJh-rh-md2" id="Ksn-p4-fe3"/>
                                             <outlet property="marketName" destination="c3a-3Q-beS" id="xPy-dA-9CX"/>
                                             <outlet property="marketProfileImage" destination="wrh-as-mlM" id="Tu2-VG-CE5"/>
                                         </connections>
