@@ -23,12 +23,10 @@ class PreviewViewController: UIViewController, UITextViewDelegate, UIGestureReco
     // color to use for app
     let textColor = UIColor(red: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha:1.0)
     
+    // alter controllers
     let nextAlertController = UIAlertController(title: "Invalid Action", message: "Cover photo is required", preferredStyle: .alert)
-    
     let nameRequiredAlertController = UIAlertController(title: "Name Required", message: "Please enter an item name to continue", preferredStyle: .alert)
-    
     let cameraSelectAlertController = UIAlertController(title: "Camera NOT available", message: "Please select Photo Library", preferredStyle: .alert)
-    
     let nameAlertController = UIAlertController(title: "Max Characters Reached", message: "Item name CANNOT exceed 50 characters", preferredStyle: .alert)
     
     let vc = UIImagePickerController()
@@ -151,16 +149,10 @@ class PreviewViewController: UIViewController, UITextViewDelegate, UIGestureReco
             // handle response here.
         }
         
-        // add the OK action to the alert controller
+        // add the OK action to the alert controllers
         cameraSelectAlertController.addAction(OKAction)
-        
-        // add the OK action to the alert controller
         nextAlertController.addAction(OKAction)
-        
-        // add the OK action to the alert controller
         nameAlertController.addAction(OKAction)
-        
-        // add the OK action to the alert controller
         nameRequiredAlertController.addAction(OKAction)
         
         /*
@@ -170,7 +162,6 @@ class PreviewViewController: UIViewController, UITextViewDelegate, UIGestureReco
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         */
     }
-    
     
     func tappedImageCover(_sender: AnyObject) {
         print("Cover image tapped!")
@@ -205,6 +196,7 @@ class PreviewViewController: UIViewController, UITextViewDelegate, UIGestureReco
     func showOptions() {
         let alert:UIAlertController = UIAlertController(title: "Image Options", message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
         alert.view.tintColor = textColor
+        
         let deleteAction = UIAlertAction(title: "Delete", style: UIAlertActionStyle.destructive) {
             (action) in
             if self.selectedImage == 0 {
@@ -234,6 +226,7 @@ class PreviewViewController: UIViewController, UITextViewDelegate, UIGestureReco
         let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel) {
             (action) in
         }
+        
         // Add the actions
         // originally in code, but not necessary because now it's in viewDidLoad
         // picker?.delegate = self
@@ -241,6 +234,7 @@ class PreviewViewController: UIViewController, UITextViewDelegate, UIGestureReco
         alert.addAction(cameraAction)
         alert.addAction(libraryAction)
         alert.addAction(cancelAction)
+        
         // Present the controller
         if UIDevice.current.userInterfaceIdiom == .phone {
             self.present(alert, animated: true, completion: nil)
@@ -344,8 +338,7 @@ class PreviewViewController: UIViewController, UITextViewDelegate, UIGestureReco
         let remainingCount = 50 - text.characters.count
         let count = text.characters.count
         
-        if count == 49
-        {
+        if count == 49 {
             charCountLabel.text = "Item Name: (1 character remaining)"
         } else if count <= 50 {
             charCountLabel.text = "Item Name: (" + String(remainingCount) + " characters remaining)"
@@ -356,6 +349,7 @@ class PreviewViewController: UIViewController, UITextViewDelegate, UIGestureReco
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
         if segue.identifier == "toPriceSegue" {
             let dvc = segue.destination as! PriceViewController
             dvc.itemName = self.itemName
@@ -366,6 +360,5 @@ class PreviewViewController: UIViewController, UITextViewDelegate, UIGestureReco
             dvc.imageFour = self.imageViewFour
         }
     }
-    
 }
 

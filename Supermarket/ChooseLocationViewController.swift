@@ -38,9 +38,6 @@ class ChooseLocationViewController: UIViewController {
         print("get current location")
     }
     
-    
-    
-    
     @IBAction func previousAction(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
@@ -53,8 +50,7 @@ class ChooseLocationViewController: UIViewController {
         super.viewDidLoad()
         getLocationButton.layer.cornerRadius = 3
         zipCodeField.layer.cornerRadius = 3
-        
-        
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -63,6 +59,7 @@ class ChooseLocationViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
         if segue.identifier == "toSelectMarketSegue" {
             let dvc = segue.destination as! SelectMarketViewController
             dvc.itemName = self.itemName

@@ -13,6 +13,7 @@ target 'Supermarket' do
 	pod 'Alamofire'
 	pod 'IQKeyboardManagerSwift', '4.0.10'
 	pod 'YNDropDownMenu'
+	pod 'RoundedSwitch', '~> 1.0.3'
 
   target 'SupermarketTests' do
     inherit! :search_paths

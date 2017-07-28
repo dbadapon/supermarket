@@ -330,7 +330,6 @@ class CreatePostViewController: UIViewController, AVCaptureVideoDataOutputSample
     }
     
     
-    
     func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [Any]!, from connection: AVCaptureConnection!) {
         
         // for debugging purposes
@@ -498,6 +497,7 @@ class CreatePostViewController: UIViewController, AVCaptureVideoDataOutputSample
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
         if segue.identifier == "capturedSegue" {
             // uncomment out to stop running AVCaptureSession
             // self.previewLayer.removeFromSuperlayer()
@@ -508,6 +508,7 @@ class CreatePostViewController: UIViewController, AVCaptureVideoDataOutputSample
             dvc.backgroundImage = imageToPass
             dvc.topMLResult = topMLResult
         }
+        
         // only happens when barcode recognized and user clicks scan
         if segue.identifier == "barcodeToPreviewSegue" {
             // uncomment out to stop running AVCaptureSession

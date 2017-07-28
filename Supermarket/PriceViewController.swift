@@ -45,8 +45,8 @@ class PriceViewController: UIViewController, UITextFieldDelegate {
     // color to use for app
     let textColor = UIColor(red: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha:1.0)
     
+    // alert controllers
     let priceAlertController = UIAlertController(title: "Invalid Price", message: "Please set a valid price", preferredStyle: .alert)
-    
     let nextAlertController = UIAlertController(title: "Price Required", message: "Please set a price to continue", preferredStyle: .alert)
     
     @IBOutlet weak var inputPrice: UITextField!
@@ -65,7 +65,6 @@ class PriceViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -104,15 +103,12 @@ class PriceViewController: UIViewController, UITextFieldDelegate {
         // Dispose of any resources that can be recreated.
     }
     
- 
     func checkPriceWithName(query: String) {
         
         let baseURL = "http://api.walmartlabs.com/v1/search?query="
         let endUrl = "&format=json&apiKey=yva6f6yprac42rsp44tjvxjg"
-        
         let newString = query.replacingOccurrences(of: " ", with: "+")
-        
-        print (newString)
+        // print (newString)
         let wholeUrl = baseURL + newString + endUrl
         
         request(wholeUrl, method: .get).validate().responseJSON { (response) in
@@ -292,8 +288,11 @@ class PriceViewController: UIViewController, UITextFieldDelegate {
         let num = Double(inputPrice.text!)
         let count = text.characters.count
         
-        if count <= 38 && num != nil
-        {
+        if inputPrice == nil {
+            // do nothing
+            // don't want alert controllers popping up
+            // every time user taps out of textbox
+        } else if count <= 38 && num != nil {
             // value is okay
             self.itemPrice = num
             
@@ -314,11 +313,11 @@ class PriceViewController: UIViewController, UITextFieldDelegate {
     
     func textFieldDidBeginEditing(_ inputPrice: UITextField) {
         print("text field began editing")
-        
         inputPrice.text = ""
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
         if segue.identifier == "toDescriptionSegue" {
             if self.negotiableSwitch.isOn {
                 self.isNegotiable = true
@@ -337,5 +336,4 @@ class PriceViewController: UIViewController, UITextFieldDelegate {
             dvc.itemPrice = self.itemPrice
         }
     }
-
 }
