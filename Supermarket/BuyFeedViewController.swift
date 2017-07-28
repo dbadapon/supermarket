@@ -47,6 +47,7 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
     var filterTableView: UITableView?
     var categoryTableView: UITableView?
     var dropView: YNDropDownMenu?
+    var marketPosts: [PFObject] = []
     
     var searchController: UISearchController!
     
@@ -246,6 +247,20 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
 //        navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont(name: "Avenir", size: 20)]
         
         
+//        navigationController?.navigationBar.barTintColor = UIColor.init(colorLiteralRed: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha: 1.0)
+//
+//        navigationController?.navigationBar.barStyle = UIBarStyle.black
+//
+//        navigationController?.navigationBar.tintColor = UIColor.white
+//
+//        navigationController?.navigationBar.isTranslucent = false
+//        
+//        definesPresentationContext = true
+        
+        navigationController?.navigationBar.titleTextAttributes = [
+            NSFontAttributeName: UIFont.systemFont(ofSize: 17, weight: UIFontWeightHeavy)
+        ]
+        
         navigationController?.navigationBar.barTintColor = UIColor.init(colorLiteralRed: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha: 1.0)
         
         navigationController?.navigationBar.barStyle = UIBarStyle.black
@@ -253,7 +268,6 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         navigationController?.navigationBar.tintColor = UIColor.white
         
         navigationController?.navigationBar.isTranslucent = false
-        
         
         // searchController.searchBar.clipsToBounds = true
         
@@ -290,9 +304,19 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
     override func viewWillAppear(_ animated: Bool) {
 //        navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont(name: "Avenir", size: 20)]
         
-        let font = UIFontDescriptor(fontAttributes: [UIFontDescriptorFaceAttribute : "Medium", UIFontDescriptorFamilyAttribute: "Avenir"])
+//        let font = UIFontDescriptor(fontAttributes: [UIFontDescriptorFaceAttribute : "Medium", UIFontDescriptorFamilyAttribute: "Avenir"])
+//
+//        navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont(descriptor: font, size: 20)]
+//
+//        navigationController?.navigationBar.barTintColor = UIColor.init(colorLiteralRed: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha: 1.0)
+//
+//        navigationController?.navigationBar.barStyle = UIBarStyle.black
+//
+//        navigationController?.navigationBar.tintColor = UIColor.white
+//
+//        navigationController?.navigationBar.isTranslucent = false
         
-        navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont(descriptor: font, size: 20)]
+        navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont(name: "Avenir", size: 20)]
         
         navigationController?.navigationBar.barTintColor = UIColor.init(colorLiteralRed: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha: 1.0)
         
@@ -361,6 +385,11 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         }
         query.findObjectsInBackground(block: { (marketPosts, error) in
             if let marketPosts = marketPosts {
+                self.marketPosts = marketPosts
+                print ("we're about to do the printing")
+                for m in marketPosts {
+                    print (m["category"])
+                }
                 var idArray: [String] = []
                 for m in marketPosts {
                     let marketPost = MarketPost(m)
@@ -375,7 +404,6 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func fetchFilteredPosts(idArray: [String]) {
-        
         let postQuery = PFQuery(className: "Post")
         if self.filter == "Most Recent" {
             postQuery.addDescendingOrder("createdAt")
@@ -384,6 +412,7 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         } else if self.filter == "Price: High to Low" {
             postQuery.addDescendingOrder("price")
         }
+        
         postQuery.whereKey("objectId", containedIn: idArray)
         postQuery.whereKey("sold", equalTo: false)
         postQuery.findObjectsInBackground { (posts, error) in
@@ -484,8 +513,16 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
                     let name = post.name
                     cell.nameLabel.text = name
                 
-                    let category = "Category"
-                    cell.categoryLabel.text = category
+                
+                    let postId = parseObject.objectId as! String
+                    for marketpost in self.marketPosts {
+                        let id = marketpost["post"] as! String
+                        if id == postId {
+                            cell.categoryLabel.text = marketpost["category"] as! String
+                            break
+                        }
+                    }
+                
                 
                     let price = post.price!
                     let formattedPrice = String(format: "%.2f", price)
@@ -502,7 +539,7 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
                     print(error?.localizedDescription)
                 }
             }
-        
+            
             return cell
         } else if tableView == filterTableView {
             let frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 40)

@@ -21,6 +21,7 @@ class InterestedCell: UITableViewCell {
     
     var notification: SupermarketNotification! {
         didSet {
+            messageLabel.numberOfLines = 0
             print ("getting to notification did set method")
             let sender = notification.sender
             print (sender)

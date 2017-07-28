@@ -49,14 +49,17 @@ class NotificationsViewController: UIViewController, UITableViewDelegate, UITabl
 //        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
 //        self.navigationController?.navigationBar.shadowImage = UIImage()
         
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 100
+        
         
         tableView.dataSource = self
         tableView.delegate = self
         
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 100
+        
         var query = PFQuery(className: "SupermarketNotification")
         query.whereKey("receiver", equalTo: PFUser.current())
+        query.addDescendingOrder("createdAt")
         query.limit = 20
         
         query.findObjectsInBackground { (notifications: [PFObject]?, error: Error?) in
@@ -90,9 +93,7 @@ class NotificationsViewController: UIViewController, UITableViewDelegate, UITabl
         segmentedControl.setTitleTextAttributes(boldTextAttributes, for: .selected)
         segmentedControl.setTitleTextAttributes(boldTextAttributes, for: .normal)
         
-        navigationController?.navigationBar.titleTextAttributes = [
-            NSFontAttributeName: UIFont.systemFont(ofSize: 17, weight: UIFontWeightHeavy)
-        ]
+        navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont(name: "Avenir", size: 20)]
         
         navigationController?.navigationBar.barTintColor = UIColor.init(colorLiteralRed: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha: 1.0)
         
@@ -101,6 +102,8 @@ class NotificationsViewController: UIViewController, UITableViewDelegate, UITabl
         navigationController?.navigationBar.tintColor = UIColor.white
         
         navigationController?.navigationBar.isTranslucent = false
+        
+        
         self.tableView.tableFooterView = UIView()
         
         tableView.reloadData()
