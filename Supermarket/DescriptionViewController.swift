@@ -41,10 +41,11 @@ class DescriptionViewController: UIViewController, UITextViewDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
         
         itemDescription.delegate = self
+        
+        
         
         // change font of words in segmented control
         let font = UIFont.systemFont(ofSize: 24, weight: UIFontWeightSemibold)
@@ -64,11 +65,11 @@ class DescriptionViewController: UIViewController, UITextViewDelegate {
         
         if count == 499
         {
-            charCountLabel.text = "Item Name: (1 character remaining)"
+            charCountLabel.text = "Description: (1 character remaining)"
         } else if count <= 500 {
-            charCountLabel.text = "Item Name: (" + String(remainingCount) + " characters remaining)"
+            charCountLabel.text = "Description: (" + String(remainingCount) + " characters remaining)"
         } else {
-            charCountLabel.text = "Item Name: (0 characters remaining)"
+            charCountLabel.text = "Description: (0 characters remaining)"
             self.present(self.nameAlertController, animated: true)
         }
     }

@@ -74,10 +74,10 @@ class PriceViewController: UIViewController, UITextFieldDelegate {
         
         // style text field
         
-//        let leftView = UILabel(frame: CGRect(x: 10, y: 0, width: 7, height: 26))
-//        
-//        inputPrice.leftView = leftView
-//        inputPrice.leftViewMode = UITextFieldViewMode.always
+        let leftView = UILabel(frame: CGRect(x: 10, y: 0, width: 7, height: 26))
+        
+        inputPrice.leftView = leftView
+        inputPrice.leftViewMode = UITextFieldViewMode.always
         
         inputPrice.layer.borderWidth = 1
         inputPrice.layer.borderColor = UIColor(colorLiteralRed: 199.0/255.0, green: 199.0/255.0, blue: 205.0/255.0, alpha: 0.50).cgColor
