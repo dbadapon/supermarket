@@ -344,7 +344,12 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         //        }
         
 //        if let data = UserDefaults.standard.object(forKey: "buyfeed_posts") as? Data {
-//            let tweets
+//            let dataDictionaries = NSKeyedUnarchiver.unarchiveObject(with: data) as! [String: Any]
+//            let posts = dataDictionaries.flatMap({ (dictionary) -> Post in
+//                Post(dictionary)
+//            })
+//            completion(posts, nil)
+//            return
 //        }
         
         self.posts = []

@@ -34,6 +34,8 @@ class SelectMarketViewController: UIViewController, UICollectionViewDelegate, UI
     var markets: [Market] = []
     var marketsToPost: [String: String] = [:]
     var selectedMarket: Market? = nil
+    
+    
     @IBOutlet weak var collectionView: UICollectionView!
     
     // before making post, check if any images are the placeholder image
@@ -110,6 +112,8 @@ class SelectMarketViewController: UIViewController, UICollectionViewDelegate, UI
         
         collectionView.delegate = self
         collectionView.dataSource = self
+        
+        
         
         let marketIds = PFUser.current()?.value(forKey: "markets") as! [String]
         print (marketIds)
@@ -228,6 +232,7 @@ class SelectMarketViewController: UIViewController, UICollectionViewDelegate, UI
             let destination = segue.destination as! SelectCategoryViewController
             destination.market = self.selectedMarket
             destination.delegate = self
+            print("THE DESTINATION MARKET IS: \(destination.market)")
         }
     }
     
