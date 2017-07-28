@@ -26,6 +26,8 @@ class MarketViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.tabBarController?.tabBar.isHidden = true
+        
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background")!)
         
         inviteFriendsButton.layer.cornerRadius = inviteFriendsButton.frame.width * 0.03
@@ -58,6 +60,10 @@ class MarketViewController: UIViewController {
         marketDescriptionLabel.text = market.description!
         
         
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.tabBarController?.tabBar.isHidden = false
     }
 
     override func didReceiveMemoryWarning() {
