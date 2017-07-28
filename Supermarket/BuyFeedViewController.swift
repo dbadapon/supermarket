@@ -332,6 +332,21 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
     
     func filterPosts() {
         
+        
+        //        if let data = UserDefaults.standard.object(forKey: "hometimeline_tweets") as? Data {
+        //            let tweetDictionaries = NSKeyedUnarchiver.unarchiveObject(with: data) as! [[String: Any]]
+        //            let tweets = tweetDictionaries.flatMap({ (dictionary) -> Tweet in
+        //                Tweet(dictionary: dictionary)
+        //            })
+        //
+        //            completion(tweets, nil)
+        //            return
+        //        }
+        
+//        if let data = UserDefaults.standard.object(forKey: "buyfeed_posts") as? Data {
+//            let tweets
+//        }
+        
         self.posts = []
         let query = PFQuery(className: "MarketPost")
         query.whereKey("market", equalTo: currentMarket?.name)
