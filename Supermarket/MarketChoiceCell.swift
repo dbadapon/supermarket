@@ -10,11 +10,8 @@ import UIKit
 import Parse
 import ParseUI
 
-protocol SelectedCategoryDelegate: class {
-    func setCategory(category: String)
-}
 
-class MarketChoiceCell: UICollectionViewCell, SelectedCategoryDelegate {
+class MarketChoiceCell: UICollectionViewCell {
     
     @IBOutlet weak var marketProfileImage: PFImageView!
     @IBOutlet weak var marketName: UILabel!
@@ -31,8 +28,5 @@ class MarketChoiceCell: UICollectionViewCell, SelectedCategoryDelegate {
         marketProfileImage.layer.borderColor = UIColor.white.cgColor
     }
     
-    func setCategory(category: String) {
-        categoryLabel.text = category
-    }
     
 }

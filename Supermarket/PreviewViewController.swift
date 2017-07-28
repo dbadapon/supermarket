@@ -54,6 +54,19 @@ class PreviewViewController: UIViewController, UITextViewDelegate, UIGestureReco
         }
     }
     
+    
+    @IBAction func next(_ sender: Any) {
+        print("HIT NEXT")
+        if itemName == nil || itemName.text == "" {
+            self.present(self.nameRequiredAlertController, animated: true)
+        } else if coverPhoto.image == #imageLiteral(resourceName: "cameraMask.png") {
+            self.present(self.nextAlertController, animated: true)
+        } else {
+            performSegue(withIdentifier: "toPriceSegue", sender: self)
+        }
+    }
+    
+    
     @IBAction func nextAction(_ sender: UIButton) {
         if itemName == nil || itemName.text == "" {
             self.present(self.nameRequiredAlertController, animated: true)
@@ -359,6 +372,8 @@ class PreviewViewController: UIViewController, UITextViewDelegate, UIGestureReco
             dvc.imageThree = self.imageViewThree
             dvc.imageFour = self.imageViewFour
         }
+        
+    
     }
 }
 

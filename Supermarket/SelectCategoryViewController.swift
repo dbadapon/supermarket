@@ -17,8 +17,6 @@ class SelectCategoryViewController: UIViewController, UITableViewDelegate, UITab
     @IBOutlet weak var tableView: UITableView!
     weak var delegate: CategoryDelegate?
     
-    weak var marketCellDelegate: SelectedCategoryDelegate?
-    
     // have a var for "categoryChanged"
     
     override func viewDidLoad() {
@@ -72,7 +70,6 @@ class SelectCategoryViewController: UIViewController, UITableViewDelegate, UITab
             }
             let dict = [market.name! : selectedCategory]
             delegate?.choseCategory(category: dict)
-//            marketCellDelegate?.setCategory(category: selectedCategory)
             delegate?.reloadCollectionView()
             self.dismiss(animated: true, completion: nil)
         }
