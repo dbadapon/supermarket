@@ -279,9 +279,12 @@ class PhotoViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "toPreviewSegue" {
-            let dvc = segue.destination as! PreviewViewController
-            dvc.backgroundImage = self.backgroundImage
-            dvc.topMLResult = self.topMLResult
+            let dvc = segue.destination as! UINavigationController
+            let rootVC = dvc.topViewController as! PreviewViewController
+            rootVC.backgroundImage = self.backgroundImage
+            rootVC.topMLResult = self.topMLResult
+//            dvc.backgroundImage = self.backgroundImage
+//            dvc.topMLResult = self.topMLResult
         }
     }
 }

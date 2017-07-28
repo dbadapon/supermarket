@@ -40,6 +40,7 @@ class ChooseLocationViewController: UIViewController {
     
     @IBAction func previousAction(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
+        // how to go back without dismissing...
     }
     
     @IBAction func nextAction(_ sender: UIButton) {

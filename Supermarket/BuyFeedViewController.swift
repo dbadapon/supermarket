@@ -231,9 +231,6 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         
         
         let font = UIFontDescriptor(fontAttributes: [UIFontDescriptorFaceAttribute : "Medium", UIFontDescriptorFamilyAttribute: "Avenir"])
-//
-//        let uiFont = UIFont(descriptor: font, size: 20)
-//        uifontweighttrait
         
         navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont(descriptor: font, size: 20)]
         
