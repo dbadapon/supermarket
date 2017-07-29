@@ -310,15 +310,16 @@
                                                         <action selector="onMessage:" destination="jVZ-2g-rap" eventType="touchUpInside" id="i2z-Si-UDM"/>
                                                     </connections>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BAY-TX-dYk">
-                                                    <rect key="frame" x="54" y="16" width="30" height="30"/>
-                                                    <state key="normal" title="O"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BAY-TX-dYk">
+                                                    <rect key="frame" x="54" y="16" width="39" height="25"/>
+                                                    <state key="normal" title="O" image="Star-50"/>
+                                                    <state key="selected" image="Star Filled-50"/>
                                                     <connections>
                                                         <action selector="onInterested:" destination="jVZ-2g-rap" eventType="touchUpInside" id="Jlc-TL-hQF"/>
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4 interested" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3re-oU-wlO">
-                                                    <rect key="frame" x="88" y="16" width="145" height="30"/>
+                                                    <rect key="frame" x="97" y="16" width="145" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="1Ez-oI-IVe"/>
                                                         <constraint firstAttribute="width" constant="145" id="lOG-uF-BhD"/>
@@ -418,6 +419,8 @@
     <resources>
         <image name="Info" width="50" height="50"/>
         <image name="Menu-50" width="25" height="25"/>
+        <image name="Star Filled-50" width="25" height="25"/>
+        <image name="Star-50" width="25" height="25"/>
         <image name="insta_camera_btn" width="25" height="25"/>
         <image name="search" width="14" height="14"/>
     </resources>
