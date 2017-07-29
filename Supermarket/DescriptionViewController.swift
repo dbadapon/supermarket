@@ -47,8 +47,8 @@ class DescriptionViewController: UIViewController, UITextViewDelegate, TwicketSe
         super.viewDidLoad()
         
         // style navigation bar
-        let font = UIFontDescriptor(fontAttributes: [UIFontDescriptorFaceAttribute : "Medium", UIFontDescriptorFamilyAttribute: "Avenir"])
         self.title = "Item Description"
+        let font = UIFontDescriptor(fontAttributes: [UIFontDescriptorFaceAttribute : "Medium", UIFontDescriptorFamilyAttribute: "Avenir"])
         
         navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont(descriptor: font, size: 20)]
         navigationController?.navigationBar.barTintColor = UIColor.white
@@ -82,7 +82,7 @@ class DescriptionViewController: UIViewController, UITextViewDelegate, TwicketSe
         segmentedControl.sliderBackgroundColor
             = UIColor.init(colorLiteralRed: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha: 1.0)
         
-        segmentedControl.isSliderShadowHidden = true
+//        segmentedControl.isSliderShadowHidden = true
         
         segmentedControl.frame = testView.frame
         
@@ -128,11 +128,11 @@ class DescriptionViewController: UIViewController, UITextViewDelegate, TwicketSe
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "toChooseLocationSegue" {
-//            if self.conditionSegCtrl.selectedSegmentIndex == 1 {
-//                self.isNew = true
-//            } else {
-//                self.isNew = false
-//            }
+            
+            let backItem = UIBarButtonItem()
+            backItem.title = ""
+            backItem.tintColor = UIColor.black
+            navigationItem.backBarButtonItem = backItem
             
             let dvc = segue.destination as! ChooseLocationViewController
             dvc.itemName = self.itemName

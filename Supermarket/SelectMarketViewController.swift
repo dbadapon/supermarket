@@ -113,11 +113,22 @@ class SelectMarketViewController: UIViewController, UICollectionViewDelegate, UI
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        collectionView.delegate = self
-        collectionView.dataSource = self
+        // style navigation bar
+        self.title = "Select Markets"
+        let font = UIFontDescriptor(fontAttributes: [UIFontDescriptorFaceAttribute : "Medium", UIFontDescriptorFamilyAttribute: "Avenir"])
+        
+        navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont(descriptor: font, size: 20)]
+        navigationController?.navigationBar.barTintColor = UIColor.white
+        
+        // make navbar translucent (remove bottom line)
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        
         
         // Style collection view
-//        let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+        
+        collectionView.delegate = self
+        collectionView.dataSource = self
         
         let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
         
@@ -136,7 +147,7 @@ class SelectMarketViewController: UIViewController, UICollectionViewDelegate, UI
         postButton.layer.cornerRadius = 5
         
         
-        
+
         let marketIds = PFUser.current()?.value(forKey: "markets") as! [String]
         print (marketIds)
         let query = PFQuery(className: "Market")
@@ -281,6 +292,7 @@ class SelectMarketViewController: UIViewController, UICollectionViewDelegate, UI
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         if segue.identifier == "toCategorySelection" {
+            
             let destination = segue.destination as! SelectCategoryViewController
             destination.market = self.selectedMarket
             destination.delegate = self

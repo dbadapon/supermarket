@@ -530,25 +530,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select Market" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fk4-be-5tx">
-                                <rect key="frame" x="112" y="20" width="150" height="29"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="20"/>
-                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="npH-FL-2py">
-                                <rect key="frame" x="16" y="16" width="30" height="37"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="20"/>
-                                <color key="tintColor" red="0.36550331120000001" green="0.79173368219999996" blue="0.80787837510000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <state key="normal" title="&lt;">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="previousAction:" destination="chS-rj-eHH" eventType="touchUpInside" id="869-PI-PD4"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rON-Fz-wXS">
                                 <rect key="frame" x="16" y="602" width="343" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -720,38 +701,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xMa-y5-Z4H">
-                                <rect key="frame" x="25" y="31" width="13" height="22"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" red="0.36550331120000001" green="0.79173368219999996" blue="0.80787837510000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <state key="normal" image="chevron-left">
-                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                </state>
-                                <connections>
-                                    <action selector="previousAction:" destination="IRi-An-o7B" eventType="touchUpInside" id="nq2-k2-uYc"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XYt-CG-x2G">
-                                <rect key="frame" x="148" y="28" width="78" height="28"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="20"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SM6-uE-1A3">
-                                <rect key="frame" x="0.0" y="70" width="375" height="524"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="521"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.7957280377" green="0.90545713670000005" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </view>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="temp map" translatesAutoresizingMaskIntoConstraints="NO" id="b1Y-fc-RNi">
-                                <rect key="frame" x="0.0" y="70" width="375" height="524"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="521"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CcY-6r-ryj">
-                                <rect key="frame" x="0.0" y="64" width="375" height="530"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="521"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" id="8dc-Yz-Bnb">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="530"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="521"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pDi-e9-EEB">
@@ -805,6 +768,7 @@
                         <outlet property="blur" destination="CcY-6r-ryj" id="Nyd-cj-hwV"/>
                         <outlet property="getLocationButton" destination="pDi-e9-EEB" id="GRk-JG-u34"/>
                         <outlet property="mapView" destination="SM6-uE-1A3" id="ERc-oM-b9U"/>
+                        <outlet property="setButton" destination="8sc-eC-YoM" id="3S4-iK-mJz"/>
                         <outlet property="tempMap" destination="b1Y-fc-RNi" id="l8s-6K-f8W"/>
                         <outlet property="zipCodeField" destination="v8m-5g-mjn" id="xXK-OY-A2k"/>
                         <segue destination="chS-rj-eHH" kind="show" identifier="toSelectMarketSegue" id="Mwd-UO-KT1"/>
@@ -835,7 +799,6 @@
     </scenes>
     <resources>
         <image name="cameraMask" width="512" height="512"/>
-        <image name="chevron-left" width="13" height="19"/>
         <image name="chevron-right" width="13" height="20"/>
         <image name="temp map" width="750" height="1334"/>
     </resources>

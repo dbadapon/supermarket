@@ -131,7 +131,7 @@
                                 <segue destination="gaw-1C-xQB" kind="presentation" identifier="sideMenu" id="cfL-Du-jpL"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" image="search" id="ehW-7w-uU0"/>
+                        <barButtonItem key="rightBarButtonItem" image="search" id="AnF-ef-32W"/>
                     </navigationItem>
                     <connections>
                         <outlet property="categoryDropDownView" destination="lsj-7z-pMz" id="Y2h-mF-Pki"/>
