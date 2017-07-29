@@ -149,7 +149,7 @@
                                 <segue destination="zcu-kN-IiR" kind="presentation" identifier="sideMenu" id="YSR-Wk-cVN"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Search" id="EtK-gH-ftT"/>
+                        <barButtonItem key="rightBarButtonItem" image="search" id="EtK-gH-ftT"/>
                     </navigationItem>
                     <connections>
                         <outlet property="lineViewOne" destination="q70-Fd-XfJ" id="eq2-r8-7S5"/>
@@ -310,5 +310,6 @@
     <resources>
         <image name="Customer-50" width="25" height="25"/>
         <image name="Menu-50" width="25" height="25"/>
+        <image name="search" width="14" height="14"/>
     </resources>
 </document>
