@@ -30,10 +30,7 @@ class DescriptionViewController: UIViewController, UITextViewDelegate {
     
     @IBOutlet weak var conditionSegCtrl: UISegmentedControl!
     
-    
-    @IBAction func previousAction(_ sender: UIButton) {
-        dismiss(animated: true, completion: nil)
-    }
+
     
     @IBAction func nextAction(_ sender: UIButton) {
         performSegue(withIdentifier: "toChooseLocationSegue", sender: self)
@@ -43,13 +40,29 @@ class DescriptionViewController: UIViewController, UITextViewDelegate {
         super.viewDidLoad()
         
         
+        // style navigation bar
+        let font = UIFontDescriptor(fontAttributes: [UIFontDescriptorFaceAttribute : "Medium", UIFontDescriptorFamilyAttribute: "Avenir"])
+        self.title = "Item Description"
+        navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont(descriptor: font, size: 20)]
+        navigationController?.navigationBar.barTintColor = UIColor.white
+        
+        // make navbar translucent (remove bottom line)
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        
+        
+        // Style text field
+        itemDescription.layer.cornerRadius = 5
+        itemDescription.layer.borderWidth = 1
+        itemDescription.layer.borderColor = UIColor(colorLiteralRed: 199.0/255.0, green: 199.0/255.0, blue: 205.0/255.0, alpha: 0.50).cgColor
+        
+        // Set delegate of text field
         itemDescription.delegate = self
         
         
-        
         // change font of words in segmented control
-        let font = UIFont.systemFont(ofSize: 24, weight: UIFontWeightSemibold)
-        conditionSegCtrl.setTitleTextAttributes([NSFontAttributeName: font], for: .normal)
+        let segFont = UIFont.systemFont(ofSize: 24, weight: UIFontWeightSemibold)
+        conditionSegCtrl.setTitleTextAttributes([NSFontAttributeName: segFont], for: .normal)
         
     }
 
@@ -65,11 +78,11 @@ class DescriptionViewController: UIViewController, UITextViewDelegate {
         
         if count == 499
         {
-            charCountLabel.text = "Description: (1 character remaining)"
+            charCountLabel.text = "What are you selling? (1 character remaining)"
         } else if count <= 500 {
-            charCountLabel.text = "Description: (" + String(remainingCount) + " characters remaining)"
+            charCountLabel.text = "What are you selling? (" + String(remainingCount) + " characters remaining)"
         } else {
-            charCountLabel.text = "Description: (0 characters remaining)"
+            charCountLabel.text = "What are you selling? (0 characters remaining)"
             self.present(self.nameAlertController, animated: true)
         }
     }

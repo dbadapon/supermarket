@@ -82,6 +82,8 @@ class PriceViewController: UIViewController, UITextFieldDelegate {
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         navigationController?.navigationBar.shadowImage = UIImage()
         
+        
+        
         // style text field
         
         let leftView = UILabel(frame: CGRect(x: 10, y: 0, width: 7, height: 26))
@@ -89,6 +91,7 @@ class PriceViewController: UIViewController, UITextFieldDelegate {
         inputPrice.leftView = leftView
         inputPrice.leftViewMode = UITextFieldViewMode.always
         
+        inputPrice.layer.cornerRadius = 5
         inputPrice.layer.borderWidth = 1
         inputPrice.layer.borderColor = UIColor(colorLiteralRed: 199.0/255.0, green: 199.0/255.0, blue: 205.0/255.0, alpha: 0.50).cgColor
         
@@ -349,6 +352,12 @@ class PriceViewController: UIViewController, UITextFieldDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "toDescriptionSegue" {
+            
+            let backItem = UIBarButtonItem()
+            backItem.title = ""
+            backItem.tintColor = UIColor.black
+            navigationItem.backBarButtonItem = backItem
+            
             if self.negotiableSwitch.isOn {
                 self.isNegotiable = true
             } else {

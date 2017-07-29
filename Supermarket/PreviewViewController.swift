@@ -361,7 +361,14 @@ class PreviewViewController: UIViewController, UITextViewDelegate, UIGestureReco
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
+        
         if segue.identifier == "toPriceSegue" {
+            
+            let backItem = UIBarButtonItem()
+            backItem.title = ""
+            backItem.tintColor = UIColor.black
+            navigationItem.backBarButtonItem = backItem
+            
             let dvc = segue.destination as! PriceViewController
             dvc.itemName = self.itemName
             dvc.coverPhoto = self.coverPhoto
