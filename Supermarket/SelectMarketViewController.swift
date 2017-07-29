@@ -230,7 +230,7 @@ class SelectMarketViewController: UIViewController, UICollectionViewDelegate, UI
         
 //        cell.layer.borderWidth = 1
 //        cell.layer.borderColor = UIColor.black.cgColor
-        cell.layer.cornerRadius = 10
+        cell.layer.cornerRadius = 15
         
         let market = markets[indexPath.row]
         

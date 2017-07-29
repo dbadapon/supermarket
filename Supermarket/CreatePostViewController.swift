@@ -280,6 +280,13 @@ class CreatePostViewController: UIViewController, AVCaptureVideoDataOutputSample
 
                 let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                 let vc = storyboard.instantiateViewController(withIdentifier: "TabBarController") as! UITabBarController
+                
+//                self.present(vc, animated: true, completion: {
+//                    vc.selectedIndex = 1
+//                })
+
+                // try to fix this animation...
+                
                 UIView.performWithoutAnimation {
                     self.show(vc, sender: self)
                     vc.selectedIndex = 1

@@ -24,7 +24,7 @@ class MarketChoiceCell: UICollectionViewCell {
         
         marketProfileImage.layer.cornerRadius = marketProfileImage.frame.width * 0.5
         marketProfileImage.layer.masksToBounds = true
-        marketProfileImage.layer.borderWidth = 3
+        marketProfileImage.layer.borderWidth = 5
         marketProfileImage.layer.borderColor = UIColor.white.cgColor
     }
     

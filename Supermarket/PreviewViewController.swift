@@ -23,6 +23,8 @@ class PreviewViewController: UIViewController, UITextViewDelegate, UIGestureReco
     // color to use for app
     let textColor = UIColor(red: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha:1.0)
     
+    let lightGray = UIColor(colorLiteralRed: 199.0/255.0, green: 199.0/255.0, blue: 205.0/255.0, alpha: 0.50).cgColor
+    
     // alter controllers
     let nextAlertController = UIAlertController(title: "Invalid Action", message: "Cover photo is required", preferredStyle: .alert)
     let nameRequiredAlertController = UIAlertController(title: "Name Required", message: "Please enter an item name to continue", preferredStyle: .alert)
@@ -85,14 +87,6 @@ class PreviewViewController: UIViewController, UITextViewDelegate, UIGestureReco
         navigationController?.navigationBar.shadowImage = UIImage()
 
         
-        
-//        navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont(descriptor: font, size: 20)]
-//
-//        navigationController?.navigationBar.barTintColor = UIColor.white
-//        navigationController?.navigationBar.barStyle = UIBarStyle.black
-//        navigationController?.navigationBar.tintColor = UIColor.black
-//        navigationController?.navigationBar.isTranslucent = false
-        
         // set color of alert controllers
         nextAlertController.view.tintColor = textColor
         cameraSelectAlertController.view.tintColor = textColor
@@ -122,8 +116,7 @@ class PreviewViewController: UIViewController, UITextViewDelegate, UIGestureReco
         UITapRecognizerFour.delegate = self
         self.imageViewFour.addGestureRecognizer(UITapRecognizerFour)
         self.imageViewFour.isUserInteractionEnabled = true
-        
-        print(pictureUrl)
+
         
         itemName.delegate = self
         
@@ -145,9 +138,9 @@ class PreviewViewController: UIViewController, UITextViewDelegate, UIGestureReco
         }
         
         // border around textbox for user to type item name
-        let borderColor = UIColor(red: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha:1.0)
+        let borderColor = lightGray
         
-        itemName.layer.borderColor = borderColor.cgColor;
+        itemName.layer.borderColor = borderColor
         itemName.layer.borderWidth = 0.5;
         itemName.layer.cornerRadius = 5.0;
         
