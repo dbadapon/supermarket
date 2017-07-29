@@ -205,7 +205,7 @@ class CreatePostViewController: UIViewController, AVCaptureVideoDataOutputSample
             // set up the request using our vision model
 
             let classificationRequest = VNCoreMLRequest(model: resNet50Model, completionHandler: handleClassifications)
-            classificationRequest.imageCropAndScaleOption = VNImageCropAndScaleOptionCenterCrop
+            classificationRequest.imageCropAndScaleOption = VNImageCropAndScaleOption.centerCrop
             // dom: it won't build if I use the stuff below...
 //            VNImageCropAndScaleOption.centerCrop
             visionRequests = [classificationRequest]
@@ -417,7 +417,7 @@ class CreatePostViewController: UIViewController, AVCaptureVideoDataOutputSample
         }
         
         // for orientation see kCGImagePropertyOrientation
-        let imageRequestHandler = VNImageRequestHandler(cvPixelBuffer: pixelBuffer, orientation: Int32(CGImagePropertyOrientation(rawValue: 1)!.rawValue), options: requestOptions)
+        let imageRequestHandler = VNImageRequestHandler(cvPixelBuffer: pixelBuffer, orientation: CGImagePropertyOrientation(rawValue: UInt32(Int32(CGImagePropertyOrientation(rawValue: 1)!.rawValue)))!, options: requestOptions)
         do {
             try imageRequestHandler.perform(self.visionRequests)
         } catch {
@@ -548,8 +548,8 @@ class CreatePostViewController: UIViewController, AVCaptureVideoDataOutputSample
         photoSettings.flashMode = .on
         photoSettings.isHighResolutionPhotoEnabled = true
         photoSettings.isAutoStillImageStabilizationEnabled = true
-        if photoSettings.availablePreviewPhotoPixelFormatTypes.count > 0 {
-            photoSettings.previewPhotoFormat = [ kCVPixelBufferPixelFormatTypeKey as String : photoSettings.availablePreviewPhotoPixelFormatTypes.first!]
+        if photoSettings.__availablePreviewPhotoPixelFormatTypes.count > 0 {
+            photoSettings.previewPhotoFormat = [ kCVPixelBufferPixelFormatTypeKey as String : photoSettings.__availablePreviewPhotoPixelFormatTypes.first!]
         }
         
         if let videoConnection = self.stillImageOutput.connection(withMediaType: AVMediaTypeVideo) {

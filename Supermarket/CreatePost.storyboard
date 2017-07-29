@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.19" systemVersion="16F2073" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13168.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.16"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13147.4"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -310,7 +310,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter item price here" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kzm-z9-LlM">
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter item price" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kzm-z9-LlM">
                                 <rect key="frame" x="17" y="110" width="343" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
@@ -471,21 +471,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="fHH-g0-LiE">
-                                <rect key="frame" x="16" y="84" width="343" height="51"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="YWU-6D-UfX"/>
-                                </constraints>
-                                <segments>
-                                    <segment title="Used"/>
-                                    <segment title="New"/>
-                                </segments>
-                                <color key="tintColor" red="0.36550331120000001" green="0.79173368219999996" blue="0.80787837510000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                            </segmentedControl>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="What are you selling? (500 characters remaining)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Zo-3t-YfB">
-                                <rect key="frame" x="16" y="142" width="321" height="22"/>
+                                <rect key="frame" x="16" y="142" width="307" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="16"/>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
                                 <color key="textColor" red="0.65588939169944738" green="0.65736752890713523" blue="0.67992370322271045" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -509,19 +498,19 @@
                                     <action selector="nextAction:" destination="dpL-HY-zbE" eventType="touchUpInside" id="sLN-WZ-vDv"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Em5-7j-6nr">
+                                <rect key="frame" x="53" y="72" width="269" height="56"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.7957280377" green="0.90545713670000005" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="fHH-g0-LiE" firstAttribute="top" secondItem="3g7-ik-glt" secondAttribute="topMargin" constant="64" id="RMR-1s-Y5Z"/>
-                            <constraint firstItem="fHH-g0-LiE" firstAttribute="trailing" secondItem="3g7-ik-glt" secondAttribute="trailingMargin" id="o3Y-sX-YDG"/>
-                            <constraint firstItem="fHH-g0-LiE" firstAttribute="leading" secondItem="3g7-ik-glt" secondAttribute="leadingMargin" id="zpY-8J-ehz"/>
-                        </constraints>
                     </view>
                     <connections>
                         <outlet property="charCountLabel" destination="0Zo-3t-YfB" id="b16-Na-SXx"/>
-                        <outlet property="conditionSegCtrl" destination="fHH-g0-LiE" id="AaT-0Q-ou3"/>
                         <outlet property="itemDescription" destination="FAn-Ks-k92" id="boG-fI-GDU"/>
                         <outlet property="nextButton" destination="Yax-R8-OVc" id="x9W-7k-sA3"/>
+                        <outlet property="testView" destination="Em5-7j-6nr" id="ViW-yN-4tE"/>
                         <segue destination="IRi-An-o7B" kind="show" identifier="toChooseLocationSegue" id="Ryw-1j-ad2"/>
                     </connections>
                 </viewController>
@@ -777,7 +766,7 @@
                                                 <action selector="didTapLocation:" destination="IRi-An-o7B" eventType="touchUpInside" id="Z2D-RN-iWY"/>
                                             </connections>
                                         </button>
-                                        <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Zip Code" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="v8m-5g-mjn">
+                                        <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Zip Code" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="v8m-5g-mjn">
                                             <rect key="frame" x="86" y="243" width="202" height="45"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>

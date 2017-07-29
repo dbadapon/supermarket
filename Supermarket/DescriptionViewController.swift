@@ -6,8 +6,10 @@
 //
 
 import UIKit
+//import BetterSegmentedControl
+import TwicketSegmentedControl
 
-class DescriptionViewController: UIViewController, UITextViewDelegate {
+class DescriptionViewController: UIViewController, UITextViewDelegate, TwicketSegmentedControlDelegate {
     
     // to receive from price vc
     var itemName: UITextView!
@@ -19,6 +21,9 @@ class DescriptionViewController: UIViewController, UITextViewDelegate {
     var isNegotiable: Bool!
     var itemPrice: Double!
     
+    
+    
+    
     // tp pass onto next vc
     var isNew: Bool!
     // as well as itemDescription
@@ -27,13 +32,13 @@ class DescriptionViewController: UIViewController, UITextViewDelegate {
     
     @IBOutlet weak var itemDescription: UITextView!
     @IBOutlet weak var charCountLabel: UILabel!
-    
-    @IBOutlet weak var conditionSegCtrl: UISegmentedControl!
+  
     
     @IBOutlet weak var nextButton: UIButton!
     
     
-
+    @IBOutlet weak var testView: UIView!
+    
     
     @IBAction func nextAction(_ sender: UIButton) {
         performSegue(withIdentifier: "toChooseLocationSegue", sender: self)
@@ -45,6 +50,7 @@ class DescriptionViewController: UIViewController, UITextViewDelegate {
         // style navigation bar
         let font = UIFontDescriptor(fontAttributes: [UIFontDescriptorFaceAttribute : "Medium", UIFontDescriptorFamilyAttribute: "Avenir"])
         self.title = "Item Description"
+        
         navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont(descriptor: font, size: 20)]
         navigationController?.navigationBar.barTintColor = UIColor.white
         
@@ -63,12 +69,57 @@ class DescriptionViewController: UIViewController, UITextViewDelegate {
         
         
         // change font of words in segmented control
-        let segFont = UIFont.systemFont(ofSize: 24, weight: UIFontWeightSemibold)
-        conditionSegCtrl.setTitleTextAttributes([NSFontAttributeName: segFont], for: .normal)
+//        let segFont = UIFont.systemFont(ofSize: 24, weight: UIFontWeightSemibold)
+//        conditionSegCtrl.setTitleTextAttributes([NSFontAttributeName: segFont], for: .normal)
+        
+        
+        // NEW SEGMENTED CONTROL
+        
+         // tried Twicket... couldn't use it
+        let frame = CGRect(x: 200, y: 200, width: 200, height: 100)
+        
+        let segmentedControl = TwicketSegmentedControl()
+        segmentedControl.delegate = self
+        let options = ["Used", "New"]
+        segmentedControl.setSegmentItems(options)
+        
+        segmentedControl.font = UIFont(descriptor: font, size: 18)
+        
+        segmentedControl.frame = testView.frame
+        segmentedControl.sliderBackgroundColor
+            = UIColor.init(colorLiteralRed: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha: 1.0)
+        
+        view.addSubview(segmentedControl)
+ 
+        
+        // Try BetterSegmentedControl
+//        let control = BetterSegmentedControl(
+//            frame: CGRect(x: 0.0, y: 100.0, width: view.bounds.width, height: 44.0),
+//            titles: ["One", "Two", "Three"],
+//            index: 1,
+//            backgroundColor: UIColor(red:0.11, green:0.12, blue:0.13, alpha:1.00),
+//            titleColor: .white,
+//            indicatorViewBackgroundColor: UIColor(red:0.55, green:0.26, blue:0.86, alpha:1.00),
+//            selectedTitleColor: .black)
+//        control.titleFont = UIFont(name: "HelveticaNeue", size: 14.0)!
+//        control.selectedTitleFont = UIFont(name: "HelveticaNeue-Medium", size: 14.0)!
+//        control.addTarget(self, action: #selector(ViewController.controlValueChanged(_:)), for: .valueChanged)
+//        view.addSubview(control)
+        
         
         // Style Next button
         nextButton.layer.cornerRadius = 5
         
+    }
+    
+    func didSelect(_ segmentIndex: Int) {
+        print("changed selection?")
+        if segmentIndex == 0 {
+            self.isNew = false
+        } else {
+            self.isNew = true
+        }
+        print("set isNew to: \(self.isNew)")
     }
 
     override func didReceiveMemoryWarning() {
@@ -95,11 +146,11 @@ class DescriptionViewController: UIViewController, UITextViewDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "toChooseLocationSegue" {
-            if self.conditionSegCtrl.selectedSegmentIndex == 1 {
-                self.isNew = true
-            } else {
-                self.isNew = false
-            }
+//            if self.conditionSegCtrl.selectedSegmentIndex == 1 {
+//                self.isNew = true
+//            } else {
+//                self.isNew = false
+//            }
             
             let dvc = segue.destination as! ChooseLocationViewController
             dvc.itemName = self.itemName
