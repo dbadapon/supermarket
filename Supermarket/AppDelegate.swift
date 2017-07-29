@@ -72,21 +72,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             })
         )
         
-        PFUser.logInWithUsername(inBackground: "hello", password: "password", block: { (user: PFUser?, error: Error?) in
+        PFUser.logInWithUsername(inBackground: "anotherUser", password: "password", block: { (user: PFUser?, error: Error?) in
             if let error = error {
                 let errorInfo = error._userInfo as! [String: Any]
                 let code = errorInfo["code"] as! Int
                 if code == 101 {
 
                 }
-                
+
             } else {
                 print("User logged in successfully")
                 // display view controller that needs to shown after successful login
-                
+
             }
         })
         
+        
+//        let newUser = PFUser()
+//        newUser.username = "anotherUser"
+//        newUser.password = "password"
+//
+//        newUser.signUpInBackground { (success: Bool, error: Error?) in
+//            if let error = error {
+//                let errorInfo = error._userInfo as! [String: Any]
+//                let code = errorInfo["code"] as! Int
+//                if code == 202 {
+//                }
+//            } else {
+//                print("User Registered successfully")
+//                    // manually segue to logged in view
+//            }
+//        }
         // check if user is logged in.
         if let currentUser = PFUser.current() {
             print("Welcome back \(currentUser.username!) 😀")
