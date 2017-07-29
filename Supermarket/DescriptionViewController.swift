@@ -6,7 +6,6 @@
 //
 
 import UIKit
-//import BetterSegmentedControl
 import TwicketSegmentedControl
 
 class DescriptionViewController: UIViewController, UITextViewDelegate, TwicketSegmentedControlDelegate {
@@ -68,14 +67,9 @@ class DescriptionViewController: UIViewController, UITextViewDelegate, TwicketSe
         itemDescription.delegate = self
         
         
-        // change font of words in segmented control
-//        let segFont = UIFont.systemFont(ofSize: 24, weight: UIFontWeightSemibold)
-//        conditionSegCtrl.setTitleTextAttributes([NSFontAttributeName: segFont], for: .normal)
         
-        
-        // NEW SEGMENTED CONTROL
-        
-         // tried Twicket... couldn't use it
+        // NEW SEGMENTED CONTROL (Twicket)
+    
         let frame = CGRect(x: 200, y: 200, width: 200, height: 100)
         
         let segmentedControl = TwicketSegmentedControl()
@@ -83,29 +77,17 @@ class DescriptionViewController: UIViewController, UITextViewDelegate, TwicketSe
         let options = ["Used", "New"]
         segmentedControl.setSegmentItems(options)
         
+        font.withFace("Roman")
         segmentedControl.font = UIFont(descriptor: font, size: 18)
-        
-        segmentedControl.frame = testView.frame
         segmentedControl.sliderBackgroundColor
             = UIColor.init(colorLiteralRed: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha: 1.0)
         
+        segmentedControl.isSliderShadowHidden = true
+        
+        segmentedControl.frame = testView.frame
+        
         view.addSubview(segmentedControl)
- 
-        
-        // Try BetterSegmentedControl
-//        let control = BetterSegmentedControl(
-//            frame: CGRect(x: 0.0, y: 100.0, width: view.bounds.width, height: 44.0),
-//            titles: ["One", "Two", "Three"],
-//            index: 1,
-//            backgroundColor: UIColor(red:0.11, green:0.12, blue:0.13, alpha:1.00),
-//            titleColor: .white,
-//            indicatorViewBackgroundColor: UIColor(red:0.55, green:0.26, blue:0.86, alpha:1.00),
-//            selectedTitleColor: .black)
-//        control.titleFont = UIFont(name: "HelveticaNeue", size: 14.0)!
-//        control.selectedTitleFont = UIFont(name: "HelveticaNeue-Medium", size: 14.0)!
-//        control.addTarget(self, action: #selector(ViewController.controlValueChanged(_:)), for: .valueChanged)
-//        view.addSubview(control)
-        
+
         
         // Style Next button
         nextButton.layer.cornerRadius = 5
