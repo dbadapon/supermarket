@@ -521,6 +521,7 @@
                         <outlet property="charCountLabel" destination="0Zo-3t-YfB" id="b16-Na-SXx"/>
                         <outlet property="conditionSegCtrl" destination="fHH-g0-LiE" id="AaT-0Q-ou3"/>
                         <outlet property="itemDescription" destination="FAn-Ks-k92" id="boG-fI-GDU"/>
+                        <outlet property="nextButton" destination="Yax-R8-OVc" id="x9W-7k-sA3"/>
                         <segue destination="IRi-An-o7B" kind="show" identifier="toChooseLocationSegue" id="Ryw-1j-ad2"/>
                     </connections>
                 </viewController>

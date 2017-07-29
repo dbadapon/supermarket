@@ -30,6 +30,9 @@ class DescriptionViewController: UIViewController, UITextViewDelegate {
     
     @IBOutlet weak var conditionSegCtrl: UISegmentedControl!
     
+    @IBOutlet weak var nextButton: UIButton!
+    
+    
 
     
     @IBAction func nextAction(_ sender: UIButton) {
@@ -38,7 +41,6 @@ class DescriptionViewController: UIViewController, UITextViewDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         
         // style navigation bar
         let font = UIFontDescriptor(fontAttributes: [UIFontDescriptorFaceAttribute : "Medium", UIFontDescriptorFamilyAttribute: "Avenir"])
@@ -63,6 +65,9 @@ class DescriptionViewController: UIViewController, UITextViewDelegate {
         // change font of words in segmented control
         let segFont = UIFont.systemFont(ofSize: 24, weight: UIFontWeightSemibold)
         conditionSegCtrl.setTitleTextAttributes([NSFontAttributeName: segFont], for: .normal)
+        
+        // Style Next button
+        nextButton.layer.cornerRadius = 5
         
     }
 
