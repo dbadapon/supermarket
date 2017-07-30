@@ -774,7 +774,7 @@
                     <connections>
                         <outlet property="blur" destination="CcY-6r-ryj" id="Nyd-cj-hwV"/>
                         <outlet property="getLocationButton" destination="pDi-e9-EEB" id="GRk-JG-u34"/>
-                        <outlet property="mapView" destination="SM6-uE-1A3" id="ERc-oM-b9U"/>
+                        <outlet property="mapViewFrame" destination="SM6-uE-1A3" id="JmA-Os-Grx"/>
                         <outlet property="setButton" destination="8sc-eC-YoM" id="3S4-iK-mJz"/>
                         <outlet property="tempMap" destination="b1Y-fc-RNi" id="l8s-6K-f8W"/>
                         <outlet property="zipCodeField" destination="v8m-5g-mjn" id="xXK-OY-A2k"/>

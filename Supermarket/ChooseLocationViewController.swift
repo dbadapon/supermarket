@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import GoogleMaps
+//import CoreLocation
 
 class ChooseLocationViewController: UIViewController {
     
@@ -27,8 +29,9 @@ class ChooseLocationViewController: UIViewController {
     var longitude: Double?
     var city: String?
     
-    @IBOutlet weak var mapView: UIView!
     
+    // Map stuff on storyboard
+    @IBOutlet weak var mapViewFrame: UIView!
     @IBOutlet weak var tempMap: UIImageView!
     @IBOutlet weak var blur: UIVisualEffectView!
     @IBOutlet weak var getLocationButton: UIButton!
@@ -70,6 +73,14 @@ class ChooseLocationViewController: UIViewController {
         
         // style Set button
         setButton.layer.cornerRadius = 5
+        
+        // Google Map view
+        // first hard-code the location so that you know how to use google maps
+        // then go back and look at you core location code to get the current location
+        
+        let camera = GMSCameraPosition.camera(withLatitude: 37.621245, longitude: -122.378891, zoom: 10)
+        let mapView = GMSMapView.map(withFrame: mapViewFrame.frame, camera: camera)
+        view.addSubview(mapView)
         
 
     }
