@@ -72,7 +72,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             })
         )
         
-        PFUser.logInWithUsername(inBackground: "anotherUser", password: "password", block: { (user: PFUser?, error: Error?) in
+        PFUser.logOutInBackground { (error) in
+            print (PFUser.current())
+        }
+        
+        PFUser.logInWithUsername(inBackground: "hello", password: "password", block: { (user: PFUser?, error: Error?) in
             if let error = error {
                 let errorInfo = error._userInfo as! [String: Any]
                 let code = errorInfo["code"] as! Int
@@ -104,9 +108,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //            }
 //        }
         // check if user is logged in.
+        
         if let currentUser = PFUser.current() {
             print("Welcome back \(currentUser.username!) 😀")
-            
+
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let tabBarController = storyboard.instantiateViewController(withIdentifier: "TabBarController")
             // TabBarController is storyboard ID
