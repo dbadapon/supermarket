@@ -1,7 +1,11 @@
 PODS:
   - Alamofire (4.5.0)
-  - BetterSegmentedControl (0.8)
   - Bolts/Tasks (1.8.4)
+  - GoogleMaps (2.3.1):
+    - GoogleMaps/Maps (= 2.3.1)
+  - GoogleMaps/Base (2.3.1)
+  - GoogleMaps/Maps (2.3.1):
+    - GoogleMaps/Base
   - IQKeyboardManagerSwift (4.0.10)
   - ModernSearchBar (1.4)
   - Parse (1.14.4):
@@ -15,8 +19,8 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire
-  - BetterSegmentedControl (~> 0.8)
-  - IQKeyboardManagerSwift (= 4.0.10)
+  - GoogleMaps
+  - IQKeyboardManagerSwift
   - ModernSearchBar
   - Parse
   - ParseUI
@@ -26,8 +30,8 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
-  BetterSegmentedControl: 9194e20687a02dd498a4e542cf523bdd8620fcb7
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
+  GoogleMaps: c66a71058b9b1294bcdd5463a68e357fa50c079f
   IQKeyboardManagerSwift: 75ba21a23794a1e6b6fe6d9a267ea17f80e06771
   ModernSearchBar: d888b62f960c4d91f8662f0720e1544d19847e7f
   Parse: b0aa91d2c435e53d4a9af26e741e014c9b35c42e
@@ -36,6 +40,6 @@ SPEC CHECKSUMS:
   TwicketSegmentedControl: 6d7a4cf243657e0ac3f00d06d873a25334c04042
   YNDropDownMenu: 9d9f1ae71a408d0e7c66a55da2a52232545fca5a
 
-PODFILE CHECKSUM: f69eb1b9161efa6a3a6e13b53606161a31910129
+PODFILE CHECKSUM: d85845863282c9ca95cd59280d2fd0cd0394ba1c
 
 COCOAPODS: 1.2.1

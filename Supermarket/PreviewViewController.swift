@@ -17,8 +17,9 @@
 import UIKit
 // import Alamofire
 // import AlamofireImage
+import IQKeyboardManagerSwift
 
-class PreviewViewController: UIViewController, UITextViewDelegate, UIGestureRecognizerDelegate, UIAlertViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPopoverControllerDelegate {
+class PreviewViewController: UIViewController, UITextViewDelegate, UIGestureRecognizerDelegate, UIAlertViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPopoverControllerDelegate, UITextFieldDelegate {
 
     // color to use for app
     let textColor = UIColor(red: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha:1.0)
@@ -56,9 +57,14 @@ class PreviewViewController: UIViewController, UITextViewDelegate, UIGestureReco
         }
     }
     
+    @IBOutlet weak var itemName: UITextField!
     
-    @IBOutlet weak var itemName: UITextView!
+    
     @IBOutlet weak var charCountLabel: UILabel!
+    
+     // RETURN KEY
+    
+    var returnKey: IQKeyboardReturnKeyHandler?
     
     // from barcode reader
     var nameString = ""
@@ -72,8 +78,23 @@ class PreviewViewController: UIViewController, UITextViewDelegate, UIGestureReco
     
     @IBOutlet weak var coverPhoto: UIImageView!
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Configure keyboard
+        
+        self.returnKey = IQKeyboardReturnKeyHandler.init(controller: self)
+        
+//        itemName.delegate = self
+//        IQKeyboardManager.sharedManager().enable = true
+
+        
+//        returnKey.textFieldShouldEndEditing(itemName)
+        
+    
+//        returnKey.textFieldShouldEndEditing(itemName)
         
         // Style navigation bar
         
@@ -118,7 +139,7 @@ class PreviewViewController: UIViewController, UITextViewDelegate, UIGestureReco
         self.imageViewFour.isUserInteractionEnabled = true
 
         
-        itemName.delegate = self
+//        itemName.delegate = self
         
         // if image was passed from photo vc
         if backgroundImage != nil {
@@ -166,6 +187,8 @@ class PreviewViewController: UIViewController, UITextViewDelegate, UIGestureReco
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         */
     }
+    
+
     
     func tappedImageCover(_sender: AnyObject) {
         print("Cover image tapped!")
@@ -337,20 +360,22 @@ class PreviewViewController: UIViewController, UITextViewDelegate, UIGestureReco
     }
     */
     
+    /*
     func textViewDidChange(_ itemName: UITextView) {
         let text = itemName.text!
         let remainingCount = 50 - text.characters.count
         let count = text.characters.count
         
         if count == 49 {
-            charCountLabel.text = "Item Name: (1 character remaining)"
+            charCountLabel.text = "Item Name (1 character remaining)"
         } else if count <= 50 {
-            charCountLabel.text = "Item Name: (" + String(remainingCount) + " characters remaining)"
+            charCountLabel.text = "Item Name (" + String(remainingCount) + " characters remaining)"
         } else {
-            charCountLabel.text = "Item Name: (0 characters remaining)"
+            charCountLabel.text = "Item Name (0 characters remaining)"
             self.present(self.nameAlertController, animated: true)
         }
     }
+ */
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
@@ -363,7 +388,7 @@ class PreviewViewController: UIViewController, UITextViewDelegate, UIGestureReco
             navigationItem.backBarButtonItem = backItem
             
             let dvc = segue.destination as! PriceViewController
-            dvc.itemName = self.itemName
+            dvc.itemName = self.itemName.text!
             dvc.coverPhoto = self.coverPhoto
             dvc.imageOne = self.imageViewOne
             dvc.imageTwo = self.imageViewTwo

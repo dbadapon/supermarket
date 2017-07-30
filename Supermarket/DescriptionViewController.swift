@@ -11,7 +11,7 @@ import TwicketSegmentedControl
 class DescriptionViewController: UIViewController, UITextViewDelegate, TwicketSegmentedControlDelegate {
     
     // to receive from price vc
-    var itemName: UITextView!
+    var itemName: String!
     var coverPhoto: UIImageView!
     var imageOne: UIImageView!
     var imageTwo: UIImageView!

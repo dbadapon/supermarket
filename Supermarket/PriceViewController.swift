@@ -31,7 +31,7 @@ class PriceViewController: UIViewController, UITextFieldDelegate {
     var fourthResultImageUrl = ""
     
     // to receive from preview vc
-    var itemName: UITextView!
+    var itemName: String!
     var coverPhoto: UIImageView!
     var imageOne: UIImageView!
     var imageTwo: UIImageView!
@@ -102,7 +102,7 @@ class PriceViewController: UIViewController, UITextFieldDelegate {
         
         
         // make query
-        checkPriceWithName(query: itemName.text)
+        checkPriceWithName(query: itemName)
         
         // set color of negotiable switch
         negotiableSwitch.onTintColor = textColor

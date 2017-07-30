@@ -9,8 +9,8 @@
 import UIKit
 import Parse
 import ParseUI
+import GoogleMaps
 import IQKeyboardManagerSwift
-// import GoogleMaps
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -43,23 +43,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        /*
         // for Google Maps API
         GMSServices.provideAPIKey("AIzaSyDHETw8wUHW58Ub5og6yfMStpYob8sOyL4")
         
-        // if using Places API
-        GMSPlacesClient.provideAPIKey("AIzaSyDHETw8wUHW58Ub5og6yfMStpYob8sOyL4")
-        */
+//        IQKeyboardManager.sharedManager().enable = true
         
         // This is the only line of code you need to manually add
         // in order for IQKeybaordManager to work. Thats it.
-//        var sharedKeyboardManager = IQKeyboardManager.sharedManager()
-//        sharedKeyboardManager.enable = false
-//        sharedKeyboardManager.toolbarTintColor = UIColor.black
-//        sharedKeyboardManager.toolbarDoneBarButtonItemText = "Done"
+        let sharedKeyboardManager = IQKeyboardManager.sharedManager()
+        sharedKeyboardManager.enable = true
+        sharedKeyboardManager.shouldResignOnTouchOutside = true
+        sharedKeyboardManager.enableAutoToolbar = false
         
-        IQKeyboardManager.sharedManager().enable = true
-//        IQKeyboardManager.sharedManager().enableAutoToolbar = true
+        
+        
+
+        
+        //        IQKeyboardManager.sharedManager().enableAutoToolbar = true
         
         // Initialize Parse
         // Set applicationId and server based on the values in the Heroku settings.

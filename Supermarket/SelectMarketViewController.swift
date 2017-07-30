@@ -20,7 +20,7 @@ class SelectMarketViewController: UIViewController, UICollectionViewDelegate, UI
     
     
     // to receive from choose location vc
-    var itemName: UITextView!
+    var itemName: String!
     var coverPhoto: UIImageView!
     var imageOne: UIImageView!
     var imageTwo: UIImageView!
@@ -75,7 +75,7 @@ class SelectMarketViewController: UIViewController, UICollectionViewDelegate, UI
         
         
         
-        print("NAME: \(itemName.text)")
+        print("NAME: \(itemName)")
         print("COVER PHOTO: \(coverPhoto.image)")
         print("IMAGES: \(imageOne.image), \(imageTwo.image), \(imageThree.image), \(imageFour.image)")
         print("NEGOTIABLE: \(isNegotiable)")
@@ -194,7 +194,7 @@ class SelectMarketViewController: UIViewController, UICollectionViewDelegate, UI
                 }
             }
 
-            let toPost = Post.createPost(images: imageList, name: itemName.text, seller: PFUser.current()!, itemDescription: itemDescription.text, price: itemPrice, conditionNew: isNew, negotiable: isNegotiable, sold: false, city: city!, latitude: latitude!, longitude: longitude!)
+            let toPost = Post.createPost(images: imageList, name: itemName, seller: PFUser.current()!, itemDescription: itemDescription.text, price: itemPrice, conditionNew: isNew, negotiable: isNegotiable, sold: false, city: city!, latitude: latitude!, longitude: longitude!)
             
             toPost.parseObject.saveInBackground { (success, error) in // so you don't want to save in backround in the class itself... you want to save in background whenever you create a new post outside the class!
                 if success {
