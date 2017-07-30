@@ -51,6 +51,7 @@
 		4DC3C0CA1F2016B400B4E2C4 /* SellFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC3C0C91F2016B400B4E2C4 /* SellFeedViewController.swift */; };
 		4DF6982E1F17ED8B008DB9D6 /* MLManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF6982D1F17ED8B008DB9D6 /* MLManager.swift */; };
 		926A42BE122588BD99E6BC61 /* Pods_SupermarketUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80572461216E64975C83358E /* Pods_SupermarketUITests.framework */; };
+		A00D1D321F2E9FD400A8BA21 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A00D1D311F2E9FD400A8BA21 /* MapKit.framework */; };
 		A07904201F13F098000E4419 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A079041F1F13F098000E4419 /* AppDelegate.swift */; };
 		A07904221F13F098000E4419 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07904211F13F098000E4419 /* ViewController.swift */; };
 		A07904251F13F098000E4419 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A07904231F13F098000E4419 /* Main.storyboard */; };
@@ -131,6 +132,7 @@
 		80572461216E64975C83358E /* Pods_SupermarketUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SupermarketUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		926BE3FB87F2C782821060A8 /* Pods-SupermarketUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SupermarketUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SupermarketUITests/Pods-SupermarketUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		9CA3F4E30EAAA6212351048B /* Pods-SupermarketUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SupermarketUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SupermarketUITests/Pods-SupermarketUITests.release.xcconfig"; sourceTree = "<group>"; };
+		A00D1D311F2E9FD400A8BA21 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		A079041C1F13F098000E4419 /* Supermarket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Supermarket.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A079041F1F13F098000E4419 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A07904211F13F098000E4419 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -165,6 +167,7 @@
 			files = (
 				0A0C160F1F254982002C29BB /* Pods_SupermarketUITests.framework in Frameworks */,
 				0A0C160E1F25497D002C29BB /* Pods_SupermarketTests.framework in Frameworks */,
+				A00D1D321F2E9FD400A8BA21 /* MapKit.framework in Frameworks */,
 				DB316A86A749F02FBC5E3946 /* Pods_Supermarket.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -255,6 +258,7 @@
 		7BB5E34F2CED67C39A974A78 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A00D1D311F2E9FD400A8BA21 /* MapKit.framework */,
 				2533FCA0375016EEE9885993 /* Pods_Supermarket.framework */,
 				4AE35AF3621B63A19B9B12F4 /* Pods_SupermarketTests.framework */,
 				80572461216E64975C83358E /* Pods_SupermarketUITests.framework */,
@@ -433,6 +437,11 @@
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = CWH8WCS8Y4;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					A079042F1F13F098000E4419 = {
 						CreatedOnToolsVersion = 8.3.3;

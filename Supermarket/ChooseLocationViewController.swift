@@ -7,10 +7,10 @@
 //
 
 import UIKit
-import CoreLocation
 import MapKit
+import CoreLocation
 
-class ChooseLocationViewController: UIViewController {
+class ChooseLocationViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
     
     // to receive from description vc
     var itemName: String!
@@ -31,12 +31,15 @@ class ChooseLocationViewController: UIViewController {
     
     
     // Map stuff on storyboard
-    @IBOutlet weak var mapViewFrame: UIView!
+    @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var tempMap: UIImageView!
     @IBOutlet weak var blur: UIVisualEffectView!
     @IBOutlet weak var getLocationButton: UIButton!
     @IBOutlet weak var zipCodeField: UITextField!
     @IBOutlet weak var setButton: UIButton!
+    
+    // Map configuration
+    var locationManager: CLLocationManager!
     
     @IBAction func didTapLocation(_ sender: Any) {
         print("get current location")
@@ -74,14 +77,50 @@ class ChooseLocationViewController: UIViewController {
         // style Set button
         setButton.layer.cornerRadius = 5
         
-        // Google Map view
+        // Configure map view
         // first hard-code the location so that you know how to use google maps
         // then go back and look at you core location code to get the current location
         
-        let mapView = MKMapView(frame: mapViewFrame.frame)
-        view.addSubview(mapView)
-        
 
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        determineCurrentLocation()
+    }
+    
+    func determineCurrentLocation() {
+        print("Determining current location!")
+        locationManager = CLLocationManager()
+        locationManager.delegate = self as! CLLocationManagerDelegate
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestAlwaysAuthorization()
+        
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.startUpdatingLocation()
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let userLocation: CLLocation = locations[0]
+        
+        print("USER LOCATION: \(userLocation.coordinate.latitude), \(userLocation.coordinate.longitude)")
+        
+        let center = CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude)
+        let span = MKCoordinateSpanMake(0.005, 0.005)
+        let region = MKCoordinateRegion(center: center, span: span)
+        
+        mapView.setRegion(region, animated: true)
+        
+                let annotation: MKPointAnnotation = MKPointAnnotation()
+                annotation.coordinate = CLLocationCoordinate2DMake(userLocation.coordinate.latitude, userLocation.coordinate.longitude)
+                annotation.title = "Current location"
+                mapView.addAnnotation(annotation)
+        // allow the user to just move the location pin...
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("Error getting current location: \(error.localizedDescription)")
     }
 
     override func didReceiveMemoryWarning() {
