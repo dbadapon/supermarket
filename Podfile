@@ -13,7 +13,6 @@ target 'Supermarket' do
 	pod 'Alamofire'
 	pod 'YNDropDownMenu'
 	pod 'TwicketSegmentedControl'
-	pod 'GoogleMaps'
 	pod 'IQKeyboardManagerSwift'
 
   target 'SupermarketTests' do
