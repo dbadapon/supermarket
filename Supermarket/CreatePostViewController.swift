@@ -248,5 +248,3 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
         }
     }
 }
-
-

@@ -228,6 +228,7 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
                     self.imageToPass = image
                     // for debugging purposes
                     // print(self.imageToPass)
+                    self.delegate?.captureAndSegue(screenshot: image)
                 }
             })
         }
