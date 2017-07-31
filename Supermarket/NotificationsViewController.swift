@@ -135,6 +135,10 @@ class NotificationsViewController: UIViewController, UITableViewDelegate, UITabl
             cell.notification = notifications[indexPath.row]
             cell.delegate = self
             
+            cell.preservesSuperviewLayoutMargins = false
+            cell.separatorInset = UIEdgeInsets.zero
+            cell.layoutMargins = UIEdgeInsets.zero
+            
             return cell
             
         } else {

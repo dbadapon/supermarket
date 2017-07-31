@@ -389,6 +389,7 @@
                                         <connections>
                                             <outlet property="conditionLabel" destination="fI9-kN-w5X" id="ldp-9D-ORX"/>
                                             <outlet property="descriptionLabel" destination="RgK-De-8eB" id="Dg6-XR-Frn"/>
+                                            <outlet property="interestedButton" destination="BAY-TX-dYk" id="vQ1-Ai-xXU"/>
                                             <outlet property="locationLabel" destination="5em-jk-Lzp" id="LVA-VU-Xi8"/>
                                             <outlet property="nameLabel" destination="Yx8-7v-rjM" id="uBK-1x-edI"/>
                                             <outlet property="priceLabel" destination="1p8-EE-0w8" id="UhU-kc-r3e"/>

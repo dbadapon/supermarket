@@ -14,7 +14,7 @@ import CoreLocation
 class Post {
 
     enum Field {
-        case Name, Seller, Images, ItemDescription, Price, Condition, Negotiable, Latitude, Longitude, Sold, City, ID
+        case Name, Seller, Images, ItemDescription, Price, Condition, Negotiable, Latitude, Longitude, Sold, City, ID, Interested
         
         var key: String {
             switch (self) {
@@ -42,6 +42,8 @@ class Post {
                 return "city"
             case .ID:
                 return "id"
+            case .Interested:
+                return "interested"
             }
         }
     }
@@ -151,6 +153,20 @@ class Post {
             return parseObject[Field.ID.key] as? String
         }
     }
+    
+    var interested: [String]? {
+        get {
+            return parseObject[Field.Interested.key] as? [String]
+        }
+        set {
+            if newValue != nil {
+                parseObject[Field.Interested.key] = newValue
+            } else {
+                parseObject[Field.Interested.key] = NSNull()
+                
+            }
+        }
+    }
 
     
 //    private (set)
@@ -188,6 +204,8 @@ class Post {
         newPost.city = city
         
         newPost.longitude = longitude
+        
+        newPost.interested = nil
         
         
         
