@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import SimpleAnimation
 
 class PriceViewController: UIViewController, UITextFieldDelegate {
     
@@ -53,6 +54,13 @@ class PriceViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var negotiableSwitch: UISwitch!
     
+    @IBOutlet weak var priceComparsionsLabel: UILabel!
+    
+    // Result views
+    @IBOutlet weak var resultView1: UIView!
+    
+    
+    
     @IBOutlet weak var nextButton: UIButton!
     
     
@@ -83,7 +91,6 @@ class PriceViewController: UIViewController, UITextFieldDelegate {
         navigationController?.navigationBar.shadowImage = UIImage()
         
         
-        
         // style text field
         
         let leftView = UILabel(frame: CGRect(x: 10, y: 0, width: 7, height: 26))
@@ -94,7 +101,6 @@ class PriceViewController: UIViewController, UITextFieldDelegate {
         inputPrice.layer.cornerRadius = 5
         inputPrice.layer.borderWidth = 1
         inputPrice.layer.borderColor = UIColor(colorLiteralRed: 199.0/255.0, green: 199.0/255.0, blue: 205.0/255.0, alpha: 0.50).cgColor
-        
         
         
         // style next button
@@ -128,8 +134,19 @@ class PriceViewController: UIViewController, UITextFieldDelegate {
         // add the OK action to the alert controller
         priceAlertController.addAction(OKAction)
         nextAlertController.addAction(OKAction)
-
+        
+        comparisonAnimation()
+        
     }
+    
+    func comparisonAnimation() {
+        priceComparsionsLabel.fadeIn(duration: 1, delay: 0, completion: nil)
+        
+        // cleanup: put every result in a view...yeah.
+        resultView1.slideIn(from: .right, duration: 1, delay: 0, completion: nil)
+        
+    }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
