@@ -287,10 +287,10 @@
                                                     </constraints>
                                                 </imageView>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bfS-ZZ-wYh" customClass="ZKCarousel" customModule="ZKCarousel">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="250"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="375.5"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" secondItem="bfS-ZZ-wYh" secondAttribute="height" multiplier="3:2" id="cib-Qb-H1i"/>
+                                                        <constraint firstAttribute="width" secondItem="bfS-ZZ-wYh" secondAttribute="height" multiplier="1:1" id="cib-Qb-H1i"/>
                                                         <constraint firstAttribute="width" constant="375" id="fbi-CS-CpF"/>
                                                     </constraints>
                                                 </view>

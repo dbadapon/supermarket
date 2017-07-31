@@ -8,12 +8,17 @@
 
 import UIKit
 import Parse
+import MessageUI
 
 protocol InterestedCellDelegate: class {
     func didTapPhoto(of post: Post)
+    func didTapIgnore(of notification: SupermarketNotification)
+    func didTapMessage(of notification: SupermarketNotification)
 }
 
-class NotificationsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, InterestedCellDelegate {
+class NotificationsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, InterestedCellDelegate, MFMessageComposeViewControllerDelegate {
+    
+    
     
     
     
@@ -166,6 +171,33 @@ class NotificationsViewController: UIViewController, UITableViewDelegate, UITabl
     func didTapPhoto(of post: Post) {
         self.clickedPost = post
         self.performSegue(withIdentifier: "notificationToDetail", sender: self)
+    }
+    
+    func didTapIgnore(of notification: SupermarketNotification) {
+        print ("ignore tapped")
+    }
+    
+    func didTapMessage(of notification: SupermarketNotification) {
+        let composeVC = MFMessageComposeViewController()
+        composeVC.messageComposeDelegate = self
+        
+        
+        // Configure the fields of the interface.
+        let number = notification.sender["phoneNumber"] as? String
+        let recipients = [number]
+        composeVC.recipients = recipients as! [String]
+        
+        let initialString = "Hey, I saw that you were interested in my "
+        let name = notification.postObject["name"] as? String
+        let finalString = ". Do you want to talk further about it?"
+        composeVC.body = initialString + name! + finalString
+        
+        // Present the view controller modally.
+        self.present(composeVC, animated: true, completion: nil)
+    }
+    
+    func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
+        controller.dismiss(animated: true, completion: nil)
     }
     
     

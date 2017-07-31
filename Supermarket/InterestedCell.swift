@@ -77,6 +77,9 @@ class InterestedCell: UITableViewCell {
         self.delegate?.didTapPhoto(of: self.post)
     }
     
+    @IBAction func didPressRespond(_ sender: Any) {
+        self.delegate?.didTapMessage(of: notification)
+    }
     
 
 }
