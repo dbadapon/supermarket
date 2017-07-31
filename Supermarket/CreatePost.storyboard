@@ -289,7 +289,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="tintColor" red="0.36550331120000001" green="0.79173368219999996" blue="0.80787837510000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Preview" id="enx-Uw-xpl"/>
+                    <navigationItem key="navigationItem" title="Preview" id="enx-Uw-xpl">
+                        <barButtonItem key="leftBarButtonItem" image="chevron-left" id="OmI-da-C9Y">
+                            <connections>
+                                <action selector="backButton:" destination="EzZ-ra-3zf" id="ZKs-tv-CNV"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="charCountLabel" destination="1IN-DL-bxD" id="32S-3K-1N3"/>
                         <outlet property="coverPhoto" destination="NtV-Qj-PiA" id="juV-ex-Sr9"/>
@@ -845,9 +851,10 @@
     </scenes>
     <resources>
         <image name="cameraMask" width="512" height="512"/>
+        <image name="chevron-left" width="13" height="19"/>
         <image name="temp map" width="750" height="1334"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="veg-mV-sRg"/>
+        <segue reference="7UJ-Ht-5qy"/>
     </inferredMetricsTieBreakers>
 </document>

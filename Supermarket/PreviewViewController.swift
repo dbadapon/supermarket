@@ -51,6 +51,16 @@ class PreviewViewController: UIViewController, UITextViewDelegate, UIGestureReco
     var picker:UIImagePickerController? = UIImagePickerController()
     var popover:UIPopoverController? = nil
     
+    
+    @IBAction func backButton(_ sender: UIBarButtonItem) {
+        if (nameString == "") {
+            dismiss(animated: true, completion: nil)
+        } else {
+            dismiss(animated: true, completion: nil)
+        }
+    }
+    
+
     @IBAction func cancelAction(_ sender: UIButton) {
         // nameString == "" means not from barcode
         // so dismissing it takes user back to PhotoVC

@@ -45,7 +45,7 @@ class TabBarController: RAMAnimatedTabBarController {
         let sellFeedStoryboard = UIStoryboard(name: "SellFeed", bundle: nil)
         let sellFeedController = sellFeedStoryboard.instantiateViewController(withIdentifier: "SellFeedController") as! UINavigationController
         
-        let tab2 = RAMAnimatedTabBarItem(title: "Sell", image: UIImage(named: "Shopping Cart-100"), selectedImage: nil)
+        let tab2 = RAMAnimatedTabBarItem(title: "Sell", image: UIImage(named: "Price Tag USD-50"), selectedImage: nil)
         tab2.textColor = .black
         tab2.iconColor = .black
         tab2.animation = tabAnimation
@@ -58,7 +58,7 @@ class TabBarController: RAMAnimatedTabBarController {
         let createPostStoryboard = UIStoryboard(name: "CreatePost", bundle: nil)
         let createPostController = createPostStoryboard.instantiateViewController(withIdentifier: "CreatePostController")
         
-        let tab3 = RAMAnimatedTabBarItem(title: "Post", image: UIImage(named: "Shopping Cart-100"), selectedImage: nil)
+        let tab3 = RAMAnimatedTabBarItem(title: "Post", image: UIImage(named: "icons8-Add-50"), selectedImage: nil)
         tab3.textColor = .black
         tab3.iconColor = .black
         tab3.animation = tabAnimation

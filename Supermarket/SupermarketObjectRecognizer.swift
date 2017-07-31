@@ -427,7 +427,7 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
                 self.topMLResult = resultForOne
             }
             // for debugging purposes
-            print(self.topMLResult)
+            // print(self.topMLResult)
             
             // update classifications to be passed onto delegate
             // HELLUR HELLUR WHY DOES THIS NOT WORK
