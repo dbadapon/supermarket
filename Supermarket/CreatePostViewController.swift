@@ -30,6 +30,12 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
     // to run searches on when user captures a picture
     var topMLResult = ""
     
+    // to pass onto next view controller
+    // when barcode is recognized
+    var nameString = ""
+    var priceString = ""
+    var pictureUrl = ""
+    
     @IBOutlet weak var previewView: UIView!
     @IBOutlet weak var resultView: UILabel!
     
@@ -155,7 +161,15 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
         
     }
     func updateRecognizedBarcode(recognizedBarcode: RecognizedBarcode) {
-        
+        self.nameString = recognizedBarcode.nameString
+        self.priceString = recognizedBarcode.priceString
+        self.pictureUrl = recognizedBarcode.pictureUrl
+        // barcode has been recognized
+        // no of those fields should be empty strings
+        // so perform segue
+        if self.nameString != "" && self.priceString != "" && self.pictureUrl != "" {
+            performSegue(withIdentifier: "barcodeToPreviewSegue", sender: self)
+        }
     }
     func updateCurrentFrame(currentFrame: CurrentFrame) {
         // set the result view to whatever the classifications are
@@ -164,9 +178,15 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
         // for debugging purposes
         // print("updating classifications")
     }
+    // this is called on when user captures image on screen
     func captureAndSegue(screenshot: UIImage) {
         self.imageToPass = screenshot
         performSegue(withIdentifier: "capturedSegue", sender: self)
+    }
+    func getBarcodeObject(barcodeObject: AVMetadataMachineReadableCodeObject) {
+        // update the status label's text and set the bounds
+        let barCodeObject = self.previewLayer.transformedMetadataObject(for: barcodeObject)
+        self.qrCodeFrameView?.frame = barCodeObject!.bounds
     }
     
     
@@ -174,14 +194,6 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
         if recognizer != nil {
             recognizer!.captureScreenshot()
             self.topMLResult = recognizer!.topMLResult
-            print(self.imageToPass)
-            // infinite loop LOLOL, NOT THE SOLUTION
-//            let blankSize = CGSize(width: 0, height: 0)
-//            while imageToPass.size == blankSize {
-//                // do nothing just wait
-//                // because recognizer needs time to capture screenshot
-//            }
-//            performSegue(withIdentifier: "capturedSegue", sender: self)
         }
     }
     
@@ -227,9 +239,9 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
             // self.session.stopRunning()
             
             let dvc = segue.destination as! PreviewViewController
-            // dvc.nameString = self.nameString
-            // dvc.priceString = self.priceString
-            // dvc.pictureUrl = self.pictureUrl
+            dvc.nameString = self.nameString
+            dvc.priceString = self.priceString
+            dvc.pictureUrl = self.pictureUrl
             // for debugging purposes
             // print(self.pictureUrl)
         }
