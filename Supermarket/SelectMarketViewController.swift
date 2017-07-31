@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import NVActivityIndicatorView
 
 protocol CategoryDelegate: class {
     func choseCategory(category: [String: String])
@@ -15,7 +16,7 @@ protocol CategoryDelegate: class {
     func reloadCollectionView()
 }
 
-class SelectMarketViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, CategoryDelegate {
+class SelectMarketViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, NVActivityIndicatorViewable, CategoryDelegate {
     
     
     
@@ -177,6 +178,10 @@ class SelectMarketViewController: UIViewController, UICollectionViewDelegate, UI
         if marketsToPost.keys.count == 0 {
             print ("it will not post if no markets have been specified")
         } else {
+            // Show activity indicator
+            self.startAnimating(type: NVActivityIndicatorType.ballPulse)
+            
+            // clean up so that you pass UIImages themselves instead of ImageViews...
             var tempImageList: [UIImage] = []
             tempImageList.append(coverPhoto.image!) // should I force unwrap this?
             tempImageList.append(imageOne.image!)
@@ -204,12 +209,24 @@ class SelectMarketViewController: UIViewController, UICollectionViewDelegate, UI
                                 print("post id: \(newPost.parseObject.objectId)")
                                 MarketPost.postItem(post: newPost, marketName: market, category: category)
                                 print("Posted to market!")
+                                self.stopAnimating()
+                                self.backToHome()
                             }
                         })
                     }
                 }
             }
             
+        }
+    }
+    
+    func backToHome() {
+        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "TabBarController") as! UITabBarController
+        UIView.performWithoutAnimation {
+//            self.show(vc, sender: self)
+            present(vc, animated: true, completion: nil)
+            vc.selectedIndex = 0
         }
     }
     
