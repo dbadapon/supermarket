@@ -14,6 +14,7 @@ target 'Supermarket' do
 	pod 'YNDropDownMenu'
 	pod 'TwicketSegmentedControl'
 	pod 'IQKeyboardManagerSwift'
+	pod 'NVActivityIndicatorView'
 
   target 'SupermarketTests' do
     inherit! :search_paths

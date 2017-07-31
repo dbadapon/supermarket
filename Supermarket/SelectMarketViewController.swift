@@ -138,8 +138,6 @@ class SelectMarketViewController: UIViewController, UICollectionViewDelegate, UI
             
         }
         
-        // HARD CODED CITY
-        city = "Irvine, CA"
         
         var tempImageList: [UIImage] = []
         tempImageList.append(coverPhoto.image!) // should I force unwrap this?

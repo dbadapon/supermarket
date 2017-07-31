@@ -52,6 +52,7 @@ class ChooseLocationViewController: UIViewController, CLLocationManagerDelegate,
         let locCoord = self.mapView.convert(location, toCoordinateFrom: self.mapView)
         self.pinLocation = locCoord
         
+        
         let annotation = MKPointAnnotation()
         
         
@@ -172,6 +173,24 @@ class ChooseLocationViewController: UIViewController, CLLocationManagerDelegate,
         print("Error getting current location: \(error.localizedDescription)")
     }
     
+    func coordinateToCity(destination: SelectMarketViewController) {
+        let geocoder = CLGeocoder()
+        let location = CLLocation(latitude: (self.pinLocation?.latitude)!, longitude: (self.pinLocation?.longitude)!)
+        geocoder.reverseGeocodeLocation(location) { (placemarks, error) in
+            var placemark: CLPlacemark!
+            placemark = placemarks?[0]
+   
+            let coordinateCity = placemark.locality
+            let coordinateState = placemark.administrativeArea
+            
+            let cityString = "\(coordinateCity!), \(coordinateState!)"
+            print("cityString is: \(cityString)")
+            self.city = cityString
+            destination.city = cityString
+            
+            // YOU NEED AN ACTIVITY INDICTATOR THAT GETS TRIGGERED WHEN USER HITS SET!!
+        }
+    }
 
 
     override func didReceiveMemoryWarning() {
@@ -179,16 +198,24 @@ class ChooseLocationViewController: UIViewController, CLLocationManagerDelegate,
         // Dispose of any resources that can be recreated.
     }
     
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
+        let dvc = segue.destination as! SelectMarketViewController
+        
         if segue.identifier == "toSelectMarketSegue" {
+            if self.pinLocation != nil {
+                // set city to pin location city
+                print("about to get the city from pin!")
+                coordinateToCity(destination: dvc)
+                print("now the city is: \(self.city)")
+            }
             
             let backItem = UIBarButtonItem()
             backItem.title = ""
             backItem.tintColor = UIColor.black
             navigationItem.backBarButtonItem = backItem
             
-            let dvc = segue.destination as! SelectMarketViewController
             dvc.itemName = self.itemName
             dvc.coverPhoto = self.coverPhoto
             dvc.imageOne = self.imageOne
