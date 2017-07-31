@@ -22,7 +22,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="93" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="FPX-9d-g14">
-                                <rect key="frame" x="0.0" y="99" width="375" height="568"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MessageCell" rowHeight="93" id="yfo-At-jcW" customClass="MessageCell" customModule="Supermarket" customModuleProvider="target">
@@ -123,63 +123,17 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h7J-RR-aC8">
-                                <rect key="frame" x="0.0" y="64" width="375" height="35"/>
-                                <subviews>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="NTy-yd-xe1">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="34"/>
-                                        <segments>
-                                            <segment title="Notifications"/>
-                                            <segment title="Messages"/>
-                                        </segments>
-                                        <color key="tintColor" red="0.36550331120000001" green="0.79173368219999996" blue="0.80787837510000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        <connections>
-                                            <action selector="indexChanged:" destination="7a0-aG-N1u" eventType="valueChanged" id="Lmz-em-wg6"/>
-                                        </connections>
-                                    </segmentedControl>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hbc-Ir-EEK">
-                                        <rect key="frame" x="0.0" y="33" width="187.5" height="2"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PLS-yL-5Yt">
-                                        <rect key="frame" x="187.5" y="33" width="187.5" height="2"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    </view>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstItem="hbc-Ir-EEK" firstAttribute="leading" secondItem="h7J-RR-aC8" secondAttribute="leading" id="BfF-rC-dGt"/>
-                                    <constraint firstAttribute="height" constant="35" id="NT2-rQ-28q"/>
-                                    <constraint firstItem="PLS-yL-5Yt" firstAttribute="top" secondItem="NTy-yd-xe1" secondAttribute="bottom" id="Tqc-Gt-0Rx"/>
-                                    <constraint firstItem="hbc-Ir-EEK" firstAttribute="top" secondItem="NTy-yd-xe1" secondAttribute="bottom" id="Wvk-OL-szv"/>
-                                    <constraint firstItem="PLS-yL-5Yt" firstAttribute="width" secondItem="hbc-Ir-EEK" secondAttribute="width" id="XFN-j0-rku"/>
-                                    <constraint firstItem="NTy-yd-xe1" firstAttribute="top" secondItem="h7J-RR-aC8" secondAttribute="top" id="Yh6-vP-a6w"/>
-                                    <constraint firstAttribute="bottom" secondItem="PLS-yL-5Yt" secondAttribute="bottom" id="bNM-q2-aZa"/>
-                                    <constraint firstItem="NTy-yd-xe1" firstAttribute="leading" secondItem="h7J-RR-aC8" secondAttribute="leading" id="iGk-3x-p1w"/>
-                                    <constraint firstAttribute="bottom" secondItem="NTy-yd-xe1" secondAttribute="bottom" constant="2" id="icV-bN-aNF"/>
-                                    <constraint firstAttribute="trailing" secondItem="PLS-yL-5Yt" secondAttribute="trailing" id="nHX-XB-2hK"/>
-                                    <constraint firstAttribute="trailing" secondItem="NTy-yd-xe1" secondAttribute="trailing" id="pdT-bC-cHg"/>
-                                    <constraint firstItem="PLS-yL-5Yt" firstAttribute="leading" secondItem="hbc-Ir-EEK" secondAttribute="trailing" id="qnd-I3-xlb"/>
-                                    <constraint firstAttribute="bottom" secondItem="hbc-Ir-EEK" secondAttribute="bottom" id="xzJ-Gj-feY"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="h7J-RR-aC8" firstAttribute="leading" secondItem="E8Y-fD-Nrn" secondAttribute="leading" id="EiA-c3-Nuw"/>
-                            <constraint firstItem="wb1-KY-uec" firstAttribute="top" secondItem="FPX-9d-g14" secondAttribute="bottom" id="K23-Iu-HF1"/>
-                            <constraint firstAttribute="trailing" secondItem="h7J-RR-aC8" secondAttribute="trailing" id="byV-FL-wA5"/>
-                            <constraint firstAttribute="trailing" secondItem="FPX-9d-g14" secondAttribute="trailing" id="kjE-xe-SCE"/>
-                            <constraint firstItem="h7J-RR-aC8" firstAttribute="top" secondItem="V9K-jf-fup" secondAttribute="bottom" id="mvk-cr-Zpj"/>
-                            <constraint firstItem="FPX-9d-g14" firstAttribute="leading" secondItem="E8Y-fD-Nrn" secondAttribute="leading" id="o8F-Yx-wF1"/>
-                            <constraint firstItem="FPX-9d-g14" firstAttribute="top" secondItem="h7J-RR-aC8" secondAttribute="bottom" id="pE0-5g-EGt"/>
+                            <constraint firstItem="FPX-9d-g14" firstAttribute="leading" secondItem="E8Y-fD-Nrn" secondAttribute="leading" id="22w-4D-H5d"/>
+                            <constraint firstItem="FPX-9d-g14" firstAttribute="top" secondItem="V9K-jf-fup" secondAttribute="bottom" id="G9i-wW-iby"/>
+                            <constraint firstAttribute="trailing" secondItem="FPX-9d-g14" secondAttribute="trailing" id="h2M-VY-Ndi"/>
+                            <constraint firstItem="wb1-KY-uec" firstAttribute="top" secondItem="FPX-9d-g14" secondAttribute="bottom" id="xGs-1q-P2I"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Notifications" id="4Yc-2P-jbG"/>
                     <connections>
-                        <outlet property="lineViewOne" destination="hbc-Ir-EEK" id="xsc-Ge-9VK"/>
-                        <outlet property="lineViewTwo" destination="PLS-yL-5Yt" id="2jx-og-5do"/>
-                        <outlet property="segmentedControl" destination="NTy-yd-xe1" id="OmE-8F-irk"/>
                         <outlet property="tableView" destination="FPX-9d-g14" id="uLX-oF-2yN"/>
                         <segue destination="LjZ-Ph-Lmi" kind="show" identifier="notificationToDetail" id="ecn-bs-KzS"/>
                     </connections>
