@@ -100,6 +100,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/SimpleAnimation/SimpleAnimation.framework"
   install_framework "$BUILT_PRODUCTS_DIR/TwicketSegmentedControl/TwicketSegmentedControl.framework"
   install_framework "$BUILT_PRODUCTS_DIR/YNDropDownMenu/YNDropDownMenu.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/ZKCarousel/ZKCarousel.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/Alamofire/Alamofire.framework"
@@ -113,6 +114,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/SimpleAnimation/SimpleAnimation.framework"
   install_framework "$BUILT_PRODUCTS_DIR/TwicketSegmentedControl/TwicketSegmentedControl.framework"
   install_framework "$BUILT_PRODUCTS_DIR/YNDropDownMenu/YNDropDownMenu.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/ZKCarousel/ZKCarousel.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
   wait

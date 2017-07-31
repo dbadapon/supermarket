@@ -9,11 +9,14 @@
 import UIKit
 import Parse
 import ParseUI
-
+import ZKCarousel
 
 class DetailPictureCell: UITableViewCell {
     
     @IBOutlet weak var postImageView: PFImageView!
+    var totalImages: [UIImage] = []
+    @IBOutlet weak var carouselView: ZKCarousel!
+    
     
     var postImage: PFObject! {
         didSet {
@@ -21,6 +24,8 @@ class DetailPictureCell: UITableViewCell {
             let file = images![0] as? PFFile
             self.postImageView.file = file
             self.postImageView.loadInBackground()
+            
+            
         }
     }
     
@@ -30,11 +35,12 @@ class DetailPictureCell: UITableViewCell {
         // Initialization code
 //        automaticallyAdjustsScrollViewInsets = false
     }
+    
+    
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
         // Configure the view for the selected state
     }
-
+    
 }

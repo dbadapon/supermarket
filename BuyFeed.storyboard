@@ -279,20 +279,33 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="insta_camera_btn" translatesAutoresizingMaskIntoConstraints="NO" id="uLJ-BU-cZc" customClass="PFImageView">
-                                                    <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="10" height="10"/>
                                                     <constraints>
+                                                        <constraint firstAttribute="width" constant="10" id="0es-8h-5VI"/>
+                                                        <constraint firstAttribute="height" constant="10" id="Ahb-bn-6YY"/>
                                                         <constraint firstAttribute="width" secondItem="uLJ-BU-cZc" secondAttribute="height" multiplier="1:1" id="Een-cV-CrB"/>
                                                     </constraints>
                                                 </imageView>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bfS-ZZ-wYh" customClass="ZKCarousel" customModule="ZKCarousel">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="250"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="bfS-ZZ-wYh" secondAttribute="height" multiplier="3:2" id="cib-Qb-H1i"/>
+                                                        <constraint firstAttribute="width" constant="375" id="fbi-CS-CpF"/>
+                                                    </constraints>
+                                                </view>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="bfS-ZZ-wYh" secondAttribute="trailing" id="4Og-1T-qje"/>
+                                                <constraint firstAttribute="bottom" secondItem="bfS-ZZ-wYh" secondAttribute="bottom" id="Fiv-T1-dkA"/>
                                                 <constraint firstItem="uLJ-BU-cZc" firstAttribute="leading" secondItem="2Jy-rl-z2L" secondAttribute="leading" id="MPQ-bg-D4S"/>
-                                                <constraint firstAttribute="bottom" secondItem="uLJ-BU-cZc" secondAttribute="bottom" constant="8" id="fXG-jN-rhD"/>
                                                 <constraint firstItem="uLJ-BU-cZc" firstAttribute="top" secondItem="2Jy-rl-z2L" secondAttribute="top" id="kzi-ql-FBb"/>
-                                                <constraint firstAttribute="trailing" secondItem="uLJ-BU-cZc" secondAttribute="trailing" id="tY6-rM-Gob"/>
+                                                <constraint firstItem="bfS-ZZ-wYh" firstAttribute="leading" secondItem="2Jy-rl-z2L" secondAttribute="leading" id="omQ-Vk-LT8"/>
+                                                <constraint firstItem="bfS-ZZ-wYh" firstAttribute="top" secondItem="2Jy-rl-z2L" secondAttribute="top" id="w9f-sT-kea"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="carouselView" destination="bfS-ZZ-wYh" id="3W9-Sr-mU7"/>
                                             <outlet property="postImageView" destination="uLJ-BU-cZc" id="jtr-Dz-Hu0"/>
                                         </connections>
                                     </tableViewCell>

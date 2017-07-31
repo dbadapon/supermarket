@@ -13,6 +13,7 @@ PODS:
   - SimpleAnimation (0.3.1)
   - TwicketSegmentedControl (0.1.2)
   - YNDropDownMenu (2.3.2)
+  - ZKCarousel (0.1.0)
 
 DEPENDENCIES:
   - Alamofire
@@ -25,6 +26,7 @@ DEPENDENCIES:
   - SimpleAnimation
   - TwicketSegmentedControl
   - YNDropDownMenu
+  - ZKCarousel
 
 SPEC CHECKSUMS:
   Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
@@ -38,7 +40,8 @@ SPEC CHECKSUMS:
   SimpleAnimation: 0c4fe9cb60b5d5c57611909ca95722446fe74d63
   TwicketSegmentedControl: 6d7a4cf243657e0ac3f00d06d873a25334c04042
   YNDropDownMenu: 9d9f1ae71a408d0e7c66a55da2a52232545fca5a
+  ZKCarousel: 36143c4667c89c70c89ccda9e1e01af2fcbb5a9e
 
-PODFILE CHECKSUM: 23def140e9a3472ee04733d5c8bc12d6e6fda66d
+PODFILE CHECKSUM: 686c8ffc0988214519a18778f90c2b3e8344e1b5
 
 COCOAPODS: 1.2.1

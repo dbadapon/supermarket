@@ -16,7 +16,8 @@ target 'Supermarket' do
 	pod 'IQKeyboardManagerSwift'
 	pod 'NVActivityIndicatorView'
 	pod "SimpleAnimation"
-
+	pod 'ZKCarousel'
+ 
   target 'SupermarketTests' do
     inherit! :search_paths
     # Pods for testing
