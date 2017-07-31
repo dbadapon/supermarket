@@ -63,6 +63,8 @@ class ChooseLocationViewController: UIViewController, CLLocationManagerDelegate,
         
         self.mapView.addAnnotation(annotation)
         
+        self.latitude = Double(locCoord.latitude)
+        self.longitude = Double(locCoord.longitude)
         
 //        let pinLocation: CLLocation = CLLocation.init(latitude: annotation.coordinate.latitude, longitude: annotation.coordinate.longitude)
 //        print("Latitude: \(pinLocation.coordinate.latitude) Longitude: \(pinLocation.coordinate.longitude)")

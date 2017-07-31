@@ -52,39 +52,7 @@ class SelectMarketViewController: UIViewController, UICollectionViewDelegate, UI
     
     @IBAction func postAction(_ sender: UIButton) {
         
-        // let's hard-code the latitude and longitude for now... and city lol
-        latitude = 33.640495
-        longitude = -117.844296
-        city = "Irvine, CA"
-        //isNew = true
         
-        var tempImageList: [UIImage] = []
-        tempImageList.append(coverPhoto.image!) // should I force unwrap this?
-        tempImageList.append(imageOne.image!)
-        tempImageList.append(imageTwo.image!)
-        tempImageList.append(imageThree.image!)
-        tempImageList.append(imageFour.image!)
-        
-        var imageList: [UIImage] = []
-        for im in tempImageList {
-            if im != UIImage(named: "cameraMask") {
-                imageList.append(im)
-            }
-        }
-        
-        
-        
-        
-        print("NAME: \(itemName)")
-        print("COVER PHOTO: \(coverPhoto.image)")
-        print("IMAGES: \(imageOne.image), \(imageTwo.image), \(imageThree.image), \(imageFour.image)")
-        print("NEGOTIABLE: \(isNegotiable)")
-        print("PRICE: \(itemPrice)")
-        print("NEW: \(isNew)")
-        print("DESCRIPTION: \(itemDescription.text)")
-        print("LATITUDE: \(latitude)")
-        print("LONGITUDE: \(longitude)")
-        print("CITY: \(city)")
         
 //        let toPost = Post.createPost(images: imageList, name: itemName.text, seller: PFUser.current()!, itemDescription: itemDescription.text, price: itemPrice, conditionNew: isNew, negotiable: isNegotiable, sold: false, city: city!, latitude: latitude!, longitude: longitude!)
         
@@ -167,7 +135,38 @@ class SelectMarketViewController: UIViewController, UICollectionViewDelegate, UI
             } else {
                 print ("there was no error but no markets were loaded")
             }
+            
         }
+        
+        // HARD CODED CITY
+        city = "Irvine, CA"
+        
+        var tempImageList: [UIImage] = []
+        tempImageList.append(coverPhoto.image!) // should I force unwrap this?
+        tempImageList.append(imageOne.image!)
+        tempImageList.append(imageTwo.image!)
+        tempImageList.append(imageThree.image!)
+        tempImageList.append(imageFour.image!)
+        // MAN THIS TAKES A LONG TIME... CHANGE STRUCTURE SO THAT IMAGE GETS PASSED INSTEAD OF THE UIIMAGEVIEW
+        
+        var imageList: [UIImage] = []
+        for im in tempImageList {
+            if im != UIImage(named: "cameraMask") {
+                imageList.append(im)
+            }
+        }
+        
+        // ALL INFO
+        print("NAME: \(itemName)")
+        print("COVER PHOTO: \(coverPhoto.image)")
+        print("IMAGES: \(imageOne.image), \(imageTwo.image), \(imageThree.image), \(imageFour.image)")
+        print("NEGOTIABLE: \(isNegotiable)")
+        print("PRICE: \(itemPrice)")
+        print("NEW: \(isNew)")
+        print("DESCRIPTION: \(itemDescription.text)")
+        print("LATITUDE: \(latitude)")
+        print("LONGITUDE: \(longitude)")
+        print("CITY: \(city)")
         
     }
 
