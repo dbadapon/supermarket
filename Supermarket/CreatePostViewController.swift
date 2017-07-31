@@ -14,6 +14,8 @@ import Alamofire
 
 class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDelegate {
     
+    var recognizer: SupermarketObjectRecognizer?
+    
     // preview layer
     var previewLayer: AVCaptureVideoPreviewLayer!
     // overlay layer
@@ -68,11 +70,11 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
             fatalError("No video camera available")
         }
         
-        let recognizer = SupermarketObjectRecognizer(passedDevice: camera)
+        recognizer = SupermarketObjectRecognizer(passedDevice: camera)
         
         // add the preview layer
         // also configure live preview layer
-        previewLayer = AVCaptureVideoPreviewLayer(session: recognizer.session)
+        previewLayer = AVCaptureVideoPreviewLayer(session: recognizer!.session)
         previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
         previewView.layer.addSublayer(previewLayer)
         
@@ -155,15 +157,28 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
         
     }
     func updateCurrentFrame(currentFrame: CurrentFrame) {
+        // set the result view to whatever the classifications are
         self.resultView.text = currentFrame.classifications
+        print("updating classifications")
     }
-    func captureScreenshot(screenshot: UIImage) {
-        self.imageToPass = screenshot
-    }
+//    func captureScreenshot(screenshot: UIImage) {
+//        self.imageToPass = screenshot
+//    }
     
     
     @IBAction func captureAction(_ sender: UIButton) {
-        
+        if recognizer != nil {
+            self.imageToPass = recognizer!.captureScreenshot()
+            self.topMLResult = recognizer!.topMLResult
+            print(self.imageToPass)
+            // infinite loop LOLOL, NOT THE SOLUTION
+//            let blankSize = CGSize(width: 0, height: 0)
+//            while imageToPass.size == blankSize {
+//                // do nothing just wait
+//                // because recognizer needs time to capture screenshot
+//            }
+            performSegue(withIdentifier: "capturedSegue", sender: self)
+        }
     }
     
     private func addButtons() {
@@ -195,6 +210,9 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
             let dvc = segue.destination as! PhotoViewController
             dvc.backgroundImage = imageToPass
             dvc.topMLResult = topMLResult
+            print("PRINTING STUFF")
+            print(dvc.backgroundImage)
+            print(dvc.topMLResult)
         }
         
         // only happens when barcode recognized and user clicks scan

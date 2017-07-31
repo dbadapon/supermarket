@@ -38,7 +38,7 @@ protocol SupermarketObjectRecognizerDelegate: class {
     func updateRecognizedObject(recognizedObject: RecognizedObject)
     func updateRecognizedBarcode(recognizedBarcode: RecognizedBarcode)
     func updateCurrentFrame(currentFrame: CurrentFrame)
-    func captureScreenshot(screenshot: UIImage)
+//    func captureScreenshot(screenshot: UIImage)
 }
 
 class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate, AVCapturePhotoCaptureDelegate, AVCaptureMetadataOutputObjectsDelegate {
@@ -64,14 +64,15 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
     var currentFrame: CurrentFrame? {
         didSet {
             delegate?.updateCurrentFrame(currentFrame: currentFrame!)
+            print("inside didSet of currentFrame")
         }
     }
     
-    var screenshot: UIImage? {
-        didSet {
-            delegate?.captureScreenshot(screenshot: screenshot!)
-        }
-    }
+//    var screenshot: UIImage? {
+//        didSet {
+//            delegate?.captureScreenshot(screenshot: screenshot!)
+//        }
+//    }
     
     // class variables
     // video capture session
@@ -127,7 +128,7 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
     // image to pass onto next view controller
     // to "freeze" screen when user clicks capture button
     // this is the screenshot to be taken
-    var imageToPass: UIImage!
+    var imageToPass = UIImage()
     
     
     // init is when SupermarketObjectRecognizer is created
@@ -203,10 +204,10 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
         // at the end, need to set attributes of RecognizedObject
         // TEMPORARY HARDCODED VALUES
         // self.primaryRecognizedObject = RecognizedObject.init(label: "", boundingBox: CGRect(x: 0.0, y: 0.0, width: 0.0, height: 0.0))
-        self.currentFrame = CurrentFrame.init(classifications: classifications, topMLResult: topMLResult)
     } // end of init
     
-    func captureScreenshot() {
+    // public function that can be called from create post vc
+    func captureScreenshot() -> UIImage {
         
         let photoSettings = AVCapturePhotoSettings()
         photoSettings.flashMode = .on
@@ -229,9 +230,13 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
                     // Add the captured image to imageToPass
                     self.imageToPass = image
                     print(self.imageToPass)
+                    // SOMETHING HAS HAPPENED AND IT PRINTS SOMETHING
                 }
             })
         }
+        // FIGURE OUT WHY TOMORROW
+        // BLANK IMAGE IS RETURNED, SAD REACTS :(
+        return self.imageToPass
     }
     
     // check if barcode is in Walmart API
@@ -425,6 +430,10 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
             // for debugging purposes
             print(self.topMLResult)
             
+            // update classifications to be passed onto delegate
+            // HELLUR HELLUR WHY DOES THIS NOT WORK
+            self.currentFrame = CurrentFrame(classifications: self.classifications, topMLResult: self.topMLResult)
+            
             // be able to access high probability classifications
             self.highProbClassifications = highProbClassifications
             // print(self.highProbClassifications)
@@ -458,4 +467,18 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
         }
     }
 }
+
+/*
+ THIS WAS IN TIMELINE VC, IT'S THE DELEGATE METHOD
+ func tweetCell(_ tweetCell: TweetCell, didTap user: User) {
+ // Perform segue to profile view controller
+ performSegue(withIdentifier: "viewProfileSegue", sender: user)
+ }
+ 
+ THIS WAS In TWEET CELL
+ protocol TweetCellDelegate: class {
+ // Add required methods the delegate needs to implement
+ func tweetCell(_ tweetCell: TweetCell, didTap user: User)
+ }
+ */
 
