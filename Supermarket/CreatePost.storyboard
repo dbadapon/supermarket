@@ -715,6 +715,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7Uc-d6-JC5">
+                                <rect key="frame" x="0.0" y="64" width="375" height="521"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="ngl-q8-ryM" appends="YES" id="JXz-Om-Vo9"/>
+                                </connections>
+                            </mapView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Hold and drag to place pin on map" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I5E-Zw-yXb">
+                                <rect key="frame" x="16" y="79" width="253" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="temp map" translatesAutoresizingMaskIntoConstraints="NO" id="b1Y-fc-RNi">
                                 <rect key="frame" x="0.0" y="64" width="375" height="521"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -753,25 +768,6 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7Uc-d6-JC5">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="521"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <gestureRecognizers/>
-                                            <connections>
-                                                <outletCollection property="gestureRecognizers" destination="ngl-q8-ryM" appends="YES" id="JXz-Om-Vo9"/>
-                                            </connections>
-                                        </mapView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Hold and drag to place pin on map" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I5E-Zw-yXb">
-                                            <rect key="frame" x="8" y="8" width="253" height="22"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EfS-Dz-q7b">
-                                            <rect key="frame" x="168" y="243" width="38" height="34"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        </view>
                                     </subviews>
                                 </view>
                                 <blurEffect style="light"/>
@@ -793,13 +789,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <outlet property="activityIndicator" destination="EfS-Dz-q7b" id="tpC-ez-cNY"/>
-                        <outlet property="activityIndicatorViewFrame" destination="EfS-Dz-q7b" id="RuA-ZS-owE"/>
                         <outlet property="blur" destination="CcY-6r-ryj" id="Nyd-cj-hwV"/>
+                        <outlet property="blurView" destination="CcY-6r-ryj" id="mE7-FA-Oio"/>
                         <outlet property="getLocationButton" destination="pDi-e9-EEB" id="GRk-JG-u34"/>
                         <outlet property="mapView" destination="7Uc-d6-JC5" id="yJT-yS-Nla"/>
+                        <outlet property="promptLabel" destination="FB3-OD-QTL" id="eMe-ze-ucr"/>
                         <outlet property="setButton" destination="8sc-eC-YoM" id="3S4-iK-mJz"/>
-                        <outlet property="tempMap" destination="b1Y-fc-RNi" id="l8s-6K-f8W"/>
+                        <outlet property="tempMap" destination="b1Y-fc-RNi" id="zXZ-cs-gvW"/>
                         <outlet property="zipCodeField" destination="v8m-5g-mjn" id="xXK-OY-A2k"/>
                         <segue destination="chS-rj-eHH" kind="show" identifier="toSelectMarketSegue" id="Mwd-UO-KT1"/>
                     </connections>

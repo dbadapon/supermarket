@@ -42,7 +42,11 @@ class SelectMarketViewController: UIViewController, UICollectionViewDelegate, UI
     @IBOutlet weak var collectionView: UICollectionView!
     
     @IBOutlet weak var postButton: UIButton!
-    
+
+    // Activity Indicator Font
+//    let activityFontDescriptor = UIFontDescriptor(fontAttributes: [UIFontDescriptorFaceAttribute : "Medium", UIFontDescriptorFamilyAttribute: "Avenir"])
+    let activityFont = UIFont(descriptor: UIFontDescriptor(fontAttributes: [UIFontDescriptorFaceAttribute : "Medium", UIFontDescriptorFamilyAttribute: "Avenir"]), size: 20)
+
     
     // before making post, check if any images are the placeholder image
     // meaning user did not select their own image
@@ -52,8 +56,6 @@ class SelectMarketViewController: UIViewController, UICollectionViewDelegate, UI
     }
     
     @IBAction func postAction(_ sender: UIButton) {
-        
-        
         
 //        let toPost = Post.createPost(images: imageList, name: itemName.text, seller: PFUser.current()!, itemDescription: itemDescription.text, price: itemPrice, conditionNew: isNew, negotiable: isNegotiable, sold: false, city: city!, latitude: latitude!, longitude: longitude!)
         
@@ -179,7 +181,9 @@ class SelectMarketViewController: UIViewController, UICollectionViewDelegate, UI
             print ("it will not post if no markets have been specified")
         } else {
             // Show activity indicator
-            self.startAnimating(type: NVActivityIndicatorType.ballPulse)
+            self.startAnimating(message: "Posting Item", messageFont: activityFont, type: NVActivityIndicatorType.ballPulse, textColor: UIColor.white)
+
+//            self.startAnimating(type: NVActivityIndicatorType.ballPulse)
             
             // clean up so that you pass UIImages themselves instead of ImageViews...
             var tempImageList: [UIImage] = []
@@ -209,6 +213,8 @@ class SelectMarketViewController: UIViewController, UICollectionViewDelegate, UI
                                 print("post id: \(newPost.parseObject.objectId)")
                                 MarketPost.postItem(post: newPost, marketName: market, category: category)
                                 print("Posted to market!")
+                                
+                                // Stop activity indicator
                                 self.stopAnimating()
                                 self.backToHome()
                             }

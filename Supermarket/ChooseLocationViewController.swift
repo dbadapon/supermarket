@@ -42,9 +42,12 @@ class ChooseLocationViewController: UIViewController, CLLocationManagerDelegate,
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var tempMap: UIImageView!
     @IBOutlet weak var blur: UIVisualEffectView!
+    
+    @IBOutlet weak var promptLabel: UILabel!
     @IBOutlet weak var getLocationButton: UIButton!
     @IBOutlet weak var zipCodeField: UITextField!
     @IBOutlet weak var setButton: UIButton!
+    @IBOutlet weak var blurView: UIVisualEffectView!
     
     // Map configuration
     var locationManager: CLLocationManager!
@@ -54,6 +57,17 @@ class ChooseLocationViewController: UIViewController, CLLocationManagerDelegate,
         }
     }
     
+
+    
+    @IBAction func didTapLocation(_ sender: Any) {
+        print("get current location")
+        promptLabel.isHidden = true
+        getLocationButton.isHidden = true
+        zipCodeField.isHidden = true
+        blurView.isHidden = true
+        tempMap.isHidden = true
+        determineCurrentLocation()
+    }
 
     @IBAction func movePin(_ sender: UILongPressGestureRecognizer) {
         let location = sender.location(in: self.mapView)
@@ -74,18 +88,9 @@ class ChooseLocationViewController: UIViewController, CLLocationManagerDelegate,
         
         self.latitude = Double(locCoord.latitude)
         self.longitude = Double(locCoord.longitude)
-        
     }
     
     
-    @IBAction func didTapLocation(_ sender: Any) {
-        print("get current location")
-    }
-    
-    @IBAction func previousAction(_ sender: UIButton) {
-        dismiss(animated: true, completion: nil)
-        // how to go back without dismissing...
-    }
     
     @IBAction func nextAction(_ sender: UIButton) {
 //        self.activityIndicator = NVActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
@@ -136,10 +141,10 @@ class ChooseLocationViewController: UIViewController, CLLocationManagerDelegate,
 
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        determineCurrentLocation()
-    }
+//    override func viewDidAppear(_ animated: Bool) {
+//        super.viewDidAppear(animated)
+//        determineCurrentLocation()
+//    }
     
     func determineCurrentLocation() {
         print("Determining current location!")
@@ -154,16 +159,16 @@ class ChooseLocationViewController: UIViewController, CLLocationManagerDelegate,
     }
     
 
-    
-    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, didChange newState: MKAnnotationViewDragState, fromOldState oldState: MKAnnotationViewDragState) {
-        switch newState {
-        case .starting:
-            view.dragState = .dragging
-        case .ending, .canceling:
-            view.dragState = .none
-        default: break
-        }
-    }
+    // figure out how to drag existing pins?
+//    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, didChange newState: MKAnnotationViewDragState, fromOldState oldState: MKAnnotationViewDragState) {
+//        switch newState {
+//        case .starting:
+//            view.dragState = .dragging
+//        case .ending, .canceling:
+//            view.dragState = .none
+//        default: break
+//        }
+//    }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
