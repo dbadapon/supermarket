@@ -72,7 +72,7 @@ class TabBarController: RAMAnimatedTabBarController {
         let notificationStoryboard = UIStoryboard(name: "NotificationStoryboard", bundle: nil)
         let notificationController = notificationStoryboard.instantiateViewController(withIdentifier: "NotificationController") as! UINavigationController
         
-        let tab4 = RAMAnimatedTabBarItem(title: "Notifications", image: UIImage(named: "Shopping Cart-100"), selectedImage: nil)
+        let tab4 = RAMAnimatedTabBarItem(title: "Alerts", image: UIImage(named: "Shopping Cart-100"), selectedImage: nil)
         tab4.textColor = .black
         tab4.iconColor = .black
         tab4.animation = tabAnimation
