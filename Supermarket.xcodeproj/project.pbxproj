@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0A017A531F143C51001C6B5A /* CreatePost.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A017A521F143C51001C6B5A /* CreatePost.storyboard */; };
+		0A02A3981F2EE888009BCB66 /* CreatePostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A02A3971F2EE888009BCB66 /* CreatePostViewController.swift */; };
+		0A02A39A1F2EE8BA009BCB66 /* SupermarketObjectRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A02A3991F2EE8BA009BCB66 /* SupermarketObjectRecognizer.swift */; };
 		0A0C160E1F25497D002C29BB /* Pods_SupermarketTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AE35AF3621B63A19B9B12F4 /* Pods_SupermarketTests.framework */; };
 		0A0C160F1F254982002C29BB /* Pods_SupermarketUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80572461216E64975C83358E /* Pods_SupermarketUITests.framework */; };
 		0A0C16101F254984002C29BB /* Pods_SupermarketUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80572461216E64975C83358E /* Pods_SupermarketUITests.framework */; };
@@ -18,7 +20,6 @@
 		0A36AA361F259F49007BE153 /* SelectMarketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A36AA351F259F49007BE153 /* SelectMarketViewController.swift */; };
 		0A36AA381F259F56007BE153 /* ChooseLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A36AA371F259F56007BE153 /* ChooseLocationViewController.swift */; };
 		0A36AA3A1F25A1FA007BE153 /* DescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A36AA391F25A1F9007BE153 /* DescriptionViewController.swift */; };
-		0A5892FE1F227506001360D3 /* CreatePostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5892FD1F227506001360D3 /* CreatePostViewController.swift */; };
 		0A5893001F22779A001360D3 /* SwiftyRecordButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5892FF1F22779A001360D3 /* SwiftyRecordButton.swift */; };
 		0A5893041F22792F001360D3 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5893031F22792F001360D3 /* PhotoViewController.swift */; };
 		0A5893061F227998001360D3 /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5893051F227998001360D3 /* PreviewViewController.swift */; };
@@ -90,11 +91,12 @@
 
 /* Begin PBXFileReference section */
 		0A017A521F143C51001C6B5A /* CreatePost.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CreatePost.storyboard; sourceTree = "<group>"; };
+		0A02A3971F2EE888009BCB66 /* CreatePostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostViewController.swift; sourceTree = "<group>"; };
+		0A02A3991F2EE8BA009BCB66 /* SupermarketObjectRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupermarketObjectRecognizer.swift; sourceTree = "<group>"; };
 		0A36AA311F259F15007BE153 /* PriceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceViewController.swift; sourceTree = "<group>"; };
 		0A36AA351F259F49007BE153 /* SelectMarketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectMarketViewController.swift; sourceTree = "<group>"; };
 		0A36AA371F259F56007BE153 /* ChooseLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseLocationViewController.swift; sourceTree = "<group>"; };
 		0A36AA391F25A1F9007BE153 /* DescriptionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DescriptionViewController.swift; sourceTree = "<group>"; };
-		0A5892FD1F227506001360D3 /* CreatePostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostViewController.swift; sourceTree = "<group>"; };
 		0A5892FF1F22779A001360D3 /* SwiftyRecordButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyRecordButton.swift; sourceTree = "<group>"; };
 		0A5893031F22792F001360D3 /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		0A5893051F227998001360D3 /* PreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewViewController.swift; sourceTree = "<group>"; };
@@ -235,7 +237,7 @@
 				4DC3C0C91F2016B400B4E2C4 /* SellFeedViewController.swift */,
 				4D73A2BC1F26772700A5ACDC /* ProfileViewController.swift */,
 				4D73A2BE1F26A15C00A5ACDC /* MarketViewController.swift */,
-				0A5892FD1F227506001360D3 /* CreatePostViewController.swift */,
+				0A02A3971F2EE888009BCB66 /* CreatePostViewController.swift */,
 				0A5893031F22792F001360D3 /* PhotoViewController.swift */,
 				0A5893051F227998001360D3 /* PreviewViewController.swift */,
 				0A36AA311F259F15007BE153 /* PriceViewController.swift */,
@@ -319,6 +321,7 @@
 				A079042B1F13F098000E4419 /* Info.plist */,
 				0AEF28871F22ACF900C4528B /* Resnet50.mlmodel */,
 				4D3ED6C01F2598A300E532CD /* GoogleBooksAPI.swift */,
+				0A02A3991F2EE8BA009BCB66 /* SupermarketObjectRecognizer.swift */,
 			);
 			path = Supermarket;
 			sourceTree = "<group>";
@@ -672,10 +675,10 @@
 				0A5893001F22779A001360D3 /* SwiftyRecordButton.swift in Sources */,
 				A0B989F41F1583AA0037EFCF /* MarketCell.swift in Sources */,
 				A0E30DA21F143C020062B100 /* BuyFeedViewController.swift in Sources */,
+				0A02A3981F2EE888009BCB66 /* CreatePostViewController.swift in Sources */,
 				A0B989F21F15806F0037EFCF /* SidebarViewController.swift in Sources */,
 				0A36AA381F259F56007BE153 /* ChooseLocationViewController.swift in Sources */,
 				A0E30DE71F144EA00062B100 /* TabBarController.swift in Sources */,
-				0A5892FE1F227506001360D3 /* CreatePostViewController.swift in Sources */,
 				A07904201F13F098000E4419 /* AppDelegate.swift in Sources */,
 				4D73A2BB1F2676EE00A5ACDC /* SupermarketNotification.swift in Sources */,
 				4DF6982E1F17ED8B008DB9D6 /* MLManager.swift in Sources */,
@@ -691,6 +694,7 @@
 				4D4747B61F2ABDF100E90771 /* MarketChoiceCell.swift in Sources */,
 				0A6966C61F15401200E72FD8 /* LoginViewController.swift in Sources */,
 				4D1556151F143BE500F70DB3 /* Category.swift in Sources */,
+				0A02A39A1F2EE8BA009BCB66 /* SupermarketObjectRecognizer.swift in Sources */,
 				4D15565B1F1540FD00F70DB3 /* DetailInformationCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
