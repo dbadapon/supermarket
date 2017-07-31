@@ -56,6 +56,10 @@ class InterestedCell: UITableViewCell {
         }
     }
     
+    var indexPath: IndexPath? {
+        return (superview as? UITableView)?.indexPath(for: self)
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -78,8 +82,11 @@ class InterestedCell: UITableViewCell {
     }
     
     @IBAction func didPressRespond(_ sender: Any) {
-        self.delegate?.didTapMessage(of: notification)
+        self.delegate?.didTapMessage(of: notification, indexPath: self.indexPath!)
     }
     
+    @IBAction func didPressIgnore(_ sender: Any) {
+        self.delegate?.didTapIgnore(of: notification, indexPath: self.indexPath!)
+    }
 
 }

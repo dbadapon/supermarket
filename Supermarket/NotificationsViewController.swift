@@ -12,8 +12,8 @@ import MessageUI
 
 protocol InterestedCellDelegate: class {
     func didTapPhoto(of post: Post)
-    func didTapIgnore(of notification: SupermarketNotification)
-    func didTapMessage(of notification: SupermarketNotification)
+    func didTapIgnore(of notification: SupermarketNotification, indexPath: IndexPath)
+    func didTapMessage(of notification: SupermarketNotification, indexPath: IndexPath)
 }
 
 class NotificationsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, InterestedCellDelegate, MFMessageComposeViewControllerDelegate {
@@ -27,6 +27,8 @@ class NotificationsViewController: UIViewController, UITableViewDelegate, UITabl
     
     var notifications: [SupermarketNotification] = []
     
+    var notification: SupermarketNotification? = nil
+    var indexPath: IndexPath? = nil
     // var messages: [Message]? = nil
     
     let ourColor = UIColor.init(colorLiteralRed: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha: 1.0)
@@ -132,11 +134,36 @@ class NotificationsViewController: UIViewController, UITableViewDelegate, UITabl
         self.performSegue(withIdentifier: "notificationToDetail", sender: self)
     }
     
-    func didTapIgnore(of notification: SupermarketNotification) {
-        print ("ignore tapped")
+    func didTapIgnore(of notification: SupermarketNotification, indexPath: IndexPath) {
+        print (indexPath.row)
+        var indexPaths: [IndexPath] = []
+        indexPaths.append(indexPath)
+        notifications.remove(at: indexPath.row)
+        tableView.deleteRows(at: indexPaths, with: UITableViewRowAnimation.automatic)
+        let query = PFQuery(className: "SupermarketNotification")
+        query.whereKey("sender", equalTo: notification.sender)
+        query.whereKey("receiver", equalTo: notification.receiver)
+        query.findObjectsInBackground { (notifications, error) in
+            if let error = error {
+                print ("there was an error finding the notification \(error.localizedDescription)")
+            } else if let notifications = notifications {
+                print (notifications.count)
+                for item in notifications {
+                    item.deleteInBackground(block: { (success, error) in
+                        if let error = error {
+                            print ("there was an error with deleting the notification \(error.localizedDescription)")
+                        } else {
+                            print ("the notification should have been deleted")
+                        }
+                    })
+                }
+            } else {
+                print ("it could not find the notification, but there was no error")
+            }
+        }
     }
     
-    func didTapMessage(of notification: SupermarketNotification) {
+    func didTapMessage(of notification: SupermarketNotification, indexPath: IndexPath) {
         let composeVC = MFMessageComposeViewController()
         composeVC.messageComposeDelegate = self
         
@@ -150,13 +177,44 @@ class NotificationsViewController: UIViewController, UITableViewDelegate, UITabl
         let name = notification.postObject["name"] as? String
         let finalString = ". Do you want to talk further about it?"
         composeVC.body = initialString + name! + finalString
+        self.notification = notification
+        self.indexPath = indexPath
         
         // Present the view controller modally.
         self.present(composeVC, animated: true, completion: nil)
     }
     
+    
     func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
-        controller.dismiss(animated: true, completion: nil)
+        controller.dismiss(animated: true) {
+            
+            var indexPaths: [IndexPath] = []
+            indexPaths.append(self.indexPath!)
+            self.notifications.remove(at: self.indexPath!.row)
+            self.tableView.deleteRows(at: indexPaths, with: UITableViewRowAnimation.automatic)
+            
+            let query = PFQuery(className: "SupermarketNotification")
+            query.whereKey("sender", equalTo: self.notification?.sender)
+            query.whereKey("receiver", equalTo: self.notification?.receiver)
+            query.findObjectsInBackground { (notifications, error) in
+                if let error = error {
+                    print ("there was an error finding the notification \(error.localizedDescription)")
+                } else if let notifications = notifications {
+                    print (notifications.count)
+                    for item in notifications {
+                        item.deleteInBackground(block: { (success, error) in
+                            if let error = error {
+                                print ("there was an error with deleting the notification \(error.localizedDescription)")
+                            } else {
+                                print ("the notification should have been deleted")
+                            }
+                        })
+                    }
+                } else {
+                    print ("it could not find the notification, but there was no error")
+                }
+            }
+        }
     }
     
     

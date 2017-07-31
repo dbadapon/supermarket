@@ -25,29 +25,8 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MessageCell" rowHeight="93" id="yfo-At-jcW" customClass="MessageCell" customModule="Supermarket" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="93"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yfo-At-jcW" id="kmB-yY-af5">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="92.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="insta_camera_btn" translatesAutoresizingMaskIntoConstraints="NO" id="hsh-vC-IZo">
-                                                    <rect key="frame" x="8" y="8" width="75" height="75"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Dominique sent you a message!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Whq-qM-Z5s">
-                                                    <rect key="frame" x="91" y="35" width="276" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="InterestedCell" rowHeight="111" id="ADG-We-PUn" customClass="InterestedCell" customModule="Supermarket" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="121" width="375" height="111"/>
+                                        <rect key="frame" x="0.0" y="28" width="375" height="111"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ADG-We-PUn" id="a5v-44-Ge5">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="110.5"/>
@@ -92,6 +71,9 @@
                                                     <state key="normal" title="Ignore">
                                                         <color key="titleColor" red="1" green="0.9999879599" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="didPressIgnore:" destination="ADG-We-PUn" eventType="touchUpInside" id="LE0-Sg-vHB"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -169,7 +151,4 @@
             <point key="canvasLocation" x="144.80000000000001" y="42.728635682158924"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="insta_camera_btn" width="25" height="25"/>
-    </resources>
 </document>
