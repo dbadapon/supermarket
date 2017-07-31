@@ -19,8 +19,7 @@ struct RecognizedObject {
 }
 
 struct RecognizedBarcode {
-    
-    // let barcodeObject: AVMetadataMachineReadableCodeObject
+
     var codeString: String
     var nameString: String
     var priceString: String
@@ -34,11 +33,18 @@ struct CurrentFrame {
     var topMLResult: String
 }
 
+//struct UserCapturedObject {
+//
+//    var screenshot: UIImage
+//    var topMLResult: String
+//}
+
 protocol SupermarketObjectRecognizerDelegate: class {
     func updateRecognizedObject(recognizedObject: RecognizedObject)
     func updateRecognizedBarcode(recognizedBarcode: RecognizedBarcode)
     func updateCurrentFrame(currentFrame: CurrentFrame)
     func captureAndSegue(screenshot: UIImage)
+    func getBarcodeObject(barcodeObject: AVMetadataMachineReadableCodeObject)
 }
 
 class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate, AVCapturePhotoCaptureDelegate, AVCaptureMetadataOutputObjectsDelegate {
@@ -67,12 +73,6 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
             delegate?.updateCurrentFrame(currentFrame: currentFrame!)
         }
     }
-    
-//    var screenshot: UIImage? {
-//        didSet {
-//            delegate?.captureScreenshot(screenshot: screenshot!)
-//        }
-//    }
     
     // class variables
     // video capture session
@@ -198,9 +198,6 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
         } catch {
             fatalError(error.localizedDescription)
         }
-        
-        // move code that recognizes image past certain threshold here
-        
         // at the end, need to set attributes of RecognizedObject
         // TEMPORARY HARDCODED VALUES
         // self.primaryRecognizedObject = RecognizedObject.init(label: "", boundingBox: CGRect(x: 0.0, y: 0.0, width: 0.0, height: 0.0))
@@ -231,21 +228,20 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
                     self.imageToPass = image
                     // for debugging purposes
                     // print(self.imageToPass)
-                    self.delegate?.captureAndSegue(screenshot: self.imageToPass)
                 }
             })
         }
     }
     
     // check if barcode is in Walmart API
-    func checkPriceWithName(query: String) {
+    func checkPriceWithBarcode(query: String) {
         
         let baseURL = "http://api.walmartlabs.com/v1/search?query="
         let endUrl = "&format=json&apiKey=yva6f6yprac42rsp44tjvxjg"
         
         let newString = query.replacingOccurrences(of: " ", with: "+")
         
-        print (newString)
+        print(newString)
         let wholeUrl = baseURL + newString + endUrl
         
         request(wholeUrl, method: .get).validate().responseJSON { (response) in
@@ -256,7 +252,7 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
                 
                 // number of items from query
                 if numberOfItems == 0 {
-                    print ("it's not getting a response")
+                    print("not getting a response with barcode from Walmart API")
                 }
                 // at least one result from query
                 if numberOfItems > 0 {
@@ -286,6 +282,8 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
                         self.nameString = String(describing: item["name"]!)
                         self.priceString = "$" + String(describing: item["salePrice"]!)
                         print (item["salePrice"]!)
+                        
+                        self.recognizedBarcode = RecognizedBarcode.init(codeString: self.codeString, nameString: self.nameString, priceString: self.priceString, pictureUrl: self.pictureUrl)
                     }
                 }
             } else {
@@ -333,11 +331,8 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
         // Get the metadata object.
         let metadataObj = metadataObjects[0] as! AVMetadataMachineReadableCodeObject
         
-        /*
-         // update the status label's text and set the bounds
-         let barCodeObject = previewLayer.transformedMetadataObject(for: metadataObj)
-         qrCodeFrameView?.frame = barCodeObject!.bounds
-         */
+        // update delegate's barcode boudns
+        self.delegate?.getBarcodeObject(barcodeObject: metadataObj)
         
         if metadataObj.stringValue != nil {
             self.codeString = metadataObj.stringValue!
@@ -345,7 +340,7 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
         
         // make query if barcode is read
         if self.codeString != "" {
-            checkPriceWithName(query: self.codeString)
+            checkPriceWithBarcode(query: self.codeString)
         }
         
         /*
@@ -462,23 +457,11 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
                 }
                 
                 // for debugging purposes
-                print(self.highProbabilityMLResult)
+                if self.highProbabilityMLResult != "" {
+                    print("THERE IS A HIGH PROBABILITY RESULT")
+                    print(self.highProbabilityMLResult)
+                }
             }
         }
     }
 }
-
-/*
- THIS WAS IN TIMELINE VC, IT'S THE DELEGATE METHOD
- func tweetCell(_ tweetCell: TweetCell, didTap user: User) {
- // Perform segue to profile view controller
- performSegue(withIdentifier: "viewProfileSegue", sender: user)
- }
- 
- THIS WAS In TWEET CELL
- protocol TweetCellDelegate: class {
- // Add required methods the delegate needs to implement
- func tweetCell(_ tweetCell: TweetCell, didTap user: User)
- }
- */
-

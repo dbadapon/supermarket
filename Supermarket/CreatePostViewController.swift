@@ -238,10 +238,11 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
             // self.previewLayer = nil
             // self.session.stopRunning()
             
-            let dvc = segue.destination as! PreviewViewController
-            dvc.nameString = self.nameString
-            dvc.priceString = self.priceString
-            dvc.pictureUrl = self.pictureUrl
+            let dvc = segue.destination as! UINavigationController
+            let vc = dvc.topViewController as! PreviewViewController
+            vc.nameString = self.nameString
+            vc.priceString = self.priceString
+            vc.pictureUrl = self.pictureUrl
             // for debugging purposes
             // print(self.pictureUrl)
         }
