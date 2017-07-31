@@ -197,6 +197,7 @@ class ChooseLocationViewController: UIViewController, CLLocationManagerDelegate,
     func coordinateToCity() {
         let geocoder = CLGeocoder()
         let location = CLLocation(latitude: (self.pinLocation?.latitude)!, longitude: (self.pinLocation?.longitude)!)
+        
         geocoder.reverseGeocodeLocation(location) { (placemarks, error) in
             var placemark: CLPlacemark!
             placemark = placemarks?[0]
@@ -207,15 +208,12 @@ class ChooseLocationViewController: UIViewController, CLLocationManagerDelegate,
             let cityString = "\(coordinateCity!), \(coordinateState!)"
             print("cityString is: \(cityString)")
             self.city = cityString
-//            destination.city = cityString
             
-//            self.activityIndicator?.stopAnimating()
-//            self.isAnimating = self.activityIndicator?.isAnimating
-            print("animating? \(self.activityIndicator?.isAnimating)")
+            // Stop activity indicator
             self.stopAnimating()
-            self.performSegue(withIdentifier: "toSelectMarketSegue", sender: self)
             
-            // YOU NEED AN ACTIVITY INDICTATOR THAT GETS TRIGGERED WHEN USER HITS SET!!
+            // GO TO NEXT VIEW CONTROLLER
+            self.performSegue(withIdentifier: "toSelectMarketSegue", sender: self)
         }
     }
 

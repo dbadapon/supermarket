@@ -25,7 +25,9 @@ class DescriptionViewController: UIViewController, UITextViewDelegate, TwicketSe
     
     // tp pass onto next vc
     var isNew: Bool!
-    // as well as itemDescription
+    
+    // fancy segmented control!
+    let segmentedControl = TwicketSegmentedControl()
     
     let nameAlertController = UIAlertController(title: "Max Characters Reached", message: "Item name CANNOT exceed 500 characters", preferredStyle: .alert)
     
@@ -70,38 +72,38 @@ class DescriptionViewController: UIViewController, UITextViewDelegate, TwicketSe
         
         // NEW SEGMENTED CONTROL (Twicket)
     
-        let frame = CGRect(x: 200, y: 200, width: 200, height: 100)
-        
-        let segmentedControl = TwicketSegmentedControl()
-        segmentedControl.delegate = self
+//        let frame = CGRect(x: 200, y: 200, width: 200, height: 100)
+        self.segmentedControl.delegate = self
         let options = ["Used", "New"]
-        segmentedControl.setSegmentItems(options)
+        self.segmentedControl.setSegmentItems(options)
         
         font.withFace("Roman")
-        segmentedControl.font = UIFont(descriptor: font, size: 18)
-        segmentedControl.sliderBackgroundColor
+        self.segmentedControl.font = UIFont(descriptor: font, size: 18)
+        self.segmentedControl.sliderBackgroundColor
             = UIColor.init(colorLiteralRed: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha: 1.0)
         
 //        segmentedControl.isSliderShadowHidden = true
         
-        segmentedControl.frame = testView.frame
+        self.segmentedControl.frame = testView.frame
         
-        view.addSubview(segmentedControl)
+        view.addSubview(self.segmentedControl)
 
         
         // Style Next button
         nextButton.layer.cornerRadius = 5
-        
     }
     
-    func didSelect(_ segmentIndex: Int) {
-        print("changed selection?")
-        if segmentIndex == 0 {
+    func setNew(index: Int) {
+        if index == 0 {
             self.isNew = false
         } else {
             self.isNew = true
         }
-        print("set isNew to: \(self.isNew)")
+    }
+    
+    func didSelect(_ segmentIndex: Int) {
+        print("changed selection?")
+        setNew(index: segmentIndex)
     }
 
     override func didReceiveMemoryWarning() {
@@ -133,6 +135,9 @@ class DescriptionViewController: UIViewController, UITextViewDelegate, TwicketSe
             backItem.title = ""
             backItem.tintColor = UIColor.black
             navigationItem.backBarButtonItem = backItem
+            
+            // make sure isNew is set to the correct selection
+            setNew(index: self.segmentedControl.selectedSegmentIndex)
             
             let dvc = segue.destination as! ChooseLocationViewController
             dvc.itemName = self.itemName

@@ -26,6 +26,10 @@ class PreviewViewController: UIViewController, UITextViewDelegate, UIGestureReco
     
     let lightGray = UIColor(colorLiteralRed: 199.0/255.0, green: 199.0/255.0, blue: 205.0/255.0, alpha: 0.50).cgColor
     
+    // Next button
+    @IBOutlet weak var nextButton: UIButton!
+    
+    
     // alter controllers
     let nextAlertController = UIAlertController(title: "Invalid Action", message: "Cover photo is required", preferredStyle: .alert)
     let nameRequiredAlertController = UIAlertController(title: "Name Required", message: "Please enter an item name to continue", preferredStyle: .alert)
@@ -63,7 +67,6 @@ class PreviewViewController: UIViewController, UITextViewDelegate, UIGestureReco
     @IBOutlet weak var charCountLabel: UILabel!
     
      // RETURN KEY
-    
     var returnKey: IQKeyboardReturnKeyHandler?
     
     // from barcode reader
@@ -96,6 +99,7 @@ class PreviewViewController: UIViewController, UITextViewDelegate, UIGestureReco
     
 //        returnKey.textFieldShouldEndEditing(itemName)
         
+        
         // Style navigation bar
         
         let font = UIFontDescriptor(fontAttributes: [UIFontDescriptorFaceAttribute : "Medium", UIFontDescriptorFamilyAttribute: "Avenir"])
@@ -106,6 +110,9 @@ class PreviewViewController: UIViewController, UITextViewDelegate, UIGestureReco
         // make navbar translucent (remove bottom line)
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         navigationController?.navigationBar.shadowImage = UIImage()
+        
+        // Style Next button
+        nextButton.layer.cornerRadius = 5
 
         
         // set color of alert controllers
