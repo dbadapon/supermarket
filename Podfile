@@ -17,6 +17,7 @@ target 'Supermarket' do
 	pod 'NVActivityIndicatorView'
 	pod "SimpleAnimation"
 	pod 'ZKCarousel'
+	pod 'RAMAnimatedTabBarController', "~> 2.0.13"
  
   target 'SupermarketTests' do
     inherit! :search_paths
