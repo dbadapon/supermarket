@@ -10,6 +10,7 @@ import UIKit
 import MapKit
 import CoreLocation
 import NVActivityIndicatorView
+import SimpleAnimation
 
 class ChooseLocationViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, NVActivityIndicatorViewable {
     
@@ -48,6 +49,8 @@ class ChooseLocationViewController: UIViewController, CLLocationManagerDelegate,
     @IBOutlet weak var zipCodeField: UITextField!
     @IBOutlet weak var setButton: UIButton!
     @IBOutlet weak var blurView: UIVisualEffectView!
+    @IBOutlet weak var holdAndDrag: UILabel!
+    
     
     // Map configuration
     var locationManager: CLLocationManager!
@@ -61,11 +64,18 @@ class ChooseLocationViewController: UIViewController, CLLocationManagerDelegate,
     
     @IBAction func didTapLocation(_ sender: Any) {
         print("get current location")
-        promptLabel.isHidden = true
-        getLocationButton.isHidden = true
-        zipCodeField.isHidden = true
-        blurView.isHidden = true
-        tempMap.isHidden = true
+        promptLabel.fadeOut(duration: 1, delay: 0.5, completion: nil)
+        getLocationButton.fadeOut(duration: 1, delay: 0.5, completion: nil)
+        zipCodeField.fadeOut(duration: 1, delay: 0.5, completion: nil)
+        blurView.fadeOut(duration: 1, delay: 0.5, completion: nil)
+        tempMap.fadeOut(duration: 1, delay: 0.5, completion: nil)
+        
+        // blinking message
+        UIView.animate(withDuration: 1, delay: 0, options: [.repeat,.autoreverse], animations: {
+            self.holdAndDrag.alpha = 0.0
+        }, completion: nil)
+        
+        // get location
         determineCurrentLocation()
     }
 
@@ -134,9 +144,15 @@ class ChooseLocationViewController: UIViewController, CLLocationManagerDelegate,
         // style Set button
         setButton.layer.cornerRadius = 5
         
-        // Configure map view
-        // first hard-code the location so that you know how to use google maps
-        // then go back and look at you core location code to get the current location
+        
+        // Animate view elements
+        promptLabel.fadeIn(duration: 1, delay: 0.5, completion: nil)
+        
+        getLocationButton.fadeIn(duration: 1, delay: 0.5, completion: nil)
+        getLocationButton.slideIn(from: .bottom, duration: 1, delay: 0.5, completion: nil)
+        
+        zipCodeField.fadeIn(duration: 1, delay: 0.5, completion: nil)
+        zipCodeField.slideIn(from: .bottom, duration: 1, delay: 0.5, completion: nil)
         
 
     }
