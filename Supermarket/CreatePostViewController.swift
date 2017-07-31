@@ -71,6 +71,7 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
         }
         
         recognizer = SupermarketObjectRecognizer(passedDevice: camera)
+        recognizer?.delegate = self
         
         // add the preview layer
         // also configure live preview layer
@@ -158,17 +159,20 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
     }
     func updateCurrentFrame(currentFrame: CurrentFrame) {
         // set the result view to whatever the classifications are
+        // called on whenever classifications changes
         self.resultView.text = currentFrame.classifications
-        print("updating classifications")
+        // for debugging purposes
+        // print("updating classifications")
     }
-//    func captureScreenshot(screenshot: UIImage) {
-//        self.imageToPass = screenshot
-//    }
+    func captureAndSegue(screenshot: UIImage) {
+        self.imageToPass = screenshot
+        performSegue(withIdentifier: "capturedSegue", sender: self)
+    }
     
     
     @IBAction func captureAction(_ sender: UIButton) {
         if recognizer != nil {
-            self.imageToPass = recognizer!.captureScreenshot()
+            recognizer!.captureScreenshot()
             self.topMLResult = recognizer!.topMLResult
             print(self.imageToPass)
             // infinite loop LOLOL, NOT THE SOLUTION
@@ -177,7 +181,7 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
 //                // do nothing just wait
 //                // because recognizer needs time to capture screenshot
 //            }
-            performSegue(withIdentifier: "capturedSegue", sender: self)
+//            performSegue(withIdentifier: "capturedSegue", sender: self)
         }
     }
     

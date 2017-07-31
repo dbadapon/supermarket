@@ -13,32 +13,32 @@ import Alamofire
 
 struct RecognizedObject {
     
-    let boundingBox: CGRect
-    let highProbabilityMLResult: String
-    let highProbClassifications: String
+    var boundingBox: CGRect
+    var highProbabilityMLResult: String
+    var highProbClassifications: String
 }
 
 struct RecognizedBarcode {
     
     // let barcodeObject: AVMetadataMachineReadableCodeObject
-    let codeString: String
-    let nameString: String
-    let priceString: String
-    let pictureUrl: String
+    var codeString: String
+    var nameString: String
+    var priceString: String
+    var pictureUrl: String
 }
 
 struct CurrentFrame {
     
     // to be updated and displayed continuously
-    let classifications: String
-    let topMLResult: String
+    var classifications: String
+    var topMLResult: String
 }
 
 protocol SupermarketObjectRecognizerDelegate: class {
     func updateRecognizedObject(recognizedObject: RecognizedObject)
     func updateRecognizedBarcode(recognizedBarcode: RecognizedBarcode)
     func updateCurrentFrame(currentFrame: CurrentFrame)
-//    func captureScreenshot(screenshot: UIImage)
+    func captureAndSegue(screenshot: UIImage)
 }
 
 class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate, AVCapturePhotoCaptureDelegate, AVCaptureMetadataOutputObjectsDelegate {
@@ -63,8 +63,8 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
     
     var currentFrame: CurrentFrame? {
         didSet {
+            // didSet is called on whenever currentFrame changes
             delegate?.updateCurrentFrame(currentFrame: currentFrame!)
-            print("inside didSet of currentFrame")
         }
     }
     
@@ -207,7 +207,7 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
     } // end of init
     
     // public function that can be called from create post vc
-    func captureScreenshot() -> UIImage {
+    func captureScreenshot() {
         
         let photoSettings = AVCapturePhotoSettings()
         photoSettings.flashMode = .on
@@ -229,14 +229,12 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
                     let image = UIImage(cgImage: cgImageRef, scale: 1.0, orientation: UIImageOrientation.right)
                     // Add the captured image to imageToPass
                     self.imageToPass = image
-                    print(self.imageToPass)
-                    // SOMETHING HAS HAPPENED AND IT PRINTS SOMETHING
+                    // for debugging purposes
+                    // print(self.imageToPass)
+                    self.delegate?.captureAndSegue(screenshot: self.imageToPass)
                 }
             })
         }
-        // FIGURE OUT WHY TOMORROW
-        // BLANK IMAGE IS RETURNED, SAD REACTS :(
-        return self.imageToPass
     }
     
     // check if barcode is in Walmart API
@@ -432,6 +430,8 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
             
             // update classifications to be passed onto delegate
             // HELLUR HELLUR WHY DOES THIS NOT WORK
+            // self.currentFrame?.classifications = self.classifications
+            // self.currentFrame?.topMLResult = self.topMLResult
             self.currentFrame = CurrentFrame(classifications: self.classifications, topMLResult: self.topMLResult)
             
             // be able to access high probability classifications
