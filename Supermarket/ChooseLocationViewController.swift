@@ -40,6 +40,34 @@ class ChooseLocationViewController: UIViewController, CLLocationManagerDelegate,
     
     // Map configuration
     var locationManager: CLLocationManager!
+    var pinLocation: CLLocationCoordinate2D? {
+        didSet {
+            print("set pin location!")
+        }
+    }
+    
+
+    @IBAction func movePin(_ sender: UILongPressGestureRecognizer) {
+        let location = sender.location(in: self.mapView)
+        let locCoord = self.mapView.convert(location, toCoordinateFrom: self.mapView)
+        self.pinLocation = locCoord
+        
+        let annotation = MKPointAnnotation()
+        
+        
+        annotation.coordinate = locCoord
+        annotation.title = "Here!"
+        annotation.subtitle = "Set pickup"
+        
+        self.mapView.removeAnnotations(mapView.annotations) // add only one point
+        
+        self.mapView.addAnnotation(annotation)
+        
+        
+//        let pinLocation: CLLocation = CLLocation.init(latitude: annotation.coordinate.latitude, longitude: annotation.coordinate.longitude)
+//        print("Latitude: \(pinLocation.coordinate.latitude) Longitude: \(pinLocation.coordinate.longitude)")
+    }
+    
     
     @IBAction func didTapLocation(_ sender: Any) {
         print("get current location")
@@ -101,27 +129,48 @@ class ChooseLocationViewController: UIViewController, CLLocationManagerDelegate,
         }
     }
     
+
+    
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, didChange newState: MKAnnotationViewDragState, fromOldState oldState: MKAnnotationViewDragState) {
+        switch newState {
+        case .starting:
+            view.dragState = .dragging
+        case .ending, .canceling:
+            view.dragState = .none
+        default: break
+        }
+    }
+    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
         let userLocation: CLLocation = locations[0]
         
-        print("USER LOCATION: \(userLocation.coordinate.latitude), \(userLocation.coordinate.longitude)")
-        
         let center = CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude)
+        
+        if self.pinLocation == nil {
+            self.pinLocation = center
+//            let annotation: MKPointAnnotation = MKPointAnnotation()
+//            annotation.coordinate = CLLocationCoordinate2DMake(userLocation.coordinate.latitude, userLocation.coordinate.longitude)
+//            annotation.title = "LE PIN"
+//            mapView.addAnnotation(annotation)
+        }
+        
+        
+        
+        print("USER LOCATION: \(userLocation.coordinate.latitude), \(userLocation.coordinate.longitude)")
         let span = MKCoordinateSpanMake(0.005, 0.005)
         let region = MKCoordinateRegion(center: center, span: span)
         
         mapView.setRegion(region, animated: true)
-        
-                let annotation: MKPointAnnotation = MKPointAnnotation()
-                annotation.coordinate = CLLocationCoordinate2DMake(userLocation.coordinate.latitude, userLocation.coordinate.longitude)
-                annotation.title = "Current location"
-                mapView.addAnnotation(annotation)
-        // allow the user to just move the location pin...
+
+//         allow the user to just move the location pin...
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("Error getting current location: \(error.localizedDescription)")
     }
+    
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
