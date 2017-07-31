@@ -73,6 +73,10 @@ class TabBarController: RAMAnimatedTabBarController {
         let notificationController = notificationStoryboard.instantiateViewController(withIdentifier: "NotificationController") as! UINavigationController
         
         let tab4 = RAMAnimatedTabBarItem(title: "Notifications", image: UIImage(named: "Shopping Cart-100"), selectedImage: nil)
+        tab4.textColor = .black
+        tab4.iconColor = .black
+        tab4.animation = tabAnimation
+        
 //        let tab4 = UITabBarItem(title: "Notifications", image: nil, selectedImage: nil)
         notificationController.tabBarItem = tab4
         
@@ -82,6 +86,10 @@ class TabBarController: RAMAnimatedTabBarController {
         let profileController = profileStoryboard.instantiateViewController(withIdentifier: "ProfileController") as! UINavigationController
         
         let tab5 = RAMAnimatedTabBarItem(title: "Profile", image: UIImage(named: "Shopping Cart-100"), selectedImage: nil)
+        tab5.textColor = .black
+        tab5.iconColor = .black
+        tab5.animation = tabAnimation
+        
 //        let tab5 = UITabBarItem(title: "Profile", image: nil, selectedImage: nil)
         profileController.tabBarItem = tab5 as! RAMAnimatedTabBarItem
         
