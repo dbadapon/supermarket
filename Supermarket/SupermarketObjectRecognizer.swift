@@ -45,6 +45,7 @@ protocol SupermarketObjectRecognizerDelegate: class {
     func updateCurrentFrame(currentFrame: CurrentFrame)
     func captureAndSegue(screenshot: UIImage)
     func getBarcodeObject(barcodeObject: AVMetadataMachineReadableCodeObject)
+    func barcodeObjectExists(doesExist: Bool)
 }
 
 class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate, AVCapturePhotoCaptureDelegate, AVCaptureMetadataOutputObjectsDelegate {
@@ -325,14 +326,18 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
         // Check that metadataObjects array contains at least one object.
         if metadataObjects.count == 0 {
             // qrCodeFrameView?.frame = CGRect.zero
+            self.delegate?.barcodeObjectExists(doesExist: false)
             print("No QR code is detected")
             return
         }
         
+        // else barcode object does exist
+        self.delegate?.barcodeObjectExists(doesExist: true)
+        
         // Get the metadata object.
         let metadataObj = metadataObjects[0] as! AVMetadataMachineReadableCodeObject
         
-        // update delegate's barcode boudns
+        // update delegate's barcode bounds
         self.delegate?.getBarcodeObject(barcodeObject: metadataObj)
         
         if metadataObj.stringValue != nil {

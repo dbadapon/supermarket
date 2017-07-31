@@ -188,7 +188,12 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
         let barCodeObject = self.previewLayer.transformedMetadataObject(for: barcodeObject)
         self.qrCodeFrameView?.frame = barCodeObject!.bounds
     }
-    
+    func barcodeObjectExists(doesExist: Bool) {
+        // to make sure green box disappears when barcode not recognized
+        if !doesExist {
+            qrCodeFrameView?.frame = CGRect.zero
+        }
+    }
     
     @IBAction func captureAction(_ sender: UIButton) {
         if recognizer != nil {
