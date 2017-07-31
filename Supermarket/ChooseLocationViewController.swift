@@ -9,8 +9,16 @@
 import UIKit
 import MapKit
 import CoreLocation
+import NVActivityIndicatorView
 
-class ChooseLocationViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
+class ChooseLocationViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, NVActivityIndicatorViewable {
+    
+    // activity indicator view frame
+    
+    @IBOutlet weak var activityIndicatorViewFrame: UIView!
+    var activityIndicator: NVActivityIndicatorView?
+    var isAnimating: Bool?
+    
     
     // to receive from description vc
     var itemName: String!
@@ -67,8 +75,6 @@ class ChooseLocationViewController: UIViewController, CLLocationManagerDelegate,
         self.latitude = Double(locCoord.latitude)
         self.longitude = Double(locCoord.longitude)
         
-//        let pinLocation: CLLocation = CLLocation.init(latitude: annotation.coordinate.latitude, longitude: annotation.coordinate.longitude)
-//        print("Latitude: \(pinLocation.coordinate.latitude) Longitude: \(pinLocation.coordinate.longitude)")
     }
     
     
@@ -82,7 +88,22 @@ class ChooseLocationViewController: UIViewController, CLLocationManagerDelegate,
     }
     
     @IBAction func nextAction(_ sender: UIButton) {
-        performSegue(withIdentifier: "toSelectMarketSegue", sender: self)
+//        self.activityIndicator = NVActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+//        self.activityIndicator!.color = .black
+//        self.activityIndicator!.type = NVActivityIndicatorType.ballPulse
+//        self.activityIndicator!.startAnimating()
+//        self.isAnimating = self.activityIndicator?.isAnimating
+//        view.addSubview(activityIndicator!)
+//        print("animating? \(self.activityIndicator?.isAnimating)")
+        
+        startAnimating(type: NVActivityIndicatorType.ballPulse)
+        
+        if self.pinLocation != nil {
+            // set city to pin location city
+            print("about to get the city from pin!")
+            coordinateToCity()
+            print("now the city is: \(self.city)")
+        }
     }
 
     override func viewDidLoad() {
@@ -173,7 +194,7 @@ class ChooseLocationViewController: UIViewController, CLLocationManagerDelegate,
         print("Error getting current location: \(error.localizedDescription)")
     }
     
-    func coordinateToCity(destination: SelectMarketViewController) {
+    func coordinateToCity() {
         let geocoder = CLGeocoder()
         let location = CLLocation(latitude: (self.pinLocation?.latitude)!, longitude: (self.pinLocation?.longitude)!)
         geocoder.reverseGeocodeLocation(location) { (placemarks, error) in
@@ -186,7 +207,13 @@ class ChooseLocationViewController: UIViewController, CLLocationManagerDelegate,
             let cityString = "\(coordinateCity!), \(coordinateState!)"
             print("cityString is: \(cityString)")
             self.city = cityString
-            destination.city = cityString
+//            destination.city = cityString
+            
+//            self.activityIndicator?.stopAnimating()
+//            self.isAnimating = self.activityIndicator?.isAnimating
+            print("animating? \(self.activityIndicator?.isAnimating)")
+            self.stopAnimating()
+            self.performSegue(withIdentifier: "toSelectMarketSegue", sender: self)
             
             // YOU NEED AN ACTIVITY INDICTATOR THAT GETS TRIGGERED WHEN USER HITS SET!!
         }
@@ -204,12 +231,6 @@ class ChooseLocationViewController: UIViewController, CLLocationManagerDelegate,
         let dvc = segue.destination as! SelectMarketViewController
         
         if segue.identifier == "toSelectMarketSegue" {
-            if self.pinLocation != nil {
-                // set city to pin location city
-                print("about to get the city from pin!")
-                coordinateToCity(destination: dvc)
-                print("now the city is: \(self.city)")
-            }
             
             let backItem = UIBarButtonItem()
             backItem.title = ""

@@ -761,6 +761,10 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EfS-Dz-q7b">
+                                            <rect key="frame" x="168" y="243" width="38" height="34"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </view>
                                     </subviews>
                                 </view>
                                 <blurEffect style="light"/>
@@ -782,6 +786,8 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="EfS-Dz-q7b" id="tpC-ez-cNY"/>
+                        <outlet property="activityIndicatorViewFrame" destination="EfS-Dz-q7b" id="RuA-ZS-owE"/>
                         <outlet property="blur" destination="CcY-6r-ryj" id="Nyd-cj-hwV"/>
                         <outlet property="getLocationButton" destination="pDi-e9-EEB" id="GRk-JG-u34"/>
                         <outlet property="mapView" destination="7Uc-d6-JC5" id="yJT-yS-Nla"/>
