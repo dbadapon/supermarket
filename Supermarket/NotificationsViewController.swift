@@ -23,8 +23,6 @@ class NotificationsViewController: UIViewController, UITableViewDelegate, UITabl
     
     
     
-    @IBOutlet weak var segmentedControl: UISegmentedControl!
-
     @IBOutlet weak var tableView: UITableView!
     
     var notifications: [SupermarketNotification] = []
@@ -33,8 +31,6 @@ class NotificationsViewController: UIViewController, UITableViewDelegate, UITabl
     
     let ourColor = UIColor.init(colorLiteralRed: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha: 1.0)
     
-    @IBOutlet weak var lineViewOne: UIView!
-    @IBOutlet weak var lineViewTwo: UIView!
     var clickedPost: Post!
     
     
@@ -84,19 +80,6 @@ class NotificationsViewController: UIViewController, UITableViewDelegate, UITabl
             }
         }
         
-        lineViewOne.backgroundColor = ourColor
-        lineViewTwo.backgroundColor = UIColor.clear
-        
-        segmentedControl.tintColor = UIColor.init(colorLiteralRed: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha: 1.0)
-        segmentedControl.layer.masksToBounds = true
-        
-        segmentedControl.tintColor = UIColor.clear
-        let boldTextAttributes: [NSObject : AnyObject] = [
-            NSForegroundColorAttributeName as NSObject : ourColor,
-            NSFontAttributeName as NSObject: UIFont.systemFont(ofSize: 16, weight: UIFontWeightMedium)
-        ]
-        segmentedControl.setTitleTextAttributes(boldTextAttributes, for: .selected)
-        segmentedControl.setTitleTextAttributes(boldTextAttributes, for: .normal)
         
         navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont(name: "Avenir", size: 20)]
         
@@ -120,21 +103,12 @@ class NotificationsViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if segmentedControl.selectedSegmentIndex == 0 {
-            return notifications.count
-        } else {
-//            if let messages = self.messages {
-//                return messages.count
-//            } else {
-//                return 0
-//            }
-            return 1
-        }
+        return notifications.count
+
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if segmentedControl.selectedSegmentIndex == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "InterestedCell") as! InterestedCell
             
             cell.notification = notifications[indexPath.row]
@@ -146,24 +120,9 @@ class NotificationsViewController: UIViewController, UITableViewDelegate, UITabl
             
             return cell
             
-        } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "MessageCell") as! MessageCell
-            return cell
-        }
     }
 
     @IBAction func indexChanged(_ sender: Any) {
-
-        if segmentedControl.selectedSegmentIndex == 0 {
-            self.title = "Notifications"
-            lineViewOne.backgroundColor = ourColor
-            lineViewTwo.backgroundColor = UIColor.clear
-            
-        } else {
-            self.title = "Messages"
-            lineViewOne.backgroundColor = UIColor.clear
-            lineViewTwo.backgroundColor = ourColor
-        }
         
         tableView.reloadData()
     }
