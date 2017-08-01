@@ -34,7 +34,7 @@ class SellFeedViewController: UIViewController, UITableViewDataSource, UITableVi
         
         // make sure tab bar is there
         self.tabBarController?.tabBar.isHidden = false
-        
+                
 //        let image = UIImage(named: "TeamProfileImage.jpg")
 //        print ("this is the image: \(image)")
 //        let file = Post.getPFFileFromImage(image: image)

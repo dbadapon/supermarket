@@ -141,7 +141,7 @@
                                 <segue destination="gaw-1C-xQB" kind="presentation" identifier="sideMenu" id="cfL-Du-jpL"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" image="search" id="AnF-ef-32W"/>
+                        <barButtonItem key="rightBarButtonItem" image="icons8-Search-28" id="AnF-ef-32W"/>
                     </navigationItem>
                     <connections>
                         <outlet property="categoryDropDownView" destination="lsj-7z-pMz" id="Y2h-mF-Pki"/>
@@ -445,7 +445,7 @@
         <image name="Menu-50" width="25" height="25"/>
         <image name="Star Filled-50" width="25" height="25"/>
         <image name="Star-50" width="25" height="25"/>
+        <image name="icons8-Search-28" width="28" height="28"/>
         <image name="insta_camera_btn" width="25" height="25"/>
-        <image name="search" width="14" height="14"/>
     </resources>
 </document>
