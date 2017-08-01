@@ -485,6 +485,7 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
             let price = post.price!
             let formattedPrice = String(format: "%.2f", price)
             cell.priceLabel.text = "$\(formattedPrice)"
+            cell.nameLabel.text = post.name
             let conditionNew = post.conditionNew!
             if conditionNew {
                 cell.conditionLabel.text = "New"
