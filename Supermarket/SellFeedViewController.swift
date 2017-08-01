@@ -351,6 +351,7 @@ class SellFeedViewController: UIViewController, UITableViewDataSource, UITableVi
             
             let destination = segue.destination as! UINavigationController
             let destinationVC = destination.topViewController as! SidebarViewController
+            destinationVC.markets = self.markets
             print("destination VC: \(destinationVC)")
             destinationVC.delegate = self
         }

@@ -619,6 +619,7 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         if segue.identifier == "sideMenu" {
             let destination = segue.destination as! UINavigationController
             let destinationVC = destination.topViewController as! SidebarViewController
+            destinationVC.markets = self.markets
             destinationVC.delegate = self
         }
     }

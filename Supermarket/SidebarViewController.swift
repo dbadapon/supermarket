@@ -55,27 +55,28 @@ class SidebarViewController: UIViewController, UITableViewDataSource, UITableVie
 
         
         // fetch data from database
-        queryParse()
+//        queryParse()
+        marketTableView.reloadData()
         
     }
     
-    func queryParse() {
-        let query = PFQuery(className: "Market")
-        query.addAscendingOrder("name")
-        query.findObjectsInBackground { (markets: [PFObject]?, error: Error?) in
-            if let markets = markets {
-                for m in markets {
-                    let market = Market(m)
-                    self.markets.append(market)
-                }
-//                self.markets = markets
-                self.marketTableView.reloadData()
-            }
-            else {
-                print(error?.localizedDescription)
-            }
-        }
-    }
+//    func queryParse() {
+//        let query = PFQuery(className: "Market")
+//        query.addAscendingOrder("name")
+//        query.findObjectsInBackground { (markets: [PFObject]?, error: Error?) in
+//            if let markets = markets {
+//                for m in markets {
+//                    let market = Market(m)
+//                    self.markets.append(market)
+//                }
+////                self.markets = markets
+//                self.marketTableView.reloadData()
+//            }
+//            else {
+//                print(error?.localizedDescription)
+//            }
+//        }
+//    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
