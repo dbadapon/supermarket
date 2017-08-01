@@ -53,6 +53,7 @@
 		4DF6982E1F17ED8B008DB9D6 /* MLManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF6982D1F17ED8B008DB9D6 /* MLManager.swift */; };
 		926A42BE122588BD99E6BC61 /* Pods_SupermarketUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80572461216E64975C83358E /* Pods_SupermarketUITests.framework */; };
 		A00D1D321F2E9FD400A8BA21 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A00D1D311F2E9FD400A8BA21 /* MapKit.framework */; };
+		A06467861F306A76003592EC /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A06467851F306A76003592EC /* Constants.swift */; };
 		A07904201F13F098000E4419 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A079041F1F13F098000E4419 /* AppDelegate.swift */; };
 		A07904221F13F098000E4419 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A07904211F13F098000E4419 /* ViewController.swift */; };
 		A07904251F13F098000E4419 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A07904231F13F098000E4419 /* Main.storyboard */; };
@@ -135,6 +136,7 @@
 		926BE3FB87F2C782821060A8 /* Pods-SupermarketUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SupermarketUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SupermarketUITests/Pods-SupermarketUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		9CA3F4E30EAAA6212351048B /* Pods-SupermarketUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SupermarketUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SupermarketUITests/Pods-SupermarketUITests.release.xcconfig"; sourceTree = "<group>"; };
 		A00D1D311F2E9FD400A8BA21 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		A06467851F306A76003592EC /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		A079041C1F13F098000E4419 /* Supermarket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Supermarket.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A079041F1F13F098000E4419 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A07904211F13F098000E4419 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -313,6 +315,7 @@
 				A07DD39D1F15573B0079C286 /* Profile.storyboard */,
 				A07904281F13F098000E4419 /* LaunchScreen.storyboard */,
 				A079041F1F13F098000E4419 /* AppDelegate.swift */,
+				A06467851F306A76003592EC /* Constants.swift */,
 				4DF6982D1F17ED8B008DB9D6 /* MLManager.swift */,
 				4DAF789D1F1ED37C00768EFD /* WalmartAPIManager.swift */,
 				4D44F6291F21251B0018BF22 /* YSSegmentedControl.swift */,
@@ -676,6 +679,7 @@
 				A0B989F41F1583AA0037EFCF /* MarketCell.swift in Sources */,
 				A0E30DA21F143C020062B100 /* BuyFeedViewController.swift in Sources */,
 				0A02A3981F2EE888009BCB66 /* CreatePostViewController.swift in Sources */,
+				A06467861F306A76003592EC /* Constants.swift in Sources */,
 				A0B989F21F15806F0037EFCF /* SidebarViewController.swift in Sources */,
 				0A36AA381F259F56007BE153 /* ChooseLocationViewController.swift in Sources */,
 				A0E30DE71F144EA00062B100 /* TabBarController.swift in Sources */,

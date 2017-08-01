@@ -7,6 +7,7 @@
 //
 
 import UIKit
+//import Constants
 import Alamofire
 import SimpleAnimation
 import NVActivityIndicatorView
@@ -186,6 +187,13 @@ class PriceViewController: UIViewController, UITextFieldDelegate {
     
     func checkPriceWithName(query: String) {
         
+        // Initialize activity indicator
+        let frame = CGRect(x: 163, y: 350, width: 50, height: 50)
+        let activityIndicator = NVActivityIndicatorView(frame: frame, type: NVActivityIndicatorType.ballPulse, color: Constants.Colors.mainColor, padding: 0)
+        view.addSubview(activityIndicator)
+        activityIndicator.startAnimating()
+        
+        
         let baseURL = "http://api.walmartlabs.com/v1/search?query="
         let endUrl = "&format=json&apiKey=yva6f6yprac42rsp44tjvxjg"
         let newString = query.replacingOccurrences(of: " ", with: "+")
@@ -353,10 +361,11 @@ class PriceViewController: UIViewController, UITextFieldDelegate {
                 }
                 
                 // Show and animate results
+                activityIndicator.stopAnimating()
                 self.showResults()
                 self.comparisonAnimation()
-                
             } // End of closure
+        
         }
     }
 
