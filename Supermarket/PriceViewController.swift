@@ -58,6 +58,11 @@ class PriceViewController: UIViewController, UITextFieldDelegate {
     
     // Result views
     @IBOutlet weak var resultView1: UIView!
+    @IBOutlet weak var resultView2: UIView!
+    @IBOutlet weak var resultView3: UIView!
+    @IBOutlet weak var resultView4: UIView!
+    
+    
     
     
     
@@ -140,10 +145,20 @@ class PriceViewController: UIViewController, UITextFieldDelegate {
     }
     
     func comparisonAnimation() {
-        priceComparsionsLabel.fadeIn(duration: 1, delay: 0, completion: nil)
+        priceComparsionsLabel.fadeIn(duration: 1.2, delay: 0, completion: nil)
         
-        // cleanup: put every result in a view...yeah.
-        resultView1.slideIn(from: .right, duration: 1, delay: 0, completion: nil)
+
+        resultView1.fadeIn(duration: 1, delay: 0.2, completion: nil)
+        resultView1.slideIn(from: .bottom, duration: 1, delay: 0.2, completion: nil)
+        
+        resultView2.fadeIn(duration: 1, delay: 0.4, completion: nil)
+        resultView2.slideIn(from: .bottom, duration: 1, delay: 0.4, completion: nil)
+        
+        resultView3.fadeIn(duration: 1, delay: 0.6, completion: nil)
+        resultView3.slideIn(from: .bottom, duration: 1, delay: 0.6, completion: nil)
+        
+        resultView4.fadeIn(duration: 1, delay: 0.8, completion: nil)
+        resultView4.slideIn(from: .bottom, duration: 1, delay: 0.8, completion: nil)
         
     }
     

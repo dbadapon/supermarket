@@ -50,10 +50,6 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
         super.viewDidLoad()
         
         // hide tab bar
-//        self.tabBarController?.tabBar.isHidden = true
-//        for tabItem in (self.tabBarController?.tabBar.items)! {
-//            tabItem
-//        }
         let animatedTabBar = self.tabBarController as! RAMAnimatedTabBarController
         animatedTabBar.animationTabBarHidden(true)
         
@@ -126,10 +122,10 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
                 // self.session.stopRunning()
                 
                 let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                let vc = storyboard.instantiateViewController(withIdentifier: "TabBarController") as! UITabBarController
+                let vc = storyboard.instantiateViewController(withIdentifier: "TabBarController") as! RAMAnimatedTabBarController
                 UIView.performWithoutAnimation {
                     self.show(vc, sender: self)
-                    vc.selectedIndex = 1
+                    vc.setSelectIndex(from: 0, to: 1)
                 }
                 
             case UISwipeGestureRecognizerDirection.down:
@@ -142,10 +138,10 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
                 // self.session.stopRunning()
                 
                 let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                let vc = storyboard.instantiateViewController(withIdentifier: "TabBarController") as! UITabBarController
+                let vc = storyboard.instantiateViewController(withIdentifier: "TabBarController") as! RAMAnimatedTabBarController
                 UIView.performWithoutAnimation {
                     self.show(vc, sender: self)
-                    vc.selectedIndex = 3
+                    vc.setSelectIndex(from: 0, to: 3)
                 }
                 
             case UISwipeGestureRecognizerDirection.up:
