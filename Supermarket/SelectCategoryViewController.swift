@@ -41,21 +41,31 @@ class SelectCategoryViewController: UIViewController, UITableViewDelegate, UITab
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell") as! CategoryCell
-        cell.categoryNameLabel.text = market.categories[indexPath.row]
+//        cell.categoryNameLabel.text = market.categories[indexPath.row]
         
         cell.preservesSuperviewLayoutMargins = false
         cell.separatorInset = UIEdgeInsets.zero
-        cell.layoutMargins = UIEdgeInsets.zero
+        cell.layoutMargins = UIEdgeInsets(top: 16.0, left: 16.0, bottom: 16.0, right: 16.0)
+        if indexPath.row == 0 {
+            cell.categoryNameLabel.text = "None"
+//            selectedCategory = nil
+        } else {
+            cell.categoryNameLabel.text = market.categories[indexPath.row-1]
+        }
         
         return cell
         
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if selectedCategory != nil {
-            oldCategory = selectedCategory
+        if indexPath.row == 0 {
+//            oldCategory = selectedCategory
+            selectedCategory = nil
         }
-        selectedCategory = market.categories[indexPath.row]
+        else {
+//            oldCategory = selectedCategory
+            selectedCategory = market.categories[indexPath.row-1]
+        }
         print (selectedCategory)
     }
     
@@ -64,16 +74,16 @@ class SelectCategoryViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     @IBAction func onOk(_ sender: Any) {
+        delegate?.deselectCategory(marketName: market.name!)
         if let selectedCategory = selectedCategory {
             print ("it to the inside")
-            if let oldCategory = oldCategory {
-                delegate?.deselectCategory(marketName: market.name!)
+            if selectedCategory != nil {
+                let dict = [market.name! : selectedCategory]
+                delegate?.choseCategory(category: dict)
             }
-            let dict = [market.name! : selectedCategory]
-            delegate?.choseCategory(category: dict)
-            delegate?.reloadCollectionView()
-            self.dismiss(animated: true, completion: nil)
         }
+        delegate?.reloadCollectionView()
+        self.dismiss(animated: true, completion: nil)
     }
     
     

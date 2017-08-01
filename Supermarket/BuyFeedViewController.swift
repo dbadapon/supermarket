@@ -96,15 +96,16 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
 //            }
 //        }
         
-        /*
-
-        let uciSchoolSuppliesMarket = Market.createMarket(profileImage: #imageLiteral(resourceName: "uci_circle_logo.png"), withName: "UCI Office/Desk Supplies", withDescription: "Have extra school supplies? Need school supplies? Sell and buy them here!", withCategories: ["Agendas", "Binders", "Colored Pencils", "Envelopes", "Highlighters", "Index Cards", "Markers", "Notebooks", "Paper/Binder Clips", "Pencils", "Pens", "Rubberbands", "Scissors", "Staplers/Staples", "Sticky Notes", "Tape", "USBs"], withLatitude: 33.6404952, withLongitude: -117.8442962) { (success, error) in
+        
+/*
+        let uciSchoolSuppliesMarket = Market.createMarket(profileImage: #imageLiteral(resourceName: "uci_circle_logo.png"), withName: "UCI Office/Desk Supplies", withDescription: "Have extra school supplies? Need school supplies? Sell and buy them here!", withCategories: ["Agendas", "Binders", "Colored Pencils", "Envelopes", "Highlighters", "Index Cards", "Markers", "Notebooks", "Paper/Binder Clips", "Pencils", "Pens", "Rubberbands", "Scissors", "Staplers/Staples", "Sticky Notes", "Tape", "USBs"], withLatitude: 33.6404952, withCity: "Irvine, CA", withLongitude: -117.8442962) { (success, error) in
             if success {
                 print(success)
             } else {
                 print("Error with uciSchoolSuppliesMarket")
             }
         }
+       
         
         let riceUndergraduatesMarket = Market.createMarket(profileImage: #imageLiteral(resourceName: "rice_circle_logo.png"), withName: "Rice Undergraduate Students", withDescription: "Free and for sale dorm items", withCategories: ["Bedding", "Chairs", "Clothing", "Decorations", "Desks", "Electronics", "Fans", "Food/Snacks", "Household", "Kitchen Utensils", "Lamps", "Laundry", "Lights", "Microwaves", "Refrigerators", "School Supplies", "Shoes", "Speakers", "Storage", "Toiletries"], withLatitude: 29.7173941, withLongitude: -95.4018312) { (success, error) in
             if success {

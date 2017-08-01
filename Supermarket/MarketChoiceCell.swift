@@ -26,6 +26,18 @@ class MarketChoiceCell: UICollectionViewCell {
         marketProfileImage.layer.masksToBounds = true
         marketProfileImage.layer.borderWidth = 5
         marketProfileImage.layer.borderColor = UIColor.white.cgColor
+        
+        self.categoryLabel.textColor = UIColor.white
+        
+        
+//        self.layer.masksToBounds = false
+//        self.clipsToBounds = false
+//        self.layer.shadowOpacity = 0.9
+//        self.layer.shadowRadius = 5.0
+//        self.layer.shadowOffset = CGSize.zero
+//        self.layer.shadowColor = Constants.Colors.ourGray.cgColor
+//        self.layer.shadowPath = UIBezierPath(
+        
     }
     
     

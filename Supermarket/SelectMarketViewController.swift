@@ -103,6 +103,8 @@ class SelectMarketViewController: UIViewController, UICollectionViewDelegate, UI
         
         let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
         
+        
+        
         layout.minimumInteritemSpacing = 16
         layout.minimumLineSpacing = layout.minimumInteritemSpacing
         
@@ -236,6 +238,8 @@ class SelectMarketViewController: UIViewController, UICollectionViewDelegate, UI
         }
     }
     
+
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         print ("it's getting here")
         return markets.count
@@ -259,17 +263,24 @@ class SelectMarketViewController: UIViewController, UICollectionViewDelegate, UI
         cell.marketProfileImage.loadInBackground()
         cell.marketName.text = market.name
         
-        cell.categoryLabel.textColor = UIColor.white
+//        cell.categoryLabel.textColor = UIColor.white
+        
+        
+        cell.layer.borderWidth = 1
+        cell.layer.borderColor = Constants.Colors.ourGray.cgColor
         
         if let selectedCategory = marketsToPost[market.name!] {
             cell.categoryLabel.text = selectedCategory
             cell.layer.backgroundColor = UIColor.init(colorLiteralRed: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha: 1.0).cgColor
             cell.marketName.textColor = UIColor.white
+//            cell.layer.borderWidth = 0
             
         } else {
             cell.categoryLabel.text = ""
             cell.layer.backgroundColor = UIColor.white.cgColor
             cell.marketName.textColor = UIColor.black
+            cell.layer.borderWidth = 1
+            cell.layer.borderColor = Constants.Colors.ourGray.cgColor
         }
         
         
