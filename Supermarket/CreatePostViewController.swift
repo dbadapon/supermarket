@@ -216,6 +216,7 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
         }
     }
     func getRecognizedObject(recognizedObject: RecognizedObject) {
+        print("GET RECOGNIZED OBJECT, MEANS HIGH PROBS HAS BEEN REACHED YEEE")
         // update and set the bounds of the high probability object
         let convertedRect = self.previewLayer.rectForMetadataOutputRect(ofInterest: recognizedObject.boundingBox)
         // move the highlighted box

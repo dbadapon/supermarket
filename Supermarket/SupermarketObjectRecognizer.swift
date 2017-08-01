@@ -12,14 +12,13 @@ import AVFoundation
 import Alamofire
 
 struct RecognizedObject {
-    
-    var boundingBox: CGRect
+    // var boundingBox: CGRect
+    var objectToTrack: VNDetectedObjectObservation
     var highProbabilityMLResult: String
     var highProbClassifications: String
 }
 
 struct RecognizedBarcode {
-
     var codeString: String
     var nameString: String
     var priceString: String
@@ -27,17 +26,10 @@ struct RecognizedBarcode {
 }
 
 struct CurrentFrame {
-    
     // to be updated and displayed continuously
     var classifications: String
     var topMLResult: String
 }
-
-//struct UserCapturedObject {
-//
-//    var screenshot: UIImage
-//    var topMLResult: String
-//}
 
 protocol SupermarketObjectRecognizerDelegate: class {
     func getRecognizedObject(recognizedObject: RecognizedObject)
@@ -101,12 +93,13 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
     var highRecognitionThreshold : Float = 0.79
     
     // corresponding to RecognizedObject
+    
     var boundingBox = CGRect(x: 0.0, y: 0.0, width: 0.0, height: 0.0)
     // continuously changes as different objects are recognized
     var highProbabilityMLResult = ""
     // go ahead and set this in case whole string is needed
     var highProbClassifications = ""
-    // for box
+    // for box around recognized object
     var visionSequenceHandler = VNSequenceRequestHandler()
     var lastObservation: VNDetectedObjectObservation?
     var highProbExists = false
@@ -307,16 +300,16 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
     // delegate method for AVCaptureVideoDataOutputSampleBufferDelegate
     func captureOutput(_ output: AVCaptureOutput, didOutputSampleBuffer sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         
-//        guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else {
-//            return
-//        }
+        guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else {
+            return
+        }
     
-        guard
-            // make sure the pixel buffer can be converted
-            let pixelBuffer: CVPixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer),
-            // make sure that there is a previous observation we can feed into the request
-            let lastObservation = self.lastObservation
-        else { return }
+//        guard
+//            // make sure the pixel buffer can be converted
+//            let pixelBuffer: CVPixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer),
+//            // make sure that there is a previous observation we can feed into the request
+//            let lastObservation = self.lastObservation
+//        else { return }
         
         connection.videoOrientation = .portrait
         var requestOptions:[VNImageOption: Any] = [:]
@@ -333,18 +326,21 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
             print(error)
         }
         
-        // below is code for tracking object
-        // create the request
-        let request = VNTrackObjectRequest(detectedObjectObservation: lastObservation, completionHandler: self.handleVisionRequestUpdate)
-        // set the accuracy to high
-        // this is slower, but it works a lot better
-        request.trackingLevel = .accurate
-        
-        // perform the request
-        do {
-            try self.visionSequenceHandler.perform([request], on: pixelBuffer)
-        } catch {
-            print("Throws: \(error)")
+        if self.highProbExists {
+            // below is code for tracking object
+            // create the request
+            let lastObservation = self.lastObservation
+            let request = VNTrackObjectRequest(detectedObjectObservation: lastObservation!, completionHandler: self.handleVisionRequestUpdate)
+            // set the accuracy to high
+            // this is slower, but it works a lot better
+            request.trackingLevel = .accurate
+            
+            // perform the request
+            do {
+                try self.visionSequenceHandler.perform([request], on: pixelBuffer)
+            } catch {
+                print("Throws: \(error)")
+            }
         }
     }
     
@@ -454,44 +450,43 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
                 print(self.highProbabilityMLResult)
                 self.highProbExists = true
             }
-//            else {
-//                self.delegate?.highProbObjectRecognized(isRecognized: false)
-//                self.highProbExists = true
-//            }
+            else {
+                self.delegate?.highProbObjectRecognized(isRecognized: false)
+                self.highProbExists = false
+            }
         }
     }
     
     func handleVisionRequestUpdate(_ request: VNRequest, error: Error?) {
         // only need to find main object if high probability object exists
-        if self.highProbExists {
-            // Dispatch to the main queue because we are touching non-atomic, non-thread safe properties of the view controller
-            DispatchQueue.main.async {
-                // make sure we have an actual result
-                guard let newObservation = request.results?.first as? VNDetectedObjectObservation else { return }
+        // so this is only called when highProbExists == true
+        // dispatch to the main queue because we are touching non-atomic, non-thread safe properties of the view controller
+        DispatchQueue.main.async {
+            // make sure we have an actual result
+            guard let newObservation = request.results?.first as? VNDetectedObjectObservation else { return }
             
-                // prepare for next loop
-                self.lastObservation = newObservation
+            // prepare for next loop
+            self.lastObservation = newObservation
             
-                // check the confidence level before updating the UI
-                guard newObservation.confidence >= 0.3 else {
-                    // hide the rectangle when we lose accuracy so the user knows something is wrong
-                    // self.highlightView?.frame = .zero
-                    self.highProbExists = false
-                    return
-                }
-            
-                // calculate view rect
-                var transformedRect = newObservation.boundingBox
-                transformedRect.origin.y = 1 - transformedRect.origin.y
-                // pass tranformedRect back to delegate
-                
-                self.recognizedObject = RecognizedObject.init(boundingBox: transformedRect, highProbabilityMLResult: self.currentHighProbabilityMLResult, highProbClassifications: self.currentHighProbClassifications)
-                
-                // do this in delegate
-                // let convertedRect = self.cameraLayer.layerRectConverted(fromMetadataOutputRect: transformedRect)
-                // move the highlight view
-                // self.highlightView?.frame = convertedRect
+            // check the confidence level before updating the UI
+            guard newObservation.confidence >= 0.3 else {
+                // hide the rectangle when we lose accuracy so the user knows something is wrong
+                // self.highlightView?.frame = .zero
+                self.highProbExists = false
+                return
             }
+            
+            // calculate view rect
+            var transformedRect = newObservation.boundingBox
+            transformedRect.origin.y = 1 - transformedRect.origin.y
+            // pass tranformedRect back to delegate
+                
+            self.recognizedObject = RecognizedObject.init(boundingBox: transformedRect, highProbabilityMLResult: self.currentHighProbabilityMLResult, highProbClassifications: self.currentHighProbClassifications)
+                
+            // do this in delegate
+            // let convertedRect = self.cameraLayer.layerRectConverted(fromMetadataOutputRect: transformedRect)
+            // move the highlight view
+            // self.highlightView?.frame = convertedRect
         }
     }
     
