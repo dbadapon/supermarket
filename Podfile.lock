@@ -1,6 +1,7 @@
 PODS:
   - Alamofire (4.5.0)
   - Bolts/Tasks (1.8.4)
+  - BouncyLayout (1.1.0)
   - IQKeyboardManagerSwift (4.0.10)
   - ModernSearchBar (1.4)
   - NVActivityIndicatorView (3.6.1)
@@ -18,6 +19,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire
+  - BouncyLayout
   - IQKeyboardManagerSwift
   - ModernSearchBar
   - NVActivityIndicatorView
@@ -33,6 +35,7 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
+  BouncyLayout: f91c6504437a61acd733404f55f75bd8154f5840
   IQKeyboardManagerSwift: 75ba21a23794a1e6b6fe6d9a267ea17f80e06771
   ModernSearchBar: d888b62f960c4d91f8662f0720e1544d19847e7f
   NVActivityIndicatorView: 9f52a7f84bf5c6a798722c450fe3c198e01c56ed
@@ -45,6 +48,6 @@ SPEC CHECKSUMS:
   YNDropDownMenu: 9d9f1ae71a408d0e7c66a55da2a52232545fca5a
   ZKCarousel: 36143c4667c89c70c89ccda9e1e01af2fcbb5a9e
 
-PODFILE CHECKSUM: d8273a8842f31169eecc0000d606ee73f94ac8f5
+PODFILE CHECKSUM: 7d67b4bd423f853f21146535b4dbbe4944c4237a
 
 COCOAPODS: 1.2.1
