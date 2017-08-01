@@ -14,7 +14,7 @@ class BuyFeedCell: UITableViewCell {
     
     @IBOutlet weak var nameLabel: UILabel!
     
-    @IBOutlet weak var categoryLabel: UILabel! // hard code this for now and deal with it later...
+    @IBOutlet weak var dateLabel: UILabel!
     
     @IBOutlet weak var priceLabel: UILabel!
     

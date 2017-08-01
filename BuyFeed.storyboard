@@ -60,8 +60,8 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Books" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gNi-RB-ikK">
-                                                    <rect key="frame" x="104" y="42" width="113" height="18"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gNi-RB-ikK">
+                                                    <rect key="frame" x="104" y="42" width="113" height="20"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="14"/>
                                                     <nil key="textColor"/>
@@ -78,8 +78,8 @@
                                         </tableViewCellContentView>
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <connections>
-                                            <outlet property="categoryLabel" destination="gNi-RB-ikK" id="olW-9c-30b"/>
                                             <outlet property="conditionLabel" destination="c38-E0-Jb7" id="He9-aJ-0G6"/>
+                                            <outlet property="dateLabel" destination="gNi-RB-ikK" id="N1z-9P-obB"/>
                                             <outlet property="itemImageView" destination="wHL-Qm-jyZ" id="R00-X4-9RG"/>
                                             <outlet property="nameLabel" destination="skR-Pl-uC2" id="vTF-mM-20G"/>
                                             <outlet property="priceLabel" destination="LfS-Od-jzF" id="5Vi-ny-Uud"/>

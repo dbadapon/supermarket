@@ -472,47 +472,59 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if tableView == postTableView {
-        let cell = postTableView.dequeueReusableCell(withIdentifier: "BuyFeedCell", for: indexPath) as! BuyFeedCell
+            let cell = postTableView.dequeueReusableCell(withIdentifier: "BuyFeedCell", for: indexPath) as! BuyFeedCell
             
             
 //        let cell = postTableView.dequeueReusableCell(withIdentifier: "BuyFeedCell", for: indexPath) as! BuyFeedCell
             
-        let post = posts[indexPath.row]
-        let parseObject = post.parseObject
-        
-        post.parseObject.fetchInBackground { (parseObject, error) in
-            if let parseObject  = parseObject {
-                    cell.itemImage = parseObject
-                
-                    let name = post.name
-                    cell.nameLabel.text = name
-                
-                
-                    let postId = parseObject.objectId as! String
-                    for marketpost in self.marketPosts {
-                        let id = marketpost["post"] as! String
-                        if id == postId {
-                            cell.categoryLabel.text = marketpost["category"] as! String
-                            break
-                        }
-                    }
-                
-                
-                    let price = post.price!
-                    let formattedPrice = String(format: "%.2f", price)
-                    cell.priceLabel.text = "$\(formattedPrice)"
-                
-                
-                    let conditionNew = post.conditionNew!
-                    var newString = ""
-                    if conditionNew {
-                        newString = "New"
-                    }
-                    cell.conditionLabel.text = newString
-                } else {
-                    print(error?.localizedDescription)
-                }
+            let post = posts[indexPath.row]
+            let parseObject = post.parseObject
+            cell.itemImage = parseObject
+            let price = post.price!
+            let formattedPrice = String(format: "%.2f", price)
+            cell.priceLabel.text = "$\(formattedPrice)"
+            let conditionNew = post.conditionNew!
+            if conditionNew {
+                cell.conditionLabel.text = "New"
+            } else {
+                cell.conditionLabel.text = ""
             }
+            cell.dateLabel.text = Post.getRelativeDate(date: parseObject.createdAt!)
+            
+        
+//        post.parseObject.fetchInBackground { (parseObject, error) in
+//            if let parseObject  = parseObject {
+//                    cell.itemImage = parseObject
+//
+//                    let name = post.name
+//                    cell.nameLabel.text = name
+//
+//
+//                    let postId = parseObject.objectId as! String
+//                    for marketpost in self.marketPosts {
+//                        let id = marketpost["post"] as! String
+//                        if id == postId {
+//                            cell.categoryLabel.text = marketpost["category"] as! String
+//                            break
+//                        }
+//                    }
+//
+//
+//                    let price = post.price!
+//                    let formattedPrice = String(format: "%.2f", price)
+//                    cell.priceLabel.text = "$\(formattedPrice)"
+//
+//
+//                    let conditionNew = post.conditionNew!
+//                    var newString = ""
+//                    if conditionNew {
+//                        newString = "New"
+//                    }
+//                    cell.conditionLabel.text = newString
+//                } else {
+//                    print(error?.localizedDescription)
+//                }
+//            }
             
             return cell
         } else if tableView == filterTableView {
