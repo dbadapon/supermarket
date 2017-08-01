@@ -9,6 +9,7 @@
 import UIKit
 import Alamofire
 import SimpleAnimation
+import NVActivityIndicatorView
 
 class PriceViewController: UIViewController, UITextFieldDelegate {
     
@@ -85,6 +86,9 @@ class PriceViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // hide results before they load
+        hideResults()
+        
         // style navigation bar
         let font = UIFontDescriptor(fontAttributes: [UIFontDescriptorFaceAttribute : "Medium", UIFontDescriptorFamilyAttribute: "Avenir"])
         self.title = "Price"
@@ -140,14 +144,27 @@ class PriceViewController: UIViewController, UITextFieldDelegate {
         priceAlertController.addAction(OKAction)
         nextAlertController.addAction(OKAction)
         
-        comparisonAnimation()
+        priceComparsionsLabel.fadeIn(duration: 1.2, delay: 0, completion: nil)
+//        comparisonAnimation()
         
     }
     
+    func hideResults() {
+        resultView1.isHidden = true
+        resultView2.isHidden = true
+        resultView3.isHidden = true
+        resultView4.isHidden = true
+    }
+    
+    func showResults() {
+        resultView1.isHidden = false
+        resultView2.isHidden = false
+        resultView3.isHidden = false
+        resultView4.isHidden = false
+    }
+    
     func comparisonAnimation() {
-        priceComparsionsLabel.fadeIn(duration: 1.2, delay: 0, completion: nil)
         
-
         resultView1.fadeIn(duration: 1, delay: 0.2, completion: nil)
         resultView1.slideIn(from: .bottom, duration: 1, delay: 0.2, completion: nil)
         
@@ -159,7 +176,6 @@ class PriceViewController: UIViewController, UITextFieldDelegate {
         
         resultView4.fadeIn(duration: 1, delay: 0.8, completion: nil)
         resultView4.slideIn(from: .bottom, duration: 1, delay: 0.8, completion: nil)
-        
     }
     
 
@@ -335,7 +351,12 @@ class PriceViewController: UIViewController, UITextFieldDelegate {
                     self.fourthResultPrice.text = "$" + String(describing: item["salePrice"]!)
                     print (item["salePrice"]!)
                 }
-            }
+                
+                // Show and animate results
+                self.showResults()
+                self.comparisonAnimation()
+                
+            } // End of closure
         }
     }
 
