@@ -60,27 +60,7 @@ class NotificationsViewController: UIViewController, UITableViewDelegate, UITabl
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 100
         
-        var query = PFQuery(className: "SupermarketNotification")
-        query.whereKey("receiver", equalTo: PFUser.current())
-        query.addDescendingOrder("createdAt")
-        query.limit = 20
         
-        query.findObjectsInBackground { (notifications: [PFObject]?, error: Error?) in
-            if let notifications = notifications {
-                print ("it found notifications")
-                print (notifications.count)
-                for item in notifications {
-                    let notification = SupermarketNotification(item)
-                    self.notifications.append(notification)
-                }
-                print (self.notifications)
-                self.tableView.reloadData()
-            } else if error != nil {
-                print (error?.localizedDescription)
-            } else {
-                print ("the posts could not be loaded into the sell feed")
-            }
-        }
         
         
         navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont(name: "Avenir", size: 20)]
@@ -97,6 +77,32 @@ class NotificationsViewController: UIViewController, UITableViewDelegate, UITabl
         self.tableView.tableFooterView = UIView()
         
         tableView.reloadData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        var query = PFQuery(className: "SupermarketNotification")
+        query.whereKey("receiver", equalTo: PFUser.current())
+        query.addDescendingOrder("createdAt")
+        query.limit = 20
+        
+        query.findObjectsInBackground { (notifications: [PFObject]?, error: Error?) in
+            if let notifications = notifications {
+                print ("it found notifications")
+                print (notifications.count)
+                var newNotifications: [SupermarketNotification] = []
+                for item in notifications {
+                    let notification = SupermarketNotification(item)
+                    newNotifications.append(notification)
+                }
+                self.notifications = newNotifications
+                self.tableView.reloadData()
+                self.tableView.reloadData()
+            } else if error != nil {
+                print (error?.localizedDescription)
+            } else {
+                print ("the posts could not be loaded into the sell feed")
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -123,10 +129,9 @@ class NotificationsViewController: UIViewController, UITableViewDelegate, UITabl
             return cell
             
     }
-
-    @IBAction func indexChanged(_ sender: Any) {
-        
-        tableView.reloadData()
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     func didTapPhoto(of post: Post) {
@@ -187,33 +192,38 @@ class NotificationsViewController: UIViewController, UITableViewDelegate, UITabl
     
     func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
         controller.dismiss(animated: true) {
-            
-            var indexPaths: [IndexPath] = []
-            indexPaths.append(self.indexPath!)
-            self.notifications.remove(at: self.indexPath!.row)
-            self.tableView.deleteRows(at: indexPaths, with: UITableViewRowAnimation.automatic)
-            
-            let query = PFQuery(className: "SupermarketNotification")
-            query.whereKey("sender", equalTo: self.notification?.sender)
-            query.whereKey("receiver", equalTo: self.notification?.receiver)
-            query.findObjectsInBackground { (notifications, error) in
-                if let error = error {
-                    print ("there was an error finding the notification \(error.localizedDescription)")
-                } else if let notifications = notifications {
-                    print (notifications.count)
-                    for item in notifications {
-                        item.deleteInBackground(block: { (success, error) in
-                            if let error = error {
-                                print ("there was an error with deleting the notification \(error.localizedDescription)")
-                            } else {
-                                print ("the notification should have been deleted")
-                            }
-                        })
+            if result.rawValue == 1 {
+                var indexPaths: [IndexPath] = []
+                indexPaths.append(self.indexPath!)
+                print (self.notifications)
+                self.notifications.remove(at: self.indexPath!.row)
+                self.tableView.deleteRows(at: indexPaths, with: UITableViewRowAnimation.automatic)
+                
+                let query = PFQuery(className: "SupermarketNotification")
+                query.whereKey("sender", equalTo: self.notification?.sender)
+                query.whereKey("receiver", equalTo: self.notification?.receiver)
+                query.findObjectsInBackground { (notifications, error) in
+                    if let error = error {
+                        print ("there was an error finding the notification \(error.localizedDescription)")
+                    } else if let notifications = notifications {
+                        print (notifications.count)
+                        for item in notifications {
+                            item.deleteInBackground(block: { (success, error) in
+                                if let error = error {
+                                    print ("there was an error with deleting the notification \(error.localizedDescription)")
+                                } else {
+                                    print ("the notification should have been deleted")
+                                }
+                            })
+                        }
+                    } else {
+                        print ("it could not find the notification, but there was no error")
                     }
-                } else {
-                    print ("it could not find the notification, but there was no error")
                 }
+            } else {
+                print ("something else happened")
             }
+            
         }
     }
     

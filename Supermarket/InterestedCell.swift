@@ -12,6 +12,7 @@ import ParseUI
 
 class InterestedCell: UITableViewCell {
 
+    @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var ignoreButton: UIButton!
     @IBOutlet weak var respondButton: UIButton!
     @IBOutlet weak var messageLabel: UILabel!
@@ -22,6 +23,9 @@ class InterestedCell: UITableViewCell {
     var notification: SupermarketNotification! {
         didSet {
             messageLabel.numberOfLines = 0
+            let date = notification.parseObject.createdAt
+            let dateString = Post.getRelativeDate(date: date!)
+            dateLabel.text = dateString
             print ("getting to notification did set method")
             let sender = notification.sender
             print (sender)
