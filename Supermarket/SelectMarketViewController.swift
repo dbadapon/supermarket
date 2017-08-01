@@ -9,6 +9,8 @@
 import UIKit
 import Parse
 import NVActivityIndicatorView
+import BouncyLayout
+
 
 protocol CategoryDelegate: class {
     func choseCategory(category: [String: String])
@@ -101,20 +103,29 @@ class SelectMarketViewController: UIViewController, UICollectionViewDelegate, UI
         collectionView.delegate = self
         collectionView.dataSource = self
         
+//        collectionView.collectionViewLayout = BouncyLayout(style: BouncyLayout.BounceStyle.subtle)
+        
+//        let layout = collectionView.collectionViewLayout
+        
         let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
         
         
-        
+
+
+
         layout.minimumInteritemSpacing = 16
         layout.minimumLineSpacing = layout.minimumInteritemSpacing
-        
+
         let cellsPerLine: CGFloat = 2
         // this is fine, just lock the orientation
-        
+
         let interItemSpacingTotal = layout.minimumInteritemSpacing * (cellsPerLine - 1)
         let width = collectionView.frame.size.width / cellsPerLine - interItemSpacingTotal / cellsPerLine
-        
+
         layout.itemSize = CGSize(width: width, height: width * 7/5)
+//
+        
+        
         
         // Style Post button
         postButton.layer.cornerRadius = 5
