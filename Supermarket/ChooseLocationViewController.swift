@@ -146,7 +146,7 @@ class ChooseLocationViewController: UIViewController, CLLocationManagerDelegate,
         
         
         // Animate view elements
-        promptLabel.fadeIn(duration: 1, delay: 0.5, completion: nil)
+        promptLabel.fadeIn(duration: 1, delay: 0, completion: nil)
         
         getLocationButton.fadeIn(duration: 1, delay: 0.5, completion: nil)
         getLocationButton.slideIn(from: .bottom, duration: 1, delay: 0.5, completion: nil)
