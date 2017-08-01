@@ -110,7 +110,7 @@ class PriceViewController: UIViewController, UITextFieldDelegate {
         
         inputPrice.layer.cornerRadius = 5
         inputPrice.layer.borderWidth = 1
-        inputPrice.layer.borderColor = UIColor(colorLiteralRed: 199.0/255.0, green: 199.0/255.0, blue: 205.0/255.0, alpha: 0.50).cgColor
+        inputPrice.layer.borderColor = Constants.Colors.ourGray.cgColor
         
         
         // style next button
@@ -189,7 +189,7 @@ class PriceViewController: UIViewController, UITextFieldDelegate {
         
         // Initialize activity indicator
         let frame = CGRect(x: 163, y: 350, width: 50, height: 50)
-        let activityIndicator = NVActivityIndicatorView(frame: frame, type: NVActivityIndicatorType.ballPulse, color: Constants.Colors.mainColor, padding: 0)
+        let activityIndicator = NVActivityIndicatorView(frame: frame, type: NVActivityIndicatorType.ballPulse, color: Constants.Colors.ourGray, padding: 0)
         view.addSubview(activityIndicator)
         activityIndicator.startAnimating()
         
