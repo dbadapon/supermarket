@@ -11,6 +11,7 @@ import UIKit
 import Vision
 import AVFoundation
 import Alamofire
+import RAMAnimatedTabBarController
 
 class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDelegate {
     
@@ -49,7 +50,12 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
         super.viewDidLoad()
         
         // hide tab bar
-        self.tabBarController?.tabBar.isHidden = true
+//        self.tabBarController?.tabBar.isHidden = true
+//        for tabItem in (self.tabBarController?.tabBar.items)! {
+//            tabItem
+//        }
+        let animatedTabBar = self.tabBarController as! RAMAnimatedTabBarController
+        animatedTabBar.animationTabBarHidden(true)
         
         // add swipe gestures
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture))
