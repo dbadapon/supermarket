@@ -268,7 +268,9 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         dropView = YNDropDownMenu(frame:frame, dropDownViews: dropDownViews, dropDownViewTitles: ["Filter by", "Categories"])
         self.view.addSubview(dropView!)
         dropView?.setLabelColorWhen(normal: UIColor.black, selected: ourColor, disabled: UIColor.gray)
-        
+        let font2 = UIFont(name: "Avenir", size: 16)
+        dropView?.setLabel(font: font2!)
+        dropView?.bottomLine = UIView()
 
 //        Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.queryParse), userInfo: nil, repeats: true)
         

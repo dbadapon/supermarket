@@ -30,7 +30,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="118" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xCT-fe-2Pn">
-                                <rect key="frame" x="0.0" y="109" width="375" height="558"/>
+                                <rect key="frame" x="0.0" y="110" width="375" height="557"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
@@ -67,7 +67,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="New?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c38-E0-Jb7">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="New?" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c38-E0-Jb7">
                                                     <rect key="frame" x="312" y="42" width="40" height="15"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="Avenir-LightOblique" family="Avenir" pointSize="14"/>
@@ -113,16 +113,26 @@
                                     <constraint firstItem="lsj-7z-pMz" firstAttribute="top" secondItem="gwA-LO-BpL" secondAttribute="top" id="wtV-z3-AoS"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vwd-1s-d61">
+                                <rect key="frame" x="0.0" y="109" width="375" height="1"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="0.5" id="t4v-4V-P0d"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="xCT-fe-2Pn" firstAttribute="leading" secondItem="dUq-s8-gJU" secondAttribute="leading" id="2y9-Xy-pia"/>
-                            <constraint firstItem="7zv-AI-b54" firstAttribute="top" secondItem="xCT-fe-2Pn" secondAttribute="bottom" id="G8X-TH-feB"/>
+                            <constraint firstItem="7zv-AI-b54" firstAttribute="top" secondItem="xCT-fe-2Pn" secondAttribute="bottom" id="1Sj-pr-KHo"/>
+                            <constraint firstItem="vwd-1s-d61" firstAttribute="top" secondItem="gwA-LO-BpL" secondAttribute="bottom" id="6bW-Fh-JnA"/>
+                            <constraint firstAttribute="trailing" secondItem="xCT-fe-2Pn" secondAttribute="trailing" id="E1p-Cz-VBS"/>
                             <constraint firstAttribute="trailing" secondItem="gwA-LO-BpL" secondAttribute="trailing" id="LX3-5f-4ip"/>
+                            <constraint firstItem="vwd-1s-d61" firstAttribute="leading" secondItem="dUq-s8-gJU" secondAttribute="leading" id="Zft-3H-h3v"/>
                             <constraint firstItem="gwA-LO-BpL" firstAttribute="top" secondItem="v3I-p6-fPU" secondAttribute="bottom" id="caR-by-6fb"/>
-                            <constraint firstItem="xCT-fe-2Pn" firstAttribute="top" secondItem="gwA-LO-BpL" secondAttribute="bottom" id="mpB-1H-tcS"/>
+                            <constraint firstItem="xCT-fe-2Pn" firstAttribute="top" secondItem="vwd-1s-d61" secondAttribute="bottom" id="nSq-bg-7MZ"/>
+                            <constraint firstAttribute="trailing" secondItem="vwd-1s-d61" secondAttribute="trailing" id="oPB-R0-Gyy"/>
                             <constraint firstItem="gwA-LO-BpL" firstAttribute="leading" secondItem="dUq-s8-gJU" secondAttribute="leading" id="qXQ-zd-Dhi"/>
-                            <constraint firstAttribute="trailing" secondItem="xCT-fe-2Pn" secondAttribute="trailing" id="yO0-mr-c0P"/>
+                            <constraint firstItem="xCT-fe-2Pn" firstAttribute="leading" secondItem="dUq-s8-gJU" secondAttribute="leading" id="t1p-oh-aMo"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Market Name" id="Lde-4x-prC">
