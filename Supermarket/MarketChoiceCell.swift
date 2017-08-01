@@ -22,7 +22,7 @@ class MarketChoiceCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        marketProfileImage.layer.cornerRadius = marketProfileImage.frame.width * 0.5
+        marketProfileImage.layer.cornerRadius = marketProfileImage.frame.height/2
         marketProfileImage.layer.masksToBounds = true
         marketProfileImage.layer.borderWidth = 5
         marketProfileImage.layer.borderColor = UIColor.white.cgColor

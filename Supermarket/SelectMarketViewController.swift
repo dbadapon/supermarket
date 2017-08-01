@@ -112,7 +112,7 @@ class SelectMarketViewController: UIViewController, UICollectionViewDelegate, UI
         let interItemSpacingTotal = layout.minimumInteritemSpacing * (cellsPerLine - 1)
         let width = collectionView.frame.size.width / cellsPerLine - interItemSpacingTotal / cellsPerLine
         
-        layout.itemSize = CGSize(width: width, height: width * 3/2)
+        layout.itemSize = CGSize(width: width, height: width * 7/5)
         
         // Style Post button
         postButton.layer.cornerRadius = 5

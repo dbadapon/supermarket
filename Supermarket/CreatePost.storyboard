@@ -591,48 +591,48 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="oNM-vl-9z0">
-                                    <size key="itemSize" width="182" height="240"/>
+                                    <size key="itemSize" width="154" height="222"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MarketChoiceCell" id="tR7-rr-qlK" customClass="MarketChoiceCell" customModule="Supermarket" customModuleProvider="target">
-                                        <rect key="frame" x="80.5" y="0.0" width="182" height="240"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="154" height="222"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="182" height="240"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="154" height="222"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wrh-as-mlM" customClass="PFImageView">
-                                                    <rect key="frame" x="28" y="12" width="125" height="125"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="125" id="9vV-Rm-67Z"/>
-                                                        <constraint firstAttribute="height" constant="125" id="Voy-SL-EFA"/>
-                                                    </constraints>
-                                                </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hJh-rh-md2">
-                                                    <rect key="frame" x="8" y="182" width="166" height="25"/>
+                                                    <rect key="frame" x="8" y="177.5" width="138" height="25"/>
                                                     <fontDescription key="fontDescription" name="Avenir-BookOblique" family="Avenir" pointSize="18"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Market Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c3a-3Q-beS">
-                                                    <rect key="frame" x="8" y="149" width="166" height="25"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Market Name is 2 lines" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c3a-3Q-beS">
+                                                    <rect key="frame" x="8" y="120" width="138" height="49.5"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="18"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wrh-as-mlM" customClass="PFImageView">
+                                                    <rect key="frame" x="27" y="12" width="100" height="100"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="100" id="Pw3-7B-Ilu"/>
+                                                        <constraint firstAttribute="width" constant="100" id="f1r-LK-QJj"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                         </view>
                                         <constraints>
-                                            <constraint firstItem="hJh-rh-md2" firstAttribute="leading" secondItem="tR7-rr-qlK" secondAttribute="leading" constant="8" id="CG6-yq-GjL"/>
-                                            <constraint firstItem="hJh-rh-md2" firstAttribute="top" secondItem="c3a-3Q-beS" secondAttribute="bottom" constant="8" id="DEm-6y-rpc"/>
-                                            <constraint firstItem="c3a-3Q-beS" firstAttribute="top" secondItem="wrh-as-mlM" secondAttribute="bottom" constant="12" id="Exx-rs-RJN"/>
-                                            <constraint firstItem="c3a-3Q-beS" firstAttribute="leading" secondItem="tR7-rr-qlK" secondAttribute="leading" constant="8" id="YT1-cL-Gq9"/>
-                                            <constraint firstAttribute="trailing" secondItem="hJh-rh-md2" secondAttribute="trailing" constant="8" id="Z6K-pr-akq"/>
-                                            <constraint firstAttribute="trailing" secondItem="c3a-3Q-beS" secondAttribute="trailing" constant="8" id="fnE-Vc-9Zf"/>
-                                            <constraint firstItem="wrh-as-mlM" firstAttribute="top" secondItem="tR7-rr-qlK" secondAttribute="top" constant="12" id="wFO-w5-B5f"/>
-                                            <constraint firstItem="wrh-as-mlM" firstAttribute="centerX" secondItem="tR7-rr-qlK" secondAttribute="centerX" id="wKI-7z-bWz"/>
+                                            <constraint firstItem="wrh-as-mlM" firstAttribute="top" secondItem="tR7-rr-qlK" secondAttribute="top" constant="12" id="0mD-ix-Z58"/>
+                                            <constraint firstAttribute="trailing" secondItem="c3a-3Q-beS" secondAttribute="trailing" constant="8" id="6TB-dr-j1S"/>
+                                            <constraint firstItem="c3a-3Q-beS" firstAttribute="top" secondItem="wrh-as-mlM" secondAttribute="bottom" constant="8" id="BgP-6a-5hO"/>
+                                            <constraint firstItem="c3a-3Q-beS" firstAttribute="leading" secondItem="tR7-rr-qlK" secondAttribute="leading" constant="8" id="Bqh-Ic-t7g"/>
+                                            <constraint firstItem="hJh-rh-md2" firstAttribute="top" secondItem="c3a-3Q-beS" secondAttribute="bottom" constant="8" id="Kq0-zb-gLE"/>
+                                            <constraint firstAttribute="trailing" secondItem="hJh-rh-md2" secondAttribute="trailing" constant="8" id="SML-V0-ChH"/>
+                                            <constraint firstItem="wrh-as-mlM" firstAttribute="centerX" secondItem="tR7-rr-qlK" secondAttribute="centerX" id="ZyD-wK-n6p"/>
+                                            <constraint firstItem="hJh-rh-md2" firstAttribute="leading" secondItem="tR7-rr-qlK" secondAttribute="leading" constant="8" id="gRg-5L-TGq"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="categoryLabel" destination="hJh-rh-md2" id="Ksn-p4-fe3"/>
