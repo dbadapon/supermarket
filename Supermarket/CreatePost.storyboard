@@ -698,6 +698,10 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icons8-Checkmark Filled-50" translatesAutoresizingMaskIntoConstraints="NO" id="tgk-8P-wvu">
+                                                    <rect key="frame" x="316" y="21" width="34" height="32"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="7S8-X1-rm1" secondAttribute="bottom" constant="12" id="CyL-em-Ryc"/>
@@ -708,6 +712,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="categoryNameLabel" destination="7S8-X1-rm1" id="58S-ob-Gu4"/>
+                                            <outlet property="checkMark" destination="tgk-8P-wvu" id="dIc-Yq-tIX"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -979,6 +984,7 @@
     <resources>
         <image name="cameraMask" width="512" height="512"/>
         <image name="chevron-left" width="13" height="19"/>
+        <image name="icons8-Checkmark Filled-50" width="50" height="50"/>
         <image name="temp map" width="750" height="1334"/>
     </resources>
     <inferredMetricsTieBreakers>

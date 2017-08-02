@@ -11,6 +11,7 @@ import UIKit
 class CategoryCell: UITableViewCell {
 
     @IBOutlet weak var categoryNameLabel: UILabel!
+    @IBOutlet weak var checkMark: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
