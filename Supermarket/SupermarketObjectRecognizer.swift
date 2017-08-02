@@ -40,12 +40,13 @@ struct CurrentFrame {
 //}
 
 protocol SupermarketObjectRecognizerDelegate: class {
-    func updateRecognizedObject(recognizedObject: RecognizedObject)
+    func getRecognizedObject(recognizedObject: RecognizedObject)
     func updateRecognizedBarcode(recognizedBarcode: RecognizedBarcode)
     func updateCurrentFrame(currentFrame: CurrentFrame)
     func captureAndSegue(screenshot: UIImage)
     func getBarcodeObject(barcodeObject: AVMetadataMachineReadableCodeObject)
     func barcodeObjectExists(doesExist: Bool)
+    func highProbObjectRecognized(isRecognized: Bool)
 }
 
 class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate, AVCapturePhotoCaptureDelegate, AVCaptureMetadataOutputObjectsDelegate {
@@ -58,7 +59,7 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
     // what is the difference between: private (set) var recognizedObject: RecognizedObject? { and below???
     var recognizedObject: RecognizedObject? {
         didSet {
-            delegate?.updateRecognizedObject(recognizedObject: recognizedObject!)
+            delegate?.getRecognizedObject(recognizedObject: recognizedObject!)
         }
     }
     
@@ -101,9 +102,18 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
     
     // corresponding to RecognizedObject
     var boundingBox = CGRect(x: 0.0, y: 0.0, width: 0.0, height: 0.0)
+    // continuously changes as different objects are recognized
     var highProbabilityMLResult = ""
     // go ahead and set this in case whole string is needed
     var highProbClassifications = ""
+    // for box
+    var visionSequenceHandler = VNSequenceRequestHandler()
+    var lastObservation: VNDetectedObjectObservation?
+    var highProbExists = false
+    // save current one for when high probability object recognized
+    // this will be the object that a box is put around
+    var currentHighProbabilityMLResult = ""
+    var currentHighProbClassifications = ""
     
     // corresponding to RecognizedBarcode
     // FIX THIS AT SOME POINT
@@ -297,9 +307,16 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
     // delegate method for AVCaptureVideoDataOutputSampleBufferDelegate
     func captureOutput(_ output: AVCaptureOutput, didOutputSampleBuffer sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         
-        guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else {
-            return
-        }
+//        guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else {
+//            return
+//        }
+    
+        guard
+            // make sure the pixel buffer can be converted
+            let pixelBuffer: CVPixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer),
+            // make sure that there is a previous observation we can feed into the request
+            let lastObservation = self.lastObservation
+        else { return }
         
         connection.videoOrientation = .portrait
         var requestOptions:[VNImageOption: Any] = [:]
@@ -315,49 +332,20 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
         } catch {
             print(error)
         }
-    }
-    
-    // delegate method for AVCaptureMetadataOutputObjectsDelegate
-    func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [Any]!, from connection: AVCaptureConnection!) {
         
-        // for debugging purposes
-        print("CAPTURED BARCODE")
+        // below is code for tracking object
+        // create the request
+        let request = VNTrackObjectRequest(detectedObjectObservation: lastObservation, completionHandler: self.handleVisionRequestUpdate)
+        // set the accuracy to high
+        // this is slower, but it works a lot better
+        request.trackingLevel = .accurate
         
-        // Check that metadataObjects array contains at least one object.
-        if metadataObjects.count == 0 {
-            // qrCodeFrameView?.frame = CGRect.zero
-            self.delegate?.barcodeObjectExists(doesExist: false)
-            print("No QR code is detected")
-            return
+        // perform the request
+        do {
+            try self.visionSequenceHandler.perform([request], on: pixelBuffer)
+        } catch {
+            print("Throws: \(error)")
         }
-        
-        // else barcode object does exist
-        self.delegate?.barcodeObjectExists(doesExist: true)
-        
-        // Get the metadata object.
-        let metadataObj = metadataObjects[0] as! AVMetadataMachineReadableCodeObject
-        
-        // update delegate's barcode bounds
-        self.delegate?.getBarcodeObject(barcodeObject: metadataObj)
-        
-        if metadataObj.stringValue != nil {
-            self.codeString = metadataObj.stringValue!
-        }
-        
-        // make query if barcode is read
-        if self.codeString != "" {
-            checkPriceWithBarcode(query: self.codeString)
-        }
-        
-        /*
-         // display alert controller showing what was read
-         if (metadataObjects.count > 0 && metadataObjects.first is AVMetadataMachineReadableCodeObject) {
-         let scan = metadataObjects.first as! AVMetadataMachineReadableCodeObject
-         let alertController = UIAlertController(title: "Barcode Scanned", message: scan.stringValue, preferredStyle: .alert)
-         alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-         present(alertController, animated: true, completion: nil)
-         }
-         */
     }
     
     func handleClassifications(request: VNRequest, error: Error?) {
@@ -430,9 +418,6 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
             // print(self.topMLResult)
             
             // update classifications to be passed onto delegate
-            // HELLUR HELLUR WHY DOES THIS NOT WORK
-            // self.currentFrame?.classifications = self.classifications
-            // self.currentFrame?.topMLResult = self.topMLResult
             self.currentFrame = CurrentFrame(classifications: self.classifications, topMLResult: self.topMLResult)
             
             // be able to access high probability classifications
@@ -441,33 +426,115 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
             
             // goal of this section is to set highProbabilityMLResult
             // if there is one above the highRecognitionThreshold
-            if highProbClassifications != nil {
-                let highProbResultViewArrayZero = highProbClassifications.characters.split{$0 == "0"}.map(String.init)
-                let highProbResultViewArrayOne = highProbClassifications.characters.split{$0 == "1"}.map(String.init)
+            let highProbResultViewArrayZero = highProbClassifications.characters.split{$0 == "0"}.map(String.init)
+            let highProbResultViewArrayOne = highProbClassifications.characters.split{$0 == "1"}.map(String.init)
                 
-                var highProbResultForZero = ""
-                var highProbResultForOne = ""
+            var highProbResultForZero = ""
+            var highProbResultForOne = ""
                 
-                if highProbResultViewArrayZero.count > 0 {
-                    highProbResultForZero = highProbResultViewArrayZero[0]
+            if highProbResultViewArrayZero.count > 0 {
+                highProbResultForZero = highProbResultViewArrayZero[0]
+            }
+                
+            if highProbResultViewArrayOne.count > 0 {
+                highProbResultForOne = highProbResultViewArrayOne[0]
+            }
+                
+            if highProbResultForZero.characters.count < highProbResultForOne.characters.count {
+                self.highProbabilityMLResult = highProbResultForZero
+            } else {
+                self.highProbabilityMLResult = highProbResultForOne
+            }
+
+            if self.highProbabilityMLResult != "" {
+                // save the current high probability results
+                self.currentHighProbabilityMLResult = self.highProbabilityMLResult
+                self.currentHighProbClassifications = self.highProbClassifications
+                print("THERE IS A HIGH PROBABILITY RESULT")
+                print(self.highProbabilityMLResult)
+                self.highProbExists = true
+            }
+//            else {
+//                self.delegate?.highProbObjectRecognized(isRecognized: false)
+//                self.highProbExists = true
+//            }
+        }
+    }
+    
+    func handleVisionRequestUpdate(_ request: VNRequest, error: Error?) {
+        // only need to find main object if high probability object exists
+        if self.highProbExists {
+            // Dispatch to the main queue because we are touching non-atomic, non-thread safe properties of the view controller
+            DispatchQueue.main.async {
+                // make sure we have an actual result
+                guard let newObservation = request.results?.first as? VNDetectedObjectObservation else { return }
+            
+                // prepare for next loop
+                self.lastObservation = newObservation
+            
+                // check the confidence level before updating the UI
+                guard newObservation.confidence >= 0.3 else {
+                    // hide the rectangle when we lose accuracy so the user knows something is wrong
+                    // self.highlightView?.frame = .zero
+                    self.highProbExists = false
+                    return
                 }
+            
+                // calculate view rect
+                var transformedRect = newObservation.boundingBox
+                transformedRect.origin.y = 1 - transformedRect.origin.y
+                // pass tranformedRect back to delegate
                 
-                if highProbResultViewArrayOne.count > 0 {
-                    highProbResultForOne = highProbResultViewArrayOne[0]
-                }
+                self.recognizedObject = RecognizedObject.init(boundingBox: transformedRect, highProbabilityMLResult: self.currentHighProbabilityMLResult, highProbClassifications: self.currentHighProbClassifications)
                 
-                if highProbResultForZero.characters.count < highProbResultForOne.characters.count {
-                    self.highProbabilityMLResult = highProbResultForZero
-                } else {
-                    self.highProbabilityMLResult = highProbResultForOne
-                }
-                
-                // for debugging purposes
-                if self.highProbabilityMLResult != "" {
-                    print("THERE IS A HIGH PROBABILITY RESULT")
-                    print(self.highProbabilityMLResult)
-                }
+                // do this in delegate
+                // let convertedRect = self.cameraLayer.layerRectConverted(fromMetadataOutputRect: transformedRect)
+                // move the highlight view
+                // self.highlightView?.frame = convertedRect
             }
         }
+    }
+    
+    // delegate method for AVCaptureMetadataOutputObjectsDelegate
+    func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [Any]!, from connection: AVCaptureConnection!) {
+        
+        // for debugging purposes
+        print("CAPTURED BARCODE")
+        
+        // Check that metadataObjects array contains at least one object.
+        if metadataObjects.count == 0 {
+            // qrCodeFrameView?.frame = CGRect.zero
+            self.delegate?.barcodeObjectExists(doesExist: false)
+            print("No QR code is detected")
+            return
+        }
+        
+        // else barcode object does exist
+        self.delegate?.barcodeObjectExists(doesExist: true)
+        
+        // Get the metadata object.
+        let metadataObj = metadataObjects[0] as! AVMetadataMachineReadableCodeObject
+        
+        // update delegate's barcode bounds
+        self.delegate?.getBarcodeObject(barcodeObject: metadataObj)
+        
+        if metadataObj.stringValue != nil {
+            self.codeString = metadataObj.stringValue!
+        }
+        
+        // make query if barcode is read
+        if self.codeString != "" {
+            checkPriceWithBarcode(query: self.codeString)
+        }
+        
+        /*
+         // display alert controller showing what was read
+         if (metadataObjects.count > 0 && metadataObjects.first is AVMetadataMachineReadableCodeObject) {
+         let scan = metadataObjects.first as! AVMetadataMachineReadableCodeObject
+         let alertController = UIAlertController(title: "Barcode Scanned", message: scan.stringValue, preferredStyle: .alert)
+         alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+         present(alertController, animated: true, completion: nil)
+         }
+         */
     }
 }

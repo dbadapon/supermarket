@@ -23,6 +23,8 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
     var gradientLayer: CAGradientLayer!
     // for barcode recognition
     var qrCodeFrameView: UIView?
+    // for object recognition
+    var objectFrameView: UIView?
     
     // image to pass onto next view controller
     // to "freeze" screen when user clicks capture button
@@ -113,7 +115,17 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
             view.addSubview(qrCodeFrameView)
             view.bringSubview(toFront: qrCodeFrameView)
         }
+
+        // do same for object frame
+        // object frame only appears when high threshold of ML is surpassed
+        objectFrameView = UIView()
         
+        if let objectFrameView = objectFrameView {
+            objectFrameView.layer.borderColor = UIColor.red.cgColor
+            objectFrameView.layer.borderWidth = 2
+            view.addSubview(objectFrameView)
+            view.bringSubview(toFront: objectFrameView)
+        }
     } // end of viewDidLoad
     
     override var prefersStatusBarHidden: Bool {
@@ -169,9 +181,6 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
     }
     
     // delegate methods
-    func updateRecognizedObject(recognizedObject: RecognizedObject) {
-        
-    }
     func updateRecognizedBarcode(recognizedBarcode: RecognizedBarcode) {
         self.nameString = recognizedBarcode.nameString
         self.priceString = recognizedBarcode.priceString
@@ -204,6 +213,19 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
         // to make sure green box disappears when barcode not recognized
         if !doesExist {
             qrCodeFrameView?.frame = CGRect.zero
+        }
+    }
+    func getRecognizedObject(recognizedObject: RecognizedObject) {
+        // update and set the bounds of the high probability object
+        let convertedRect = self.previewLayer.rectForMetadataOutputRect(ofInterest: recognizedObject.boundingBox)
+        // move the highlighted box
+        self.objectFrameView?.frame = convertedRect
+        self.topMLResult = recognizedObject.highProbabilityMLResult
+    }
+    func highProbObjectRecognized(isRecognized: Bool) {
+        // to make sure red box disappears when barcode not recognized
+        if !isRecognized {
+            objectFrameView?.frame = CGRect.zero
         }
     }
     
