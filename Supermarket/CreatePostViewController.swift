@@ -253,14 +253,22 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
         }
     }
     
+    @IBAction func toARKitAction(_ sender: UIButton) {
+        // segue to ARKit Scene
+        performSegue(withIdentifier: "toARKitSegue", sender: self)
+    }
+    
     private func addButtons() {
         captureButton = SwiftyRecordButton(frame: CGRect(x: view.frame.midX - 37.5, y: view.frame.height - 100.0, width: 75.0, height: 75.0))
         self.view.addSubview(captureButton)
         captureButton.addTarget(self, action: #selector(captureAction(_:)), for: .touchUpInside)
         
+        // MAKE THIS THE GO TO 3D BUTTON
+        // HELLUR HELLUR WORK ON THIS
+        
         flipCameraButton = UIButton(frame: CGRect(x: (((view.frame.width / 2 - 37.5) / 2) - 15.0), y: view.frame.height - 74.0, width: 30.0, height: 23.0))
         flipCameraButton.setImage(#imageLiteral(resourceName: "flipCamera"), for: UIControlState())
-        // flipCameraButton.addTarget(self, action: #selector(cameraSwitchAction(_:)), for: .touchUpInside)
+        flipCameraButton.addTarget(self, action: #selector(toARKitAction(_:)), for: .touchUpInside)
         self.view.addSubview(flipCameraButton)
         
         let test = CGFloat((view.frame.width - (view.frame.width / 2 + 37.5)) + ((view.frame.width / 2) - 37.5) - 9.0)

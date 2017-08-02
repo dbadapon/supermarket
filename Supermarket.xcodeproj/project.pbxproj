@@ -25,6 +25,7 @@
 		0A5893061F227998001360D3 /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5893051F227998001360D3 /* PreviewViewController.swift */; };
 		0A6966C61F15401200E72FD8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6966C51F15401200E72FD8 /* LoginViewController.swift */; };
 		0A6966C81F15404700E72FD8 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6966C71F15404700E72FD8 /* SignUpViewController.swift */; };
+		0A9811A21F3289CC000FD195 /* ARKitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9811A11F3289CC000FD195 /* ARKitViewController.swift */; };
 		0ADBBA841F22AE9200F1D519 /* Resnet50.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 0AEF28871F22ACF900C4528B /* Resnet50.mlmodel */; };
 		4235A579D607D191574DCF4B /* Pods_SupermarketTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AE35AF3621B63A19B9B12F4 /* Pods_SupermarketTests.framework */; };
 		4D114E041F1559B700897FC8 /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D114E031F1559B700897FC8 /* NotificationsViewController.swift */; };
@@ -103,6 +104,7 @@
 		0A5893051F227998001360D3 /* PreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewViewController.swift; sourceTree = "<group>"; };
 		0A6966C51F15401200E72FD8 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		0A6966C71F15404700E72FD8 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		0A9811A11F3289CC000FD195 /* ARKitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARKitViewController.swift; sourceTree = "<group>"; };
 		0AEF28871F22ACF900C4528B /* Resnet50.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Resnet50.mlmodel; sourceTree = SOURCE_ROOT; };
 		166F786788F2FF8997A86CB0 /* Pods-SupermarketTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SupermarketTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SupermarketTests/Pods-SupermarketTests.debug.xcconfig"; sourceTree = "<group>"; };
 		2533FCA0375016EEE9885993 /* Pods_Supermarket.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Supermarket.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -247,6 +249,7 @@
 				0A36AA371F259F56007BE153 /* ChooseLocationViewController.swift */,
 				0A36AA351F259F49007BE153 /* SelectMarketViewController.swift */,
 				4D4747B31F2ABC9400E90771 /* SelectCategoryViewController.swift */,
+				0A9811A11F3289CC000FD195 /* ARKitViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -667,6 +670,7 @@
 				4D114E081F1571FD00897FC8 /* MessageCell.swift in Sources */,
 				4D73A2BD1F26772700A5ACDC /* ProfileViewController.swift in Sources */,
 				4D44F62A1F21251B0018BF22 /* YSSegmentedControl.swift in Sources */,
+				0A9811A21F3289CC000FD195 /* ARKitViewController.swift in Sources */,
 				4DAF789E1F1ED37C00768EFD /* WalmartAPIManager.swift in Sources */,
 				0A36AA3A1F25A1FA007BE153 /* DescriptionViewController.swift in Sources */,
 				0A6966C81F15404700E72FD8 /* SignUpViewController.swift in Sources */,
