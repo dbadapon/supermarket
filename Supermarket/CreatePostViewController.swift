@@ -225,11 +225,17 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
         print("SET RECTANGLE")
         self.objectFrameView?.frame = convertedRect
         self.topMLResult = recognizedObject.highProbabilityMLResult
+        
+        // THIS IS THE PLACE TO MAKE THE POPUP BOX APPEAR
+        
     }
     func highProbObjectRecognized(isRecognized: Bool) {
-        // to make sure red box disappears when barcode not recognized
+        // to make sure red box disappears when object is not recognized
         if !isRecognized {
             self.objectFrameView?.frame = CGRect.zero
+            
+            // THIS IS THE PLACE TO MAKE THE POPUP BOX DISAPPEAR
+            
         } else {
             // put red box in middle of screen
             // self.objectFrameView?.frame = CGRect(x: view.frame.midX, y: view.frame.midY, width: 120.0, height: 120.0)
