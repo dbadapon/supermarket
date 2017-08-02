@@ -212,21 +212,27 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
     func barcodeObjectExists(doesExist: Bool) {
         // to make sure green box disappears when barcode not recognized
         if !doesExist {
-            qrCodeFrameView?.frame = CGRect.zero
+            self.qrCodeFrameView?.frame = CGRect.zero
         }
     }
     func getRecognizedObject(recognizedObject: RecognizedObject) {
         print("GET RECOGNIZED OBJECT, MEANS HIGH PROBS HAS BEEN REACHED YEEE")
         // update and set the bounds of the high probability object
+        
         let convertedRect = self.previewLayer.rectForMetadataOutputRect(ofInterest: recognizedObject.boundingBox)
+        print(convertedRect)
         // move the highlighted box
+        print("SET RECTANGLE")
         self.objectFrameView?.frame = convertedRect
         self.topMLResult = recognizedObject.highProbabilityMLResult
     }
     func highProbObjectRecognized(isRecognized: Bool) {
         // to make sure red box disappears when barcode not recognized
         if !isRecognized {
-            objectFrameView?.frame = CGRect.zero
+            self.objectFrameView?.frame = CGRect.zero
+        } else {
+            // put red box in middle of screen
+            // self.objectFrameView?.frame = CGRect(x: view.frame.midX, y: view.frame.midY, width: 120.0, height: 120.0)
         }
     }
     
