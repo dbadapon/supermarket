@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Notifications-->
+        <!--Alerts-->
         <scene sceneID="56E-fw-LWM">
             <objects>
                 <viewController id="7a0-aG-N1u" customClass="NotificationsViewController" customModule="Supermarket" customModuleProvider="target" sceneMemberID="viewController">
@@ -127,7 +127,7 @@
                             <constraint firstItem="wb1-KY-uec" firstAttribute="top" secondItem="FPX-9d-g14" secondAttribute="bottom" id="xGs-1q-P2I"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Notifications" id="4Yc-2P-jbG"/>
+                    <navigationItem key="navigationItem" title="Alerts" id="4Yc-2P-jbG"/>
                     <connections>
                         <outlet property="tableView" destination="FPX-9d-g14" id="uLX-oF-2yN"/>
                         <segue destination="LjZ-Ph-Lmi" kind="show" identifier="notificationToDetail" id="ecn-bs-KzS"/>
