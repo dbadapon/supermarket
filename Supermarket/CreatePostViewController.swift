@@ -227,6 +227,9 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
         self.topMLResult = recognizedObject.highProbabilityMLResult
         
         // THIS IS THE PLACE TO MAKE THE POPUP BOX APPEAR
+        // use the string below
+        // recognizedObject.highProbMLResult (ex. "soda can")
+        // recognizedObject.highProbClassifications --- (no need to use this "soda can 0.95")
         
     }
     func highProbObjectRecognized(isRecognized: Bool) {
@@ -235,6 +238,7 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
             self.objectFrameView?.frame = CGRect.zero
             
             // THIS IS THE PLACE TO MAKE THE POPUP BOX DISAPPEAR
+            
             
         } else {
             // put red box in middle of screen
