@@ -9,6 +9,7 @@
 import UIKit
 import Parse
 import ParseUI
+import RAMAnimatedTabBarController
 
 class MarketViewController: UIViewController {
 
@@ -26,7 +27,8 @@ class MarketViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.tabBarController?.tabBar.isHidden = true
+//        let animatedTabBar = self.tabBarController as! RAMAnimatedTabBarController
+//        animatedTabBar.animationTabBarHidden(true)
         
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background")!)
         
@@ -63,7 +65,8 @@ class MarketViewController: UIViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        self.tabBarController?.tabBar.isHidden = false
+//        let animatedTabBar = self.tabBarController as! RAMAnimatedTabBarController
+//        animatedTabBar.animationTabBarHidden(false)
     }
 
     override func didReceiveMemoryWarning() {
@@ -71,7 +74,10 @@ class MarketViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    @IBAction func onDone(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     /*
     // MARK: - Navigation
 

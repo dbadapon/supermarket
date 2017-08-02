@@ -207,7 +207,7 @@
                     <navigationItem key="navigationItem" title="Your Markets" id="qYe-3n-wt1"/>
                     <connections>
                         <outlet property="marketTableView" destination="p8x-I7-ZCZ" id="zww-L0-cT3"/>
-                        <segue destination="coq-iD-u5P" kind="show" identifier="toMarketDetail" id="zTW-PG-Q1V"/>
+                        <segue destination="coq-iD-u5P" kind="presentation" identifier="toMarketDetail" id="zTW-PG-Q1V"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nlw-aM-G9B" userLabel="First Responder" sceneMemberID="firstResponder"/>
