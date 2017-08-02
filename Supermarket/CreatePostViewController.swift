@@ -53,25 +53,7 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
         let animatedTabBar = self.tabBarController as! RAMAnimatedTabBarController
         animatedTabBar.animationTabBarHidden(true)
         
-        // add swipe gestures
-        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture))
-        swipeRight.direction = UISwipeGestureRecognizerDirection.right
-        self.view.addGestureRecognizer(swipeRight)
-        
-        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture))
-        swipeLeft.direction = UISwipeGestureRecognizerDirection.left
-        self.view.addGestureRecognizer(swipeLeft)
-        
-        let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture))
-        swipeUp.direction = UISwipeGestureRecognizerDirection.up
-        self.view.addGestureRecognizer(swipeUp)
-        
-        let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture))
-        swipeDown.direction = UISwipeGestureRecognizerDirection.down
-        self.view.addGestureRecognizer(swipeDown)
-        
-        // add flash, flip-camera, and capture buttons to view
-        addButtons()
+        print ("done hiding tab bar")
         
         // get hold of the default video camera
         guard let camera = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo) else {
@@ -96,6 +78,29 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
         gradientLayer.locations = [0.0, 0.3]
         self.previewView.layer.addSublayer(gradientLayer)
         
+        
+        // add swipe gestures
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture))
+        swipeRight.direction = UISwipeGestureRecognizerDirection.right
+        self.view.addGestureRecognizer(swipeRight)
+        
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture))
+        swipeLeft.direction = UISwipeGestureRecognizerDirection.left
+        self.view.addGestureRecognizer(swipeLeft)
+        
+        let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture))
+        swipeUp.direction = UISwipeGestureRecognizerDirection.up
+        self.view.addGestureRecognizer(swipeUp)
+        
+        let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture))
+        swipeDown.direction = UISwipeGestureRecognizerDirection.down
+        self.view.addGestureRecognizer(swipeDown)
+        
+        
+        // add flash, flip-camera, and capture buttons to view
+        addButtons()
+        
+        
         // Initialize QR Code Frame to highlight the QR code
         // qrCodeFrameView variable is invisible on screen because
         // the size of the UIView object is set to zero by default
@@ -108,7 +113,12 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
             view.addSubview(qrCodeFrameView)
             view.bringSubview(toFront: qrCodeFrameView)
         }
+        
     } // end of viewDidLoad
+    
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
     
     // for swipe gestures
     func respondToSwipeGesture(gesture: UIGestureRecognizer) {
