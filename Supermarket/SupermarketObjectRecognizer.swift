@@ -90,7 +90,7 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
     var visionRequests = [VNRequest]()
     // for ML model
     var recognitionThreshold : Float = 0.19
-    var highRecognitionThreshold : Float = 0.69
+    var highRecognitionThreshold : Float = 0.49
     
     // corresponding to RecognizedObject
     

@@ -29,6 +29,7 @@ class WalmartAPIManager {
                     let items = itemArray[0]
                     
                     price = items["salesPrice"] as! Double
+                    
                 }
             } else {
                 print ("it's not getting a response")
@@ -37,7 +38,6 @@ class WalmartAPIManager {
             
         }
         return price
-        
     }
     
     class func getNameWithId(query: String) -> String {

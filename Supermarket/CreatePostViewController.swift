@@ -12,12 +12,21 @@ import Vision
 import AVFoundation
 import Alamofire
 import RAMAnimatedTabBarController
+import SimpleAnimation
 
 class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDelegate {
     
     @IBOutlet weak var resultTag: UIView!
     
     @IBOutlet weak var resultLabel: UILabel!
+    
+    var resultShowing = false
+    
+    var toFetch: [String] = []
+    
+    var fetchedResults: [String:Double] = [:]
+    
+
     
     
     
@@ -238,28 +247,50 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
         // recognizedObject.highProbClassifications --- (no need to use this "soda can 0.95")
         
         resultLabel.text = recognizedObject.highProbabilityMLResult
-        view.addSubview(resultTag)
-        view.bringSubview(toFront: resultTag)
-        resultTag.isHidden = false
-//        if let resultTag = self.resultTag {
-//            view.addSubview(resultTag)
-//            view.bringSubview(toFront: resultTag)
-//        }
+        showResultTag()
+    }
     
+    func getOneResult() {
+        if toFetch.count > 0 {
+            // call network result of the first element in toFetch
+            // then remove the first element
+            toFetch.remove(at: 0) // 
+        }
+    }
+    
+    
+    func showResultTag() {
+        if !resultShowing {
+//            resultTag.fadeIn(duration: 0.5, delay: 0, completion: nil)
+            resultTag.isHidden = true
+            view.addSubview(resultTag)
+            view.bringSubview(toFront: resultTag)
+            
+            resultTag.fadeIn(duration: 0.5, delay: 0, completion: { (complete) in
+                self.resultShowing = true
+            })
+            resultTag.isHidden = false
+        }
+        // if it's already there, keep it there and don't do anything
+        // if it's not there, fade it in
+    }
+    
+    func hideResultTag() {
+        // if it's there, keep it for a while, and fade it
+        if resultShowing {
+            resultTag.fadeOut(duration: 0.5, delay: 2, completion: { (complete) in
+                self.resultShowing = false
+            })
+        }
         
     }
+    
     func highProbObjectRecognized(isRecognized: Bool) {
         // to make sure red box disappears when object is not recognized
         if !isRecognized {
             self.objectFrameView?.frame = CGRect.zero
-            
-            resultTag.isHidden = true
-            
-            // THIS IS THE PLACE TO MAKE THE POPUP BOX DISAPPEAR
-//            if let resultTag = self.resultTag {
-//                resultTag.removeFromSuperview()
-//            }
-            
+            hideResultTag()
+
             
         } else {
             // put red box in middle of screen
