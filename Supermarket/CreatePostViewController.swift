@@ -255,13 +255,13 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
     }
     
     func getRecognizedObject(recognizedObject: RecognizedObject) {
-        print("GET RECOGNIZED OBJECT, MEANS HIGH PROBS HAS BEEN REACHED YEEE")
+//        print("GET RECOGNIZED OBJECT, MEANS HIGH PROBS HAS BEEN REACHED YEEE")
         // update and set the bounds of the high probability object
         
         let convertedRect = self.previewLayer.rectForMetadataOutputRect(ofInterest: recognizedObject.boundingBox)
         print(convertedRect)
         // move the highlighted box
-        print("SET RECTANGLE")
+//        print("SET RECTANGLE")
         self.objectFrameView?.frame = convertedRect
         self.topMLResult = recognizedObject.highProbabilityMLResult
         delegate?.didFindNewObject(object: topMLResult)
@@ -272,6 +272,8 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
         // recognizedObject.highProbMLResult (ex. "soda can")
         // recognizedObject.highProbClassifications --- (no need to use this "soda can 0.95")
         
+        animateResultTag()
+        
         resultLabel.text = recognizedObject.highProbabilityMLResult
         
         if !startedNetworkRequests {
@@ -280,10 +282,11 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
         }
         
         getPrice(mlResult: recognizedObject.highProbabilityMLResult)
-        showResultTag()
+        showResultTag(recognizedObject: recognizedObject)
     }
     
-    func runNetworkRequests() {
+    
+    func runNetworkRequests() { // (while there's stuff in toFetch) run the request every 1 second to avoid hitting query limit
         Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(fetchNext), userInfo: nil, repeats: true)
     }
     
@@ -298,20 +301,15 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
     }
     
     
-    func fetchNext() {
+    func fetchNext() { // fetch the next thing in the toFetch array
         
         if toFetch.count > 0 {
-            // put activity indicator here...
             let query = toFetch[0]
-            
-            // copy function from WalmartAPIManager bc you need to put something in the completion...
-            
             var price = -100.0
             let baseURL = "http://api.walmartlabs.com/v1/search?query="
             let endUrl = "&format=json&apiKey=yva6f6yprac42rsp44tjvxjg"
             
             var newString = query.replacingOccurrences(of: " ", with: "+")
-//            newString = newString.replacingOccurrences(of: ",", with: "")
             let wholeUrl = baseURL + newString + endUrl
             
             request(wholeUrl, method: .get).validate().responseJSON { (response) in
@@ -322,8 +320,6 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
                         let itemArray = responseDictionary["items"] as! [[String: Any]]
                         
                         let items = itemArray[0]
-//                        print ("---YO THIS IS THE ITEM DICTIONARY: \(items)---")
-                        
                         if let checkPrice = items["salePrice"] {
                             price = checkPrice as! Double
                             self.cachedResults[query] = price
@@ -335,7 +331,7 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
                         } else {
                             self.priceLabel.text = "checking price..."
                         }
-
+                        
                     }
                 } else {
                     self.priceLabel.text = "price unavailable"
@@ -346,14 +342,24 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
             }
             
          toFetch.remove(at: 0)
-        
         }
     }
     
+    func animateResultTag() {
+        print("---ANIMATE---")
+        let center_x = (self.objectFrameView?.frame.origin.x)! + ((self.objectFrameView?.frame.width)!/2)
+        UIView.animate(withDuration: 0.5, animations: {
+            self.resultTag.frame.origin.x = center_x - (self.resultTag.bounds.width/2)
+            self.resultTag.frame.origin.y = (self.objectFrameView?.frame.origin.y)! - self.resultTag.bounds.height //- 12
+        })
+    }
     
-    func showResultTag() {
+    func showResultTag(recognizedObject: RecognizedObject) {
+        // if it's already there, keep it there and don't do anything
+        // if it's not there, fade it in
+        
         if !resultShowing {
-//            resultTag.fadeIn(duration: 0.5, delay: 0, completion: nil)
+            
             resultTag.isHidden = true
             view.addSubview(resultTag)
             view.bringSubview(toFront: resultTag)
@@ -361,27 +367,27 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
             resultTag.fadeIn(duration: 0.5, delay: 0, completion: { (complete) in
                 self.resultShowing = true
             })
+            
             resultTag.isHidden = false
         }
-        // if it's already there, keep it there and don't do anything
-        // if it's not there, fade it in
     }
     
     func hideResultTag() {
         // if it's there, keep it for a while, and fade it
+        // if the resultLabel is still the same, we want the thing to stay on screen and just move with the box...
+        // otherwise get rid of it
         if resultShowing {
             resultTag.fadeOut(duration: 0.5, delay: 2, completion: { (complete) in
-                self.resultShowing = false
-            })
+                    self.resultShowing = false
+                })
         }
     }
     
     func highProbObjectRecognized(isRecognized: Bool) {
         // to make sure red box disappears when object is not recognized
         if !isRecognized {
-            self.objectFrameView?.frame = CGRect.zero
             hideResultTag()
-
+            self.objectFrameView?.frame = CGRect.zero
             
         } else {
             // put red box in middle of screen
