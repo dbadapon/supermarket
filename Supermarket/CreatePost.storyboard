@@ -930,7 +930,6 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="addCube:" destination="mcK-4F-rEG" eventType="touchUpInside" id="rtA-13-t1C"/>
                                     <action selector="addLamp:" destination="mcK-4F-rEG" eventType="touchUpInside" id="I8I-xO-hvb"/>
                                 </connections>
                             </button>
@@ -942,7 +941,6 @@
                                 </state>
                                 <connections>
                                     <action selector="addChair:" destination="mcK-4F-rEG" eventType="touchUpInside" id="OfM-QE-jOR"/>
-                                    <action selector="addCup:" destination="mcK-4F-rEG" eventType="touchUpInside" id="Qqb-Th-obR"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ciw-S0-yiC">
@@ -953,7 +951,6 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="addCube:" destination="mcK-4F-rEG" eventType="touchUpInside" id="C0V-N0-J8f"/>
                                     <action selector="addObj:" destination="mcK-4F-rEG" eventType="touchUpInside" id="kv1-Aa-Bnx"/>
                                 </connections>
                             </button>
@@ -965,8 +962,6 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="addCube:" destination="mcK-4F-rEG" eventType="touchUpInside" id="QWy-Bq-PLZ"/>
-                                    <action selector="addObj:" destination="mcK-4F-rEG" eventType="touchUpInside" id="Iyw-Rm-ZeS"/>
                                     <action selector="dissmissARKit:" destination="mcK-4F-rEG" eventType="touchUpInside" id="tBX-cn-Bsg"/>
                                 </connections>
                             </button>

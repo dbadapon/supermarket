@@ -130,15 +130,31 @@ class ARKitViewController: UIViewController {
         sceneView.scene.rootNode.addChildNode(objectNode)
     }
     
+    // NOTES
+    // use text.string to change string of text
     
-    // TRY TO FIGURE OUT HOW TO CONVERT .OBJ TO .SCN
+    
     @IBAction func addObj(_ sender: Any) {
-        /*
-         let url = NSURL(string: "url-to-your-obj-here")
-         let asset = MDLAsset(URL: url!)
-         let object = asset.objectAtIndex(0)
-         let node = SCNNode(MDLObject: object)
-         */
+        let text = SCNText(string: "MOO", extrusionDepth: 1.0)
+        text.firstMaterial?.diffuse.contents = UIColor.white
+        // text.firstMaterial?.specular.contents = UIColor.orange
+        text.font = UIFont(name: "Optima", size: 0.5)
+        
+        // text.containerFrame is a rectangle specifying the area in which SceneKit should lay out the text
+        // text.containerFrame = CGRect(x: 0, y: 0, width: 30, height: 20)
+        
+        let textNode = SCNNode(geometry: text)
+        // textNode.position = SCNVector3(-0.2 + x, -0.9 + delta, -1)
+        //
+        //        x += 0.12
+        //
+        // let cc = getCameraCoordinates(sceneView: sceneView)
+        
+        // place text where camera is
+        // textNode.position = SCNVector3(cc.x, cc.y, cc.z)
+        textNode.position = SCNVector3(-4.0, 0.0, 0.0)
+        
+        sceneView.scene.rootNode.addChildNode(textNode)
     }
     
     
