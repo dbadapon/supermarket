@@ -15,6 +15,12 @@ import RAMAnimatedTabBarController
 
 class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDelegate {
     
+    @IBOutlet weak var resultTag: UIView!
+    
+    @IBOutlet weak var resultLabel: UILabel!
+    
+    
+    
     var recognizer: SupermarketObjectRecognizer?
     
     // preview layer
@@ -231,13 +237,28 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
         // recognizedObject.highProbMLResult (ex. "soda can")
         // recognizedObject.highProbClassifications --- (no need to use this "soda can 0.95")
         
+        resultLabel.text = recognizedObject.highProbabilityMLResult
+        view.addSubview(resultTag)
+        view.bringSubview(toFront: resultTag)
+        resultTag.isHidden = false
+//        if let resultTag = self.resultTag {
+//            view.addSubview(resultTag)
+//            view.bringSubview(toFront: resultTag)
+//        }
+    
+        
     }
     func highProbObjectRecognized(isRecognized: Bool) {
         // to make sure red box disappears when object is not recognized
         if !isRecognized {
             self.objectFrameView?.frame = CGRect.zero
             
+            resultTag.isHidden = true
+            
             // THIS IS THE PLACE TO MAKE THE POPUP BOX DISAPPEAR
+//            if let resultTag = self.resultTag {
+//                resultTag.removeFromSuperview()
+//            }
             
             
         } else {
@@ -277,6 +298,7 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
         flashButton.setImage(#imageLiteral(resourceName: "flashOutline"), for: UIControlState())
         // flashButton.addTarget(self, action: #selector(toggleFlashAction(_:)), for: .touchUpInside)
         self.view.addSubview(flashButton)
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

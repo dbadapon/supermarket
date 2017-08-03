@@ -33,6 +33,25 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WpK-Xa-Zb8">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FIv-58-r5a">
+                                        <rect key="frame" x="93" y="101" width="215" height="107"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" alpha="0.65000000000000002" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="result-tag" translatesAutoresizingMaskIntoConstraints="NO" id="JSW-PV-BV5">
+                                                <rect key="frame" x="0.0" y="0.0" width="215" height="107"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Result Label is 2 lines long!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="162-TX-m7Q">
+                                                <rect key="frame" x="7" y="8" width="200" height="68"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="20"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </view>
+                                </subviews>
                                 <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <gestureRecognizers/>
                             </view>
@@ -59,6 +78,8 @@
                     </view>
                     <connections>
                         <outlet property="previewView" destination="WpK-Xa-Zb8" id="RI0-Xy-XTR"/>
+                        <outlet property="resultLabel" destination="162-TX-m7Q" id="Tgy-bP-sGo"/>
+                        <outlet property="resultTag" destination="FIv-58-r5a" id="ajq-Yq-UPL"/>
                         <outlet property="resultView" destination="rnP-nm-12b" id="n3w-pQ-SdY"/>
                         <segue destination="ewj-tG-ZsX" kind="show" identifier="capturedSegue" animates="NO" id="jBa-sW-Gnf"/>
                         <segue destination="VsN-Ls-Hfm" kind="presentation" identifier="barcodeToPreviewSegue" id="veg-mV-sRg"/>
@@ -985,6 +1006,7 @@
         <image name="cameraMask" width="512" height="512"/>
         <image name="chevron-left" width="13" height="19"/>
         <image name="icons8-Checkmark Filled-50" width="50" height="50"/>
+        <image name="result-tag" width="140" height="96"/>
         <image name="temp map" width="750" height="1334"/>
     </resources>
     <inferredMetricsTieBreakers>

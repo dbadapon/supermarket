@@ -67,9 +67,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             })
         )
         
-        PFUser.logOutInBackground { (error) in
-            print (PFUser.current())
-        }
+//        PFUser.logOutInBackground { (error) in
+//            print (PFUser.current())
+//        }
         
         PFUser.logInWithUsername(inBackground: "hello", password: "password", block: { (user: PFUser?, error: Error?) in
             if let error = error {
