@@ -182,6 +182,11 @@ class SelectMarketViewController: UIViewController, UICollectionViewDelegate, UI
         print("LONGITUDE: \(longitude)")
         print("CITY: \(city)")
         
+        print (imageOne.image?.size.height)
+        print (imageOne.image?.size.width )
+        print (imageTwo.image?.size.height )
+        print (imageTwo.image?.size.width )
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -212,8 +217,13 @@ class SelectMarketViewController: UIViewController, UICollectionViewDelegate, UI
                     imageList.append(im)
                 }
             }
+            
+            var actualImages: [UIImage] = []
+            for image in imageList {
+                actualImages.append( Post.resizeImage(image: image, targetSize: CGSize(width: 512, height: 512)) )
+            }
 
-            let toPost = Post.createPost(images: imageList, name: itemName, seller: PFUser.current()!, itemDescription: itemDescription.text, price: itemPrice, conditionNew: isNew, negotiable: isNegotiable, sold: false, city: city!, latitude: latitude!, longitude: longitude!)
+            let toPost = Post.createPost(images: actualImages, name: itemName, seller: PFUser.current()!, itemDescription: itemDescription.text, price: itemPrice, conditionNew: isNew, negotiable: isNegotiable, sold: false, city: city!, latitude: latitude!, longitude: longitude!)
             
             toPost.parseObject.saveInBackground { (success, error) in // so you don't want to save in backround in the class itself... you want to save in background whenever you create a new post outside the class!
                 if success {
