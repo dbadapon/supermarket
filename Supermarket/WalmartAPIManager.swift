@@ -28,7 +28,7 @@ class WalmartAPIManager {
                     
                     let items = itemArray[0]
                     
-                    price = items["salesPrice"] as! Double
+                    price = items["salePrice"] as! Double
                     
                 }
             } else {

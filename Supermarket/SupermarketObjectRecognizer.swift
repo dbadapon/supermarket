@@ -196,7 +196,7 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
             
             // set up the request using our vision model
             let classificationRequest = VNCoreMLRequest(model: resNet50Model, completionHandler: handleClassifications)
-            classificationRequest.imageCropAndScaleOption = VNImageCropAndScaleOption.centerCrop
+            classificationRequest.imageCropAndScaleOption = VNImageCropAndScaleOptionCenterCrop
             visionRequests = [classificationRequest]
             
         } catch {
@@ -215,8 +215,8 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
         photoSettings.isHighResolutionPhotoEnabled = true
         photoSettings.isAutoStillImageStabilizationEnabled = true
         
-        if photoSettings.__availablePreviewPhotoPixelFormatTypes.count > 0 {
-            photoSettings.previewPhotoFormat = [ kCVPixelBufferPixelFormatTypeKey as String : photoSettings.__availablePreviewPhotoPixelFormatTypes.first!]
+        if photoSettings.availablePreviewPhotoPixelFormatTypes.count > 0 {
+            photoSettings.previewPhotoFormat = [ kCVPixelBufferPixelFormatTypeKey as String : photoSettings.availablePreviewPhotoPixelFormatTypes.first!]
         }
         
         if let videoConnection = self.stillImageOutput.connection(withMediaType: AVMediaTypeVideo) {
@@ -319,7 +319,7 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
         }
         
         // for orientation see kCGImagePropertyOrientation
-        let imageRequestHandler = VNImageRequestHandler(cvPixelBuffer: pixelBuffer, orientation: CGImagePropertyOrientation(rawValue: 1)!, options: requestOptions)
+        let imageRequestHandler = VNImageRequestHandler(cvPixelBuffer: pixelBuffer, orientation: Int32(CGImagePropertyOrientation(rawValue: 1)!.rawValue), options: requestOptions)
         do {
             try imageRequestHandler.perform(self.visionRequests)
         } catch {

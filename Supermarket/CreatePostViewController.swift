@@ -20,11 +20,17 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
     
     @IBOutlet weak var resultLabel: UILabel!
     
+    @IBOutlet weak var priceLabel: UILabel!
+    
+    
     var resultShowing = false
+    
+    var startedNetworkRequests = false
     
     var toFetch: [String] = []
     
-    var fetchedResults: [String:Double] = [:]
+    var cachedResults: [String:Double] = [:]
+    
     
 
     
@@ -247,14 +253,82 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
         // recognizedObject.highProbClassifications --- (no need to use this "soda can 0.95")
         
         resultLabel.text = recognizedObject.highProbabilityMLResult
+        
+        if !startedNetworkRequests {
+            startedNetworkRequests = true
+            runNetworkRequests()
+        }
+        
+        getPrice(mlResult: recognizedObject.highProbabilityMLResult)
         showResultTag()
     }
     
-    func getOneResult() {
+    func runNetworkRequests() {
+        Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(fetchNext), userInfo: nil, repeats: true)
+    }
+    
+    func getPrice(mlResult: String) { // trying the other beta... pls work omg i think it works
+        // this is the one that keeps getting called!
+        if let price = cachedResults[mlResult] {
+            priceLabel.text = "$\(price)"
+        } else if !toFetch.contains(mlResult) {
+            toFetch.append(mlResult)
+        }
+    }
+    
+    
+    func fetchNext() {
+        print("----IN FETCH NEXT-----")
+        print("---toFetch is: \(toFetch)---")
+        print("---cachedResults: \(cachedResults)---")
         if toFetch.count > 0 {
-            // call network result of the first element in toFetch
-            // then remove the first element
-            toFetch.remove(at: 0) // 
+            print("----FETCHING PRICE PLS---!")
+            // put activity indicator here...
+            let query = toFetch[0]
+            
+            // copy function from WalmartAPIManager bc you need to put something in the completion...
+            
+            var price = -100.0
+            let baseURL = "http://api.walmartlabs.com/v1/search?query="
+            let endUrl = "&format=json&apiKey=yva6f6yprac42rsp44tjvxjg"
+            
+            var newString = query.replacingOccurrences(of: " ", with: "+")
+//            newString = newString.replacingOccurrences(of: ",", with: "")
+            let wholeUrl = baseURL + newString + endUrl
+//            let wholeUrl = "http://api.walmartlabs.com/v1/search?query=notebook+notebook+computer&format=json&apiKey=yva6f6yprac42rsp44tjvxjg"
+//            print("---wholeUrl is: \(wholeUrl)---")
+            
+            request(wholeUrl, method: .get).validate().responseJSON { (response) in
+                if response.result.isSuccess,
+                    let responseDictionary = response.result.value as? [String: Any] {
+                    let numberOfItems = responseDictionary["numItems"] as! Int
+                    if numberOfItems > 0 {
+                        let itemArray = responseDictionary["items"] as! [[String: Any]]
+                        
+                        let items = itemArray[0]
+//                        print ("---YO THIS IS THE ITEM DICTIONARY: \(items)---")
+                        
+                        if let checkPrice = items["salePrice"] {
+                            price = checkPrice as! Double
+                            self.priceLabel.text = "$\(price)"
+                            self.cachedResults[query] = price
+                        } else {
+                            self.priceLabel.text = ""
+                        }
+//                        price = items["salesPrice"] as! Double
+                        
+//                        self.priceLabel.text = "$\(price)"
+//                        self.cachedResults[query] = price
+                    }
+                } else {
+                    print ("it's not getting a response")
+                    print (response.result.error!)
+                }
+                
+            }
+            
+         toFetch.remove(at: 0)
+        
         }
     }
     
@@ -282,7 +356,6 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
                 self.resultShowing = false
             })
         }
-        
     }
     
     func highProbObjectRecognized(isRecognized: Bool) {
