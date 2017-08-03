@@ -129,6 +129,7 @@ class PhotoViewController: UIViewController {
                     let itemArray = responseDictionary["items"] as! [[String: Any]]
                     
                     let item = itemArray[0]
+                    print ("this is the first item: \(item)")
                     
                     let imageEntities = item["imageEntities"] as! [[String: Any]]
                     var realEntity: [String: Any]? = nil
@@ -158,7 +159,9 @@ class PhotoViewController: UIViewController {
                     }
                     
                     self.firstResultName.text = String(describing: item["name"]!)
-                    self.firstResultPrice.text = "$" + String(describing: item["salePrice"]!)
+                    if let firstItemPrice = item["salePrice"] {
+                        self.firstResultPrice.text = "$" + String(describing: item["salePrice"]!)
+                    }
                     print (item["salePrice"]!)
                 }
                 // more than one result from query
@@ -166,6 +169,7 @@ class PhotoViewController: UIViewController {
                     let itemArray = responseDictionary["items"] as! [[String: Any]]
                     
                     let item = itemArray[1]
+                    print ("this is the second item: \(item)")
                     
                     let imageEntities = item["imageEntities"] as! [[String: Any]]
                     var realEntity: [String: Any]? = nil
@@ -195,8 +199,10 @@ class PhotoViewController: UIViewController {
                     }
                     
                     self.secondResultName.text = String(describing: item["name"]!)
-                    self.secondResultPrice.text = "$" + String(describing: item["salePrice"]!)
-                    print (item["salePrice"]!)
+                    if let secondItemPrice = item["salePrice"] {
+                        self.secondResultPrice.text = "$" + String(describing: item["salePrice"]!)
+                    }
+                    print (item["salePrice"])
                 }
                 // more than two results from query
                 if numberOfItems > 2 {
@@ -232,8 +238,10 @@ class PhotoViewController: UIViewController {
                     }
                     
                     self.thirdResultName.text = String(describing: item["name"]!)
-                    self.thirdResultPrice.text = "$" + String(describing: item["salePrice"]!)
-                    print (item["salePrice"]!)
+                    if let thirdItemPrice = item["salePrice"] {
+                        self.thirdResultPrice.text = "$" + String(describing: item["salePrice"]!)
+                    }
+                    print (item["salePrice"])
                 }
                 // more than three results from query
                 if numberOfItems > 3 {
@@ -269,8 +277,10 @@ class PhotoViewController: UIViewController {
                     }
                     
                     self.fourthResultName.text = String(describing: item["name"]!)
-                    self.fourthResultPrice.text = "$" + String(describing: item["salePrice"]!)
-                    print (item["salePrice"]!)
+                    if let fourthItemPrice = item["salePrice"] {
+                        self.fourthResultPrice.text = "$" + String(describing: item["salePrice"]!)
+                    }
+                    print (item["salePrice"])
                 }
             }
         }
