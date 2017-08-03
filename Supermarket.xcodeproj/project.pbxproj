@@ -105,6 +105,7 @@
 		0A6966C51F15401200E72FD8 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		0A6966C71F15404700E72FD8 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		0A9811A11F3289CC000FD195 /* ARKitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARKitViewController.swift; sourceTree = "<group>"; };
+		0A9811A31F32A2C8000FD195 /* Models.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = Models.scnassets; sourceTree = "<group>"; };
 		0AEF28871F22ACF900C4528B /* Resnet50.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Resnet50.mlmodel; sourceTree = SOURCE_ROOT; };
 		166F786788F2FF8997A86CB0 /* Pods-SupermarketTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SupermarketTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SupermarketTests/Pods-SupermarketTests.debug.xcconfig"; sourceTree = "<group>"; };
 		2533FCA0375016EEE9885993 /* Pods_Supermarket.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Supermarket.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -324,6 +325,7 @@
 				4D44F6291F21251B0018BF22 /* YSSegmentedControl.swift */,
 				0A5892FF1F22779A001360D3 /* SwiftyRecordButton.swift */,
 				A07904261F13F098000E4419 /* Assets.xcassets */,
+				0A9811A31F32A2C8000FD195 /* Models.scnassets */,
 				A079042B1F13F098000E4419 /* Info.plist */,
 				0AEF28871F22ACF900C4528B /* Resnet50.mlmodel */,
 				4D3ED6C01F2598A300E532CD /* GoogleBooksAPI.swift */,
