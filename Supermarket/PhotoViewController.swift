@@ -171,6 +171,9 @@ class PhotoViewController: UIViewController {
                     let item = itemArray[1]
                     print ("this is the second item: \(item)")
                     
+                    // THIS LINE IS CAUSING STUFF TO BREAK DOWN
+                    // HELLUR HELLUR REMEMBER TO FIX THIS
+                    // GONNA BE HELLA EMBARASSING IF IT CRASHES
                     let imageEntities = item["imageEntities"] as! [[String: Any]]
                     var realEntity: [String: Any]? = nil
                     for entity in imageEntities {
