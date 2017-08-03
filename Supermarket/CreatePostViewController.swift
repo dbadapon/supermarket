@@ -293,7 +293,8 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
     func getPrice(mlResult: String) { // trying the other beta... pls work omg i think it works
         // this is the one that keeps getting called!
         if let price = cachedResults[mlResult] {
-            priceLabel.text = "$\(price)"
+            let formattedPrice = String(format: "%.2f", price)
+            priceLabel.text = "$\(formattedPrice)"
         } else if !toFetch.contains(mlResult) {
             priceLabel.text = "checking price..."
             toFetch.append(mlResult)
@@ -325,7 +326,8 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
                             self.cachedResults[query] = price
                             // only set the price label if the result label is still the same one...
                             if self.resultLabel.text == query {
-                                self.priceLabel.text = "$\(price)"
+                                let formattedPrice = String(format: "%.2f", price)
+                                self.priceLabel.text = "$\(formattedPrice)"
                             }
                             
                         } else {
@@ -350,7 +352,7 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
         let center_x = (self.objectFrameView?.frame.origin.x)! + ((self.objectFrameView?.frame.width)!/2)
         UIView.animate(withDuration: 0.5, animations: {
             self.resultTag.frame.origin.x = center_x - (self.resultTag.bounds.width/2)
-            self.resultTag.frame.origin.y = (self.objectFrameView?.frame.origin.y)! - self.resultTag.bounds.height //- 12
+            self.resultTag.frame.origin.y = (self.objectFrameView?.frame.origin.y)! - self.resultTag.bounds.height - 12
         })
     }
     
