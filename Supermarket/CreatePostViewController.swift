@@ -72,6 +72,14 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // set initial price text to empty
+//        priceLabel.text = ""
+        
+//        let font = UIFontDescriptor(fontAttributes: [UIFontDescriptorFaceAttribute : "Medium", UIFontDescriptorFamilyAttribute: "Avenir"])
+//
+//        priceLabel.font = UIFont(descriptor: font, size: 20)
+        
+        
         // hide tab bar
         let animatedTabBar = self.tabBarController as! RAMAnimatedTabBarController
         animatedTabBar.animationTabBarHidden(true)
@@ -272,17 +280,15 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
         if let price = cachedResults[mlResult] {
             priceLabel.text = "$\(price)"
         } else if !toFetch.contains(mlResult) {
+            priceLabel.text = "checking price..."
             toFetch.append(mlResult)
         }
     }
     
     
     func fetchNext() {
-        print("----IN FETCH NEXT-----")
-        print("---toFetch is: \(toFetch)---")
-        print("---cachedResults: \(cachedResults)---")
+        
         if toFetch.count > 0 {
-            print("----FETCHING PRICE PLS---!")
             // put activity indicator here...
             let query = toFetch[0]
             
@@ -295,8 +301,6 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
             var newString = query.replacingOccurrences(of: " ", with: "+")
 //            newString = newString.replacingOccurrences(of: ",", with: "")
             let wholeUrl = baseURL + newString + endUrl
-//            let wholeUrl = "http://api.walmartlabs.com/v1/search?query=notebook+notebook+computer&format=json&apiKey=yva6f6yprac42rsp44tjvxjg"
-//            print("---wholeUrl is: \(wholeUrl)---")
             
             request(wholeUrl, method: .get).validate().responseJSON { (response) in
                 if response.result.isSuccess,
@@ -310,17 +314,19 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
                         
                         if let checkPrice = items["salePrice"] {
                             price = checkPrice as! Double
-                            self.priceLabel.text = "$\(price)"
                             self.cachedResults[query] = price
+                            // only set the price label if the result label is still the same one...
+                            if self.resultLabel.text == query {
+                                self.priceLabel.text = "$\(price)"
+                            }
+                            
                         } else {
-                            self.priceLabel.text = ""
+                            self.priceLabel.text = "checking price..."
                         }
-//                        price = items["salesPrice"] as! Double
-                        
-//                        self.priceLabel.text = "$\(price)"
-//                        self.cachedResults[query] = price
+
                     }
                 } else {
+                    self.priceLabel.text = "price unavailable"
                     print ("it's not getting a response")
                     print (response.result.error!)
                 }
