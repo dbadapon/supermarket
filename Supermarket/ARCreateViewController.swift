@@ -1,6 +1,6 @@
 
 //
-//  CreatePostViewController.swift
+//  ARCreateViewController.swift
 //  Supermarket
 //
 //  Created by Xiuya Yao on 7/21/17.
@@ -12,27 +12,12 @@ import Vision
 import AVFoundation
 import Alamofire
 import RAMAnimatedTabBarController
-import SimpleAnimation
 
-class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDelegate {
+class ARCreateViewController: UIViewController, SupermarketObjectRecognizerDelegate {
     
     @IBOutlet weak var resultTag: UIView!
     
     @IBOutlet weak var resultLabel: UILabel!
-    
-    @IBOutlet weak var priceLabel: UILabel!
-    
-    
-    var resultShowing = false
-    
-    var startedNetworkRequests = false
-    
-    var toFetch: [String] = []
-    
-    var cachedResults: [String:Double] = [:]
-    
-    
-
     
     
     
@@ -73,14 +58,6 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // set initial price text to empty
-//        priceLabel.text = ""
-        
-//        let font = UIFontDescriptor(fontAttributes: [UIFontDescriptorFaceAttribute : "Medium", UIFontDescriptorFamilyAttribute: "Avenir"])
-//
-//        priceLabel.font = UIFont(descriptor: font, size: 20)
-        
         
         // hide tab bar
         let animatedTabBar = self.tabBarController as! RAMAnimatedTabBarController
@@ -146,7 +123,7 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
             view.addSubview(qrCodeFrameView)
             view.bringSubview(toFront: qrCodeFrameView)
         }
-
+        
         // do same for object frame
         // object frame only appears when high threshold of ML is surpassed
         objectFrameView = UIView()
@@ -270,115 +247,28 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
         // recognizedObject.highProbClassifications --- (no need to use this "soda can 0.95")
         
         resultLabel.text = recognizedObject.highProbabilityMLResult
+        view.addSubview(resultTag)
+        view.bringSubview(toFront: resultTag)
+        resultTag.isHidden = false
+        //        if let resultTag = self.resultTag {
+        //            view.addSubview(resultTag)
+        //            view.bringSubview(toFront: resultTag)
+        //        }
         
-        if !startedNetworkRequests {
-            startedNetworkRequests = true
-            runNetworkRequests()
-        }
         
-        getPrice(mlResult: recognizedObject.highProbabilityMLResult)
-        showResultTag()
     }
-    
-    func runNetworkRequests() {
-        Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(fetchNext), userInfo: nil, repeats: true)
-    }
-    
-    func getPrice(mlResult: String) { // trying the other beta... pls work omg i think it works
-        // this is the one that keeps getting called!
-        if let price = cachedResults[mlResult] {
-            priceLabel.text = "$\(price)"
-        } else if !toFetch.contains(mlResult) {
-            priceLabel.text = "checking price..."
-            toFetch.append(mlResult)
-        }
-    }
-    
-    
-    func fetchNext() {
-        
-        if toFetch.count > 0 {
-            // put activity indicator here...
-            let query = toFetch[0]
-            
-            // copy function from WalmartAPIManager bc you need to put something in the completion...
-            
-            var price = -100.0
-            let baseURL = "http://api.walmartlabs.com/v1/search?query="
-            let endUrl = "&format=json&apiKey=yva6f6yprac42rsp44tjvxjg"
-            
-            var newString = query.replacingOccurrences(of: " ", with: "+")
-//            newString = newString.replacingOccurrences(of: ",", with: "")
-            let wholeUrl = baseURL + newString + endUrl
-            
-            request(wholeUrl, method: .get).validate().responseJSON { (response) in
-                if response.result.isSuccess,
-                    let responseDictionary = response.result.value as? [String: Any] {
-                    let numberOfItems = responseDictionary["numItems"] as! Int
-                    if numberOfItems > 0 {
-                        let itemArray = responseDictionary["items"] as! [[String: Any]]
-                        
-                        let items = itemArray[0]
-//                        print ("---YO THIS IS THE ITEM DICTIONARY: \(items)---")
-                        
-                        if let checkPrice = items["salePrice"] {
-                            price = checkPrice as! Double
-                            self.cachedResults[query] = price
-                            // only set the price label if the result label is still the same one...
-                            if self.resultLabel.text == query {
-                                self.priceLabel.text = "$\(price)"
-                            }
-                            
-                        } else {
-                            self.priceLabel.text = "checking price..."
-                        }
-
-                    }
-                } else {
-                    self.priceLabel.text = "price unavailable"
-                    print ("it's not getting a response")
-                    print (response.result.error!)
-                }
-                
-            }
-            
-         toFetch.remove(at: 0)
-        
-        }
-    }
-    
-    
-    func showResultTag() {
-        if !resultShowing {
-//            resultTag.fadeIn(duration: 0.5, delay: 0, completion: nil)
-            resultTag.isHidden = true
-            view.addSubview(resultTag)
-            view.bringSubview(toFront: resultTag)
-            
-            resultTag.fadeIn(duration: 0.5, delay: 0, completion: { (complete) in
-                self.resultShowing = true
-            })
-            resultTag.isHidden = false
-        }
-        // if it's already there, keep it there and don't do anything
-        // if it's not there, fade it in
-    }
-    
-    func hideResultTag() {
-        // if it's there, keep it for a while, and fade it
-        if resultShowing {
-            resultTag.fadeOut(duration: 0.5, delay: 2, completion: { (complete) in
-                self.resultShowing = false
-            })
-        }
-    }
-    
     func highProbObjectRecognized(isRecognized: Bool) {
         // to make sure red box disappears when object is not recognized
         if !isRecognized {
             self.objectFrameView?.frame = CGRect.zero
-            hideResultTag()
-
+            
+            resultTag.isHidden = true
+            
+            // THIS IS THE PLACE TO MAKE THE POPUP BOX DISAPPEAR
+            //            if let resultTag = self.resultTag {
+            //                resultTag.removeFromSuperview()
+            //            }
+            
             
         } else {
             // put red box in middle of screen
@@ -458,3 +348,4 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
         }
     }
 }
+

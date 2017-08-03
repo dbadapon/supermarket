@@ -12,12 +12,19 @@ import SceneKit
 import ModelIO
 import SceneKit.ModelIO
 
-class ARKitViewController: UIViewController {
+protocol CreatePostDelegate: class {
+    func didFindNewObject(object: String)
+}
+
+class ARKitViewController: UIViewController, CreatePostDelegate {
+    
+    
     
     @IBOutlet weak var sceneView: ARSCNView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print ("it just got to the ARKit view controller")
         
         // Do any additional setup after loading the view.
         
@@ -135,6 +142,8 @@ class ARKitViewController: UIViewController {
     
     
     @IBAction func addObj(_ sender: Any) {
+        
+        
         let text = SCNText(string: "MOO", extrusionDepth: 0.01)
         text.firstMaterial?.diffuse.contents = UIColor.white
         // text.firstMaterial?.specular.contents = UIColor.orange
@@ -175,6 +184,7 @@ class ARKitViewController: UIViewController {
         var z = Float()
     }
     
+    
     func getCameraCoordinates(sceneView: ARSCNView) -> myCameraCoordinates {
         let cameraTransform = sceneView.session.currentFrame?.camera.transform
         let cameraCoordinates = MDLTransform(matrix: cameraTransform!)
@@ -187,9 +197,45 @@ class ARKitViewController: UIViewController {
         return cc
     }
     
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    
+    func didFindNewObject(object: String) {
+        print ("it called the delegate ,ethod")
+        let text = SCNText(string: object, extrusionDepth: 0.01)
+        text.firstMaterial?.diffuse.contents = UIColor.white
+        // text.firstMaterial?.specular.contents = UIColor.orange
+        text.font = UIFont(name: "Optima", size: 0.04)
+        
+        // SceneKit uses line segments to approximate the curved shapes of text
+        // characters when converting text into a three-dimensional geometry
+        // higher flatness values result in fewer segments, reducing the
+        // smoothness of curves and improving rendering performance
+        // default value of this property is 0.6
+        text.flatness = 1.0
+        
+        // text.containerFrame is a rectangle specifying the area in which SceneKit should lay out the text
+        // text.containerFrame = CGRect(x: 0, y: 0, width: 30, height: 20)
+        
+        let textNode = SCNNode(geometry: text)
+        // textNode.position = SCNVector3(-0.2 + x, -0.9 + delta, -1)
+        //
+        //        x += 0.12
+        //
+        let cc = getCameraCoordinates(sceneView: sceneView)
+        print(cc)
+        
+        // place text where camera is
+        // textNode.position = SCNVector3(cc.x, cc.y, cc.z)
+        // place text 0.2m in front of camer and 0.2m below camera
+        textNode.position = SCNVector3(cc.x, cc.y - 1.0, cc.z - 0.2)
+        // textNode.position = SCNVector3(0.0, 0.0, 0.0)
+        
+        sceneView.scene.rootNode.addChildNode(textNode)
     }
     
     
