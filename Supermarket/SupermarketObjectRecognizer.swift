@@ -474,7 +474,7 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
                     // self.delegate?.highProbObjectRecognized(isRecognized: true)
                     self.highProbExists = true
                     // set the observation
-                    let initialRect = CGRect(x: 0.38, y: 0.68, width: 0.24, height: 0.32)
+                    let initialRect = CGRect(x: 0.45, y: 0.60, width: 0.24, height: 0.32)
                     let newObservation = VNDetectedObjectObservation(boundingBox: initialRect)
                     print("HIGH PROB RESULT EXISTS AND INITIAL TRACKER INSTANTIATED")
                     self.lastObservation = newObservation
