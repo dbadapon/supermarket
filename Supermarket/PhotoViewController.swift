@@ -35,6 +35,8 @@ class PhotoViewController: UIViewController {
     var thirdResultImageUrl = ""
     var fourthResultImageUrl = ""
     
+    var firstPriceValue: Double?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -160,7 +162,8 @@ class PhotoViewController: UIViewController {
                     
                     self.firstResultName.text = String(describing: item["name"]!)
                     if let firstItemPrice = item["salePrice"] {
-                        self.firstResultPrice.text = "$" + String(describing: item["salePrice"]!)
+                        self.firstPriceValue = firstItemPrice as! Double
+                        self.firstResultPrice.text = "$" + String(describing: firstItemPrice)
                     }
                     print (item["salePrice"]!)
                 }
@@ -296,6 +299,8 @@ class PhotoViewController: UIViewController {
             let rootVC = dvc.topViewController as! PreviewViewController
             rootVC.backgroundImage = self.backgroundImage
             rootVC.topMLResult = self.topMLResult
+            rootVC.topPrice = self.firstPriceValue
+            
 //            dvc.backgroundImage = self.backgroundImage
 //            dvc.topMLResult = self.topMLResult
         }

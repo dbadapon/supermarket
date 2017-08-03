@@ -90,6 +90,7 @@ class PreviewViewController: UIViewController, UITextViewDelegate, UIGestureReco
     // from photo vc --> using user captured image
     var backgroundImage: UIImage!
     var topMLResult: String!
+    var topPrice: Double!
     
     @IBOutlet weak var coverPhoto: UIImageView!
     
@@ -416,6 +417,8 @@ class PreviewViewController: UIViewController, UITextViewDelegate, UIGestureReco
             dvc.imageTwo = self.imageViewTwo
             dvc.imageThree = self.imageViewThree
             dvc.imageFour = self.imageViewFour
+            
+            dvc.itemPrice = self.topPrice
         }
     }
     

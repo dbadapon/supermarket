@@ -87,6 +87,8 @@ class PriceViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        
         // hide results before they load
         hideResults()
         
@@ -246,6 +248,10 @@ class PriceViewController: UIViewController, UITextFieldDelegate {
                     
                     self.firstResultName.text = String(describing: item["name"]!)
                     self.firstResultPrice.text = "$" + String(describing: item["salePrice"]!)
+                    self.itemPrice = item["salePrice"] as! Double
+                    
+                    self.setDefaultPrice()
+                    
                     print (item["salePrice"]!)
                 }
                 // more than one result from query
@@ -367,6 +373,15 @@ class PriceViewController: UIViewController, UITextFieldDelegate {
             } // End of closure
         
         }
+    }
+    
+    func setDefaultPrice() {
+        let price = itemPrice as NSNumber
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        // formatter.locale = NSLocale.currentLocale() // This is the default
+        // In Swift 4, this ^ has been renamed to simply NSLocale.current
+        self.inputPrice.text = formatter.string(from: price) // ex. "$123.44"
     }
 
     
