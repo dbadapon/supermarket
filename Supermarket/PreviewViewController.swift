@@ -20,7 +20,9 @@ import UIKit
 import IQKeyboardManagerSwift
 
 class PreviewViewController: UIViewController, UITextViewDelegate, UIGestureRecognizerDelegate, UIAlertViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPopoverControllerDelegate, UITextFieldDelegate {
-
+    
+//    var topMLResult: String?
+    
     // color to use for app
     let textColor = UIColor(red: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha:1.0)
     
@@ -181,6 +183,9 @@ class PreviewViewController: UIViewController, UITextViewDelegate, UIGestureReco
         itemName.layer.borderColor = borderColor
         itemName.layer.borderWidth = 0.5;
         itemName.layer.cornerRadius = 5.0;
+        
+        // set text field default text to previous top ML result
+        itemName.text = topMLResult
         
         // for image picker
         vc.delegate = self

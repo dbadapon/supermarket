@@ -348,7 +348,6 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
     }
     
     func animateResultTag() {
-        print("---ANIMATE---")
         let center_x = (self.objectFrameView?.frame.origin.x)! + ((self.objectFrameView?.frame.width)!/2)
         UIView.animate(withDuration: 0.5, animations: {
             self.resultTag.frame.origin.x = center_x - (self.resultTag.bounds.width/2)
