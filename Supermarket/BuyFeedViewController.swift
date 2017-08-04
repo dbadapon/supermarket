@@ -80,6 +80,9 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         
         postTableView.dataSource = self
         postTableView.delegate = self
+        postTableView.rowHeight = UITableViewAutomaticDimension
+        // Provide an estimated row height. Used for calculating scroll indicator
+        postTableView.estimatedRowHeight = 250
         postTableView.tableFooterView = UIView()
         
         
