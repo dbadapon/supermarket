@@ -417,12 +417,17 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
                 // this is slower, but it works a lot better
                 request.trackingLevel = .accurate
                 
+                
+                // right now, this is happening forever
+                // FIX THIS AFTER LUNCH!!!!!!
                 // perform the request
+                /*
                 do {
                     try self.visionSequenceHandler.perform([request], on: pixelBuffer)
                 } catch {
                     print("Throws: \(error)")
                 }
+ */
             }
         /*
             // below is code for identifying rectangles
@@ -579,15 +584,18 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
                     // closer the rectangle surrounds the object = better the system will be able to track it
                     // let initialRect = CGRect(x: 0.29, y: 0.252, width: 0.534, height: 0.467)
                     // will show rectangle that's (105.375, 193.43, 175.125, 356.178)
-                    var initialRect = CGRect(x: 0.29, y: 0.748, width: 0.534, height: 0.467)
+                    var initialRect = CGRect(x: 0.29, y: 0.252, width: 0.534, height: 0.467)
                     // convert from AVFoundation coordinate space to Vision coordinate space
                     initialRect.origin.y = 1 - initialRect.origin.y
                     let newObservation = VNDetectedObjectObservation(boundingBox: initialRect)
                     print("HIGH PROB RESULT EXISTS AND INITIAL TRACKER INSTANTIATED")
                     print(initialRect)
                     self.lastObservation = newObservation
+                    
+                    var initialboundingbox = CGRect(x: 0.29, y: 0.748, width: 0.534, height: 0.467)
+                    initialboundingbox.origin.y = 1 - initialboundingbox.origin.y
                     // call on delegate
-                    self.recognizedObject = RecognizedObject.init(boundingBox: initialRect, highProbabilityMLResult: self.currentHighProbabilityMLResult, highProbClassifications: self.currentHighProbClassifications)
+                    self.recognizedObject = RecognizedObject.init(boundingBox: initialboundingbox, highProbabilityMLResult: self.currentHighProbabilityMLResult, highProbClassifications: self.currentHighProbClassifications)
                 }
             } else {
                 // self.lastObservation = nil // no need to do this
@@ -629,7 +637,7 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
             
             // pass tranformedRect back to delegate
             // TEMPORARILY COMMENTED OUT TO TEST GOT RECTANGLES
-            // self.recognizedObject = RecognizedObject.init(boundingBox: transformedRect, highProbabilityMLResult: self.currentHighProbabilityMLResult, highProbClassifications: self.currentHighProbClassifications)
+            self.recognizedObject = RecognizedObject.init(boundingBox: transformedRect, highProbabilityMLResult: self.currentHighProbabilityMLResult, highProbClassifications: self.currentHighProbClassifications)
                 
             // do this in delegate
             // let convertedRect = self.cameraLayer.layerRectConverted(fromMetadataOutputRect: transformedRect)
