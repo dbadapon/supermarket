@@ -104,6 +104,11 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
     var visionSequenceHandler = VNSequenceRequestHandler()
     var lastObservation: VNDetectedObjectObservation?
     var highProbExists = false
+    // ANOTHER METHOD FOR BOX AROUND RECOGNIZED OBJECT
+    // detects rectangles in consecutive frames as opposed to trying
+    // to track an object in live camera feed
+    var rectanglesSequenceHandler = VNSequenceRequestHandler()
+    // private var latestBuffer: CMSampleBuffer!
     // save current one for when high probability object recognized
     // this will be the object that a box is put around
     var currentHighProbabilityMLResult = ""
@@ -253,6 +258,61 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
         }
     }
     
+    // for tracking rectangles
+    var rectangleViews: Array<UIView> = []
+    
+    private func gotRectangles(request: VNRequest, error: Error?) {
+        print("Got rectangles: ",request.results!)
+        DispatchQueue.main.async {
+            // make sure we have an actual result
+            let _ = request.results?.map() { result in
+                guard let newRectObv = result as? VNRectangleObservation else { return }
+                //                var transformedRect = newObservation.boundingBox
+                //                transformedRect.origin.y = 1 - transformedRect.origin.y
+//                let convertedRect = self.cameraLayer.layerRectConverted(fromMetadataOutputRect: newRectObv.boundingBox)
+//                let view =  UIView(frame: convertedRect)
+//                view.backgroundColor = UIColor.clear
+//                view.layer.borderWidth = 2.0
+//                view.layer.borderColor = UIColor.black.cgColor
+//                self.view.addSubview(view)
+                // self.recognizedObject = RecognizedObject.init(boundingBox: newRectObv.boundingBox, highProbabilityMLResult: self.currentHighProbabilityMLResult, highProbClassifications: self.currentHighProbClassifications)
+                if self.highProbabilityMLResult != "" {
+                    if self.highProbabilityMLResult != self.currentHighProbabilityMLResult {
+                        print("NEW OBSERVATION, SO LAST OBSERVATION SET TO NIL")
+                        // self.lastObservation = nil
+                        // high prob results have changed, so save then and initialize a tracker
+                        // save the current high probability results
+                        self.currentHighProbabilityMLResult = self.highProbabilityMLResult
+                        self.currentHighProbClassifications = self.highProbClassifications
+                        print(self.highProbabilityMLResult)
+                        self.delegate?.highProbObjectRecognized(isRecognized: true)
+                        self.highProbExists = true
+                        // set the observation
+                        // vision system is sensitive to the width and height of the rectangle we pass in
+                        // closer the rectangle surrounds the object = better the system will be able to track it
+                        // let initialRect = CGRect(x: 0.29, y: 0.252, width: 0.534, height: 0.467)
+                        // will show rectangle that's (105.375, 193.43, 175.125, 356.178)
+                        // var initialRect = CGRect(x: 0.29, y: 0.252, width: 0.534, height: 0.467)
+                        // convert from AVFoundation coordinate space to Vision coordinate space
+                        // initialRect.origin.y = 1 - initialRect.origin.y
+                        // let newObservation = VNDetectedObjectObservation(boundingBox: initialRect)
+                        // print("HIGH PROB RESULT EXISTS AND INITIAL TRACKER INSTANTIATED")
+                        // print(initialRect)
+                        // self.lastObservation = newObservation
+                        // call on delegate
+                        self.recognizedObject = RecognizedObject.init(boundingBox: newRectObv.boundingBox, highProbabilityMLResult: self.currentHighProbabilityMLResult, highProbClassifications: self.currentHighProbClassifications)
+                        print("NEW RECTANGLE DETECTED")
+                    }
+                } else {
+                    // self.lastObservation = nil // no need to do this
+                    // print("last observation set to nil bc no highProbObj anymore")
+                    self.currentHighProbabilityMLResult = ""
+                    self.highProbExists = false
+                    self.delegate?.highProbObjectRecognized(isRecognized: false)
+                }
+            }
+        }
+    }
     
     // check if barcode is in Walmart API
     func checkPriceWithBarcode(query: String) {
@@ -344,7 +404,7 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
             print(error)
         }
         
-        if self.highProbExists {
+//        if self.highProbExists {
             // below is code for tracking object
             // create the request
             if let lastObservation = self.lastObservation {
@@ -361,7 +421,15 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
                     print("Throws: \(error)")
                 }
             }
-        }
+        
+            // below is code for identifying rectangles
+            let request = VNDetectRectanglesRequest(completionHandler: self.gotRectangles)
+            do {
+                try rectanglesSequenceHandler.perform([request], on: pixelBuffer)
+            } catch {
+                print("Throws: \(error)")
+            }
+//        }
     }
     
     func handleClassifications(request: VNRequest, error: Error?) {
@@ -462,33 +530,68 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
                 self.highProbabilityMLResult = highProbResultForOne
             }
 
-            if self.highProbabilityMLResult != "" {
-                if self.highProbabilityMLResult != self.currentHighProbabilityMLResult {
-                    print("NEW OBSERVATION, SO LAST OBSERVATION SET TO NIL")
-                    self.lastObservation = nil
-                    // high prob results have changed, so save then and initialize a tracker
-                    // save the current high probability results
-                    self.currentHighProbabilityMLResult = self.highProbabilityMLResult
-                    self.currentHighProbClassifications = self.highProbClassifications
-                    print(self.highProbabilityMLResult)
-                    // self.delegate?.highProbObjectRecognized(isRecognized: true)
-                    self.highProbExists = true
-                    // set the observation
-                    let initialRect = CGRect(x: 0.45, y: 0.60, width: 0.24, height: 0.32)
-                    let newObservation = VNDetectedObjectObservation(boundingBox: initialRect)
-                    print("HIGH PROB RESULT EXISTS AND INITIAL TRACKER INSTANTIATED")
-                    self.lastObservation = newObservation
-                    // call on delegate
-                    print ("it's about to set a recognized object")
-                    self.recognizedObject = RecognizedObject.init(boundingBox: initialRect, highProbabilityMLResult: self.currentHighProbabilityMLResult, highProbClassifications: self.currentHighProbClassifications)
-                }
-            } else {
-                // self.lastObservation = nil // no need to do this
-                // print("last observation set to nil bc no highProbObj anymore")
-                self.currentHighProbabilityMLResult = ""
-                self.highProbExists = false
-                self.delegate?.highProbObjectRecognized(isRecognized: false)
-            }
+            
+//            if self.highProbabilityMLResult != "" {
+//                if self.highProbabilityMLResult != self.currentHighProbabilityMLResult {
+//                    print("NEW OBSERVATION, SO LAST OBSERVATION SET TO NIL")
+//                    self.lastObservation = nil
+//                    // high prob results have changed, so save then and initialize a tracker
+//                    // save the current high probability results
+//                    self.currentHighProbabilityMLResult = self.highProbabilityMLResult
+//                    self.currentHighProbClassifications = self.highProbClassifications
+//                    print(self.highProbabilityMLResult)
+//                    // self.delegate?.highProbObjectRecognized(isRecognized: true)
+//                    self.highProbExists = true
+//                    // set the observation
+//                    let initialRect = CGRect(x: 0.45, y: 0.60, width: 0.24, height: 0.32)
+//                    let newObservation = VNDetectedObjectObservation(boundingBox: initialRect)
+//                    print("HIGH PROB RESULT EXISTS AND INITIAL TRACKER INSTANTIATED")
+//                    self.lastObservation = newObservation
+//                    // call on delegate
+//                    print ("it's about to set a recognized object")
+//                    self.recognizedObject = RecognizedObject.init(boundingBox: initialRect, highProbabilityMLResult: self.currentHighProbabilityMLResult, highProbClassifications: self.currentHighProbClassifications)
+//                }
+//            } else {
+//                // self.lastObservation = nil // no need to do this
+//                // print("last observation set to nil bc no highProbObj anymore")
+//                self.currentHighProbabilityMLResult = ""
+//                self.highProbExists = false
+//                self.delegate?.highProbObjectRecognized(isRecognized: false)
+//            }
+
+//            if self.highProbabilityMLResult != "" {
+//                if self.highProbabilityMLResult != self.currentHighProbabilityMLResult {
+//                    print("NEW OBSERVATION, SO LAST OBSERVATION SET TO NIL")
+//                    self.lastObservation = nil
+//                    // high prob results have changed, so save then and initialize a tracker
+//                    // save the current high probability results
+//                    self.currentHighProbabilityMLResult = self.highProbabilityMLResult
+//                    self.currentHighProbClassifications = self.highProbClassifications
+//                    print(self.highProbabilityMLResult)
+//                    // self.delegate?.highProbObjectRecognized(isRecognized: true)
+//                    self.highProbExists = true
+//                    // set the observation
+//                    // vision system is sensitive to the width and height of the rectangle we pass in
+//                    // closer the rectangle surrounds the object = better the system will be able to track it
+//                    // let initialRect = CGRect(x: 0.29, y: 0.252, width: 0.534, height: 0.467)
+//                    // will show rectangle that's (105.375, 193.43, 175.125, 356.178)
+//                    var initialRect = CGRect(x: 0.29, y: 0.252, width: 0.534, height: 0.467)
+//                    // convert from AVFoundation coordinate space to Vision coordinate space
+//                    initialRect.origin.y = 1 - initialRect.origin.y
+//                    let newObservation = VNDetectedObjectObservation(boundingBox: initialRect)
+//                    print("HIGH PROB RESULT EXISTS AND INITIAL TRACKER INSTANTIATED")
+//                    print(initialRect)
+//                    self.lastObservation = newObservation
+//                    // call on delegate
+//                    // self.recognizedObject = RecognizedObject.init(boundingBox: initialRect, highProbabilityMLResult: self.currentHighProbabilityMLResult, highProbClassifications: self.currentHighProbClassifications)
+//                }
+//            } else {
+//                // self.lastObservation = nil // no need to do this
+//                // print("last observation set to nil bc no highProbObj anymore")
+//                self.currentHighProbabilityMLResult = ""
+//                self.highProbExists = false
+//                self.delegate?.highProbObjectRecognized(isRecognized: false)
+//            }
         }
     }
     
@@ -521,7 +624,8 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
             transformedRect.origin.y = 1 - transformedRect.origin.y
             
             // pass tranformedRect back to delegate
-            self.recognizedObject = RecognizedObject.init(boundingBox: transformedRect, highProbabilityMLResult: self.currentHighProbabilityMLResult, highProbClassifications: self.currentHighProbClassifications)
+            // TEMPORARILY COMMENTED OUT TO TEST GOT RECTANGLES
+            // self.recognizedObject = RecognizedObject.init(boundingBox: transformedRect, highProbabilityMLResult: self.currentHighProbabilityMLResult, highProbClassifications: self.currentHighProbClassifications)
                 
             // do this in delegate
             // let convertedRect = self.cameraLayer.layerRectConverted(fromMetadataOutputRect: transformedRect)

@@ -260,7 +260,8 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
         // update and set the bounds of the high probability object
         
         let convertedRect = self.previewLayer.rectForMetadataOutputRect(ofInterest: recognizedObject.boundingBox)
-        print(convertedRect)
+        print("\n\nBounding box: ", recognizedObject.boundingBox)
+        print("Converted rect: ",convertedRect,"\n\n")
         // move the highlighted box
 //        print("SET RECTANGLE")
         self.objectFrameView?.frame = convertedRect
