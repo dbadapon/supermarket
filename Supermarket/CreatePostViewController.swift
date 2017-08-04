@@ -76,6 +76,8 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print("---IN VIEW DID LOAD---")
+        
         // set initial price text to empty
 //        priceLabel.text = ""
         
@@ -88,7 +90,6 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
         let animatedTabBar = self.tabBarController as! RAMAnimatedTabBarController
         animatedTabBar.animationTabBarHidden(true)
         
-        print ("done hiding tab bar")
         
         // get hold of the default video camera
         guard let camera = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo) else {

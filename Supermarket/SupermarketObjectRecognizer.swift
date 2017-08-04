@@ -336,6 +336,7 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
         
         // for orientation see kCGImagePropertyOrientation
         let imageRequestHandler = VNImageRequestHandler(cvPixelBuffer: pixelBuffer, orientation: CGImagePropertyOrientation(rawValue: 1)!, options: requestOptions)
+
         do {
             try imageRequestHandler.perform(self.visionRequests)
         } catch {

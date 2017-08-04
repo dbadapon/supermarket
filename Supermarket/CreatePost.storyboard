@@ -116,7 +116,6 @@
                             </imageView>
                             <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="R8X-Gm-bA3">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="214"/>
-                                <color key="backgroundColor" red="0.36550331120000001" green="0.79173368219999996" blue="0.80787837510000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="214" id="NR1-40-ZFw"/>
                                 </constraints>

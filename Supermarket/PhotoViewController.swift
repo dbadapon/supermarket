@@ -45,6 +45,8 @@ class PhotoViewController: UIViewController {
         
         checkPriceWithName(query: topMLResult)
         
+        opaqueHeaderImage.backgroundColor = Constants.Colors.mainColor
+        
         // originally image was coded
         // self.view.backgroundColor = UIColor.gray
         // let backgroundImageView = UIImageView(frame: view.frame)

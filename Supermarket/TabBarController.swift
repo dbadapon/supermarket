@@ -72,7 +72,7 @@ class TabBarController: RAMAnimatedTabBarController {
         let notificationStoryboard = UIStoryboard(name: "NotificationStoryboard", bundle: nil)
         let notificationController = notificationStoryboard.instantiateViewController(withIdentifier: "NotificationController") as! UINavigationController
         
-        let tab4 = RAMAnimatedTabBarItem(title: "Alerts", image: UIImage(named: "Shopping Cart-100"), selectedImage: nil)
+        let tab4 = RAMAnimatedTabBarItem(title: "Alerts", image: UIImage(named: "icons8-Notification-50"), selectedImage: nil)
         tab4.textColor = .black
         tab4.iconColor = .black
         tab4.animation = tabAnimation
@@ -85,7 +85,7 @@ class TabBarController: RAMAnimatedTabBarController {
         let profileStoryboard = UIStoryboard(name: "Profile", bundle: nil)
         let profileController = profileStoryboard.instantiateViewController(withIdentifier: "ProfileController") as! UINavigationController
         
-        let tab5 = RAMAnimatedTabBarItem(title: "Profile", image: UIImage(named: "Shopping Cart-100"), selectedImage: nil)
+        let tab5 = RAMAnimatedTabBarItem(title: "Profile", image: UIImage(named: "Customer-50"), selectedImage: nil)
         tab5.textColor = .black
         tab5.iconColor = .black
         tab5.animation = tabAnimation
