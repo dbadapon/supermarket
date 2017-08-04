@@ -34,6 +34,8 @@ class SellFeedViewController: UIViewController, UITableViewDataSource, UITableVi
         
         // make sure tab bar is there
         self.tabBarController?.tabBar.isHidden = false
+        
+        
                 
 //        let image = UIImage(named: "TeamProfileImage.jpg")
 //        print ("this is the image: \(image)")
@@ -53,6 +55,7 @@ class SellFeedViewController: UIViewController, UITableViewDataSource, UITableVi
         postTableView.dataSource = self
         postTableView.delegate = self
         postTableView.separatorStyle = .singleLine
+        postTableView.backgroundColor = UIColor.lightGray
         self.postTableView.tableFooterView = UIView()
         
         lineViewOne.backgroundColor = ourColor
@@ -188,22 +191,36 @@ class SellFeedViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // print ("the count is \(posts.count)")
-        return posts.count
+        print ("the count is \(posts.count)")
+//        return posts.count
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = postTableView.dequeueReusableCell(withIdentifier: "SellFeedCell", for: indexPath) as! SellFeedCell
         
+        cell.layer.cornerRadius = cell.frame.width * 0.05
+        cell.layer.masksToBounds = true
+        
         cell.preservesSuperviewLayoutMargins = false
         cell.separatorInset = UIEdgeInsets.zero
         cell.layoutMargins = UIEdgeInsets.zero
                 
-        cell.post = posts[indexPath.row]
+        cell.post = posts[indexPath.section]
         
         return cell
     }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return posts.count
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 10
+    }
+    
+    
     
     func segmentedViewControllerValueChanged(_ sender: Any) {
         
@@ -225,7 +242,7 @@ class SellFeedViewController: UIViewController, UITableViewDataSource, UITableVi
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         postTableView.deselectRow(at: indexPath, animated: true)
-        self.detailPost = posts[indexPath.row]
+        self.detailPost = posts[indexPath.section]
         self.performSegue(withIdentifier: "sellToDetail", sender: self)
         
     }
