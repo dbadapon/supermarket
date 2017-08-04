@@ -139,7 +139,7 @@ class ChooseLocationViewController: UIViewController, CLLocationManagerDelegate,
         getLocationButton.layer.cornerRadius = 5
         zipCodeField.layer.cornerRadius = 5
         zipCodeField.layer.borderWidth = 1
-        zipCodeField.layer.borderColor = UIColor(colorLiteralRed: 199.0/255.0, green: 199.0/255.0, blue: 205.0/255.0, alpha: 0.50).cgColor
+        zipCodeField.layer.borderColor = UIColor(red: 199.0/255.0, green: 199.0/255.0, blue: 205.0/255.0, alpha: 0.50).cgColor
         
         // style Set button
         setButton.layer.cornerRadius = 5
@@ -165,7 +165,7 @@ class ChooseLocationViewController: UIViewController, CLLocationManagerDelegate,
     func determineCurrentLocation() {
         // print("Determining current location!")
         locationManager = CLLocationManager()
-        locationManager.delegate = self as! CLLocationManagerDelegate
+        locationManager.delegate = self as CLLocationManagerDelegate
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestAlwaysAuthorization()
         

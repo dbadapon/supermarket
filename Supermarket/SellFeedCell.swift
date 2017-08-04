@@ -29,7 +29,7 @@ class SellFeedCell: UITableViewCell {
 //                let dateString = dateFormatter.string(from: date!)
             
                 let name = post.name
-                self.nameLabel.text = name as? String
+            self.nameLabel.text = name
                 
                 let price = post.price
             let formattedPrice = String(format: "%.2f", price!)

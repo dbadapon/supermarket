@@ -27,7 +27,7 @@ class SellFeedViewController: UIViewController, UITableViewDataSource, UITableVi
     var items : [String] = ["Selling", "Sold"]
     var detailPost: Post?
     
-    let ourColor = UIColor.init(colorLiteralRed: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha: 1.0)
+    let ourColor = UIColor(red: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha: 1.0)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,7 +62,7 @@ class SellFeedViewController: UIViewController, UITableViewDataSource, UITableVi
             NSFontAttributeName: UIFont.systemFont(ofSize: 17, weight: UIFontWeightHeavy)
         ]
         
-        navigationController?.navigationBar.barTintColor = UIColor.init(colorLiteralRed: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha: 1.0)
+        navigationController?.navigationBar.barTintColor = UIColor(red: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha: 1.0)
         
         navigationController?.navigationBar.barStyle = UIBarStyle.black
         
@@ -72,7 +72,7 @@ class SellFeedViewController: UIViewController, UITableViewDataSource, UITableVi
         
         definesPresentationContext = true
         
-        segmentedControl.tintColor = UIColor.init(colorLiteralRed: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha: 1.0)
+        segmentedControl.tintColor = UIColor(red: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha: 1.0)
         segmentedControl.layer.masksToBounds = true
         
         segmentedControl.tintColor = UIColor.clear
@@ -172,7 +172,7 @@ class SellFeedViewController: UIViewController, UITableViewDataSource, UITableVi
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont(name: "Avenir", size: 20)!]
         
-        navigationController?.navigationBar.barTintColor = UIColor.init(colorLiteralRed: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha: 1.0)
+        navigationController?.navigationBar.barTintColor = UIColor(red: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha: 1.0)
         
         navigationController?.navigationBar.barStyle = UIBarStyle.black
         
@@ -269,7 +269,7 @@ class SellFeedViewController: UIViewController, UITableViewDataSource, UITableVi
         
         let query = PFQuery(className: "MarketPost")
         query.addDescendingOrder("createdAt")
-        query.whereKey("market", equalTo: currentMarket?.name!)
+        query.whereKey("market", equalTo: currentMarket!.name)
         self.posts = []
         // var localPosts: [Post] = []
         query.findObjectsInBackground { (marketPosts, error) in

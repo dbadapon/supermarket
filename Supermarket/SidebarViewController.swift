@@ -43,7 +43,7 @@ class SidebarViewController: UIViewController, UITableViewDataSource, UITableVie
         marketTableView.tableFooterView = UIView()
    
         
-        navigationController?.navigationBar.barTintColor = UIColor.init(colorLiteralRed: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha: 1.0)
+        navigationController?.navigationBar.barTintColor = UIColor(red: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha: 1.0)
         
         navigationController?.navigationBar.barStyle = UIBarStyle.black
         

@@ -26,7 +26,7 @@ class PreviewViewController: UIViewController, UITextViewDelegate, UIGestureReco
     // color to use for app
     let textColor = UIColor(red: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha:1.0)
     
-    let lightGray = UIColor(colorLiteralRed: 199.0/255.0, green: 199.0/255.0, blue: 205.0/255.0, alpha: 0.50).cgColor
+    let lightGray = UIColor(red: 199.0/255.0, green: 199.0/255.0, blue: 205.0/255.0, alpha: 0.50).cgColor
     
     // Next button
     @IBOutlet weak var nextButton: UIButton!

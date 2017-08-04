@@ -61,7 +61,7 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
     
     var filter: String = "Most Recent"
     
-    let ourColor = UIColor.init(colorLiteralRed: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha: 1.0)
+    let ourColor = UIColor(red: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha: 1.0)
     
     func changedMarket(market: Market) {
         self.currentMarket = market
@@ -239,7 +239,7 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont(descriptor: font, size: 20)]
         
         
-        navigationController?.navigationBar.barTintColor = UIColor.init(colorLiteralRed: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha: 1.0)
+        navigationController?.navigationBar.barTintColor = UIColor(red: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha: 1.0)
         
         navigationController?.navigationBar.barStyle = UIBarStyle.black
         
@@ -299,7 +299,7 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         
         navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont(name: "Avenir", size: 20)!]
         
-        navigationController?.navigationBar.barTintColor = UIColor.init(colorLiteralRed: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha: 1.0)
+        navigationController?.navigationBar.barTintColor = UIColor(red: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha: 1.0)
         
         navigationController?.navigationBar.barStyle = UIBarStyle.black
         
@@ -359,7 +359,7 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         
         self.posts = []
         let query = PFQuery(className: "MarketPost")
-        query.whereKey("market", equalTo: currentMarket?.name!)
+        query.whereKey("market", equalTo: currentMarket!.name)
         
         if self.category != "All" {
             query.whereKey("category", equalTo: self.category)
@@ -368,9 +368,9 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
             if let marketPosts = marketPosts {
                 self.marketPosts = marketPosts
                 // print ("we're about to do the printing")
-                for m in marketPosts {
+                // for m in marketPosts {
                     // print (m["category"])
-                }
+                // }
                 var idArray: [String] = []
                 for m in marketPosts {
                     let marketPost = MarketPost(m)

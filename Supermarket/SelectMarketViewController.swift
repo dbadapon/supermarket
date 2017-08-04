@@ -138,7 +138,8 @@ class SelectMarketViewController: UIViewController, UICollectionViewDelegate, UI
         query.whereKey("objectId", containedIn: marketIds)
         
         query.findObjectsInBackground { (markets, error) in
-            if let error = error {
+            if error != nil {
+                print("Error with query.findObjectsInBackground")
                 // print ("trouble loading the markets: \(error.localizedDescription)")
             } else if let markets = markets {
                 for m in markets {
@@ -290,7 +291,7 @@ class SelectMarketViewController: UIViewController, UICollectionViewDelegate, UI
         
         if let selectedCategory = marketsToPost[market.name!] {
             cell.categoryLabel.text = selectedCategory
-            cell.layer.backgroundColor = UIColor.init(colorLiteralRed: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha: 1.0).cgColor
+            cell.layer.backgroundColor = UIColor(red: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha: 1.0) as! CGColor
             cell.marketName.textColor = UIColor.white
 //            cell.layer.borderWidth = 0
             

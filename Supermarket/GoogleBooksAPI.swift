@@ -51,7 +51,8 @@ class GoogleBooksAPI {
                     returnedDictionary = sortedDictionary
                 }
             } else {
-                print(response.result.error?.localizedDescription)
+                print("Error in searchGoogleBooksWithIsbn")
+                // print(response.result.error?.localizedDescription)
             }
         }
         return returnedDictionary

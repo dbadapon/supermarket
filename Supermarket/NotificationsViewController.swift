@@ -31,7 +31,7 @@ class NotificationsViewController: UIViewController, UITableViewDelegate, UITabl
     var indexPath: IndexPath? = nil
     // var messages: [Message]? = nil
     
-    let ourColor = UIColor.init(colorLiteralRed: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha: 1.0)
+    let ourColor = UIColor(red: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha: 1.0)
     
     var clickedPost: Post!
     
@@ -65,7 +65,7 @@ class NotificationsViewController: UIViewController, UITableViewDelegate, UITabl
         
         navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont(name: "Avenir", size: 20)!]
         
-        navigationController?.navigationBar.barTintColor = UIColor.init(colorLiteralRed: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha: 1.0)
+        navigationController?.navigationBar.barTintColor = UIColor(red: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha: 1.0)
         
         navigationController?.navigationBar.barStyle = UIBarStyle.black
         
@@ -98,7 +98,8 @@ class NotificationsViewController: UIViewController, UITableViewDelegate, UITabl
                 self.tableView.reloadData()
                 self.tableView.reloadData()
             } else if error != nil {
-                print (error?.localizedDescription)
+                print("Error with query.findObjectsInBackground")
+                // print (error?.localizedDescription)
             } else {
                 // print ("the posts could not be loaded into the sell feed")
             }
@@ -176,7 +177,7 @@ class NotificationsViewController: UIViewController, UITableViewDelegate, UITabl
         // Configure the fields of the interface.
         let number = notification.sender["phoneNumber"] as? String
         let recipients = [number]
-        composeVC.recipients = recipients as! [String]
+        composeVC.recipients = recipients as? [String]
         
         let initialString = "Hey, I saw that you were interested in my "
         let name = notification.postObject["name"] as? String
@@ -200,8 +201,8 @@ class NotificationsViewController: UIViewController, UITableViewDelegate, UITabl
                 self.tableView.deleteRows(at: indexPaths, with: UITableViewRowAnimation.automatic)
                 
                 let query = PFQuery(className: "SupermarketNotification")
-                query.whereKey("sender", equalTo: self.notification?.sender)
-                query.whereKey("receiver", equalTo: self.notification?.receiver)
+                query.whereKey("sender", equalTo: self.notification!.sender)
+                query.whereKey("receiver", equalTo: self.notification!.receiver)
                 query.findObjectsInBackground { (notifications, error) in
                     if let error = error {
                         print ("there was an error finding the notification \(error.localizedDescription)")
@@ -210,7 +211,7 @@ class NotificationsViewController: UIViewController, UITableViewDelegate, UITabl
                         for item in notifications {
                             item.deleteInBackground(block: { (success, error) in
                                 if let error = error {
-                                    // print ("there was an error with deleting the notification \(error.localizedDescription)")
+                                    print ("there was an error with deleting the notification \(error.localizedDescription)")
                                 } else {
                                     // print ("the notification should have been deleted")
                                 }

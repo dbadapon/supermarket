@@ -28,7 +28,7 @@ class BuyFeedCell: UITableViewCell {
     var itemImage: PFObject! {
         didSet{
             let images: [PFFile]? = itemImage["images"] as? [PFFile]
-            let file = images![0] as? PFFile
+            let file = images![0] as! PFFile
             self.itemImageView.file = file
             self.itemImageView.loadInBackground()
         }

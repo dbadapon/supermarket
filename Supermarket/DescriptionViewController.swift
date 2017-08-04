@@ -63,7 +63,7 @@ class DescriptionViewController: UIViewController, UITextViewDelegate, TwicketSe
         // Style text field
         itemDescription.layer.cornerRadius = 5
         itemDescription.layer.borderWidth = 1
-        itemDescription.layer.borderColor = UIColor(colorLiteralRed: 199.0/255.0, green: 199.0/255.0, blue: 205.0/255.0, alpha: 0.50).cgColor
+        itemDescription.layer.borderColor = (UIColor(red: 199.0/255.0, green: 199.0/255.0, blue: 205.0/255.0, alpha: 0.50) as! CGColor)
         
         // Set delegate of text field
         itemDescription.delegate = self
@@ -80,7 +80,7 @@ class DescriptionViewController: UIViewController, UITextViewDelegate, TwicketSe
         font.withFace("Roman")
         self.segmentedControl.font = UIFont(descriptor: font, size: 18)
         self.segmentedControl.sliderBackgroundColor
-            = UIColor.init(colorLiteralRed: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha: 1.0)
+            = UIColor(red: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha: 1.0)
         
 //        segmentedControl.isSliderShadowHidden = true
         
