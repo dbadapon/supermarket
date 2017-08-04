@@ -16,6 +16,8 @@ import SimpleAnimation
 
 class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDelegate {
     
+    
+    
     @IBOutlet weak var resultTag: UIView!
     
     @IBOutlet weak var resultLabel: UILabel!
@@ -76,7 +78,6 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("---IN VIEW DID LOAD---")
         
         // set initial price text to empty
 //        priceLabel.text = ""
@@ -90,14 +91,18 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
         let animatedTabBar = self.tabBarController as! RAMAnimatedTabBarController
         animatedTabBar.animationTabBarHidden(true)
         
-        // print("done hiding tab bar")
+         print("done hiding tab bar")
         
         // get hold of the default video camera
         guard let camera = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo) else {
             fatalError("No video camera available")
         }
         
+        
+        print("---START THE ACTIVITY INDICATOR...---")
+        
         recognizer = SupermarketObjectRecognizer(passedDevice: camera)
+        
         recognizer?.delegate = self
         self.session = recognizer!.session
         
@@ -105,7 +110,9 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
         // also configure live preview layer
         previewLayer = AVCaptureVideoPreviewLayer(session: recognizer!.session)
         previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
+        print("--STOP THE ACTIVITY INDICATOR---")
         previewView.layer.addSublayer(previewLayer)
+//        print("---just added the sublayer---")
         
         // add a slight gradient overlay so we can read the results easily
         gradientLayer = CAGradientLayer()

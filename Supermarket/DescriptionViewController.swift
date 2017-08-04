@@ -63,7 +63,7 @@ class DescriptionViewController: UIViewController, UITextViewDelegate, TwicketSe
         // Style text field
         itemDescription.layer.cornerRadius = 5
         itemDescription.layer.borderWidth = 1
-        itemDescription.layer.borderColor = (UIColor(red: 199.0/255.0, green: 199.0/255.0, blue: 205.0/255.0, alpha: 0.50) as! CGColor)
+        itemDescription.layer.borderColor = UIColor(red: 199.0/255.0, green: 199.0/255.0, blue: 205.0/255.0, alpha: 0.50).cgColor
         
         // Set delegate of text field
         itemDescription.delegate = self

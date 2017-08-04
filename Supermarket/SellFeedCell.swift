@@ -12,17 +12,20 @@ import ParseUI
 
 class SellFeedCell: UITableViewCell {
     
+      @IBOutlet weak var whiteView: UIView!
     @IBOutlet weak var photoImage: PFImageView!
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var dateLabel: UILabel!
+    //    @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
+    
+    
     
 
     var post: Post! {
         didSet {
-                let date = post.parseObject.createdAt
-            let dateString = Post.getRelativeDate(date: date!)
-            self.dateLabel.text = dateString
+//                let date = post.parseObject.createdAt
+//            let dateString = Post.getRelativeDate(date: date!)
+//            self.dateLabel.text = dateString
 //                let dateFormatter = DateFormatter()
 //                dateFormatter.dateStyle = .short
 //                dateFormatter.timeStyle = .none
@@ -47,6 +50,9 @@ class SellFeedCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        whiteView.layer.borderWidth = 1
+        whiteView.layer.borderColor = Constants.Colors.ourGray.cgColor
+        whiteView.layer.cornerRadius = 2
         // Initialization code
     }
 

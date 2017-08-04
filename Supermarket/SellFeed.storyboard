@@ -10,6 +10,11 @@
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Avenir.ttc">
+            <string>Avenir-Medium</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Market Name-->
         <scene sceneID="dcj-PY-zMX">
@@ -23,17 +28,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+<<<<<<< HEAD
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="254" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="br7-It-d69">
                                 <rect key="frame" x="0.0" y="104" width="375" height="563"/>
+=======
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="259" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="br7-It-d69">
+                                <rect key="frame" x="0.0" y="99" width="375" height="568"/>
+>>>>>>> Changed layout of Sell Feed table view
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SellFeedCell" rowHeight="254" id="Cm9-dr-fEM" customClass="SellFeedCell" customModule="Supermarket" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="254"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="SellFeedCell" rowHeight="259" id="Cm9-dr-fEM" customClass="SellFeedCell" customModule="Supermarket" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="259"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Cm9-dr-fEM" id="lra-40-sFE">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="253.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="259"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+<<<<<<< HEAD
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="J17-L3-326" customClass="PFImageView">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="187.5"/>
                                                     <constraints>
@@ -82,12 +93,41 @@
                                                 <constraint firstItem="zuj-UR-0Zq" firstAttribute="top" secondItem="051-kz-gTa" secondAttribute="bottom" constant="4" id="tbg-0a-lLz"/>
                                                 <constraint firstItem="051-kz-gTa" firstAttribute="leading" secondItem="lra-40-sFE" secondAttribute="leading" constant="8" id="uOd-e8-3Aa"/>
                                             </constraints>
+=======
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="J17-L3-326" customClass="PFImageView">
+                                                    <rect key="frame" x="8" y="8" width="359" height="204"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3nY-PC-iGj">
+                                                    <rect key="frame" x="8" y="211" width="359" height="48"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="051-kz-gTa">
+                                                            <rect key="frame" x="8" y="10" width="213" height="28"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="20"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z1w-bx-lL3">
+                                                            <rect key="frame" x="262" y="10" width="89" height="28"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="20"/>
+                                                            <color key="textColor" red="0.63016935714005218" green="0.63016935714005218" blue="0.63016935714005218" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </view>
+                                            </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+>>>>>>> Changed layout of Sell Feed table view
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="dateLabel" destination="zuj-UR-0Zq" id="V9I-Ul-hLb"/>
                                             <outlet property="nameLabel" destination="051-kz-gTa" id="Baj-m6-u5z"/>
                                             <outlet property="photoImage" destination="J17-L3-326" id="x6j-l8-0Ei"/>
                                             <outlet property="priceLabel" destination="z1w-bx-lL3" id="903-zA-qDZ"/>
+                                            <outlet property="whiteView" destination="3nY-PC-iGj" id="J94-0y-kdC"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

@@ -54,8 +54,7 @@ class SellFeedViewController: UIViewController, UITableViewDataSource, UITableVi
         
         postTableView.dataSource = self
         postTableView.delegate = self
-        postTableView.separatorStyle = .singleLine
-        postTableView.backgroundColor = UIColor.lightGray
+
         self.postTableView.tableFooterView = UIView()
         
         lineViewOne.backgroundColor = ourColor
@@ -200,14 +199,13 @@ class SellFeedViewController: UIViewController, UITableViewDataSource, UITableVi
         
         let cell = postTableView.dequeueReusableCell(withIdentifier: "SellFeedCell", for: indexPath) as! SellFeedCell
         
-        cell.layer.cornerRadius = cell.frame.width * 0.05
-        cell.layer.masksToBounds = true
+
+//        cell.preservesSuperviewLayoutMargins = false
+//        cell.separatorInset = UIEdgeInsets.zero
+//        cell.layoutMargins = UIEdgeInsets.zero
         
-        cell.preservesSuperviewLayoutMargins = false
-        cell.separatorInset = UIEdgeInsets.zero
-        cell.layoutMargins = UIEdgeInsets.zero
-                
-        cell.post = posts[indexPath.section]
+        cell.post = posts[indexPath.row]
+
         
         return cell
     }

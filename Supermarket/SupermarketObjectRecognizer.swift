@@ -390,6 +390,7 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
 //            let lastObservation = self.lastObservation
 //        else { return }
         
+        
         connection.videoOrientation = .portrait
         var requestOptions:[VNImageOption: Any] = [:]
         
@@ -442,7 +443,11 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
     }
     
     func handleClassifications(request: VNRequest, error: Error?) {
+<<<<<<< HEAD
         // print ("it's getting to the handle classifications function")
+=======
+//        print ("it's getting to the handle classifications function")
+>>>>>>> Changed layout of Sell Feed table view
         if let theError = error {
             print("Error: \(theError.localizedDescription)")
             return
