@@ -63,7 +63,7 @@ class NotificationsViewController: UIViewController, UITableViewDelegate, UITabl
         
         
         
-        navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont(name: "Avenir", size: 20)]
+        navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont(name: "Avenir", size: 20)!]
         
         navigationController?.navigationBar.barTintColor = UIColor.init(colorLiteralRed: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha: 1.0)
         
@@ -80,14 +80,14 @@ class NotificationsViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        var query = PFQuery(className: "SupermarketNotification")
-        query.whereKey("receiver", equalTo: PFUser.current())
+        let query = PFQuery(className: "SupermarketNotification")
+        query.whereKey("receiver", equalTo: PFUser.current()!)
         query.addDescendingOrder("createdAt")
         query.limit = 20
         
         query.findObjectsInBackground { (notifications: [PFObject]?, error: Error?) in
             if let notifications = notifications {
-                print ("it found notifications")
+                // print ("it found notifications")
                 print (notifications.count)
                 var newNotifications: [SupermarketNotification] = []
                 for item in notifications {
@@ -100,7 +100,7 @@ class NotificationsViewController: UIViewController, UITableViewDelegate, UITabl
             } else if error != nil {
                 print (error?.localizedDescription)
             } else {
-                print ("the posts could not be loaded into the sell feed")
+                // print ("the posts could not be loaded into the sell feed")
             }
         }
     }
@@ -140,7 +140,7 @@ class NotificationsViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     func didTapIgnore(of notification: SupermarketNotification, indexPath: IndexPath) {
-        print (indexPath.row)
+        // print (indexPath.row)
         var indexPaths: [IndexPath] = []
         indexPaths.append(indexPath)
         notifications.remove(at: indexPath.row)
@@ -158,12 +158,12 @@ class NotificationsViewController: UIViewController, UITableViewDelegate, UITabl
                         if let error = error {
                             print ("there was an error with deleting the notification \(error.localizedDescription)")
                         } else {
-                            print ("the notification should have been deleted")
+                            // print ("the notification should have been deleted")
                         }
                     })
                 }
             } else {
-                print ("it could not find the notification, but there was no error")
+                // print ("it could not find the notification, but there was no error")
             }
         }
     }
@@ -195,7 +195,7 @@ class NotificationsViewController: UIViewController, UITableViewDelegate, UITabl
             if result.rawValue == 1 {
                 var indexPaths: [IndexPath] = []
                 indexPaths.append(self.indexPath!)
-                print (self.notifications)
+                // print (self.notifications)
                 self.notifications.remove(at: self.indexPath!.row)
                 self.tableView.deleteRows(at: indexPaths, with: UITableViewRowAnimation.automatic)
                 
@@ -206,22 +206,22 @@ class NotificationsViewController: UIViewController, UITableViewDelegate, UITabl
                     if let error = error {
                         print ("there was an error finding the notification \(error.localizedDescription)")
                     } else if let notifications = notifications {
-                        print (notifications.count)
+                        // print (notifications.count)
                         for item in notifications {
                             item.deleteInBackground(block: { (success, error) in
                                 if let error = error {
-                                    print ("there was an error with deleting the notification \(error.localizedDescription)")
+                                    // print ("there was an error with deleting the notification \(error.localizedDescription)")
                                 } else {
-                                    print ("the notification should have been deleted")
+                                    // print ("the notification should have been deleted")
                                 }
                             })
                         }
                     } else {
-                        print ("it could not find the notification, but there was no error")
+                        // print ("it could not find the notification, but there was no error")
                     }
                 }
             } else {
-                print ("something else happened")
+                // print ("something else happened")
             }
             
         }

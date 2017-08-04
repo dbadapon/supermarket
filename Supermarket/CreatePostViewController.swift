@@ -90,6 +90,7 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
         let animatedTabBar = self.tabBarController as! RAMAnimatedTabBarController
         animatedTabBar.animationTabBarHidden(true)
         
+        // print("done hiding tab bar")
         
         // get hold of the default video camera
         guard let camera = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo) else {
@@ -312,7 +313,9 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
             let baseURL = "http://api.walmartlabs.com/v1/search?query="
             let endUrl = "&format=json&apiKey=yva6f6yprac42rsp44tjvxjg"
             
-            var newString = query.replacingOccurrences(of: " ", with: "+")
+            let newString = query.replacingOccurrences(of: " ", with: "+")
+//            newString = newString.replacingOccurrences(of: ",", with: "")
+
             let wholeUrl = baseURL + newString + endUrl
             
             request(wholeUrl, method: .get).validate().responseJSON { (response) in
@@ -443,9 +446,9 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
             let dvc = segue.destination as! PhotoViewController
             dvc.backgroundImage = imageToPass
             dvc.topMLResult = topMLResult
-            print("PRINTING STUFF")
-            print(dvc.backgroundImage)
-            print(dvc.topMLResult)
+//            print("PRINTING STUFF")
+//            print(dvc.backgroundImage)
+//            print(dvc.topMLResult)
         }
         
         // only happens when barcode recognized and user clicks scan

@@ -900,46 +900,6 @@
             </objects>
             <point key="canvasLocation" x="86" y="664"/>
         </scene>
-        <!--Create View Controller-->
-        <scene sceneID="EEi-PA-7bq">
-            <objects>
-                <viewController id="XmQ-yy-KPS" customClass="ARCreateViewController" customModule="Supermarket" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="8Ja-wM-SgH"/>
-                        <viewControllerLayoutGuide type="bottom" id="jyj-Yj-20s"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="fLQ-05-XSl">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uuu-iB-PKr">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <subviews>
-                                    <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zaY-EH-qSY">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </arscnView>
-                                </subviews>
-                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="uuu-iB-PKr" firstAttribute="top" secondItem="fLQ-05-XSl" secondAttribute="top" id="9lA-iT-qkB"/>
-                            <constraint firstItem="jyj-Yj-20s" firstAttribute="top" secondItem="uuu-iB-PKr" secondAttribute="bottom" id="CQE-Vh-TNU"/>
-                            <constraint firstItem="uuu-iB-PKr" firstAttribute="leading" secondItem="fLQ-05-XSl" secondAttribute="leading" id="wKi-DS-oMn"/>
-                            <constraint firstAttribute="trailing" secondItem="uuu-iB-PKr" secondAttribute="trailing" id="yyu-Q0-q85"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="previewView" destination="uuu-iB-PKr" id="1os-mL-krT"/>
-                        <outlet property="sceneView" destination="zaY-EH-qSY" id="hAu-3Z-O2i"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ETJ-yx-lfd" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1634.4000000000001" y="662.51874062968523"/>
-        </scene>
         <!--ARKit-->
         <scene sceneID="kzf-Ip-k6J">
             <objects>

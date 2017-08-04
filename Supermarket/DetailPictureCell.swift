@@ -20,7 +20,7 @@ class DetailPictureCell: UITableViewCell {
     
     var postImage: PFObject! {
         didSet {
-            let images: [PFFile]? = postImage["images"] as! [PFFile]
+            let images: [PFFile]? = postImage["images"] as? [PFFile]
             let file = images![0] as? PFFile
             self.postImageView.file = file
             self.postImageView.loadInBackground()

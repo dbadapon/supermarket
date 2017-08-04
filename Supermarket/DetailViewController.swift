@@ -40,16 +40,16 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 if let error = error {
                     print (error.localizedDescription)
                 } else if let data = data {
-                    print ("it got one image")
+                    // print ("it got one image")
                     let actualImage = UIImage(data: data)
                     if actualImage != nil {
                         actualImages.append(actualImage!)
                     }
                 } else {
-                    print ("could not load the image")
+                    // print ("could not load the image")
                 }
                 if actualImages.count == images?.count {
-                    print ("got all the pictures")
+                    // print ("got all the pictures")
                     self.allImages = actualImages
                     self.tableView.reloadData()
                 }
@@ -59,7 +59,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         self.title = "Item Details"
         
-        navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont(name: "Avenir", size: 20)]
+        navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont(name: "Avenir", size: 20)!]
         
         navigationController?.navigationBar.barTintColor = UIColor.init(colorLiteralRed: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha: 1.0)
         

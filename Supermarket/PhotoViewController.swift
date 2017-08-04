@@ -163,9 +163,11 @@ class PhotoViewController: UIViewController {
                     }
                     
                     self.firstResultName.text = String(describing: item["name"]!)
+                    
                     if let firstItemPrice = item["salePrice"] {
-                        self.firstPriceValue = firstItemPrice as! Double
+                        self.firstPriceValue = firstItemPrice as? Double
                         self.firstResultPrice.text = "$" + String(describing: firstItemPrice)
+
                     }
                     print (item["salePrice"]!)
                 }
@@ -207,10 +209,10 @@ class PhotoViewController: UIViewController {
                     }
                     
                     self.secondResultName.text = String(describing: item["name"]!)
-                    if let secondItemPrice = item["salePrice"] {
+                    if item["salePrice"] != nil {
                         self.secondResultPrice.text = "$" + String(describing: item["salePrice"]!)
                     }
-                    print (item["salePrice"])
+                    print (item["salePrice"]!)
                 }
                 // more than two results from query
                 if numberOfItems > 2 {
@@ -246,10 +248,10 @@ class PhotoViewController: UIViewController {
                     }
                     
                     self.thirdResultName.text = String(describing: item["name"]!)
-                    if let thirdItemPrice = item["salePrice"] {
+                    if item["salePrice"] != nil {
                         self.thirdResultPrice.text = "$" + String(describing: item["salePrice"]!)
                     }
-                    print (item["salePrice"])
+                    print (item["salePrice"]!)
                 }
                 // more than three results from query
                 if numberOfItems > 3 {
@@ -285,10 +287,10 @@ class PhotoViewController: UIViewController {
                     }
                     
                     self.fourthResultName.text = String(describing: item["name"]!)
-                    if let fourthItemPrice = item["salePrice"] {
+                    if item["salePrice"] != nil {
                         self.fourthResultPrice.text = "$" + String(describing: item["salePrice"]!)
                     }
-                    print (item["salePrice"])
+                    print (item["salePrice"]!)
                 }
             }
         }

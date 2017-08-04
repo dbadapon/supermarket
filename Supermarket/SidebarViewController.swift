@@ -34,8 +34,8 @@ class SidebarViewController: UIViewController, UITableViewDataSource, UITableVie
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("sidebar viewDidLoad")
-        print(self.navigationController)
+        // print("sidebar viewDidLoad")
+        // print(self.navigationController!)
         
         marketTableView.dataSource = self
         marketTableView.delegate = self
@@ -104,10 +104,10 @@ class SidebarViewController: UIViewController, UITableViewDataSource, UITableVie
         marketTableView.deselectRow(at: indexPath, animated: true)
         
         if let delegate = self.delegate {
-            print("the delegate is not nil!")
+            // print("the delegate is not nil!")
             delegate.changedMarket(market: markets[indexPath.row])
         } else {
-            print("the delegate is nil :(")
+            // print("the delegate is nil :(")
         }
         dismiss(animated: true, completion: nil)
         

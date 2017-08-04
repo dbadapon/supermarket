@@ -36,13 +36,13 @@ class ProfileViewController: UIViewController {
         profileImage.layer.cornerRadius = profileImage.frame.width * 0.5
         profileImage.layer.masksToBounds = true
         
-        profileImage.file = user.value(forKey: "profileImage") as! PFFile
+        profileImage.file = user.value(forKey: "profileImage") as? PFFile
         profileImage.loadInBackground()
         
-        fullNameLabel.text = user.value(forKey: "fullname") as! String
-        usernameLabel.text = user.value(forKey: "username") as! String
-        emailLabel.text = user.value(forKey: "email") as! String
-        phoneNumberLabel.text = user.value(forKey: "phoneNumber") as! String
+        fullNameLabel.text = user.value(forKey: "fullname") as? String
+        usernameLabel.text = user.value(forKey: "username") as? String
+        emailLabel.text = user.value(forKey: "email") as? String
+        phoneNumberLabel.text = user.value(forKey: "phoneNumber") as? String
         
         
     }

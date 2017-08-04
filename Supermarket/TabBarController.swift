@@ -91,7 +91,7 @@ class TabBarController: RAMAnimatedTabBarController {
         tab5.animation = tabAnimation
         
 //        let tab5 = UITabBarItem(title: "Profile", image: nil, selectedImage: nil)
-        profileController.tabBarItem = tab5 as! RAMAnimatedTabBarItem
+        profileController.tabBarItem = tab5 
         
         
         

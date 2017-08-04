@@ -51,7 +51,7 @@ class GoogleBooksAPI {
                     returnedDictionary = sortedDictionary
                 }
             } else {
-                print (response.result.error?.localizedDescription)
+                print(response.result.error?.localizedDescription)
             }
         }
         return returnedDictionary

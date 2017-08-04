@@ -170,7 +170,7 @@ class SellFeedViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont(name: "Avenir", size: 20)]
+        navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont(name: "Avenir", size: 20)!]
         
         navigationController?.navigationBar.barTintColor = UIColor.init(colorLiteralRed: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha: 1.0)
         
@@ -188,7 +188,7 @@ class SellFeedViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print ("the count is \(posts.count)")
+        // print ("the count is \(posts.count)")
         return posts.count
     }
     
@@ -235,7 +235,7 @@ class SellFeedViewController: UIViewController, UITableViewDataSource, UITableVi
         self.sellingPosts = []
         self.soldPosts = []
         currentMarket = market
-        print (currentMarket?.name)
+        // print (currentMarket?.name!)
         self.navigationItem.title = self.currentMarket!.name
         loadPosts()
         
@@ -259,7 +259,7 @@ class SellFeedViewController: UIViewController, UITableViewDataSource, UITableVi
                 // self.postTableView.reloadData()
             }
             else {
-                print("Error getting markets: \(error?.localizedDescription)")
+                print("Error getting markets: \(String(describing: error?.localizedDescription))")
             }
         }
     }
@@ -269,12 +269,12 @@ class SellFeedViewController: UIViewController, UITableViewDataSource, UITableVi
         
         let query = PFQuery(className: "MarketPost")
         query.addDescendingOrder("createdAt")
-        query.whereKey("market", equalTo: currentMarket?.name)
+        query.whereKey("market", equalTo: currentMarket?.name!)
         self.posts = []
         // var localPosts: [Post] = []
         query.findObjectsInBackground { (marketPosts, error) in
             if let marketPosts = marketPosts {
-                print ("it found \(marketPosts.count) market posts")
+                // print ("it found \(marketPosts.count) market posts")
                 var idArray: [String] = []
                 for m in marketPosts {
                     let marketPost = MarketPost(m)
@@ -352,7 +352,7 @@ class SellFeedViewController: UIViewController, UITableViewDataSource, UITableVi
             let destination = segue.destination as! UINavigationController
             let destinationVC = destination.topViewController as! SidebarViewController
             destinationVC.markets = self.markets
-            print("destination VC: \(destinationVC)")
+            // print("destination VC: \(destinationVC)")
             destinationVC.delegate = self
         }
         

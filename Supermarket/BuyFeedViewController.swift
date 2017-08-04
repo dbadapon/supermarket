@@ -297,7 +297,7 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
 //
 //        navigationController?.navigationBar.isTranslucent = false
         
-        navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont(name: "Avenir", size: 20)]
+        navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont(name: "Avenir", size: 20)!]
         
         navigationController?.navigationBar.barTintColor = UIColor.init(colorLiteralRed: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha: 1.0)
         
@@ -330,7 +330,7 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
                 self.categoryTableView!.reloadData()
             }
             else {
-                print("Error getting markets: \(error?.localizedDescription)")
+                print("Error getting markets: \(String(describing: error?.localizedDescription))")
             }
         }
     }
@@ -359,7 +359,7 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         
         self.posts = []
         let query = PFQuery(className: "MarketPost")
-        query.whereKey("market", equalTo: currentMarket?.name)
+        query.whereKey("market", equalTo: currentMarket?.name!)
         
         if self.category != "All" {
             query.whereKey("category", equalTo: self.category)
@@ -367,9 +367,9 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         query.findObjectsInBackground(block: { (marketPosts, error) in
             if let marketPosts = marketPosts {
                 self.marketPosts = marketPosts
-                print ("we're about to do the printing")
+                // print ("we're about to do the printing")
                 for m in marketPosts {
-                    print (m["category"])
+                    // print (m["category"])
                 }
                 var idArray: [String] = []
                 for m in marketPosts {
@@ -379,7 +379,7 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
                 }
                 self.fetchFilteredPosts(idArray: idArray)
             } else {
-                print("Error fetching MarketPost according to category: \(error?.localizedDescription)")
+                print("Error fetching MarketPost according to category: \(String(describing: error?.localizedDescription))")
             }
         })
     }
@@ -398,14 +398,14 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         postQuery.whereKey("sold", equalTo: false)
         postQuery.findObjectsInBackground { (posts, error) in
             if let posts = posts {
-                print(posts)
+                // print(posts)
                 for p in posts {
                     let post = Post(p)
                     self.posts.append(post)
                 }
                 self.postTableView.reloadData()
             } else {
-                print("Error fetching filtered posts: \(error?.localizedDescription)")
+                print("Error fetching filtered posts: \(String(describing: error?.localizedDescription))")
             }
         }
         
@@ -466,13 +466,13 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         if tableView == postTableView {
             return posts.count
         } else if tableView == filterTableView {
-            print ("got here")
+            // print ("got here")
             return 3
         } else {
-            print ("hey hey hey")
-            print (currentMarket!)
-            print (currentMarket!.categories)
-            print (currentMarket!.categories.count)
+            // print ("hey hey hey")
+            // print (currentMarket!)
+            // print (currentMarket!.categories)
+            // print (currentMarket!.categories.count)
             return currentMarket!.categories.count + 1
         }
     }
@@ -537,7 +537,7 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
             return cell
         } else if tableView == filterTableView {
             let frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 40)
-            var cell = CustomCell(frame: frame, title: "hey")
+            let cell = CustomCell(frame: frame, title: "hey")
             if indexPath.row == 0{
                 cell.cellLabel.text = "Most Recent"
             } else if indexPath.row == 1 {
@@ -550,7 +550,7 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         } else {
             
             let frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 40)
-            var cell = CustomCell(frame: frame, title: "just testing this out")
+            let cell = CustomCell(frame: frame, title: "just testing this out")
             if indexPath.row == 0 {
                 self.category = "All"
                 cell.cellLabel.text = "All"
@@ -571,15 +571,15 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
             filterTableView?.deselectRow(at: indexPath, animated: true)
             if indexPath.row == 0 {
                 self.filter = "Most Recent"
-                print ("filter by Most Recent")
+                // print ("filter by Most Recent")
                 filterPosts()
             } else if indexPath.row == 1 {
                 self.filter = "Price: Low to High"
-                print ("filter by lowest price")
+                // print ("filter by lowest price")
                 filterPosts()
             } else {
                 self.filter = "Price: High to Low"
-                print ("filter by highest price")
+                // print ("filter by highest price")
                 filterPosts()
             }
             dropView?.hideMenu()
@@ -592,7 +592,7 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
             categoryTableView?.deselectRow(at: indexPath, animated: true)
 //            self.category = currentMarket!.categories[indexPath.row]
             filterPosts()
-            print ("the new category is \(currentMarket!.categories[indexPath.row])")
+            print ("The new category is \(currentMarket!.categories[indexPath.row])")
             dropView?.hideMenu()
         }
     }

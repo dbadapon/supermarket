@@ -133,23 +133,23 @@ class SelectMarketViewController: UIViewController, UICollectionViewDelegate, UI
         
 
         let marketIds = PFUser.current()?.value(forKey: "markets") as! [String]
-        print (marketIds)
+        // print (marketIds)
         let query = PFQuery(className: "Market")
         query.whereKey("objectId", containedIn: marketIds)
         
         query.findObjectsInBackground { (markets, error) in
             if let error = error {
-                print ("trouble loading the markets: \(error.localizedDescription)")
+                // print ("trouble loading the markets: \(error.localizedDescription)")
             } else if let markets = markets {
                 for m in markets {
                     let market = Market(m)
                     self.markets.append(market)
                 }
-                print ("the number of markets found was: \(markets.count)")
-                print ("okay we got the list of markets")
+                // print ("the number of markets found was: \(markets.count)")
+                // print ("okay we got the list of markets")
                 self.collectionView.reloadData()
             } else {
-                print ("there was no error but no markets were loaded")
+                // print ("there was no error but no markets were loaded")
             }
             
         }
@@ -171,21 +171,21 @@ class SelectMarketViewController: UIViewController, UICollectionViewDelegate, UI
         }
         
         // ALL INFO
-        print("NAME: \(itemName)")
-        print("COVER PHOTO: \(coverPhoto.image)")
-        print("IMAGES: \(imageOne.image), \(imageTwo.image), \(imageThree.image), \(imageFour.image)")
-        print("NEGOTIABLE: \(isNegotiable)")
-        print("PRICE: \(itemPrice)")
-        print("NEW: \(isNew)")
-        print("DESCRIPTION: \(itemDescription.text)")
-        print("LATITUDE: \(latitude)")
-        print("LONGITUDE: \(longitude)")
-        print("CITY: \(city)")
-        
-        print (imageOne.image?.size.height)
-        print (imageOne.image?.size.width )
-        print (imageTwo.image?.size.height )
-        print (imageTwo.image?.size.width )
+//        print("NAME: \(itemName)")
+//        print("COVER PHOTO: \(coverPhoto.image)")
+//        print("IMAGES: \(imageOne.image), \(imageTwo.image), \(imageThree.image), \(imageFour.image)")
+//        print("NEGOTIABLE: \(isNegotiable)")
+//        print("PRICE: \(itemPrice)")
+//        print("NEW: \(isNew)")
+//        print("DESCRIPTION: \(itemDescription.text)")
+//        print("LATITUDE: \(latitude)")
+//        print("LONGITUDE: \(longitude)")
+//        print("CITY: \(city)")
+//
+//        print (imageOne.image?.size.height)
+//        print (imageOne.image?.size.width )
+//        print (imageTwo.image?.size.height )
+//        print (imageTwo.image?.size.width )
         
     }
 
@@ -196,7 +196,7 @@ class SelectMarketViewController: UIViewController, UICollectionViewDelegate, UI
     
     @IBAction func postToMarkets(_ sender: Any) {
         if marketsToPost.keys.count == 0 {
-            print ("it will not post if no markets have been specified")
+            // print ("it will not post if no markets have been specified")
         } else {
             // Show activity indicator
             self.startAnimating(message: "Posting Item", messageFont: activityFont, type: NVActivityIndicatorType.ballPulse, textColor: UIColor.white)
@@ -230,12 +230,12 @@ class SelectMarketViewController: UIViewController, UICollectionViewDelegate, UI
                     for (market, category) in self.marketsToPost {
                         toPost.parseObject.fetchIfNeededInBackground(block: { (post, error) in
                             if let post = post {
-                                print("just fetched: \(post)")
+                                // print("just fetched: \(post)")
                                 let newPost = Post(post)
-                                print("about to post to market!")
-                                print("post id: \(newPost.parseObject.objectId)")
+                                // print("about to post to market!")
+                                // print("post id: \(newPost.parseObject.objectId)")
                                 MarketPost.postItem(post: newPost, marketName: market, category: category)
-                                print("Posted to market!")
+                                // print("Posted to market!")
                                 
                                 // Stop activity indicator
                                 self.stopAnimating()
@@ -262,13 +262,11 @@ class SelectMarketViewController: UIViewController, UICollectionViewDelegate, UI
 
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print ("it's getting here")
+
         return markets.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        print ("it's getting here")
-        
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MarketChoiceCell", for: indexPath) as! MarketChoiceCell
         
@@ -321,13 +319,13 @@ class SelectMarketViewController: UIViewController, UICollectionViewDelegate, UI
         let marketName = category.keys.first
         let categoryName = category[marketName!]
         marketsToPost[marketName!] = categoryName
-        print (marketsToPost)
+        // print (marketsToPost)
     }
     
     func deselectCategory(marketName: String) {
 //        dict.removeValue(forKey: willRemoveKey)
         marketsToPost.removeValue(forKey: marketName)
-        print("pls delete this marketcategory")
+        // print("pls delete this marketcategory")
         print(marketsToPost)
     }
     

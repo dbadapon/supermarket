@@ -66,7 +66,6 @@ class SelectCategoryViewController: UIViewController, UITableViewDelegate, UITab
 //            oldCategory = selectedCategory
             selectedCategory = market.categories[indexPath.row-1]
         }
-        print (selectedCategory)
     }
     
     @IBAction func onCancel(_ sender: Any) {
@@ -76,11 +75,8 @@ class SelectCategoryViewController: UIViewController, UITableViewDelegate, UITab
     @IBAction func onOk(_ sender: Any) {
         delegate?.deselectCategory(marketName: market.name!)
         if let selectedCategory = selectedCategory {
-            print ("it to the inside")
-            if selectedCategory != nil {
-                let dict = [market.name! : selectedCategory]
-                delegate?.choseCategory(category: dict)
-            }
+            let dict = [market.name! : selectedCategory]
+            delegate?.choseCategory(category: dict)
         }
         delegate?.reloadCollectionView()
         self.dismiss(animated: true, completion: nil)

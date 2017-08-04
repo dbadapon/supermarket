@@ -56,14 +56,14 @@ class ChooseLocationViewController: UIViewController, CLLocationManagerDelegate,
     var locationManager: CLLocationManager!
     var pinLocation: CLLocationCoordinate2D? {
         didSet {
-            print("set pin location!")
+            // print("set pin location!")
         }
     }
     
 
     
     @IBAction func didTapLocation(_ sender: Any) {
-        print("get current location")
+        // print("get current location")
         promptLabel.fadeOut(duration: 1, delay: 0.5, completion: nil)
         getLocationButton.fadeOut(duration: 1, delay: 0.5, completion: nil)
         zipCodeField.fadeOut(duration: 1, delay: 0.5, completion: nil)
@@ -115,9 +115,9 @@ class ChooseLocationViewController: UIViewController, CLLocationManagerDelegate,
         
         if self.pinLocation != nil {
             // set city to pin location city
-            print("about to get the city from pin!")
+            // print("about to get the city from pin!")
             coordinateToCity()
-            print("now the city is: \(self.city)")
+            // print("now the city is: \(self.city)")
         }
     }
 
@@ -163,7 +163,7 @@ class ChooseLocationViewController: UIViewController, CLLocationManagerDelegate,
 //    }
     
     func determineCurrentLocation() {
-        print("Determining current location!")
+        // print("Determining current location!")
         locationManager = CLLocationManager()
         locationManager.delegate = self as! CLLocationManagerDelegate
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -202,7 +202,7 @@ class ChooseLocationViewController: UIViewController, CLLocationManagerDelegate,
         
         
         
-        print("USER LOCATION: \(userLocation.coordinate.latitude), \(userLocation.coordinate.longitude)")
+        // print("USER LOCATION: \(userLocation.coordinate.latitude), \(userLocation.coordinate.longitude)")
         let span = MKCoordinateSpanMake(0.005, 0.005)
         let region = MKCoordinateRegion(center: center, span: span)
         
@@ -227,7 +227,7 @@ class ChooseLocationViewController: UIViewController, CLLocationManagerDelegate,
             let coordinateState = placemark.administrativeArea
             
             let cityString = "\(coordinateCity!), \(coordinateState!)"
-            print("cityString is: \(cityString)")
+            // print("cityString is: \(cityString)")
             self.city = cityString
             
             // Stop activity indicator
