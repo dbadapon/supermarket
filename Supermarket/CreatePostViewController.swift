@@ -46,6 +46,8 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
     var qrCodeFrameView: UIView?
     // for object recognition
     var objectFrameView: UIView?
+    // session
+    var session: AVCaptureSession?
     
     // image to pass onto next view controller
     // to "freeze" screen when user clicks capture button
@@ -95,6 +97,7 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
         
         recognizer = SupermarketObjectRecognizer(passedDevice: camera)
         recognizer?.delegate = self
+        self.session = recognizer!.session
         
         // add the preview layer
         // also configure live preview layer
@@ -453,8 +456,8 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
         }
         
         if segue.identifier == "toARKitSegue" {
-            let destination = segue.destination as! ARKitViewController
-            self.delegate = destination
+            print ("okay it got to this one")
+            self.session?.stopRunning()
         }
     }
 }

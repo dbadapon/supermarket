@@ -137,9 +137,11 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
     
     // init is when SupermarketObjectRecognizer is created
     init(passedDevice: AVCaptureDevice) {
+        print ("it's instantiating a new recognizer")
         
         // Xiuya: Implement this
         device = passedDevice
+        
         
         // call super.init() immediately after all subclass properties are initialized
         super.init()
@@ -195,8 +197,9 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
             }
             
             // set up the request using our vision model
+            
             let classificationRequest = VNCoreMLRequest(model: resNet50Model, completionHandler: handleClassifications)
-            classificationRequest.imageCropAndScaleOption = VNImageCropAndScaleOptionCenterCrop
+            classificationRequest.imageCropAndScaleOption = VNImageCropAndScaleOption.centerCrop
             visionRequests = [classificationRequest]
             
         } catch {
@@ -215,8 +218,8 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
         photoSettings.isHighResolutionPhotoEnabled = true
         photoSettings.isAutoStillImageStabilizationEnabled = true
         
-        if photoSettings.availablePreviewPhotoPixelFormatTypes.count > 0 {
-            photoSettings.previewPhotoFormat = [ kCVPixelBufferPixelFormatTypeKey as String : photoSettings.availablePreviewPhotoPixelFormatTypes.first!]
+        if photoSettings.__availablePreviewPhotoPixelFormatTypes.count > 0 {
+            photoSettings.previewPhotoFormat = [ kCVPixelBufferPixelFormatTypeKey as String : photoSettings.__availablePreviewPhotoPixelFormatTypes.first!]
         }
         
         if let videoConnection = self.stillImageOutput.connection(withMediaType: AVMediaTypeVideo) {
@@ -237,6 +240,7 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
             })
         }
     }
+    
     
     // check if barcode is in Walmart API
     func checkPriceWithBarcode(query: String) {
@@ -319,7 +323,7 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
         }
         
         // for orientation see kCGImagePropertyOrientation
-        let imageRequestHandler = VNImageRequestHandler(cvPixelBuffer: pixelBuffer, orientation: Int32(CGImagePropertyOrientation(rawValue: 1)!.rawValue), options: requestOptions)
+        let imageRequestHandler = VNImageRequestHandler(cvPixelBuffer: pixelBuffer, orientation: CGImagePropertyOrientation(rawValue: 1)!, options: requestOptions)
         do {
             try imageRequestHandler.perform(self.visionRequests)
         } catch {
@@ -348,7 +352,7 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
     }
     
     func handleClassifications(request: VNRequest, error: Error?) {
-        
+        print ("it's getting to the handle classifications function")
         if let theError = error {
             print("Error: \(theError.localizedDescription)")
             return
@@ -462,6 +466,7 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
                     print("HIGH PROB RESULT EXISTS AND INITIAL TRACKER INSTANTIATED")
                     self.lastObservation = newObservation
                     // call on delegate
+                    print ("it's about to set a recognized object")
                     self.recognizedObject = RecognizedObject.init(boundingBox: initialRect, highProbabilityMLResult: self.currentHighProbabilityMLResult, highProbClassifications: self.currentHighProbClassifications)
                 }
             } else {

@@ -12,14 +12,19 @@ import Vision
 import AVFoundation
 import Alamofire
 import RAMAnimatedTabBarController
+import ARKit
+import SceneKit
+import ModelIO
+import SceneKit.ModelIO
+
 
 class ARCreateViewController: UIViewController, SupermarketObjectRecognizerDelegate {
     
-    @IBOutlet weak var resultTag: UIView!
-    
-    @IBOutlet weak var resultLabel: UILabel!
     
     
+    
+    
+    @IBOutlet weak var sceneView: ARSCNView!
     
     var recognizer: SupermarketObjectRecognizer?
     
@@ -46,7 +51,6 @@ class ARCreateViewController: UIViewController, SupermarketObjectRecognizerDeleg
     var pictureUrl = ""
     
     @IBOutlet weak var previewView: UIView!
-    @IBOutlet weak var resultView: UILabel!
     
     // flip and flash are placeholder buttons as of now
     // eventually add function
@@ -60,8 +64,8 @@ class ARCreateViewController: UIViewController, SupermarketObjectRecognizerDeleg
         super.viewDidLoad()
         
         // hide tab bar
-        let animatedTabBar = self.tabBarController as! RAMAnimatedTabBarController
-        animatedTabBar.animationTabBarHidden(true)
+//        let animatedTabBar = self.tabBarController as! RAMAnimatedTabBarController
+//        animatedTabBar.animationTabBarHidden(true)
         
         print ("done hiding tab bar")
         
@@ -75,9 +79,9 @@ class ARCreateViewController: UIViewController, SupermarketObjectRecognizerDeleg
         
         // add the preview layer
         // also configure live preview layer
-        previewLayer = AVCaptureVideoPreviewLayer(session: recognizer!.session)
-        previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
-        previewView.layer.addSublayer(previewLayer)
+        // previewLayer = AVCaptureVideoPreviewLayer(session: recognizer!.session)
+        // previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
+        // previewView.layer.addSublayer(previewLayer)
         
         // add a slight gradient overlay so we can read the results easily
         gradientLayer = CAGradientLayer()
@@ -109,6 +113,14 @@ class ARCreateViewController: UIViewController, SupermarketObjectRecognizerDeleg
         
         // add flash, flip-camera, and capture buttons to view
         addButtons()
+        
+        let configuration = ARWorldTrackingSessionConfiguration()
+        configuration.planeDetection = .horizontal
+
+        // runs view session
+        // basic AR tracking
+        sceneView.session.run(configuration)
+        print ("just ran the scene view session")
         
         
         // Initialize QR Code Frame to highlight the QR code
@@ -184,7 +196,7 @@ class ARCreateViewController: UIViewController, SupermarketObjectRecognizerDeleg
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        previewLayer.frame = self.previewView.bounds;
+        // previewLayer.frame = self.previewView.bounds;
         gradientLayer.frame = self.previewView.bounds;
     }
     
@@ -204,7 +216,9 @@ class ARCreateViewController: UIViewController, SupermarketObjectRecognizerDeleg
     func updateCurrentFrame(currentFrame: CurrentFrame) {
         // set the result view to whatever the classifications are
         // called on whenever classifications changes
-        self.resultView.text = currentFrame.classifications
+        
+        // self.resultView.text = currentFrame.classifications
+        
         // for debugging purposes
         // print("updating classifications")
     }
@@ -232,24 +246,27 @@ class ARCreateViewController: UIViewController, SupermarketObjectRecognizerDeleg
         print("GET RECOGNIZED OBJECT, MEANS HIGH PROBS HAS BEEN REACHED YEEE")
         // update and set the bounds of the high probability object
         
-        let convertedRect = self.previewLayer.rectForMetadataOutputRect(ofInterest: recognizedObject.boundingBox)
-        print(convertedRect)
+        // let convertedRect = self.previewLayer.rectForMetadataOutputRect(ofInterest: recognizedObject.boundingBox)
+        // print(convertedRect)
         // move the highlighted box
         print("SET RECTANGLE")
-        self.objectFrameView?.frame = convertedRect
+        // self.objectFrameView?.frame = convertedRect
         self.topMLResult = recognizedObject.highProbabilityMLResult
-        delegate?.didFindNewObject(object: topMLResult)
-        print ("just tried to call the delegate method")
+        self.didFindNewObject(object: self.topMLResult)
+        // delegate?.didFindNewObject(object: topMLResult)
+        // print ("just tried to call the delegate method")
         
         // THIS IS THE PLACE TO MAKE THE POPUP BOX APPEAR
         // use the string below
         // recognizedObject.highProbMLResult (ex. "soda can")
         // recognizedObject.highProbClassifications --- (no need to use this "soda can 0.95")
         
-        resultLabel.text = recognizedObject.highProbabilityMLResult
-        view.addSubview(resultTag)
-        view.bringSubview(toFront: resultTag)
-        resultTag.isHidden = false
+        // resultLabel.text = recognizedObject.highProbabilityMLResult
+        
+//        view.addSubview(resultTag)
+//        view.bringSubview(toFront: resultTag)
+        
+        // resultTag.isHidden = false
         //        if let resultTag = self.resultTag {
         //            view.addSubview(resultTag)
         //            view.bringSubview(toFront: resultTag)
@@ -257,12 +274,48 @@ class ARCreateViewController: UIViewController, SupermarketObjectRecognizerDeleg
         
         
     }
+    
+    func didFindNewObject(object: String) {
+        print ("okay it got to did find new object")
+        let text = SCNText(string: self.topMLResult, extrusionDepth: 0.01)
+        text.firstMaterial?.diffuse.contents = UIColor.white
+        // text.firstMaterial?.specular.contents = UIColor.orange
+        text.font = UIFont(name: "Optima", size: 0.04)
+        
+        // SceneKit uses line segments to approximate the curved shapes of text
+        // characters when converting text into a three-dimensional geometry
+        // higher flatness values result in fewer segments, reducing the
+        // smoothness of curves and improving rendering performance
+        // default value of this property is 0.6
+        text.flatness = 1.0
+        
+        // text.containerFrame is a rectangle specifying the area in which SceneKit should lay out the text
+        // text.containerFrame = CGRect(x: 0, y: 0, width: 30, height: 20)
+        
+        let textNode = SCNNode(geometry: text)
+        // textNode.position = SCNVector3(-0.2 + x, -0.9 + delta, -1)
+        //
+        //        x += 0.12
+        //
+        let cc = getCameraCoordinates(sceneView: sceneView)
+        print(cc)
+        
+        // place text where camera is
+        // textNode.position = SCNVector3(cc.x, cc.y, cc.z)
+        // place text 0.2m in front of camer and 0.2m below camera
+        textNode.position = SCNVector3(cc.x, cc.y - 1.0, cc.z - 0.2)
+        // textNode.position = SCNVector3(0.0, 0.0, 0.0)
+        
+        sceneView.scene.rootNode.addChildNode(textNode)
+    }
+    
+    
     func highProbObjectRecognized(isRecognized: Bool) {
         // to make sure red box disappears when object is not recognized
         if !isRecognized {
             self.objectFrameView?.frame = CGRect.zero
             
-            resultTag.isHidden = true
+            // resultTag.isHidden = true
             
             // THIS IS THE PLACE TO MAKE THE POPUP BOX DISAPPEAR
             //            if let resultTag = self.resultTag {
@@ -276,6 +329,7 @@ class ARCreateViewController: UIViewController, SupermarketObjectRecognizerDeleg
         }
     }
     
+    
     @IBAction func captureAction(_ sender: UIButton) {
         if recognizer != nil {
             recognizer!.captureScreenshot()
@@ -283,10 +337,30 @@ class ARCreateViewController: UIViewController, SupermarketObjectRecognizerDeleg
         }
     }
     
-    @IBAction func toARKitAction(_ sender: UIButton) {
-        // segue to ARKit Scene
-        performSegue(withIdentifier: "toARKitSegue", sender: self)
+    struct myCameraCoordinates {
+        var x = Float()
+        var y = Float()
+        var z = Float()
     }
+    
+    
+    func getCameraCoordinates(sceneView: ARSCNView) -> myCameraCoordinates {
+        let session = sceneView.session
+        let currentFrame = session.currentFrame
+        let camera = currentFrame?.camera
+        let transform = camera?.transform
+        // let cameraTransform = sceneView.session.currentFrame?.camera.transform
+        
+        let cameraCoordinates = MDLTransform(matrix: transform!)
+        
+        var cc = myCameraCoordinates()
+        cc.x = cameraCoordinates.translation.x
+        cc.y = cameraCoordinates.translation.y
+        cc.z = cameraCoordinates.translation.z
+        
+        return cc
+    }
+    
     
     private func addButtons() {
         captureButton = SwiftyRecordButton(frame: CGRect(x: view.frame.midX - 37.5, y: view.frame.height - 100.0, width: 75.0, height: 75.0))
@@ -298,7 +372,7 @@ class ARCreateViewController: UIViewController, SupermarketObjectRecognizerDeleg
         
         flipCameraButton = UIButton(frame: CGRect(x: (((view.frame.width / 2 - 37.5) / 2) - 15.0), y: view.frame.height - 74.0, width: 30.0, height: 23.0))
         flipCameraButton.setImage(#imageLiteral(resourceName: "flipCamera"), for: UIControlState())
-        flipCameraButton.addTarget(self, action: #selector(toARKitAction(_:)), for: .touchUpInside)
+        // flipCameraButton.addTarget(self, action: #selector(toARKitAction(_:)), for: .touchUpInside)
         self.view.addSubview(flipCameraButton)
         
         let test = CGFloat((view.frame.width - (view.frame.width / 2 + 37.5)) + ((view.frame.width / 2) - 37.5) - 9.0)
