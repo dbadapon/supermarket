@@ -442,7 +442,7 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
     }
     
     func handleClassifications(request: VNRequest, error: Error?) {
-        print ("it's getting to the handle classifications function")
+        // print ("it's getting to the handle classifications function")
         if let theError = error {
             print("Error: \(theError.localizedDescription)")
             return

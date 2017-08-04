@@ -268,7 +268,7 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
         self.objectFrameView?.frame = convertedRect
         self.topMLResult = recognizedObject.highProbabilityMLResult
         delegate?.didFindNewObject(object: topMLResult)
-        print ("just tried to call the delegate method")
+        // print ("just tried to call the delegate method")
         
         // THIS IS THE PLACE TO MAKE THE POPUP BOX APPEAR
         // use the string below
@@ -342,7 +342,7 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
                     }
                 } else {
                     self.priceLabel.text = "price unavailable"
-                    print ("it's not getting a response")
+                    // print ("it's not getting a response")
                     print (response.result.error!)
                 }
                 
@@ -468,7 +468,7 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
         }
         
         if segue.identifier == "toARKitSegue" {
-            print ("okay it got to this one")
+            // print ("okay it got to this one")
             self.session?.stopRunning()
             let destination = segue.destination as! ARKitViewController
         }
