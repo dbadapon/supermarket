@@ -358,15 +358,16 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="241.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ppe-hS-MVc">
-                                                    <rect key="frame" x="16" y="16" width="30" height="30"/>
-                                                    <state key="normal" title="M"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ppe-hS-MVc">
+                                                    <rect key="frame" x="16" y="16" width="41" height="25"/>
+                                                    <state key="normal" title="M" image="Speech Bubble-50"/>
                                                     <connections>
                                                         <action selector="onMessage:" destination="jVZ-2g-rap" eventType="touchUpInside" id="i2z-Si-UDM"/>
                                                     </connections>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BAY-TX-dYk">
-                                                    <rect key="frame" x="54" y="16" width="39" height="25"/>
+                                                <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BAY-TX-dYk">
+                                                    <rect key="frame" x="65" y="16" width="39" height="25"/>
+                                                    <color key="tintColor" red="0.92835026980000002" green="0.4057164788" blue="0.31768223639999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <state key="normal" title="O" image="Star-50"/>
                                                     <state key="selected" image="Star Filled-50"/>
                                                     <connections>
@@ -374,7 +375,7 @@
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4 interested" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3re-oU-wlO">
-                                                    <rect key="frame" x="97" y="16" width="145" height="30"/>
+                                                    <rect key="frame" x="108" y="16" width="145" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="1Ez-oI-IVe"/>
                                                         <constraint firstAttribute="width" constant="145" id="lOG-uF-BhD"/>
@@ -475,6 +476,7 @@
     <resources>
         <image name="Info" width="50" height="50"/>
         <image name="Menu-50" width="25" height="25"/>
+        <image name="Speech Bubble-50" width="25" height="25"/>
         <image name="Star Filled-50" width="25" height="25"/>
         <image name="Star-50" width="25" height="25"/>
         <image name="icons8-Search-28" width="28" height="28"/>
