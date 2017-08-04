@@ -525,7 +525,7 @@
         <image name="Speech Bubble-50" width="25" height="25"/>
         <image name="Star Filled-50" width="25" height="25"/>
         <image name="Star-50" width="25" height="25"/>
-        <image name="icons8-Search-28" width="28" height="28"/>
+        <image name="icons8-Search-28" width="50" height="50"/>
         <image name="insta_camera_btn" width="25" height="25"/>
     </resources>
 </document>
