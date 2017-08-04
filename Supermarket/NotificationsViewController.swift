@@ -18,11 +18,6 @@ protocol InterestedCellDelegate: class {
 
 class NotificationsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, InterestedCellDelegate, MFMessageComposeViewControllerDelegate {
     
-    
-    
-    
-    
-    
     @IBOutlet weak var tableView: UITableView!
     
     var notifications: [SupermarketNotification] = []
@@ -34,6 +29,8 @@ class NotificationsViewController: UIViewController, UITableViewDelegate, UITabl
     let ourColor = UIColor(red: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha: 1.0)
     
     var clickedPost: Post!
+    
+    var loadAgain: Bool?
     
     
     
@@ -80,8 +77,14 @@ class NotificationsViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        let query = PFQuery(className: "SupermarketNotification")
-        query.whereKey("receiver", equalTo: PFUser.current()!)
+
+        if self.loadAgain != nil {
+            print ("it will not load again")
+            self.loadAgain = nil
+        } else {
+        print ("it's at view will appear")
+        var query = PFQuery(className: "SupermarketNotification")
+        query.whereKey("receiver", equalTo: PFUser.current())
         query.addDescendingOrder("createdAt")
         query.limit = 20
         
@@ -96,13 +99,15 @@ class NotificationsViewController: UIViewController, UITableViewDelegate, UITabl
                 }
                 self.notifications = newNotifications
                 self.tableView.reloadData()
-                self.tableView.reloadData()
             } else if error != nil {
                 print("Error with query.findObjectsInBackground")
                 // print (error?.localizedDescription)
             } else {
                 // print ("the posts could not be loaded into the sell feed")
             }
+        }
+        
+            print ("finishes view will appear")
         }
     }
 
@@ -173,7 +178,6 @@ class NotificationsViewController: UIViewController, UITableViewDelegate, UITabl
         let composeVC = MFMessageComposeViewController()
         composeVC.messageComposeDelegate = self
         
-        
         // Configure the fields of the interface.
         let number = notification.sender["phoneNumber"] as? String
         let recipients = [number]
@@ -183,23 +187,29 @@ class NotificationsViewController: UIViewController, UITableViewDelegate, UITabl
         let name = notification.postObject["name"] as? String
         let finalString = ". Do you want to talk further about it?"
         composeVC.body = initialString + name! + finalString
-        self.notification = notification
+        
         self.indexPath = indexPath
         
+        
         // Present the view controller modally.
-        self.present(composeVC, animated: true, completion: nil)
+        self.present(composeVC, animated: true) {
+            self.loadAgain = false
+            
+        }
     }
     
     
     func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
+        
         controller.dismiss(animated: true) {
+            print ("gets to the closure")
             if result.rawValue == 1 {
+                print ("it was successful")
+                self.notifications.remove(at: (self.indexPath?.row)!)
                 var indexPaths: [IndexPath] = []
                 indexPaths.append(self.indexPath!)
-                // print (self.notifications)
-                self.notifications.remove(at: self.indexPath!.row)
+
                 self.tableView.deleteRows(at: indexPaths, with: UITableViewRowAnimation.automatic)
-                
                 let query = PFQuery(className: "SupermarketNotification")
                 query.whereKey("sender", equalTo: self.notification!.sender)
                 query.whereKey("receiver", equalTo: self.notification!.receiver)
@@ -221,6 +231,7 @@ class NotificationsViewController: UIViewController, UITableViewDelegate, UITabl
                         // print ("it could not find the notification, but there was no error")
                     }
                 }
+                
             } else {
                 // print ("something else happened")
             }
