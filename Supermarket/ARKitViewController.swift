@@ -16,11 +16,11 @@ protocol CreatePostDelegate: class {
     func didFindNewObject(object: String)
 }
 
-class ARKitViewController: UIViewController, CreatePostDelegate {
-    
+class ARKitViewController: UIViewController, CreatePostDelegate, SupermarketObjectRecognizerDelegate {
     
     
     @IBOutlet weak var sceneView: ARSCNView!
+    var recognizer: SupermarketObjectRecognizer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +34,18 @@ class ARKitViewController: UIViewController, CreatePostDelegate {
         // runs view session
         // basic AR tracking
         sceneView.session.run(configuration)
+        
+        
+//        guard let camera = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo) else {
+//            fatalError("No video camera available")
+//        }
+//
+//        // let session = sceneView.session
+//
+//        recognizer = SupermarketObjectRecognizer(passedDevice: camera, passedSession: session)
+//        recognizer?.delegate = self
+        
+        
     }
     
     // function that generate random float
@@ -236,6 +248,42 @@ class ARKitViewController: UIViewController, CreatePostDelegate {
         // textNode.position = SCNVector3(0.0, 0.0, 0.0)
         
         sceneView.scene.rootNode.addChildNode(textNode)
+    }
+    
+    func getRecognizedObject(recognizedObject: RecognizedObject) {
+        print ("okay, got a recognized object")
+    }
+    
+    func updateRecognizedBarcode(recognizedBarcode: RecognizedBarcode) {
+        print ("okay got a recognized bar code")
+    }
+    
+    func updateCurrentFrame(currentFrame: CurrentFrame) {
+        print ("okay the current frame should be updated")
+    }
+    
+    func captureAndSegue(screenshot: UIImage) {
+        print ("okay i have the ui image")
+    }
+    
+    func getBarcodeObject(barcodeObject: AVMetadataMachineReadableCodeObject) {
+        print ("okay here's the barcode")
+    }
+    
+    func barcodeObjectExists(doesExist: Bool) {
+        if doesExist {
+            print ("a bar code does exist")
+        } else {
+            print ("a bar code does not exist")
+        }
+    }
+    
+    func highProbObjectRecognized(isRecognized: Bool) {
+        if isRecognized {
+            print ("an object is recognized")
+        } else {
+            print ("an object wasn't recognized")
+        }
     }
     
     

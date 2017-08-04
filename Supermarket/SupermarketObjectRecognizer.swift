@@ -52,6 +52,7 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
     var recognizedObject: RecognizedObject? {
         didSet {
             delegate?.getRecognizedObject(recognizedObject: recognizedObject!)
+            print (delegate)
         }
     }
     
@@ -208,7 +209,18 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
         // at the end, need to set attributes of RecognizedObject
         // TEMPORARY HARDCODED VALUES
         // self.primaryRecognizedObject = RecognizedObject.init(label: "", boundingBox: CGRect(x: 0.0, y: 0.0, width: 0.0, height: 0.0))
+//        Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(self.printThis), userInfo: nil, repeats: true)
     } // end of init
+    
+//    func printThis() {
+//        print ("hey it's here still running")
+//        print (self.device)
+//        print (self.delegate)
+//        print (self.session.isRunning)
+//        if self.session.isInterrupted {
+//            print ("---WOOOOOWWW THE SESSION WAS INTERRUPTED---")
+//        }
+//    }
     
     // public function that can be called from create post vc
     func captureScreenshot() {

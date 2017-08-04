@@ -458,6 +458,7 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
         if segue.identifier == "toARKitSegue" {
             print ("okay it got to this one")
             self.session?.stopRunning()
+            let destination = segue.destination as! ARKitViewController
         }
     }
 }

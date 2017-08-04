@@ -91,7 +91,7 @@
                         <outlet property="resultView" destination="rnP-nm-12b" id="n3w-pQ-SdY"/>
                         <segue destination="ewj-tG-ZsX" kind="show" identifier="capturedSegue" animates="NO" id="jBa-sW-Gnf"/>
                         <segue destination="VsN-Ls-Hfm" kind="presentation" identifier="barcodeToPreviewSegue" id="veg-mV-sRg"/>
-                        <segue destination="XmQ-yy-KPS" kind="show" identifier="toARKitSegue" animates="NO" id="kd8-yF-hag"/>
+                        <segue destination="mcK-4F-rEG" kind="show" identifier="toARKitSegue" animates="NO" id="yuT-7b-LpX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AJR-3o-PaI" sceneMemberID="firstResponder"/>
