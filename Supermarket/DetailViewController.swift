@@ -101,7 +101,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 cell.carouselView.slides = slides
                 cell.carouselView.pageControl.numberOfPages = slides.count
                 cell.carouselView.pageControl.currentPageIndicatorTintColor = ourColor
-                cell.carouselView.pageControl.pageIndicatorTintColor = UIColor.lightGray
+                cell.carouselView.pageControl.pageIndicatorTintColor = UIColor.white
                 return cell
             }
             
