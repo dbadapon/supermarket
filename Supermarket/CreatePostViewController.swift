@@ -448,7 +448,7 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
             // uncomment out to stop running AVCaptureSession
             // self.previewLayer.removeFromSuperlayer()
             // self.previewLayer = nil
-            // self.session.stopRunning()
+            self.session?.stopRunning()
             
             let dvc = segue.destination as! PhotoViewController
             dvc.backgroundImage = imageToPass
@@ -463,7 +463,7 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
             // uncomment out to stop running AVCaptureSession
             // self.previewLayer.removeFromSuperlayer()
             // self.previewLayer = nil
-            // self.session.stopRunning()
+            self.session?.stopRunning()
             
             let dvc = segue.destination as! UINavigationController
             let vc = dvc.topViewController as! PreviewViewController

@@ -83,11 +83,12 @@ class SellFeedViewController: UIViewController, UITableViewDataSource, UITableVi
 
         // segmentedView.backgroundColor = UIColor.init(colorLiteralRed: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha: 1.0)
         
-        
+        //         let font = UIFontDescriptor(fontAttributes: [UIFontDescriptorFaceAttribute : "Medium", UIFontDescriptorFamilyAttribute: "Avenir"])
+        // UIFont.systemFont(ofSize: 16, weight: UIFontWeightMedium)
         
         let boldTextAttributes: [NSObject : AnyObject] = [
             NSForegroundColorAttributeName as NSObject : ourColor,
-            NSFontAttributeName as NSObject: UIFont.systemFont(ofSize: 16, weight: UIFontWeightMedium)
+            NSFontAttributeName as NSObject: UIFont(name: "Avenir", size: 16)!
             ]
         segmentedControl.setTitleTextAttributes(boldTextAttributes, for: .selected)
         segmentedControl.setTitleTextAttributes(boldTextAttributes, for: .normal)

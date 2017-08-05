@@ -291,7 +291,7 @@ class SelectMarketViewController: UIViewController, UICollectionViewDelegate, UI
         
         if let selectedCategory = marketsToPost[market.name!] {
             cell.categoryLabel.text = selectedCategory
-            cell.layer.backgroundColor = UIColor(red: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha: 1.0) as! CGColor
+            cell.layer.backgroundColor = UIColor(red: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha: 1.0).cgColor
             cell.marketName.textColor = UIColor.white
 //            cell.layer.borderWidth = 0
             
