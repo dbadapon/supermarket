@@ -68,7 +68,7 @@
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </view>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Group" translatesAutoresizingMaskIntoConstraints="NO" id="fJc-Lq-p1A">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="new" translatesAutoresizingMaskIntoConstraints="NO" id="fJc-Lq-p1A">
                                                     <rect key="frame" x="307" y="17" width="50" height="50"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
@@ -573,7 +573,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Group" width="33" height="33"/>
         <image name="Info" width="50" height="50"/>
         <image name="Menu-50" width="25" height="25"/>
         <image name="Speech Bubble-50" width="25" height="25"/>
@@ -581,5 +580,6 @@
         <image name="Star-50" width="25" height="25"/>
         <image name="icons8-Search-28" width="50" height="50"/>
         <image name="insta_camera_btn" width="25" height="25"/>
+        <image name="new" width="33" height="33"/>
     </resources>
 </document>

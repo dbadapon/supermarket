@@ -64,9 +64,15 @@ class ChooseLocationViewController: UIViewController, CLLocationManagerDelegate,
     
     @IBAction func didTapLocation(_ sender: Any) {
         // print("get current location")
-        promptLabel.fadeOut(duration: 1, delay: 0.5, completion: nil)
-        getLocationButton.fadeOut(duration: 1, delay: 0.5, completion: nil)
-        zipCodeField.fadeOut(duration: 1, delay: 0.5, completion: nil)
+        promptLabel.fadeOut(duration: 0.5, delay: 0.5, completion: nil)
+//        promptLabel.slideOut(to: .top, duration: 1, delay: 0.5, completion: nil)
+        
+        getLocationButton.fadeOut(duration: 0.5, delay: 0.5, completion: nil)
+//        getLocationButton.slideOut(to: .top, duration: 1, delay: 0.55, completion: nil)
+        
+        zipCodeField.fadeOut(duration: 0.5, delay: 0.5, completion: nil)
+//        zipCodeField.slideOut(to: .top, duration: 1, delay: 0.6, completion: nil)
+        
         blurView.fadeOut(duration: 1, delay: 0.5, completion: nil)
         tempMap.fadeOut(duration: 1, delay: 0.5, completion: nil)
         
@@ -110,8 +116,6 @@ class ChooseLocationViewController: UIViewController, CLLocationManagerDelegate,
 //        self.isAnimating = self.activityIndicator?.isAnimating
 //        view.addSubview(activityIndicator!)
 //        print("animating? \(self.activityIndicator?.isAnimating)")
-        
-        startAnimating(type: NVActivityIndicatorType.ballPulse)
         
         if self.pinLocation != nil {
             // set city to pin location city
@@ -157,10 +161,6 @@ class ChooseLocationViewController: UIViewController, CLLocationManagerDelegate,
 
     }
     
-//    override func viewDidAppear(_ animated: Bool) {
-//        super.viewDidAppear(animated)
-//        determineCurrentLocation()
-//    }
     
     func determineCurrentLocation() {
         // print("Determining current location!")
@@ -194,10 +194,9 @@ class ChooseLocationViewController: UIViewController, CLLocationManagerDelegate,
         
         if self.pinLocation == nil {
             self.pinLocation = center
-//            let annotation: MKPointAnnotation = MKPointAnnotation()
-//            annotation.coordinate = CLLocationCoordinate2DMake(userLocation.coordinate.latitude, userLocation.coordinate.longitude)
-//            annotation.title = "LE PIN"
-//            mapView.addAnnotation(annotation)
+            let annotation: MKPointAnnotation = MKPointAnnotation()
+            annotation.coordinate = CLLocationCoordinate2DMake(userLocation.coordinate.latitude, userLocation.coordinate.longitude)
+            mapView.addAnnotation(annotation)
         }
         
         
@@ -227,7 +226,6 @@ class ChooseLocationViewController: UIViewController, CLLocationManagerDelegate,
             let coordinateState = placemark.administrativeArea
             
             let cityString = "\(coordinateCity!), \(coordinateState!)"
-            // print("cityString is: \(cityString)")
             self.city = cityString
             
             // Stop activity indicator
@@ -244,31 +242,40 @@ class ChooseLocationViewController: UIViewController, CLLocationManagerDelegate,
         // Dispose of any resources that can be recreated.
     }
     
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        if self.pinLocation != nil {
+            startAnimating(type: NVActivityIndicatorType.ballPulse)
+            return true
+        }
+        return false
+    }
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        let dvc = segue.destination as! SelectMarketViewController
-        
         if segue.identifier == "toSelectMarketSegue" {
             
-            let backItem = UIBarButtonItem()
-            backItem.title = ""
-            backItem.tintColor = UIColor.black
-            navigationItem.backBarButtonItem = backItem
-            
-            dvc.itemName = self.itemName
-            dvc.coverPhoto = self.coverPhoto
-            dvc.imageOne = self.imageOne
-            dvc.imageTwo = self.imageTwo
-            dvc.imageThree = self.imageThree
-            dvc.imageFour = self.imageFour
-            dvc.isNegotiable = self.isNegotiable
-            dvc.itemPrice = self.itemPrice
-            dvc.isNew = self.isNew
-            dvc.itemDescription = self.itemDescription
-            dvc.latitude = self.latitude
-            dvc.longitude = self.longitude
-            dvc.city = self.city
+                let backItem = UIBarButtonItem()
+                backItem.title = ""
+                backItem.tintColor = UIColor.black
+                navigationItem.backBarButtonItem = backItem
+                
+                let dvc = segue.destination as! SelectMarketViewController
+                
+                dvc.itemName = self.itemName
+                dvc.coverPhoto = self.coverPhoto
+                dvc.imageOne = self.imageOne
+                dvc.imageTwo = self.imageTwo
+                dvc.imageThree = self.imageThree
+                dvc.imageFour = self.imageFour
+                dvc.isNegotiable = self.isNegotiable
+                dvc.itemPrice = self.itemPrice
+                dvc.isNew = self.isNew
+                dvc.itemDescription = self.itemDescription
+                dvc.latitude = self.latitude
+                dvc.longitude = self.longitude
+                dvc.city = self.city
+    
         }
     }
 }

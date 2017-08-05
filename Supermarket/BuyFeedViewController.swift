@@ -472,10 +472,6 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
             // print ("got here")
             return 3
         } else {
-            // print ("hey hey hey")
-            // print (currentMarket!)
-            // print (currentMarket!.categories)
-            // print (currentMarket!.categories.count)
             return currentMarket!.categories.count + 1
         }
     }
