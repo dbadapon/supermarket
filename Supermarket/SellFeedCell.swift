@@ -50,6 +50,10 @@ class SellFeedCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        photoImage.layer.borderWidth = 1
+        photoImage.layer.borderColor = Constants.Colors.ourGray.cgColor
+        photoImage.layer.cornerRadius = 2
+        
         whiteView.layer.borderWidth = 1
         whiteView.layer.borderColor = Constants.Colors.ourGray.cgColor
         whiteView.layer.cornerRadius = 2

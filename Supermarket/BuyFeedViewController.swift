@@ -80,10 +80,13 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         
         postTableView.dataSource = self
         postTableView.delegate = self
-        postTableView.rowHeight = UITableViewAutomaticDimension
-        // Provide an estimated row height. Used for calculating scroll indicator
-        postTableView.estimatedRowHeight = 250
-        postTableView.tableFooterView = UIView()
+        
+        // apparently this throws it off
+        
+//        postTableView.rowHeight = UITableViewAutomaticDimension
+//        // Provide an estimated row height. Used for calculating scroll indicator
+//        postTableView.estimatedRowHeight = 250
+//        postTableView.tableFooterView = UIView()
         
         
         // create Rice market; comment out after running once
@@ -359,7 +362,7 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         
         self.posts = []
         let query = PFQuery(className: "MarketPost")
-        query.whereKey("market", equalTo: currentMarket!.name)
+        query.whereKey("market", equalTo: currentMarket?.name)
         
         if self.category != "All" {
             query.whereKey("category", equalTo: self.category)
@@ -492,12 +495,15 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
             cell.priceLabel.text = "$\(formattedPrice)"
             cell.nameLabel.text = post.name
             let conditionNew = post.conditionNew!
-            if conditionNew {
-                cell.conditionLabel.text = "New"
-            } else {
-                cell.conditionLabel.text = ""
-            }
-            cell.dateLabel.text = Post.getRelativeDate(date: parseObject.createdAt!)
+            
+            cell.isNew = conditionNew
+            
+//            if conditionNew {
+//                cell.conditionLabel.text = "New"
+//            } else {
+//                cell.conditionLabel.text = ""
+//            }
+//            cell.dateLabel.text = Post.getRelativeDate(date: parseObject.createdAt!)
             
         
 //        post.parseObject.fetchInBackground { (parseObject, error) in

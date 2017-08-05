@@ -12,14 +12,25 @@ import ParseUI
 
 class BuyFeedCell: UITableViewCell {
     
-    @IBOutlet weak var nameLabel: UILabel!
+    var isNew: Bool! {
+        didSet {
+            if isNew {
+                newMark.isHidden = false
+            } else {
+                newMark.isHidden = true
+            }
+        }
+    }
     
-    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
     
     @IBOutlet weak var priceLabel: UILabel!
     
+    @IBOutlet weak var whiteView: UIView!
     
-    @IBOutlet weak var conditionLabel: UILabel!
+    @IBOutlet weak var newMark: UIImageView!
+    
+    
     
     
     
@@ -28,17 +39,24 @@ class BuyFeedCell: UITableViewCell {
     var itemImage: PFObject! {
         didSet{
             let images: [PFFile]? = itemImage["images"] as? [PFFile]
-            let file = images![0] as! PFFile
+            let file = images![0]
             self.itemImageView.file = file
             self.itemImageView.loadInBackground()
         }
 
     }
     
-
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
+        
+        itemImageView.layer.borderWidth = 1
+        itemImageView.layer.borderColor = Constants.Colors.ourGray.cgColor
+        itemImageView.layer.cornerRadius = 2
+        
+        whiteView.layer.borderWidth = 1
+        whiteView.layer.borderColor = Constants.Colors.ourGray.cgColor
+        whiteView.layer.cornerRadius = 2
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
