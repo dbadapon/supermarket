@@ -64,6 +64,7 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
     let ourColor = UIColor(red: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha: 1.0)
     
     func changedMarket(market: Market) {
+        self.category = "All"
         self.currentMarket = market
         self.navigationItem.title = self.currentMarket!.name
 //        loadPosts()
@@ -79,6 +80,7 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         self.tabBarController?.tabBar.isHidden = false
         
         super.viewDidLoad()
+        
         
         postTableView.dataSource = self
         postTableView.delegate = self
@@ -351,17 +353,12 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         query.findObjectsInBackground(block: { (marketPosts, error) in
             if let marketPosts = marketPosts {
                 self.marketPosts = marketPosts
-                // print ("we're about to do the printing")
-                // for m in marketPosts {
-                    // print (m["category"])
-                // }
                 var idArray: [String] = []
                 for m in marketPosts {
                     let marketPost = MarketPost(m)
                     let postID = marketPost.post
                     idArray.append(postID!)
                 }
-                print("ID array is: \(idArray)")
                 self.fetchFilteredPosts(idArray: idArray)
             } else {
                 print("Error fetching MarketPost according to category: \(String(describing: error?.localizedDescription))")
