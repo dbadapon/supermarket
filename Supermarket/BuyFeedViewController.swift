@@ -69,6 +69,8 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
 //        loadPosts()
         filterPosts()
         self.postTableView.reloadData()
+//        self.filterTableView?.reloadData()
+        self.categoryTableView!.reloadData()
     }
     
     override func viewDidLoad() {
@@ -339,30 +341,9 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func filterPosts() {
-        
-        
-        //        if let data = UserDefaults.standard.object(forKey: "hometimeline_tweets") as? Data {
-        //            let tweetDictionaries = NSKeyedUnarchiver.unarchiveObject(with: data) as! [[String: Any]]
-        //            let tweets = tweetDictionaries.flatMap({ (dictionary) -> Tweet in
-        //                Tweet(dictionary: dictionary)
-        //            })
-        //
-        //            completion(tweets, nil)
-        //            return
-        //        }
-        
-//        if let data = UserDefaults.standard.object(forKey: "buyfeed_posts") as? Data {
-//            let dataDictionaries = NSKeyedUnarchiver.unarchiveObject(with: data) as! [String: Any]
-//            let posts = dataDictionaries.flatMap({ (dictionary) -> Post in
-//                Post(dictionary)
-//            })
-//            completion(posts, nil)
-//            return
-//        }
-        
         self.posts = []
         let query = PFQuery(className: "MarketPost")
-        query.whereKey("market", equalTo: currentMarket?.name)
+        query.whereKey("market", equalTo: currentMarket?.name!)
         
         if self.category != "All" {
             query.whereKey("category", equalTo: self.category)
@@ -380,6 +361,7 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
                     let postID = marketPost.post
                     idArray.append(postID!)
                 }
+                print("ID array is: \(idArray)")
                 self.fetchFilteredPosts(idArray: idArray)
             } else {
                 print("Error fetching MarketPost according to category: \(String(describing: error?.localizedDescription))")
@@ -477,11 +459,12 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if tableView == postTableView {
+        if tableView == postTableView && posts.count > 0 {
             let cell = postTableView.dequeueReusableCell(withIdentifier: "BuyFeedCell", for: indexPath) as! BuyFeedCell
             
-            
 //        let cell = postTableView.dequeueReusableCell(withIdentifier: "BuyFeedCell", for: indexPath) as! BuyFeedCell
+            
+            // sow what if there are no posts there?
             
             let post = posts[indexPath.row]
             let parseObject = post.parseObject
@@ -588,13 +571,15 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         } else {
             if indexPath.row == 0 {
                 self.category = "All"
+                print("selected all!")
             } else {
+                print("getting index \(indexPath.row-1)")
                 self.category = currentMarket!.categories[indexPath.row-1]
             }
             categoryTableView?.deselectRow(at: indexPath, animated: true)
 //            self.category = currentMarket!.categories[indexPath.row]
             filterPosts()
-            print ("The new category is \(currentMarket!.categories[indexPath.row])")
+            print ("The new category is \(self.category)")
             dropView?.hideMenu()
         }
     }
