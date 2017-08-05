@@ -209,9 +209,6 @@ class SellFeedViewController: UIViewController, UITableViewDataSource, UITableVi
         return cell
     }
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return posts.count
-    }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 10
