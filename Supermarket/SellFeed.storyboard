@@ -322,10 +322,10 @@
             </objects>
             <point key="canvasLocation" x="1229.5999999999999" y="709.29535232383819"/>
         </scene>
-        <!--DetailViewController-->
+        <!--NewDetailViewController-->
         <scene sceneID="ITp-X9-yNS">
             <objects>
-                <viewControllerPlaceholder storyboardName="BuyFeed" referencedIdentifier="DetailViewController" id="ZhM-Dc-zOr" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="BuyFeed" referencedIdentifier="NewDetailViewController" id="ZhM-Dc-zOr" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E1o-0e-RsG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2103" y="-15"/>

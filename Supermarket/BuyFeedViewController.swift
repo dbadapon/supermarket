@@ -610,6 +610,7 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         // clear back button text
         
         if segue.identifier == "detailSegue" {
+            print ("it's trying to segue")
             let backItem = UIBarButtonItem()
             backItem.title = ""
             navigationItem.backBarButtonItem = backItem
@@ -617,7 +618,7 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
             let cell = sender as! UITableViewCell
             if let indexPath = postTableView.indexPath(for: cell) {
                 let post = posts[indexPath.row]
-                let detailViewController = segue.destination as! DetailViewController
+                let detailViewController = segue.destination as! NewDetailViewController
                 detailViewController.post = post
             }
         }
