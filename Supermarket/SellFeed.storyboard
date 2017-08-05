@@ -28,13 +28,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-<<<<<<< HEAD
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="254" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="br7-It-d69">
-                                <rect key="frame" x="0.0" y="104" width="375" height="563"/>
-=======
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="259" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="br7-It-d69">
                                 <rect key="frame" x="0.0" y="99" width="375" height="568"/>
->>>>>>> Changed layout of Sell Feed table view
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="SellFeedCell" rowHeight="259" id="Cm9-dr-fEM" customClass="SellFeedCell" customModule="Supermarket" customModuleProvider="target">
@@ -44,56 +39,6 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="259"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-<<<<<<< HEAD
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="J17-L3-326" customClass="PFImageView">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="187.5"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" secondItem="J17-L3-326" secondAttribute="height" multiplier="2:1" id="28O-rx-fl9"/>
-                                                    </constraints>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="051-kz-gTa">
-                                                    <rect key="frame" x="8" y="195" width="225" height="20"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="19.5" id="Aqa-j7-gbH"/>
-                                                        <constraint firstAttribute="width" constant="225" id="jV3-Kx-6D1"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zuj-UR-0Zq">
-                                                    <rect key="frame" x="8" y="219" width="200" height="18.5"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="200" id="4H9-i6-w5j"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z1w-bx-lL3">
-                                                    <rect key="frame" x="234" y="213.5" width="125" height="24"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="24" id="5OB-iy-duu"/>
-                                                        <constraint firstAttribute="width" constant="125" id="d1c-zC-neb"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="z1w-bx-lL3" firstAttribute="bottom" secondItem="zuj-UR-0Zq" secondAttribute="bottom" id="OSf-3p-UhQ"/>
-                                                <constraint firstItem="J17-L3-326" firstAttribute="leading" secondItem="lra-40-sFE" secondAttribute="leading" id="Ubg-9Q-Rnm"/>
-                                                <constraint firstItem="zuj-UR-0Zq" firstAttribute="leading" secondItem="051-kz-gTa" secondAttribute="leading" id="aXd-YG-Uin"/>
-                                                <constraint firstItem="J17-L3-326" firstAttribute="top" secondItem="lra-40-sFE" secondAttribute="top" id="anO-q7-6aT"/>
-                                                <constraint firstItem="051-kz-gTa" firstAttribute="top" secondItem="J17-L3-326" secondAttribute="bottom" constant="8" id="gen-9X-8Yi"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="zuj-UR-0Zq" secondAttribute="bottom" constant="8" id="kk2-FF-3nN"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="z1w-bx-lL3" secondAttribute="trailing" constant="8" id="m8I-rv-T0J"/>
-                                                <constraint firstAttribute="trailing" secondItem="J17-L3-326" secondAttribute="trailing" id="tPK-U0-NVJ"/>
-                                                <constraint firstItem="zuj-UR-0Zq" firstAttribute="top" secondItem="051-kz-gTa" secondAttribute="bottom" constant="4" id="tbg-0a-lLz"/>
-                                                <constraint firstItem="051-kz-gTa" firstAttribute="leading" secondItem="lra-40-sFE" secondAttribute="leading" constant="8" id="uOd-e8-3Aa"/>
-                                            </constraints>
-=======
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="J17-L3-326" customClass="PFImageView">
                                                     <rect key="frame" x="8" y="8" width="359" height="204"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -121,7 +66,6 @@
                                                 </view>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
->>>>>>> Changed layout of Sell Feed table view
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="nameLabel" destination="051-kz-gTa" id="Baj-m6-u5z"/>
