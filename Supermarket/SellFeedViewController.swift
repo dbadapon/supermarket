@@ -191,8 +191,7 @@ class SellFeedViewController: UIViewController, UITableViewDataSource, UITableVi
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         print ("the count is \(posts.count)")
-//        return posts.count
-        return 1
+        return posts.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -240,7 +239,7 @@ class SellFeedViewController: UIViewController, UITableViewDataSource, UITableVi
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         postTableView.deselectRow(at: indexPath, animated: true)
-        self.detailPost = posts[indexPath.section]
+        self.detailPost = posts[indexPath.row]
         self.performSegue(withIdentifier: "sellToDetail", sender: self)
         
     }
