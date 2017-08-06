@@ -591,7 +591,7 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
                     // closer the rectangle surrounds the object = better the system will be able to track it
                     // let initialRect = CGRect(x: 0.29, y: 0.252, width: 0.534, height: 0.467)
                     // will show rectangle that's (105.375, 193.43, 175.125, 356.178)
-                    var initialRect = CGRect(x: 0.29, y: 0.252, width: 0.534, height: 0.467)
+                    var initialRect = CGRect(x: 0.345, y: 0.324, width: 0.36, height: 0.32)
                     // convert from AVFoundation coordinate space to Vision coordinate space
                     initialRect.origin.y = 1 - initialRect.origin.y
                     let newObservation = VNDetectedObjectObservation(boundingBox: initialRect)
@@ -599,7 +599,7 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
                     print(initialRect)
                     self.lastObservation = newObservation
                     
-                    var initialboundingbox = CGRect(x: 0.29, y: 0.748, width: 0.534, height: 0.467)
+                    var initialboundingbox = CGRect(x: 0.345, y: 0.676, width: 0.36, height: 0.32)
                     initialboundingbox.origin.y = 1 - initialboundingbox.origin.y
                     // call on delegate
                     self.recognizedObject = RecognizedObject.init(boundingBox: initialboundingbox, highProbabilityMLResult: self.currentHighProbabilityMLResult, highProbClassifications: self.currentHighProbClassifications)
