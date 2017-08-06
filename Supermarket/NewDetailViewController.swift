@@ -21,15 +21,27 @@ class NewDetailViewController: ViewController {
     @IBOutlet weak var interestedCountLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
-    @IBOutlet weak var conditionLabel: UILabel!
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var newMark: UIImageView!
+    @IBOutlet weak var interestedButton: UIButton!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        // change the navigation bar
+        self.navigationItem.title = "Item Details"
+        navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont(name: "Avenir", size: 20)!, NSForegroundColorAttributeName: UIColor.black]
+        navigationController?.navigationBar.barTintColor = UIColor.clear
+        navigationController?.navigationBar.barStyle = UIBarStyle.black
+        navigationController?.navigationBar.tintColor = UIColor.black
+        
+        navigationController?.navigationBar.isTranslucent = false
+        
+        automaticallyAdjustsScrollViewInsets = false
         
         // Setup carousel view
         let images = post.images
@@ -70,11 +82,6 @@ class NewDetailViewController: ViewController {
             self.priceLabel.text = "$" + String(describing: price)
         }
         
-        if post.conditionNew != nil && post.conditionNew! {
-            self.conditionLabel.text = "New"
-        } else {
-            self.conditionLabel.text = ""
-        }
         
         if let city = post.city {
             self.cityLabel.text = city
@@ -99,10 +106,39 @@ class NewDetailViewController: ViewController {
             self.descriptionLabel.text = description
         }
         
+        if let interestedList = post.parseObject["interested"] as? [String] {
+            if interestedList.contains((PFUser.current()?.username)!) {
+                interestedButton.isSelected = true
+            }
+        }
         
-        
+        if post.conditionNew! {
+            newMark.isHidden = false
+        } else {
+            newMark.isHidden = true
+        }
+        self.view.bringSubview(toFront: newMark)
         
     }
+    
+//    override func viewWillDisappear(_ animated: Bool) {
+//        navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont(name: "Avenir", size: 20)!]
+//        navigationController?.navigationBar.barTintColor = UIColor(red: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha: 1.0)
+//        navigationController?.navigationBar.barStyle = UIBarStyle.black
+//        navigationController?.navigationBar.tintColor = UIColor.white
+//        navigationController?.navigationBar.isTranslucent = false
+//        automaticallyAdjustsScrollViewInsets = false
+//    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationItem.title = "Item Details"
+        navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont(name: "Avenir", size: 20)!]
+        navigationController?.navigationBar.barTintColor = UIColor.white
+        navigationController?.navigationBar.barStyle = UIBarStyle.default
+        navigationController?.navigationBar.tintColor = UIColor.black
+        navigationController?.navigationBar.isTranslucent = false
+    }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -113,7 +149,7 @@ class NewDetailViewController: ViewController {
     }
     
     @IBAction func onInterested(_ sender: Any) {
-        // interestedButton.isSelected = true
+        interestedButton.isSelected = true
         let notification = SupermarketNotification.createNotification(withSender: PFUser.current()!, withReceiver: PFUser.current()!, withMessage: " is interested in your ", withPostObject: post.parseObject)
         
         let interested = post.parseObject["interested"] as? [String]
