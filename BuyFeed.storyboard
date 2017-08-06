@@ -112,19 +112,33 @@
                                     <constraint firstAttribute="height" constant="0.5" id="t4v-4V-P0d"/>
                                 </constraints>
                             </view>
+                            <view alpha="0.75" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mbk-Ol-VQj">
+                                <rect key="frame" x="162.5" y="360.5" width="50" height="50"/>
+                                <color key="backgroundColor" red="0.79823822084385876" green="0.8000371607714748" blue="0.82748874130101524" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="ODw-BH-HsB"/>
+                                    <constraint firstAttribute="width" constant="50" id="upZ-yJ-5I0"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="7zv-AI-b54" firstAttribute="top" secondItem="xCT-fe-2Pn" secondAttribute="bottom" id="1Sj-pr-KHo"/>
+                            <constraint firstAttribute="trailing" secondItem="xCT-fe-2Pn" secondAttribute="trailing" id="1Vh-lg-euB"/>
                             <constraint firstItem="vwd-1s-d61" firstAttribute="top" secondItem="gwA-LO-BpL" secondAttribute="bottom" id="6bW-Fh-JnA"/>
                             <constraint firstAttribute="trailing" secondItem="xCT-fe-2Pn" secondAttribute="trailing" id="E1p-Cz-VBS"/>
+                            <constraint firstItem="Mbk-Ol-VQj" firstAttribute="centerX" secondItem="xCT-fe-2Pn" secondAttribute="centerX" id="Kg5-nH-kbG"/>
                             <constraint firstAttribute="trailing" secondItem="gwA-LO-BpL" secondAttribute="trailing" id="LX3-5f-4ip"/>
                             <constraint firstItem="vwd-1s-d61" firstAttribute="leading" secondItem="dUq-s8-gJU" secondAttribute="leading" id="Zft-3H-h3v"/>
                             <constraint firstItem="gwA-LO-BpL" firstAttribute="top" secondItem="v3I-p6-fPU" secondAttribute="bottom" id="caR-by-6fb"/>
+                            <constraint firstItem="xCT-fe-2Pn" firstAttribute="leading" secondItem="dUq-s8-gJU" secondAttribute="leading" id="eyC-MG-cLX"/>
                             <constraint firstItem="xCT-fe-2Pn" firstAttribute="top" secondItem="vwd-1s-d61" secondAttribute="bottom" id="nSq-bg-7MZ"/>
                             <constraint firstAttribute="trailing" secondItem="vwd-1s-d61" secondAttribute="trailing" id="oPB-R0-Gyy"/>
+                            <constraint firstItem="Mbk-Ol-VQj" firstAttribute="centerY" secondItem="xCT-fe-2Pn" secondAttribute="centerY" id="qF7-v6-Nd0"/>
                             <constraint firstItem="gwA-LO-BpL" firstAttribute="leading" secondItem="dUq-s8-gJU" secondAttribute="leading" id="qXQ-zd-Dhi"/>
+                            <constraint firstItem="7zv-AI-b54" firstAttribute="top" secondItem="xCT-fe-2Pn" secondAttribute="bottom" id="qoa-hm-cce"/>
                             <constraint firstItem="xCT-fe-2Pn" firstAttribute="leading" secondItem="dUq-s8-gJU" secondAttribute="leading" id="t1p-oh-aMo"/>
+                            <constraint firstItem="xCT-fe-2Pn" firstAttribute="top" secondItem="vwd-1s-d61" secondAttribute="bottom" id="yFx-K4-RNo"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Market Name" id="Lde-4x-prC">
@@ -136,6 +150,7 @@
                         <barButtonItem key="rightBarButtonItem" image="icons8-Search-28" id="AnF-ef-32W"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="activityIndicatorView" destination="Mbk-Ol-VQj" id="BI5-aH-76A"/>
                         <outlet property="categoryDropDownView" destination="lsj-7z-pMz" id="Y2h-mF-Pki"/>
                         <outlet property="dropDownView" destination="gwA-LO-BpL" id="UCp-y6-Da0"/>
                         <outlet property="filterDropDownView" destination="e0Y-jo-NTM" id="gQc-IZ-Odd"/>

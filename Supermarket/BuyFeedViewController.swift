@@ -40,6 +40,8 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         print (index)
     }
     
+    @IBOutlet weak var activityIndicatorView: UIView!
+    
     
     @IBOutlet weak var dropDownView: UIView!
     @IBOutlet weak var filterDropDownView: UIView!
@@ -71,8 +73,10 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         self.navigationItem.title = self.currentMarket!.name
 //        loadPosts()
         filterPosts()
-        self.postTableView.reloadData()
-        self.postTableView.reloadData(with: UITableView.AnimationType.simple(duration: 1, direction: .bottom(useCellsFrame: true), constantDelay: 0))
+//        self.postTableView.reloadData()
+        
+//        self.postTableView.reloadData(with: UITableView.AnimationType.simple(duration: 1, direction: .bottom(useCellsFrame: true), constantDelay: 0))
+        
 //        self.filterTableView?.reloadData()
         self.categoryTableView!.reloadData()
     }
@@ -83,6 +87,10 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         self.tabBarController?.tabBar.isHidden = false
         
         super.viewDidLoad()
+        
+        // style activity indicator square
+        activityIndicatorView.isHidden = true
+        activityIndicatorView.layer.cornerRadius = 3
         
         
         postTableView.dataSource = self
@@ -349,6 +357,8 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         // START ACTIVITY INDICATOR
         print("Start activity indicator!")
 //        startAnimating(type: NVActivityIndicatorType.ballPulse)
+//        activityIndicatorView.isHidden = false
+        
         startAnimating(type: NVActivityIndicatorType.ballPulse, color: Constants.Colors.ourGray, backgroundColor: UIColor.clear)
         
         self.posts = []
@@ -393,10 +403,18 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
                     self.posts.append(post)
                 }
 //                self.postTableView.reloadData()
-                self.postTableView.reloadData(with: UITableView.AnimationType.simple(duration: 0.75, direction: .top(useCellsFrame: true), constantDelay: 0))
+//                self.postTableView.reloadData(with: UITableView.AnimationType.simple(duration: 0.75, direction: .top(useCellsFrame: true), constantDelay: 0))
+                
+                self.postTableView.reloadData(with: UITableView.AnimationType.simple(duration: 0.75, direction: .top(useCellsFrame: true), constantDelay: 0), reversed: false, completion: {
+//                    print("Stop activity indicator!")
+//                    self.activityIndicatorView.isHidden = true
+//                    self.stopAnimating()
+                    
+                })
 
                 // STOP ACTIVITY INDICATOR
                 print("Stop activity indicator!")
+                self.activityIndicatorView.isHidden = true
                 self.stopAnimating()
             } else {
                 print("Error fetching filtered posts: \(String(describing: error?.localizedDescription))")
