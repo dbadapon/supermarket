@@ -576,7 +576,7 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
 
             if self.highProbabilityMLResult != "" {
                 if self.highProbabilityMLResult != self.currentHighProbabilityMLResult {
-                    print("NEW OBSERVATION, SO LAST OBSERVATION SET TO NIL")
+                    print("NEW OBSERVATION, SO RESET STUFF")
                     self.lastObservation = nil
                     self.visionSequenceHandler = VNSequenceRequestHandler()
                     // high prob results have changed, so save then and initialize a tracker
@@ -599,16 +599,17 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
                     print(initialRect)
                     self.lastObservation = newObservation
                     
-                    var initialboundingbox = CGRect(x: 0.345, y: 0.676, width: 0.36, height: 0.32)
-                    initialboundingbox.origin.y = 1 - initialboundingbox.origin.y
+                    var initialBoundingBox = CGRect(x: 0.345, y: 0.676, width: 0.36, height: 0.32)
+                    initialBoundingBox.origin.y = 1 - initialBoundingBox.origin.y
                     // call on delegate
-                    self.recognizedObject = RecognizedObject.init(boundingBox: initialboundingbox, highProbabilityMLResult: self.currentHighProbabilityMLResult, highProbClassifications: self.currentHighProbClassifications)
+                    self.recognizedObject = RecognizedObject.init(boundingBox: initialBoundingBox, highProbabilityMLResult: self.currentHighProbabilityMLResult, highProbClassifications: self.currentHighProbClassifications)
                 }
             } else {
                 // self.visionSequenceHandler = VNSequenceRequestHandler()
                 // self.lastObservation = nil // no need to do this
                 // print("last observation set to nil bc no highProbObj anymore")
                 self.currentHighProbabilityMLResult = ""
+                self.currentHighProbClassifications = ""
                 self.highProbExists = false
                 self.delegate?.highProbObjectRecognized(isRecognized: false)
             }
@@ -630,11 +631,17 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
             guard newObservation.confidence >= 0.3 else {
                 // hide the rectangle when we lose accuracy so the user knows something is wrong
                 // self.highlightView?.frame = .zero
-                print("last observation set to nil")
+                // print("last observation set to nil")
                 // reset the tracker
-                self.visionSequenceHandler = VNSequenceRequestHandler()
-                self.lastObservation = nil
+                // self.visionSequenceHandler = VNSequenceRequestHandler()
+                // self.lastObservation = nil
                 self.currentHighProbabilityMLResult = ""
+                self.highProbabilityMLResult = ""
+                
+                // probably unnecesary but just in case
+                self.highProbClassifications = ""
+                self.currentHighProbClassifications = ""
+                
                 self.highProbExists = false
                 self.delegate?.highProbObjectRecognized(isRecognized: false)
                 return

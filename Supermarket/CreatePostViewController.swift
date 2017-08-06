@@ -185,6 +185,7 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
                 // self.previewLayer.removeFromSuperlayer()
                 // self.previewLayer = nil
                 // self.session.stopRunning()
+                self.session?.stopRunning()
                 
                 let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                 let vc = storyboard.instantiateViewController(withIdentifier: "TabBarController") as! RAMAnimatedTabBarController
@@ -201,6 +202,7 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
                 // self.previewLayer.removeFromSuperlayer()
                 // self.previewLayer = nil
                 // self.session.stopRunning()
+                self.session?.stopRunning()
                 
                 let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                 let vc = storyboard.instantiateViewController(withIdentifier: "TabBarController") as! RAMAnimatedTabBarController
@@ -264,14 +266,16 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
     }
     
     func getRecognizedObject(recognizedObject: RecognizedObject) {
-//        print("GET RECOGNIZED OBJECT, MEANS HIGH PROBS HAS BEEN REACHED YEEE")
+
         // update and set the bounds of the high probability object
+        // print("GET RECOGNIZED OBJECT, MEANS HIGH PROBS HAS BEEN REACHED YEEE")
         
         let convertedRect = self.previewLayer.rectForMetadataOutputRect(ofInterest: recognizedObject.boundingBox)
         print("\n\nBounding box: ", recognizedObject.boundingBox)
         print("Converted rect: ",convertedRect,"\n\n")
+        
         // move the highlighted box
-//        print("SET RECTANGLE")
+        // print("SET RECTANGLE")
         self.objectFrameView?.frame = convertedRect
         self.topMLResult = recognizedObject.highProbabilityMLResult
         delegate?.didFindNewObject(object: topMLResult)
@@ -401,11 +405,8 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
         if !isRecognized {
             hideResultTag()
             self.objectFrameView?.frame = CGRect.zero
-            
-        } else {
-            // put red box in middle of screen
-            // self.objectFrameView?.frame = CGRect(x: view.frame.midX, y: view.frame.midY, width: 120.0, height: 120.0)
         }
+        // else do nothing, red box should still be on screen
     }
     
     @IBAction func captureAction(_ sender: UIButton) {
@@ -448,7 +449,7 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
             // uncomment out to stop running AVCaptureSession
             // self.previewLayer.removeFromSuperlayer()
             // self.previewLayer = nil
-            self.session?.stopRunning()
+            // self.session?.stopRunning()
             
             let dvc = segue.destination as! PhotoViewController
             dvc.backgroundImage = imageToPass
@@ -463,7 +464,7 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
             // uncomment out to stop running AVCaptureSession
             // self.previewLayer.removeFromSuperlayer()
             // self.previewLayer = nil
-            self.session?.stopRunning()
+            // self.session?.stopRunning()
             
             let dvc = segue.destination as! UINavigationController
             let vc = dvc.topViewController as! PreviewViewController
