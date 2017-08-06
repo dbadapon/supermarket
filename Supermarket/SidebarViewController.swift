@@ -41,6 +41,10 @@ class SidebarViewController: UIViewController, UITableViewDataSource, UITableVie
         marketTableView.delegate = self
         marketTableView.separatorStyle = .singleLine
         marketTableView.tableFooterView = UIView()
+        
+        let font = UIFontDescriptor(fontAttributes: [UIFontDescriptorFaceAttribute : "Light", UIFontDescriptorFamilyAttribute: "Avenir"])
+        
+        navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont(descriptor: font, size: 20)]
    
         
         navigationController?.navigationBar.barTintColor = UIColor(red: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha: 1.0)
@@ -60,23 +64,6 @@ class SidebarViewController: UIViewController, UITableViewDataSource, UITableVie
         
     }
     
-//    func queryParse() {
-//        let query = PFQuery(className: "Market")
-//        query.addAscendingOrder("name")
-//        query.findObjectsInBackground { (markets: [PFObject]?, error: Error?) in
-//            if let markets = markets {
-//                for m in markets {
-//                    let market = Market(m)
-//                    self.markets.append(market)
-//                }
-////                self.markets = markets
-//                self.marketTableView.reloadData()
-//            }
-//            else {
-//                print(error?.localizedDescription)
-//            }
-//        }
-//    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

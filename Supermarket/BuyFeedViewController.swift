@@ -40,8 +40,6 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         print (index)
     }
     
-    @IBOutlet weak var activityIndicatorView: UIView!
-    
     
     @IBOutlet weak var dropDownView: UIView!
     @IBOutlet weak var filterDropDownView: UIView!
@@ -89,9 +87,7 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         super.viewDidLoad()
         
         // style activity indicator square
-        activityIndicatorView.isHidden = true
-        activityIndicatorView.layer.cornerRadius = 3
-        
+  
         
         postTableView.dataSource = self
         postTableView.delegate = self
@@ -315,14 +311,16 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
 //
 //        navigationController?.navigationBar.isTranslucent = false
         
+       
+        
         navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont(name: "Avenir", size: 20)!]
-        
+
         navigationController?.navigationBar.barTintColor = UIColor(red: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha: 1.0)
-        
+
         navigationController?.navigationBar.barStyle = UIBarStyle.black
-        
+
         navigationController?.navigationBar.tintColor = UIColor.white
-        
+
         navigationController?.navigationBar.isTranslucent = false
     }
     
@@ -414,7 +412,6 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
 
                 // STOP ACTIVITY INDICATOR
                 print("Stop activity indicator!")
-                self.activityIndicatorView.isHidden = true
                 self.stopAnimating()
             } else {
                 print("Error fetching filtered posts: \(String(describing: error?.localizedDescription))")
