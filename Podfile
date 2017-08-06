@@ -19,6 +19,7 @@ target 'Supermarket' do
 	pod 'ZKCarousel'
 	pod 'RAMAnimatedTabBarController', "~> 2.0.13"
 	pod "BouncyLayout"
+	pod 'TableViewReloadAnimation', '~> 0.0.5'
  
   target 'SupermarketTests' do
     inherit! :search_paths

@@ -12,8 +12,9 @@ import ParseUI
 //import SideMenu
 import YNDropDownMenu
 import NVActivityIndicatorView
+import TableViewReloadAnimation
 
-class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, ModalDelegate, YNDropDownDelegate {
+class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, ModalDelegate, YNDropDownDelegate, NVActivityIndicatorViewable {
     
     func hideMenu() {
         print ("hey")
@@ -71,6 +72,7 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
 //        loadPosts()
         filterPosts()
         self.postTableView.reloadData()
+        self.postTableView.reloadData(with: UITableView.AnimationType.simple(duration: 1, direction: .bottom(useCellsFrame: true), constantDelay: 0))
 //        self.filterTableView?.reloadData()
         self.categoryTableView!.reloadData()
     }
@@ -346,6 +348,9 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
     func filterPosts() {
         // START ACTIVITY INDICATOR
         print("Start activity indicator!")
+//        startAnimating(type: NVActivityIndicatorType.ballPulse)
+        startAnimating(type: NVActivityIndicatorType.ballPulse, color: Constants.Colors.ourGray, backgroundColor: UIColor.clear)
+        
         self.posts = []
         let query = PFQuery(className: "MarketPost")
         query.whereKey("market", equalTo: currentMarket?.name!)
@@ -387,9 +392,12 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
                     let post = Post(p)
                     self.posts.append(post)
                 }
-                self.postTableView.reloadData()
+//                self.postTableView.reloadData()
+                self.postTableView.reloadData(with: UITableView.AnimationType.simple(duration: 0.75, direction: .top(useCellsFrame: true), constantDelay: 0))
+
                 // STOP ACTIVITY INDICATOR
                 print("Stop activity indicator!")
+                self.stopAnimating()
             } else {
                 print("Error fetching filtered posts: \(String(describing: error?.localizedDescription))")
             }

@@ -13,6 +13,7 @@ PODS:
   - RAMAnimatedTabBarController (2.0.13)
   - SideMenu (2.3.2)
   - SimpleAnimation (0.3.1)
+  - TableViewReloadAnimation (0.0.5)
   - TwicketSegmentedControl (0.1.2)
   - YNDropDownMenu (2.3.2)
   - ZKCarousel (0.1.0)
@@ -28,6 +29,7 @@ DEPENDENCIES:
   - RAMAnimatedTabBarController (~> 2.0.13)
   - SideMenu
   - SimpleAnimation
+  - TableViewReloadAnimation (~> 0.0.5)
   - TwicketSegmentedControl
   - YNDropDownMenu
   - ZKCarousel
@@ -44,10 +46,11 @@ SPEC CHECKSUMS:
   RAMAnimatedTabBarController: 2510f3b66954c3f77ea1042a35d34df8f5f3b604
   SideMenu: 3fa07dd05d4bade2b6f9889fb1877e312e1ba319
   SimpleAnimation: 0c4fe9cb60b5d5c57611909ca95722446fe74d63
+  TableViewReloadAnimation: f3a4c4048efbc56331be98075f26a2e533a14c16
   TwicketSegmentedControl: 6d7a4cf243657e0ac3f00d06d873a25334c04042
   YNDropDownMenu: 9d9f1ae71a408d0e7c66a55da2a52232545fca5a
   ZKCarousel: 36143c4667c89c70c89ccda9e1e01af2fcbb5a9e
 
-PODFILE CHECKSUM: 7d67b4bd423f853f21146535b4dbbe4944c4237a
+PODFILE CHECKSUM: 08caa9e98b68278e2258b5c3d904aca4d02afa68
 
 COCOAPODS: 1.2.1
