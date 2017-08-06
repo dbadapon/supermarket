@@ -113,6 +113,29 @@ class NewDetailViewController: ViewController {
     }
     
     @IBAction func onInterested(_ sender: Any) {
+        // interestedButton.isSelected = true
+        let notification = SupermarketNotification.createNotification(withSender: PFUser.current()!, withReceiver: PFUser.current()!, withMessage: " is interested in your ", withPostObject: post.parseObject)
+        
+        let interested = post.parseObject["interested"] as? [String]
+        if let interested = interested {
+            var newInterested: [String] = []
+            for username in interested {
+                newInterested.append(username)
+            }
+            newInterested.append((PFUser.current()?.username)!)
+            post.parseObject["interested"] = newInterested
+        } else {
+            let newInterested = [PFUser.current()?.username]
+            post.parseObject["interested"] = newInterested
+        }
+        
+        post.parseObject.saveInBackground { (success, error) in
+            if let error = error {
+                print ("there was an error with updating the interested array \(error.localizedDescription)")
+            } else {
+                print ("the interested array should have been updated correctly")
+            }
+        }
     }
     
     /*
