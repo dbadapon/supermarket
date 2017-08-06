@@ -31,9 +31,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="263" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xCT-fe-2Pn">
-                                <rect key="frame" x="0.0" y="110" width="375" height="557"/>
+                                <rect key="frame" x="0.0" y="104" width="375" height="563"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="BuyFeedCell" selectionStyle="none" indentationWidth="10" reuseIdentifier="BuyFeedCell" rowHeight="259" id="NK2-NI-7Gp" customClass="BuyFeedCell" customModule="Supermarket" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="259"/>
@@ -87,32 +86,26 @@
                                 </prototypes>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gwA-LO-BpL">
-                                <rect key="frame" x="0.0" y="64" width="375" height="45"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="39"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lsj-7z-pMz">
-                                        <rect key="frame" x="187.5" y="0.0" width="187.5" height="45"/>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lsj-7z-pMz">
+                                        <rect key="frame" x="187.5" y="0.0" width="187.5" height="39"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e0Y-jo-NTM">
-                                        <rect key="frame" x="0.0" y="0.0" width="187.5" height="45"/>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e0Y-jo-NTM">
+                                        <rect key="frame" x="0.0" y="0.0" width="187.5" height="39"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="e0Y-jo-NTM" firstAttribute="top" secondItem="gwA-LO-BpL" secondAttribute="top" id="44r-xu-YqO"/>
-                                    <constraint firstItem="lsj-7z-pMz" firstAttribute="leading" secondItem="e0Y-jo-NTM" secondAttribute="trailing" id="4eF-Cs-Iug"/>
-                                    <constraint firstAttribute="bottom" secondItem="lsj-7z-pMz" secondAttribute="bottom" id="6cz-62-NdH"/>
-                                    <constraint firstItem="lsj-7z-pMz" firstAttribute="width" secondItem="e0Y-jo-NTM" secondAttribute="width" id="DXv-VT-u88"/>
-                                    <constraint firstAttribute="height" constant="45" id="MQV-sQ-hN8"/>
-                                    <constraint firstItem="e0Y-jo-NTM" firstAttribute="leading" secondItem="gwA-LO-BpL" secondAttribute="leading" id="MlL-A4-W7O"/>
-                                    <constraint firstAttribute="trailing" secondItem="lsj-7z-pMz" secondAttribute="trailing" id="fbA-Xd-vfp"/>
-                                    <constraint firstAttribute="bottom" secondItem="e0Y-jo-NTM" secondAttribute="bottom" id="t1D-J9-FCU"/>
-                                    <constraint firstItem="lsj-7z-pMz" firstAttribute="top" secondItem="gwA-LO-BpL" secondAttribute="top" id="wtV-z3-AoS"/>
+                                    <constraint firstAttribute="height" constant="39" id="9kW-yF-WMZ"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vwd-1s-d61">
-                                <rect key="frame" x="0.0" y="109" width="375" height="1"/>
+                                <rect key="frame" x="0.0" y="103" width="375" height="1"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="0.5" id="t4v-4V-P0d"/>

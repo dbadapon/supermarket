@@ -10,6 +10,7 @@ import UIKit
 import MapKit
 import CoreLocation
 import NVActivityIndicatorView
+// just put a UI stopping one with a clear background...
 import SimpleAnimation
 
 class ChooseLocationViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, NVActivityIndicatorViewable {

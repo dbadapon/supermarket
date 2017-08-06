@@ -11,6 +11,7 @@ import Parse
 import ParseUI
 //import SideMenu
 import YNDropDownMenu
+import NVActivityIndicatorView
 
 class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, ModalDelegate, YNDropDownDelegate {
     
@@ -343,6 +344,8 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func filterPosts() {
+        // START ACTIVITY INDICATOR
+        print("Start activity indicator!")
         self.posts = []
         let query = PFQuery(className: "MarketPost")
         query.whereKey("market", equalTo: currentMarket?.name!)
@@ -380,12 +383,13 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         postQuery.whereKey("sold", equalTo: false)
         postQuery.findObjectsInBackground { (posts, error) in
             if let posts = posts {
-                // print(posts)
                 for p in posts {
                     let post = Post(p)
                     self.posts.append(post)
                 }
                 self.postTableView.reloadData()
+                // STOP ACTIVITY INDICATOR
+                print("Stop activity indicator!")
             } else {
                 print("Error fetching filtered posts: \(String(describing: error?.localizedDescription))")
             }

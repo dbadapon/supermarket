@@ -67,6 +67,7 @@
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <outlet property="nameLabel" destination="051-kz-gTa" id="Baj-m6-u5z"/>
                                             <outlet property="photoImage" destination="J17-L3-326" id="x6j-l8-0Ei"/>
