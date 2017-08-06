@@ -39,6 +39,7 @@ class SelectMarketViewController: UIViewController, UICollectionViewDelegate, UI
     var markets: [Market] = []
     var marketsToPost: [String: String] = [:]
     var selectedMarket: Market? = nil
+    var finalImages: [UIImage] = []
     
     
     @IBOutlet weak var collectionView: UICollectionView!
@@ -171,6 +172,13 @@ class SelectMarketViewController: UIViewController, UICollectionViewDelegate, UI
             }
         }
         
+        var actualImages: [UIImage] = []
+        for image in imageList {
+            actualImages.append( Post.resizeImage(image: image, targetSize: CGSize(width: 512, height: 512)) )
+        }
+        
+        self.finalImages = actualImages
+        
         // ALL INFO
 //        print("NAME: \(itemName)")
 //        print("COVER PHOTO: \(coverPhoto.image)")
@@ -205,26 +213,26 @@ class SelectMarketViewController: UIViewController, UICollectionViewDelegate, UI
 //            self.startAnimating(type: NVActivityIndicatorType.ballPulse)
             
             // clean up so that you pass UIImages themselves instead of ImageViews...
-            var tempImageList: [UIImage] = []
-            tempImageList.append(coverPhoto.image!) // should I force unwrap this?
-            tempImageList.append(imageOne.image!)
-            tempImageList.append(imageTwo.image!)
-            tempImageList.append(imageThree.image!)
-            tempImageList.append(imageFour.image!)
+//            var tempImageList: [UIImage] = []
+//            tempImageList.append(coverPhoto.image!) // should I force unwrap this?
+//            tempImageList.append(imageOne.image!)
+//            tempImageList.append(imageTwo.image!)
+//            tempImageList.append(imageThree.image!)
+//            tempImageList.append(imageFour.image!)
+//
+//            var imageList: [UIImage] = []
+//            for im in tempImageList {
+//                if im != UIImage(named: "cameraMask") {
+//                    imageList.append(im)
+//                }
+//            }
+//
+//            var actualImages: [UIImage] = []
+//            for image in imageList {
+//                actualImages.append( Post.resizeImage(image: image, targetSize: CGSize(width: 512, height: 512)) )
+//            }
             
-            var imageList: [UIImage] = []
-            for im in tempImageList {
-                if im != UIImage(named: "cameraMask") {
-                    imageList.append(im)
-                }
-            }
-            
-            var actualImages: [UIImage] = []
-            for image in imageList {
-                actualImages.append( Post.resizeImage(image: image, targetSize: CGSize(width: 512, height: 512)) )
-            }
-
-            let toPost = Post.createPost(images: actualImages, name: itemName, seller: PFUser.current()!, itemDescription: itemDescription.text, price: itemPrice, conditionNew: isNew, negotiable: isNegotiable, sold: false, city: city!, latitude: latitude!, longitude: longitude!)
+            let toPost = Post.createPost(images: self.finalImages, name: itemName, seller: PFUser.current()!, itemDescription: itemDescription.text, price: itemPrice, conditionNew: isNew, negotiable: isNegotiable, sold: false, city: city!, latitude: latitude!, longitude: longitude!)
             
             toPost.parseObject.saveInBackground { (success, error) in // so you don't want to save in backround in the class itself... you want to save in background whenever you create a new post outside the class!
                 if success {
