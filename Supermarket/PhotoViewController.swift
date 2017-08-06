@@ -135,7 +135,11 @@ class PhotoViewController: UIViewController {
                     let item = itemArray[0]
                     print ("this is the first item: \(item)")
                     
-                    let imageEntities = item["imageEntities"] as! [[String: Any]]
+                    var imageEntities: [[String: Any]] = []
+                    if let imageData = item["imageEntities"] {
+                        print ("okay we just set image entities")
+                        imageEntities = imageData as! [[String: Any]]
+                    }
                     var realEntity: [String: Any]? = nil
                     for entity in imageEntities {
                         let entityType = entity["entityType"] as! String
@@ -145,11 +149,20 @@ class PhotoViewController: UIViewController {
                         }
                     }
                     
-                    if realEntity == nil {
+                    print ("this is the number of entitities: \(imageEntities.count)")
+                    if realEntity == nil && imageEntities.count > 0 {
+                        print ("okay we just set the real entity")
                         realEntity = imageEntities[0]
                     }
                     
-                    let imageUrl = realEntity!["largeImage"] as! String
+                    print ("okay this is the real entity \(realEntity)")
+                    
+                    var imageUrl = ""
+                    if let realEntity = realEntity {
+                        print ("okay it's about to set the image url")
+                        print (realEntity["largeImage"] as! String)
+                        imageUrl = realEntity["largeImage"] as! String
+                    }
                     self.firstResultImageUrl = imageUrl
                     print ("THIS IS THE IMAGE URL: \(imageUrl)")
                     
@@ -169,7 +182,6 @@ class PhotoViewController: UIViewController {
                         self.firstResultPrice.text = "$" + String(describing: firstItemPrice)
 
                     }
-                    print (item["salePrice"]!)
                 }
                 // more than one result from query
                 if numberOfItems > 1 {
@@ -178,10 +190,11 @@ class PhotoViewController: UIViewController {
                     let item = itemArray[1]
                     print ("this is the second item: \(item)")
                     
-                    // THIS LINE IS CAUSING STUFF TO BREAK DOWN
-                    // HELLUR HELLUR REMEMBER TO FIX THIS
-                    // GONNA BE HELLA EMBARASSING IF IT CRASHES
-                    let imageEntities = item["imageEntities"] as! [[String: Any]]
+                    var imageEntities: [[String: Any]] = []
+                    if let imageData = item["imageEntities"] {
+                        imageEntities = imageData as! [[String: Any]]
+                    }
+                    
                     var realEntity: [String: Any]? = nil
                     for entity in imageEntities {
                         let entityType = entity["entityType"] as! String
@@ -191,11 +204,14 @@ class PhotoViewController: UIViewController {
                         }
                     }
                     
-                    if realEntity == nil {
+                    if realEntity == nil && imageEntities.count > 0 {
                         realEntity = imageEntities[0]
                     }
                     
-                    let imageUrl = realEntity!["largeImage"] as! String
+                    var imageUrl = ""
+                    if let realEntity = realEntity {
+                        imageUrl = realEntity["largeImage"] as! String
+                    }
                     self.secondResultImageUrl = imageUrl
                     print ("THIS IS THE IMAGE URL: \(imageUrl)")
                     
@@ -212,15 +228,18 @@ class PhotoViewController: UIViewController {
                     if item["salePrice"] != nil {
                         self.secondResultPrice.text = "$" + String(describing: item["salePrice"]!)
                     }
-                    print (item["salePrice"]!)
                 }
+                
                 // more than two results from query
                 if numberOfItems > 2 {
                     let itemArray = responseDictionary["items"] as! [[String: Any]]
                     
                     let item = itemArray[2]
                     
-                    let imageEntities = item["imageEntities"] as! [[String: Any]]
+                    var imageEntities: [[String: Any]] = []
+                    if let imageData = item["imageEntities"] {
+                        imageEntities = imageData as! [[String: Any]]
+                    }
                     var realEntity: [String: Any]? = nil
                     for entity in imageEntities {
                         let entityType = entity["entityType"] as! String
@@ -230,11 +249,14 @@ class PhotoViewController: UIViewController {
                         }
                     }
                     
-                    if realEntity == nil {
+                    if realEntity == nil && imageEntities.count > 0 {
                         realEntity = imageEntities[0]
                     }
                     
-                    let imageUrl = realEntity!["largeImage"] as! String
+                    var imageUrl = ""
+                    if let realEntity = realEntity {
+                        imageUrl = realEntity["largeImage"] as! String
+                    }
                     self.thirdResultImageUrl = imageUrl
                     print ("THIS IS THE IMAGE URL: \(imageUrl)")
                     
@@ -251,7 +273,6 @@ class PhotoViewController: UIViewController {
                     if item["salePrice"] != nil {
                         self.thirdResultPrice.text = "$" + String(describing: item["salePrice"]!)
                     }
-                    print (item["salePrice"]!)
                 }
                 // more than three results from query
                 if numberOfItems > 3 {
@@ -259,7 +280,10 @@ class PhotoViewController: UIViewController {
                     
                     let item = itemArray[3]
                     
-                    let imageEntities = item["imageEntities"] as! [[String: Any]]
+                    var imageEntities: [[String: Any]] = []
+                    if let imageData = item["imageEntities"] {
+                        imageEntities = imageData as! [[String: Any]]
+                    }
                     var realEntity: [String: Any]? = nil
                     for entity in imageEntities {
                         let entityType = entity["entityType"] as! String
@@ -269,11 +293,14 @@ class PhotoViewController: UIViewController {
                         }
                     }
                     
-                    if realEntity == nil {
+                    if realEntity == nil && imageEntities.count > 0 {
                         realEntity = imageEntities[0]
                     }
                     
-                    let imageUrl = realEntity!["largeImage"] as! String
+                    var imageUrl = ""
+                    if let realEntity = realEntity {
+                        imageUrl = realEntity["largeImage"] as! String
+                    }
                     self.fourthResultImageUrl = imageUrl
                     print ("THIS IS THE IMAGE URL: \(imageUrl)")
                     
@@ -290,7 +317,6 @@ class PhotoViewController: UIViewController {
                     if item["salePrice"] != nil {
                         self.fourthResultPrice.text = "$" + String(describing: item["salePrice"]!)
                     }
-                    print (item["salePrice"]!)
                 }
             }
         }

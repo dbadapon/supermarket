@@ -219,7 +219,10 @@ class PriceViewController: UIViewController, UITextFieldDelegate {
                     
                     let item = itemArray[0]
                     
-                    let imageEntities = item["imageEntities"] as! [[String: Any]]
+                    var imageEntities: [[String: Any]] = []
+                    if let imageData = item["imageEntities"] {
+                        imageEntities = imageData as! [[String: Any]]
+                    }
                     var realEntity: [String: Any]? = nil
                     for entity in imageEntities {
                         let entityType = entity["entityType"] as! String
@@ -229,11 +232,14 @@ class PriceViewController: UIViewController, UITextFieldDelegate {
                         }
                     }
                     
-                    if realEntity == nil {
+                    if realEntity == nil && imageEntities.count > 0 {
                         realEntity = imageEntities[0]
                     }
                     
-                    let imageUrl = realEntity!["largeImage"] as! String
+                    var imageUrl = ""
+                    if let realEntity = realEntity {
+                        imageUrl = realEntity["largeImage"] as! String
+                    }
                     self.firstResultImageUrl = imageUrl
                     print ("THIS IS THE IMAGE URL: \(imageUrl)")
                     
@@ -260,7 +266,10 @@ class PriceViewController: UIViewController, UITextFieldDelegate {
                     
                     let item = itemArray[1]
                     
-                    let imageEntities = item["imageEntities"] as! [[String: Any]]
+                    var imageEntities: [[String: Any]] = []
+                    if let imageData = item["imageEntities"] {
+                        imageEntities = imageData as! [[String: Any]]
+                    }
                     var realEntity: [String: Any]? = nil
                     for entity in imageEntities {
                         let entityType = entity["entityType"] as! String
@@ -270,11 +279,14 @@ class PriceViewController: UIViewController, UITextFieldDelegate {
                         }
                     }
                     
-                    if realEntity == nil {
+                    if realEntity == nil && imageEntities.count > 0 {
                         realEntity = imageEntities[0]
                     }
                     
-                    let imageUrl = realEntity!["largeImage"] as! String
+                    var imageUrl = ""
+                    if let realEntity = realEntity {
+                        imageUrl = realEntity["largeImage"] as! String
+                    }
                     self.secondResultImageUrl = imageUrl
                     print ("THIS IS THE IMAGE URL: \(imageUrl)")
                     
@@ -297,7 +309,10 @@ class PriceViewController: UIViewController, UITextFieldDelegate {
                     
                     let item = itemArray[2]
                     
-                    let imageEntities = item["imageEntities"] as! [[String: Any]]
+                    var imageEntities: [[String: Any]] = []
+                    if let imageData = item["imageEntities"] {
+                        imageEntities = imageData as! [[String: Any]]
+                    }
                     var realEntity: [String: Any]? = nil
                     for entity in imageEntities {
                         let entityType = entity["entityType"] as! String
@@ -307,11 +322,14 @@ class PriceViewController: UIViewController, UITextFieldDelegate {
                         }
                     }
                     
-                    if realEntity == nil {
+                    if realEntity == nil && imageEntities.count > 0 {
                         realEntity = imageEntities[0]
                     }
                     
-                    let imageUrl = realEntity!["largeImage"] as! String
+                    var imageUrl = ""
+                    if let realEntity = realEntity {
+                        imageUrl = realEntity["largeImage"] as! String
+                    }
                     self.thirdResultImageUrl = imageUrl
                     print ("THIS IS THE IMAGE URL: \(imageUrl)")
                     
@@ -334,8 +352,11 @@ class PriceViewController: UIViewController, UITextFieldDelegate {
                     
                     let item = itemArray[3]
                     
-                    let imageEntities = item["imageEntities"] as! [[String: Any]]
-                    var realEntity: [String: Any]? = nil
+                    var imageEntities: [[String: Any]] = []
+                    if let imageData = item["imageEntities"] {
+                        imageEntities = imageData as! [[String: Any]]
+                    }
+                 var realEntity: [String: Any]? = nil
                     for entity in imageEntities {
                         let entityType = entity["entityType"] as! String
                         if entityType == "PRIMARY" {
@@ -344,11 +365,14 @@ class PriceViewController: UIViewController, UITextFieldDelegate {
                         }
                     }
                     
-                    if realEntity == nil {
+                    if realEntity == nil && imageEntities.count > 0 {
                         realEntity = imageEntities[0]
                     }
                     
-                    let imageUrl = realEntity!["largeImage"] as! String
+                    var imageUrl = ""
+                    if let realEntity = realEntity {
+                        imageUrl = realEntity["largeImage"] as! String
+                    }
                     self.fourthResultImageUrl = imageUrl
                     print ("THIS IS THE IMAGE URL: \(imageUrl)")
                     
