@@ -30,22 +30,47 @@ class PhotoViewController: UIViewController {
     @IBOutlet weak var thirdResultName: UILabel!
     @IBOutlet weak var fourthResultName: UILabel!
     
+    
+    @IBOutlet weak var result1: UIView!
+    @IBOutlet weak var result2: UIView!
+    @IBOutlet weak var result3: UIView!
+    @IBOutlet weak var result4: UIView!
+    
+    
+    
+    
     var firstResultImageUrl = ""
     var secondResultImageUrl = ""
     var thirdResultImageUrl = ""
     var fourthResultImageUrl = ""
+
     
     var firstPriceValue: Double?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print(backgroundImage)
-        print(topMLResult)
-        
-        checkPriceWithName(query: topMLResult)
+        print("in view did load")
+    
         
         opaqueHeaderImage.backgroundColor = Constants.Colors.mainColor
+        
+        opaqueHeaderImage.alpha = 0
+        opaqueHeaderLabel.alpha = 0
+        
+//        UIView.animate(withDuration: 2) {
+//            self.opaqueHeaderImage.alpha = 0.5
+//            self.opaqueHeaderLabel.alpha = 1.0
+//        }
+        
+//        opaqueHeaderImage.fadeIn(duration: 1, delay: 0, completion: nil)
+//        opaqueHeaderLabel.fadeIn(duration: 1, delay: 0, completion: nil)
+        
+//        animateHeader()
+        
+        // call this in the completion of animating the header?
+        checkPriceWithName(query: topMLResult)
+    
         
         // originally image was coded
         // self.view.backgroundColor = UIColor.gray
@@ -80,6 +105,7 @@ class PhotoViewController: UIViewController {
         // add "x" to top left hand corner
         let cancelButton = UIButton(frame: CGRect(x: 20.0, y: 30.0, width: 20.0, height: 20.0))
         cancelButton.setImage(#imageLiteral(resourceName: "cancel"), for: UIControlState())
+//        cancelButton.imageView?.tintColor = UIColor.black
         cancelButton.addTarget(self, action: #selector(cancel), for: .touchUpInside)
         view.addSubview(cancelButton)
         
@@ -90,6 +116,14 @@ class PhotoViewController: UIViewController {
         nextButton.setImage(#imageLiteral(resourceName: "arrow"), for: UIControlState())
         nextButton.addTarget(self, action: #selector(nextAction), for: .touchUpInside)
         view.addSubview(nextButton)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        UIView.animate(withDuration: 1) {
+            self.opaqueHeaderImage.alpha = 0.5
+            self.opaqueHeaderLabel.alpha = 1.0
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -106,6 +140,13 @@ class PhotoViewController: UIViewController {
     @objc func nextAction() {
         // what happens when user clicks next
         performSegue(withIdentifier: "toPreviewSegue", sender: self)
+    }
+    
+    func animateHeader() {
+        print("in animate header!")
+    
+        opaqueHeaderImage.fadeIn(duration: 1, delay: 0, completion: nil)
+        opaqueHeaderLabel.fadeIn(duration: 1, delay: 0, completion: nil)
     }
     
     func checkPriceWithName(query: String) {
