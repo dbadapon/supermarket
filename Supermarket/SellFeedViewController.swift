@@ -211,10 +211,6 @@ class SellFeedViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 10
-    }
-    
     
     
     func segmentedViewControllerValueChanged(_ sender: Any) {
