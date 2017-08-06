@@ -31,6 +31,8 @@ class PhotoViewController: UIViewController {
     @IBOutlet weak var fourthResultName: UILabel!
     
     
+    @IBOutlet weak var blurView: UIVisualEffectView!
+    
     @IBOutlet weak var result1: UIView!
     @IBOutlet weak var result2: UIView!
     @IBOutlet weak var result3: UIView!
@@ -52,11 +54,12 @@ class PhotoViewController: UIViewController {
         
         print("in view did load")
     
+        opaqueHeaderLabel.alpha = 0
+        blurView.alpha = 0
         
         opaqueHeaderImage.backgroundColor = Constants.Colors.mainColor
         
-        opaqueHeaderImage.alpha = 0
-        opaqueHeaderLabel.alpha = 0
+        opaqueHeaderImage.isHidden = true
         
 //        UIView.animate(withDuration: 2) {
 //            self.opaqueHeaderImage.alpha = 0.5
@@ -121,7 +124,8 @@ class PhotoViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         UIView.animate(withDuration: 1) {
-            self.opaqueHeaderImage.alpha = 0.5
+            self.blurView.alpha = 1.0
+//            self.opaqueHeaderImage.alpha = 0.5
             self.opaqueHeaderLabel.alpha = 1.0
         }
     }
@@ -142,11 +146,11 @@ class PhotoViewController: UIViewController {
         performSegue(withIdentifier: "toPreviewSegue", sender: self)
     }
     
-    func animateHeader() {
-        print("in animate header!")
-    
-        opaqueHeaderImage.fadeIn(duration: 1, delay: 0, completion: nil)
-        opaqueHeaderLabel.fadeIn(duration: 1, delay: 0, completion: nil)
+    func animateResults() {
+        result1.fadeIn(duration: 1, delay: 0.2, completion: nil)
+        result2.fadeIn(duration: 1, delay: 0.3, completion: nil)
+        result3.fadeIn(duration: 1, delay: 0.4, completion: nil)
+        result4.fadeIn(duration: 1, delay: 0.5, completion: nil)
     }
     
     func checkPriceWithName(query: String) {
@@ -212,6 +216,7 @@ class PhotoViewController: UIViewController {
                         NSURLConnection.sendAsynchronousRequest(request, queue: OperationQueue.main, completionHandler: {(response: URLResponse!,data: Data!,error: Error!) -> Void in
                             if error == nil {
                                 self.firstResultImage.image = UIImage(data: data)
+                                // I wish you could just set this at the end!
                             }
                         })
                     }
@@ -360,7 +365,8 @@ class PhotoViewController: UIViewController {
                     }
                 }
             }
-        }
+            self.animateResults()
+        } // end of request completion
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
