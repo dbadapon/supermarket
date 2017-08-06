@@ -250,7 +250,7 @@ class NotificationsViewController: UIViewController, UITableViewDelegate, UITabl
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         if segue.identifier == "notificationToDetail" {
-            let destination = segue.destination as! DetailViewController
+            let destination = segue.destination as! NewDetailViewController
             destination.post = self.clickedPost
         }
     }
