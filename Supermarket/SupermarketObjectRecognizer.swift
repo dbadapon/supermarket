@@ -116,7 +116,7 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
     var currentHighProbClassifications = ""
     
     // corresponding to RecognizedBarcode
-    // FIX THIS AT SOME POINT
+    // no need
     // var barcodeObject: AVMetadataMachineReadableCodeObject
     // what is read from barcode
     var codeString = ""
@@ -408,7 +408,7 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
             print(error)
         }
         
-//        if self.highProbExists {
+        if self.highProbExists {
             // below is code for tracking object
             // create the request
             if let lastObservation = self.lastObservation {
@@ -422,13 +422,14 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
                 // right now, this is happening forever
                 // FIX THIS AFTER LUNCH!!!!!!
                 // perform the request
-                /*
+
                 do {
                     try self.visionSequenceHandler.perform([request], on: pixelBuffer)
+                    print("visionSequenceHandler success!!!")
                 } catch {
                     print("Throws: \(error)")
                 }
- */
+
             }
         /*
             // below is code for identifying rectangles
@@ -439,7 +440,7 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
                 print("Throws: \(error)")
             }
   */
-//        }
+        }
     }
     
     func handleClassifications(request: VNRequest, error: Error?) {
