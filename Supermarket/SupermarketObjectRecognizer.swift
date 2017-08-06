@@ -424,6 +424,8 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
                 // perform the request
 
                 do {
+//                    let visionSequenceHandler = VNSequenceRequestHandler()
+//                    try visionSequenceHandler.perform([request], on: pixelBuffer)
                     try self.visionSequenceHandler.perform([request], on: pixelBuffer)
                     print("visionSequenceHandler success!!!")
                 } catch {
@@ -576,6 +578,7 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
                 if self.highProbabilityMLResult != self.currentHighProbabilityMLResult {
                     print("NEW OBSERVATION, SO LAST OBSERVATION SET TO NIL")
                     self.lastObservation = nil
+                    self.visionSequenceHandler = VNSequenceRequestHandler()
                     // high prob results have changed, so save then and initialize a tracker
                     // save the current high probability results
                     self.currentHighProbabilityMLResult = self.highProbabilityMLResult
@@ -602,6 +605,7 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
                     self.recognizedObject = RecognizedObject.init(boundingBox: initialboundingbox, highProbabilityMLResult: self.currentHighProbabilityMLResult, highProbClassifications: self.currentHighProbClassifications)
                 }
             } else {
+                // self.visionSequenceHandler = VNSequenceRequestHandler()
                 // self.lastObservation = nil // no need to do this
                 // print("last observation set to nil bc no highProbObj anymore")
                 self.currentHighProbabilityMLResult = ""
@@ -628,6 +632,7 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
                 // self.highlightView?.frame = .zero
                 print("last observation set to nil")
                 // reset the tracker
+                self.visionSequenceHandler = VNSequenceRequestHandler()
                 self.lastObservation = nil
                 self.currentHighProbabilityMLResult = ""
                 self.highProbExists = false
