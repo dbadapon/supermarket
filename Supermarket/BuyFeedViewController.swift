@@ -96,7 +96,7 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture))
         swipeDown.direction = UISwipeGestureRecognizerDirection.down
         self.view.addGestureRecognizer(swipeDown)
-        
+
         postTableView.dataSource = self
         postTableView.delegate = self
         
