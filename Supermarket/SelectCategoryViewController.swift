@@ -46,26 +46,14 @@ class SelectCategoryViewController: UIViewController, UITableViewDelegate, UITab
         cell.preservesSuperviewLayoutMargins = false
         cell.separatorInset = UIEdgeInsets.zero
         cell.layoutMargins = UIEdgeInsets(top: 16.0, left: 16.0, bottom: 16.0, right: 16.0)
-        if indexPath.row == 0 {
-            cell.categoryNameLabel.text = "None"
-//            selectedCategory = nil
-        } else {
-            cell.categoryNameLabel.text = market.categories[indexPath.row-1]
-        }
+        cell.categoryNameLabel.text = market.categories[indexPath.row]
         
         return cell
         
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row == 0 {
-//            oldCategory = selectedCategory
-            selectedCategory = nil
-        }
-        else {
-//            oldCategory = selectedCategory
-            selectedCategory = market.categories[indexPath.row-1]
-        }
+        selectedCategory = market.categories[indexPath.row]
     }
     
     @IBAction func onCancel(_ sender: Any) {
