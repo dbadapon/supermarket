@@ -29,8 +29,12 @@
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>$(PRODUCT_NAME) Would you like this application to access your camera? </string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Will you allow this app to always know your location?</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Will you allow this app to always know your location?</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>$(PRODUCT_NAME) Would you like this application to access your location? </string>
+	<string>Do you allow this app to know your current location?</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>$(PRODUCT_NAME) Would you like this application to access your photo library? </string>
 	<key>UILaunchStoryboardName</key>
@@ -44,8 +48,6 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
@@ -54,11 +56,5 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-    <key>NSLocationAlwaysUsageDescription</key>
-    <string>Will you allow this app to always know your location?</string>
-    <key>NSLocationWhenInUseUsageDescription</key>
-    <string>Do you allow this app to know your current location?</string>
-    <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-    <string>Will you allow this app to always know your location?</string>
 </dict>
 </plist>
