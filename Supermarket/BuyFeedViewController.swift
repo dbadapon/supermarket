@@ -80,14 +80,10 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     override func viewDidLoad() {
-        
         // make sure tab bar is there
         self.tabBarController?.tabBar.isHidden = false
         
         super.viewDidLoad()
-        
-        // style activity indicator square
-  
         
         postTableView.dataSource = self
         postTableView.delegate = self

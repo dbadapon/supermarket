@@ -67,7 +67,7 @@
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </view>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="new" translatesAutoresizingMaskIntoConstraints="NO" id="fJc-Lq-p1A">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="New" translatesAutoresizingMaskIntoConstraints="NO" id="fJc-Lq-p1A">
                                                     <rect key="frame" x="307" y="17" width="50" height="50"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
@@ -573,6 +573,7 @@
     <resources>
         <image name="Info" width="50" height="50"/>
         <image name="Menu-50" width="25" height="25"/>
+        <image name="New" width="37" height="37"/>
         <image name="Speech Bubble-50" width="25" height="25"/>
         <image name="Star Filled-50" width="25" height="25"/>
         <image name="Star-50" width="25" height="25"/>

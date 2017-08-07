@@ -55,6 +55,7 @@
 		4DC3C0CA1F2016B400B4E2C4 /* SellFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC3C0C91F2016B400B4E2C4 /* SellFeedViewController.swift */; };
 		4DF6982E1F17ED8B008DB9D6 /* MLManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF6982D1F17ED8B008DB9D6 /* MLManager.swift */; };
 		926A42BE122588BD99E6BC61 /* Pods_SupermarketUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80572461216E64975C83358E /* Pods_SupermarketUITests.framework */; };
+		A0045F951F37F6FE0049DCA5 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0045F941F37F6FE0049DCA5 /* LaunchViewController.swift */; };
 		A00D1D321F2E9FD400A8BA21 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A00D1D311F2E9FD400A8BA21 /* MapKit.framework */; };
 		A06467861F306A76003592EC /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A06467851F306A76003592EC /* Constants.swift */; };
 		A07904201F13F098000E4419 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A079041F1F13F098000E4419 /* AppDelegate.swift */; };
@@ -142,6 +143,7 @@
 		80572461216E64975C83358E /* Pods_SupermarketUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SupermarketUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		926BE3FB87F2C782821060A8 /* Pods-SupermarketUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SupermarketUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SupermarketUITests/Pods-SupermarketUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		9CA3F4E30EAAA6212351048B /* Pods-SupermarketUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SupermarketUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SupermarketUITests/Pods-SupermarketUITests.release.xcconfig"; sourceTree = "<group>"; };
+		A0045F941F37F6FE0049DCA5 /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		A00D1D311F2E9FD400A8BA21 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		A06467851F306A76003592EC /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		A079041C1F13F098000E4419 /* Supermarket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Supermarket.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -324,6 +326,7 @@
 				A07DD39B1F1555E70079C286 /* NotificationStoryboard.storyboard */,
 				A07DD39D1F15573B0079C286 /* Profile.storyboard */,
 				A07904281F13F098000E4419 /* LaunchScreen.storyboard */,
+				A0045F941F37F6FE0049DCA5 /* LaunchViewController.swift */,
 				A079041F1F13F098000E4419 /* AppDelegate.swift */,
 				A06467851F306A76003592EC /* Constants.swift */,
 				4DF6982D1F17ED8B008DB9D6 /* MLManager.swift */,
@@ -698,6 +701,7 @@
 				A0E30DE71F144EA00062B100 /* TabBarController.swift in Sources */,
 				A07904201F13F098000E4419 /* AppDelegate.swift in Sources */,
 				4D73A2BB1F2676EE00A5ACDC /* SupermarketNotification.swift in Sources */,
+				A0045F951F37F6FE0049DCA5 /* LaunchViewController.swift in Sources */,
 				4DF6982E1F17ED8B008DB9D6 /* MLManager.swift in Sources */,
 				4D15560D1F1402B900F70DB3 /* User.swift in Sources */,
 				4D1556591F1540EB00F70DB3 /* DetailPictureCell.swift in Sources */,
