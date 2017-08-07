@@ -148,6 +148,7 @@ class NewDetailViewController: ViewController {
     @IBAction func onMessage(_ sender: Any) {
     }
     
+    
     @IBAction func onInterested(_ sender: Any) {
         interestedButton.isSelected = true
         let notification = SupermarketNotification.createNotification(withSender: PFUser.current()!, withReceiver: PFUser.current()!, withMessage: " is interested in your ", withPostObject: post.parseObject)
