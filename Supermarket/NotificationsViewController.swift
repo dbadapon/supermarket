@@ -60,19 +60,20 @@ class NotificationsViewController: UIViewController, UITableViewDelegate, UITabl
         
         
         
-        navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont(name: "Avenir", size: 20)!]
+        self.navigationItem.title = "Alerts"
+        navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont(name: "Avenir", size: 20)!, NSForegroundColorAttributeName: UIColor.black]
+
+        navigationController?.navigationBar.barStyle = UIBarStyle.default
         
-        navigationController?.navigationBar.barTintColor = UIColor(red: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha: 1.0)
+        // navigationController?.navigationBar.isTranslucent = false
         
-        navigationController?.navigationBar.barStyle = UIBarStyle.black
-        
-        navigationController?.navigationBar.tintColor = UIColor.white
-        
-        navigationController?.navigationBar.isTranslucent = false
+        automaticallyAdjustsScrollViewInsets = false
         
         
         self.tableView.tableFooterView = UIView()
         
+        tableView.reloadData()
+        tableView.reloadData()
         tableView.reloadData()
     }
     

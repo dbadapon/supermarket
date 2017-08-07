@@ -47,9 +47,29 @@ class InterestedCell: UITableViewCell {
                             postName = self.post.name as! String
                             if self.notification.message == " is interested in your " {
                                 self.messageLabel.text = "'" + senderName + "'" + self.notification.message + postName + "."
+                                
+                                self.ignoreButton.setTitle("Dismiss", for: .normal)
+                                
+                                self.respondButton.frame.size.width = 0
+                                self.respondButton.frame.size.height = 0
+                                self.respondButton.alpha = 0
+                                self.respondButton.isEnabled = false
+                                
+                            } else if self.notification.message == " wants to ask about your " {
+                                self.messageLabel.text = "'" + senderName + "'" + self.notification.message + postName + "."
+                                
+                    
                             } else {
                                 self.messageLabel.text = self.notification.message
+                                
+                                self.ignoreButton.setTitle("Dismiss", for: .normal)
+                                
+                                self.respondButton.frame.size.width = 0
+                                self.respondButton.frame.size.height = 0
+                                self.respondButton.alpha = 0
+                                self.respondButton.isEnabled = false
                             }
+                            
                             let images = self.post.images as! [PFFile]
                             self.postPhotoImage.file = images[0] 
                             self.postPhotoImage.loadInBackground()
