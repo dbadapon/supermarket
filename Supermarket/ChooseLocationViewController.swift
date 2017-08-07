@@ -258,8 +258,6 @@ class ChooseLocationViewController: UIViewController, CLLocationManagerDelegate,
         
         if segue.identifier == "toSelectMarketSegue" {
             
-            print("pinLocation is: \(pinLocation)")
-            
                 let backItem = UIBarButtonItem()
                 backItem.title = ""
                 backItem.tintColor = UIColor.black
@@ -278,9 +276,7 @@ class ChooseLocationViewController: UIViewController, CLLocationManagerDelegate,
                 dvc.isNew = self.isNew
                 dvc.itemDescription = self.itemDescription
                 dvc.latitude = self.latitude
-            print("dvc latitude is: \(self.latitude)")
                 dvc.longitude = self.longitude
-            print("dvc longitude is: \(self.longitude)")
                 dvc.city = self.city
     
         }

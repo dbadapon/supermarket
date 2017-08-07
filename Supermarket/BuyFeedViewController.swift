@@ -627,7 +627,6 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         
         // clear back button text
         if segue.identifier == "detailSegue" {
-            print ("it's trying to segue")
             let backItem = UIBarButtonItem()
             backItem.title = ""
             navigationItem.backBarButtonItem = backItem

@@ -123,7 +123,7 @@ class NewDetailViewController: ViewController {
         formatter.timeStyle = .none
         if let time = time {
             createdAtString = formatter.string(from: time)
-            self.timeLabel.text = createdAtString
+            self.timeLabel.text = "Posted on \(createdAtString)"
         }
         
         if let description = post.itemDescription {
@@ -133,6 +133,9 @@ class NewDetailViewController: ViewController {
         if let interestedList = post.parseObject["interested"] as? [String] {
             if interestedList.contains((PFUser.current()?.username)!) {
                 interestedButton.isSelected = true
+            } else {
+                interestedButton.isSelected = false
+                // maybe get rid of this idk lol
             }
         }
         
@@ -141,7 +144,7 @@ class NewDetailViewController: ViewController {
         } else {
             newMark.isHidden = true
         }
-        self.view.bringSubview(toFront: newMark)
+        self.carouselView.bringSubview(toFront: newMark)
         
     }
     

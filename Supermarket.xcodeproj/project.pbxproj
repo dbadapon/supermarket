@@ -242,6 +242,7 @@
 				A0E30DA11F143C020062B100 /* BuyFeedViewController.swift */,
 				4DC3C0C91F2016B400B4E2C4 /* SellFeedViewController.swift */,
 				4D1556561F153FC800F70DB3 /* DetailViewController.swift */,
+				4D98E3851F352DE400223DAF /* NewDetailViewController.swift */,
 				A0B989F11F15806F0037EFCF /* SidebarViewController.swift */,
 				0A6966C51F15401200E72FD8 /* LoginViewController.swift */,
 				0A6966C71F15404700E72FD8 /* SignUpViewController.swift */,
@@ -258,7 +259,6 @@
 				4D4747B31F2ABC9400E90771 /* SelectCategoryViewController.swift */,
 				0A9811A11F3289CC000FD195 /* ARKitViewController.swift */,
 				4D39623E1F33C40D006DEB35 /* ARCreateViewController.swift */,
-				4D98E3851F352DE400223DAF /* NewDetailViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
