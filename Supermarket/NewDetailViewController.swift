@@ -27,11 +27,12 @@ class NewDetailViewController: ViewController {
     @IBOutlet weak var newMark: UIImageView!
     @IBOutlet weak var interestedButton: UIButton!
     @IBOutlet weak var soldButton: UIButton!
+    @IBOutlet weak var mapView: MKMapView!
+    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         
         // change the navigation bar
         self.navigationItem.title = "Item Details"
@@ -52,18 +53,9 @@ class NewDetailViewController: ViewController {
         print (postSellerUsername)
         print (currentUsername)
         if postSellerUsername == currentUsername {
-            print ("this is the current user's post")
-            interestedButton.frame.size.width = 0
-            interestedButton.frame.size.height = 0
-            interestedButton.alpha = 0
-            interestedButton.isEnabled = false
+            // keep interested button lol
         } else {
-            print ("this is not the current user's post")
-//            soldButton.frame.size.width = 0
-//            soldButton.frame.size.height = 0
-//            soldButton.alpha = 0
-//            soldButton.isEnabled = false
-            soldButton.setTitle("Message Seller (implement pls)", for: .normal)
+            soldButton.setTitle("Message Seller", for: .normal)
         }
         
         
@@ -146,6 +138,16 @@ class NewDetailViewController: ViewController {
             newMark.isHidden = true
         }
         self.carouselView.bringSubview(toFront: newMark)
+        
+        // Set map
+        let center = CLLocationCoordinate2D(latitude: CLLocationDegrees(post.latitude!), longitude: CLLocationDegrees(post.longitude!))
+        let annotation: MKPointAnnotation = MKPointAnnotation()
+        annotation.coordinate = center
+        mapView.addAnnotation(annotation)
+        
+        let span = MKCoordinateSpanMake(0.005, 0.005)
+        let region = MKCoordinateRegion(center: center, span: span)
+        mapView.setRegion(region, animated: false)
         
     }
     

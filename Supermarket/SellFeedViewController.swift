@@ -8,9 +8,10 @@
 
 import UIKit
 import Parse
+import NVActivityIndicatorView
 import TableViewReloadAnimation
 
-class SellFeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, ModalDelegate {
+class SellFeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, ModalDelegate, NVActivityIndicatorViewable {
     
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var segmentedView: UIView!
@@ -200,13 +201,14 @@ class SellFeedViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let cell = postTableView.dequeueReusableCell(withIdentifier: "SellFeedCell", for: indexPath) as! SellFeedCell
+        if posts.count > 0 {
+            cell.post = posts[indexPath.row]
+        }
         // cell.preservesSuperviewLayoutMargins = false
         // cell.separatorInset = UIEdgeInsets.zero
         // cell.layoutMargins = UIEdgeInsets.zero
-        
-        cell.post = posts[indexPath.row]
+
         return cell
     }
 
@@ -269,6 +271,8 @@ class SellFeedViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func loadPosts() {
+
+        startAnimating(type: NVActivityIndicatorType.ballPulse, color: Constants.Colors.ourGray, backgroundColor: UIColor.clear)
         
         let query = PFQuery(className: "MarketPost")
         query.addDescendingOrder("createdAt")
@@ -311,8 +315,9 @@ class SellFeedViewController: UIViewController, UITableViewDataSource, UITableVi
                             self.posts = self.soldPosts
                         }
 //                        self.postTableView.reloadData()
-                        self.postTableView.reloadData(with: UITableView.AnimationType.simple(duration: 0.75, direction: .top(useCellsFrame: true), constantDelay: 0), reversed: false, completion: nil)
                         
+                        self.postTableView.reloadData(with: UITableView.AnimationType.simple(duration: 0.75, direction: .top(useCellsFrame: true), constantDelay: 0), reversed: false, completion: nil)
+                        self.stopAnimating()
                     }
                 })
 //                for m in marketPosts {
