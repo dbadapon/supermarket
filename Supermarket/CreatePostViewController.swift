@@ -51,6 +51,8 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
     // session
     var session: AVCaptureSession?
     
+    var objectRecognized = false
+    
     // image to pass onto next view controller
     // to "freeze" screen when user clicks capture button
     var imageToPass: UIImage!
@@ -164,7 +166,7 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
         objectFrameView = UIView()
         
         if let objectFrameView = objectFrameView {
-            objectFrameView.layer.borderColor = UIColor.red.cgColor
+            objectFrameView.layer.borderColor = UIColor.clear.cgColor
             objectFrameView.layer.borderWidth = 2
             view.addSubview(objectFrameView)
             view.bringSubview(toFront: objectFrameView)
@@ -239,11 +241,17 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
     }
     
     func updateCurrentFrame(currentFrame: CurrentFrame) {
-        // set the result view to whatever the classifications are
-        // called on whenever classifications changes
-        self.resultView.text = currentFrame.classifications
-        // for debugging purposes
-        // print("updating classifications")
+        if self.objectRecognized {
+            // if there's a high probability object being recognized
+            // do not display constant results
+            self.resultView.text = ""
+        } else {
+            // set the result view to whatever the classifications are
+            // called on whenever classifications changes
+            self.resultView.text = currentFrame.classifications
+            // for debugging purposes
+            // print("updating classifications")
+        }
     }
     
     // this is called on when user captures image on screen
@@ -403,10 +411,13 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
     func highProbObjectRecognized(isRecognized: Bool) {
         // to make sure red box disappears when object is not recognized
         if !isRecognized {
+            self.objectRecognized = false
             hideResultTag()
             self.objectFrameView?.frame = CGRect.zero
+        } else {
+            self.objectRecognized = true
+            self.resultView.text = ""
         }
-        // else do nothing, red box should still be on screen
     }
     
     @IBAction func captureAction(_ sender: UIButton) {
