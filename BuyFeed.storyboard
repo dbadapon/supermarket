@@ -447,10 +447,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gQB-5n-z8d">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gQB-5n-z8d">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jQJ-Id-oSE">
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jQJ-Id-oSE">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cNZ-k0-Wa9" customClass="ZKCarousel" customModule="ZKCarousel">
@@ -508,14 +508,6 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bMb-zu-Ng6">
-                                                <rect key="frame" x="31" y="406" width="30" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" image="Speech Bubble-50"/>
-                                                <connections>
-                                                    <action selector="onMessage:" destination="egE-Tm-CJ3" eventType="touchUpInside" id="JZ8-Va-YVb"/>
-                                                </connections>
-                                            </button>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QBt-CW-LWW">
                                                 <rect key="frame" x="71" y="406" width="30" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -530,7 +522,6 @@
                                         <constraints>
                                             <constraint firstItem="cNZ-k0-Wa9" firstAttribute="top" secondItem="jQJ-Id-oSE" secondAttribute="top" id="Gpn-c2-EQI"/>
                                             <constraint firstAttribute="trailing" secondItem="cNZ-k0-Wa9" secondAttribute="trailing" id="Upf-Ce-4q9"/>
-                                            <constraint firstAttribute="height" constant="1000" id="wU2-XK-LFS"/>
                                             <constraint firstItem="cNZ-k0-Wa9" firstAttribute="leading" secondItem="jQJ-Id-oSE" secondAttribute="leading" id="zTS-VL-BDh"/>
                                         </constraints>
                                     </view>
@@ -542,6 +533,15 @@
                                     <constraint firstItem="jQJ-Id-oSE" firstAttribute="leading" secondItem="gQB-5n-z8d" secondAttribute="leading" id="qB8-2k-vDY"/>
                                 </constraints>
                             </scrollView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bMb-zu-Ng6">
+                                <rect key="frame" x="0.0" y="672" width="375" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.36714449524879456" green="0.7917712926864624" blue="0.80788099765777588" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <state key="normal" title="Message Seller"/>
+                                <connections>
+                                    <action selector="onMessage:" destination="egE-Tm-CJ3" eventType="touchUpInside" id="JZ8-Va-YVb"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -580,6 +580,6 @@
         <image name="icons8-Search-28" width="50" height="50"/>
         <image name="icons8-Star Filled-50 2" width="48" height="46"/>
         <image name="insta_camera_btn" width="25" height="25"/>
-        <image name="new" width="33" height="33"/>
+        <image name="new" width="37" height="37"/>
     </resources>
 </document>

@@ -40,7 +40,6 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         print (index)
     }
     
-    
     @IBOutlet weak var dropDownView: UIView!
     @IBOutlet weak var filterDropDownView: UIView!
     @IBOutlet weak var categoryDropDownView: UIView!
@@ -52,15 +51,10 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
     var marketPosts: [PFObject] = []
     
     var searchController: UISearchController!
-    
     var posts: [Post] = []
-    
     var markets: [Market] = []
-    
     var currentMarket: Market?
-    
     var category: String = "All"
-    
     var filter: String = "Most Recent"
     
     let ourColor = UIColor(red: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha: 1.0)
@@ -69,13 +63,13 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         self.category = "All"
         self.currentMarket = market
         self.navigationItem.title = self.currentMarket!.name
-//        loadPosts()
+        // loadPosts()
         filterPosts()
-//        self.postTableView.reloadData()
+        // self.postTableView.reloadData()
         
-//        self.postTableView.reloadData(with: UITableView.AnimationType.simple(duration: 1, direction: .bottom(useCellsFrame: true), constantDelay: 0))
+        // self.postTableView.reloadData(with: UITableView.AnimationType.simple(duration: 1, direction: .bottom(useCellsFrame: true), constantDelay: 0))
         
-//        self.filterTableView?.reloadData()
+        // self.filterTableView?.reloadData()
         self.categoryTableView!.reloadData()
     }
     
@@ -84,6 +78,24 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         self.tabBarController?.tabBar.isHidden = false
         
         super.viewDidLoad()
+        
+
+        // add swipe gestures
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture))
+        swipeRight.direction = UISwipeGestureRecognizerDirection.right
+        self.view.addGestureRecognizer(swipeRight)
+        
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture))
+        swipeLeft.direction = UISwipeGestureRecognizerDirection.left
+        self.view.addGestureRecognizer(swipeLeft)
+        
+        let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture))
+        swipeUp.direction = UISwipeGestureRecognizerDirection.up
+        self.view.addGestureRecognizer(swipeUp)
+        
+        let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture))
+        swipeDown.direction = UISwipeGestureRecognizerDirection.down
+        self.view.addGestureRecognizer(swipeDown)
         
         postTableView.dataSource = self
         postTableView.delegate = self
@@ -225,42 +237,34 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
 //        }
         
         
+/*
+        // YOU'RE GONNA HAVE TO CHANGE ALL THIS SEARCH STUFF...FIGURE OUT HOW TO DO IT!
         
+        searchController = UISearchController(searchResultsController: nil)
+        searchController.searchResultsUpdater = self
+        searchController.dimsBackgroundDuringPresentation = false
+        searchController.searchBar.sizeToFit()
         
-//         YOU'RE GONNA HAVE TO CHANGE ALL THIS SEARCH STUFF...FIGURE OUT HOW TO DO IT!
+        postTableView.tableHeaderView = searchController.searchBar
         
-//        searchController = UISearchController(searchResultsController: nil)
-//        searchController.searchResultsUpdater = self
-//        
-//        searchController.dimsBackgroundDuringPresentation = false
-//        searchController.searchBar.sizeToFit()
-//        
-//        postTableView.tableHeaderView = searchController.searchBar
-//        
-//        searchController.searchBar.barTintColor = UIColor.white
-//        
-//        searchController.searchBar.layer.borderWidth = 1
-//        
-//        searchController.searchBar.layer.borderColor = searchController.searchBar.barTintColor?.cgColor
+        searchController.searchBar.barTintColor = UIColor.white
+        searchController.searchBar.layer.borderWidth = 1
+        searchController.searchBar.layer.borderColor = searchController.searchBar.barTintColor?.cgColor
+         
+ */
         
         
         let font = UIFontDescriptor(fontAttributes: [UIFontDescriptorFaceAttribute : "Medium", UIFontDescriptorFamilyAttribute: "Avenir"])
         
         navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont(descriptor: font, size: 20)]
-        
-        
         navigationController?.navigationBar.barTintColor = UIColor(red: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha: 1.0)
-        
         navigationController?.navigationBar.barStyle = UIBarStyle.black
-        
         navigationController?.navigationBar.tintColor = UIColor.white
-        
         navigationController?.navigationBar.isTranslucent = false
         
         // searchController.searchBar.clipsToBounds = true
         
         definesPresentationContext = true
-        
         
         var dropDownViews: [UIView] = []
         let frame1 = CGRect(x: 0, y: 64, width: self.view.frame.width, height: 135)
@@ -268,7 +272,6 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         filterTableView = UITableView(frame: frame1)
         categoryTableView = UITableView(frame: frame2)
        
-        
         dropDownViews.append(filterTableView!)
         dropDownViews.append(categoryTableView!)
         
@@ -287,36 +290,46 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         dropView?.bottomLine = UIView()
         dropView?.setImageWhen(normal: UIImage(named: "icons8-Expand Arrow-20"), selected: UIImage(named: "icons8-Expand Arrow-20"), disabled: UIImage(named: "icons8-Expand Arrow-20"))
 
-//        Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.queryParse), userInfo: nil, repeats: true)
+        // Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.queryParse), userInfo: nil, repeats: true)
         
         setFirstMarket()
     }
     
+    // for swipe gestures
+    func respondToSwipeGesture(gesture: UIGestureRecognizer) {
+        if let swipeGesture = gesture as? UISwipeGestureRecognizer {
+            switch swipeGesture.direction {
+            case UISwipeGestureRecognizerDirection.right:
+                print("swiped right")
+                performSegue(withIdentifier: "sideMenu", sender: self)
+            case UISwipeGestureRecognizerDirection.down:
+                print("swiped down")
+            case UISwipeGestureRecognizerDirection.left:
+                print("swiped left")
+            case UISwipeGestureRecognizerDirection.up:
+                print("swiped up")
+            default:
+                break
+            }
+        }
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
-//        navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont(name: "Avenir", size: 20)]
-        
-//        let font = UIFontDescriptor(fontAttributes: [UIFontDescriptorFaceAttribute : "Medium", UIFontDescriptorFamilyAttribute: "Avenir"])
-//
-//        navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont(descriptor: font, size: 20)]
-//
-//        navigationController?.navigationBar.barTintColor = UIColor.init(colorLiteralRed: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha: 1.0)
-//
-//        navigationController?.navigationBar.barStyle = UIBarStyle.black
-//
-//        navigationController?.navigationBar.tintColor = UIColor.white
-//
-//        navigationController?.navigationBar.isTranslucent = false
-        
-       
+
+        /*
+        navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont(name: "Avenir", size: 20)]
+        let font = UIFontDescriptor(fontAttributes: [UIFontDescriptorFaceAttribute : "Medium", UIFontDescriptorFamilyAttribute: "Avenir"])
+        navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont(descriptor: font, size: 20)]
+        navigationController?.navigationBar.barTintColor = UIColor.init(colorLiteralRed: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha: 1.0)
+        navigationController?.navigationBar.barStyle = UIBarStyle.black
+        navigationController?.navigationBar.tintColor = UIColor.white
+        navigationController?.navigationBar.isTranslucent = false
+         */
         
         navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont(name: "Avenir", size: 20)!]
-
         navigationController?.navigationBar.barTintColor = UIColor(red: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha: 1.0)
-
         navigationController?.navigationBar.barStyle = UIBarStyle.black
-
         navigationController?.navigationBar.tintColor = UIColor.white
-
         navigationController?.navigationBar.isTranslucent = false
     }
     
@@ -334,7 +347,7 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
                 self.currentMarket = self.markets[0]
                 let marketName = self.currentMarket?.name
                 self.navigationItem.title = marketName
-//                self.loadPosts()
+                // self.loadPosts()
                 self.filterPosts()
                 
                 self.postTableView.reloadData()
@@ -350,8 +363,8 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
     func filterPosts() {
         // START ACTIVITY INDICATOR
         print("Start activity indicator!")
-//        startAnimating(type: NVActivityIndicatorType.ballPulse)
-//        activityIndicatorView.isHidden = false
+        // startAnimating(type: NVActivityIndicatorType.ballPulse)
+        // activityIndicatorView.isHidden = false
         
         startAnimating(type: NVActivityIndicatorType.ballPulse, color: Constants.Colors.ourGray, backgroundColor: UIColor.clear)
         
@@ -363,6 +376,7 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         if self.category != "All" {
             query.whereKey("category", equalTo: self.category)
         }
+        
         query.findObjectsInBackground(block: { (marketPosts, error) in
             if let marketPosts = marketPosts {
                 self.marketPosts = marketPosts
@@ -414,10 +428,7 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
                 print("Error fetching filtered posts: \(String(describing: error?.localizedDescription))")
             }
         }
-        
     }
-    
-    
     
     /*
     func loadPosts() { // SO YOU SHOULD JUST CALL FILTEREDPOSTS() EVERYWHERE INSTEAD OF LOADPOSTS TO AVOID REDUNDANT CODE
@@ -461,8 +472,6 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
     }
  */
     
-    
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -616,7 +625,6 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         // clear back button text
-        
         if segue.identifier == "detailSegue" {
             print ("it's trying to segue")
             let backItem = UIBarButtonItem()
@@ -630,7 +638,6 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
                 detailViewController.post = post
             }
         }
-        
         if segue.identifier == "sideMenu" {
             let destination = segue.destination as! UINavigationController
             let destinationVC = destination.topViewController as! SidebarViewController

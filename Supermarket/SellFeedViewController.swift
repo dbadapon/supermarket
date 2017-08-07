@@ -32,11 +32,26 @@ class SellFeedViewController: UIViewController, UITableViewDataSource, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // add swipe gestures
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture))
+        swipeRight.direction = UISwipeGestureRecognizerDirection.right
+        self.view.addGestureRecognizer(swipeRight)
+        
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture))
+        swipeLeft.direction = UISwipeGestureRecognizerDirection.left
+        self.view.addGestureRecognizer(swipeLeft)
+        
+        let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture))
+        swipeUp.direction = UISwipeGestureRecognizerDirection.up
+        self.view.addGestureRecognizer(swipeUp)
+        
+        let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture))
+        swipeDown.direction = UISwipeGestureRecognizerDirection.down
+        self.view.addGestureRecognizer(swipeDown)
+        
         // make sure tab bar is there
         self.tabBarController?.tabBar.isHidden = false
         
-        
-                
 //        let image = UIImage(named: "TeamProfileImage.jpg")
 //        print ("this is the image: \(image)")
 //        let file = Post.getPFFileFromImage(image: image)
@@ -51,7 +66,6 @@ class SellFeedViewController: UIViewController, UITableViewDataSource, UITableVi
 //            }
 //        })
         
-        
         postTableView.dataSource = self
         postTableView.delegate = self
 
@@ -63,27 +77,20 @@ class SellFeedViewController: UIViewController, UITableViewDataSource, UITableVi
         navigationController?.navigationBar.titleTextAttributes = [
             NSFontAttributeName: UIFont.systemFont(ofSize: 17, weight: UIFontWeightHeavy)
         ]
-        
         navigationController?.navigationBar.barTintColor = UIColor(red: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha: 1.0)
-        
         navigationController?.navigationBar.barStyle = UIBarStyle.black
-        
         navigationController?.navigationBar.tintColor = UIColor.white
-        
         navigationController?.navigationBar.isTranslucent = false
         
         definesPresentationContext = true
         
         segmentedControl.tintColor = UIColor(red: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha: 1.0)
         segmentedControl.layer.masksToBounds = true
-        
         segmentedControl.tintColor = UIColor.clear
         
         // segmentedView.addTarget(self, action: #selector(SellFeedViewController.segmentedViewControllerValueChanged(_:)), for: .valueChanged)
-
         // segmentedView.backgroundColor = UIColor.init(colorLiteralRed: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha: 1.0)
-        
-        //         let font = UIFontDescriptor(fontAttributes: [UIFontDescriptorFaceAttribute : "Medium", UIFontDescriptorFamilyAttribute: "Avenir"])
+        // let font = UIFontDescriptor(fontAttributes: [UIFontDescriptorFaceAttribute : "Medium", UIFontDescriptorFamilyAttribute: "Avenir"])
         // UIFont.systemFont(ofSize: 16, weight: UIFontWeightMedium)
         
         let boldTextAttributes: [NSObject : AnyObject] = [
@@ -176,15 +183,30 @@ class SellFeedViewController: UIViewController, UITableViewDataSource, UITableVi
         
     }
     
+    // for swipe gestures
+    func respondToSwipeGesture(gesture: UIGestureRecognizer) {
+        if let swipeGesture = gesture as? UISwipeGestureRecognizer {
+            switch swipeGesture.direction {
+            case UISwipeGestureRecognizerDirection.right:
+                print("swiped right")
+                performSegue(withIdentifier: "sideMenu", sender: self)
+            case UISwipeGestureRecognizerDirection.down:
+                print("swiped down")
+            case UISwipeGestureRecognizerDirection.left:
+                print("swiped left")
+            case UISwipeGestureRecognizerDirection.up:
+                print("swiped up")
+            default:
+                break
+            }
+        }
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont(name: "Avenir", size: 20)!]
-        
         navigationController?.navigationBar.barTintColor = UIColor(red: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha: 1.0)
-        
         navigationController?.navigationBar.barStyle = UIBarStyle.black
-        
         navigationController?.navigationBar.tintColor = UIColor.white
-        
         navigationController?.navigationBar.isTranslucent = false
     }
     
@@ -202,26 +224,20 @@ class SellFeedViewController: UIViewController, UITableViewDataSource, UITableVi
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = postTableView.dequeueReusableCell(withIdentifier: "SellFeedCell", for: indexPath) as! SellFeedCell
-        
-
-//        cell.preservesSuperviewLayoutMargins = false
-//        cell.separatorInset = UIEdgeInsets.zero
-//        cell.layoutMargins = UIEdgeInsets.zero
+        // cell.preservesSuperviewLayoutMargins = false
+        // cell.separatorInset = UIEdgeInsets.zero
+        // cell.layoutMargins = UIEdgeInsets.zero
         
         cell.post = posts[indexPath.row]
-
-        
         return cell
     }
-    
-    
-    
-    
+
     func segmentedViewControllerValueChanged(_ sender: Any) {
         
     }
     
     @IBAction func segmentDidChange(_ sender: Any) {
+        
         if segmentedControl.selectedSegmentIndex == 0 {
             self.posts = sellingPosts
             lineViewOne.backgroundColor = ourColor
@@ -231,7 +247,6 @@ class SellFeedViewController: UIViewController, UITableViewDataSource, UITableVi
             lineViewOne.backgroundColor = UIColor.clear
             lineViewTwo.backgroundColor = ourColor
         }
-        
         self.postTableView.reloadData()
     }
     
@@ -250,7 +265,6 @@ class SellFeedViewController: UIViewController, UITableViewDataSource, UITableVi
         // print (currentMarket?.name!)
         self.navigationItem.title = self.currentMarket!.name
         loadPosts()
-        
     }
     
     func setFirstMarket() {
@@ -278,7 +292,6 @@ class SellFeedViewController: UIViewController, UITableViewDataSource, UITableVi
     
     func loadPosts() {
         
-        
         let query = PFQuery(className: "MarketPost")
         query.addDescendingOrder("createdAt")
         query.whereKey("market", equalTo: currentMarket!.name)
@@ -299,7 +312,7 @@ class SellFeedViewController: UIViewController, UITableViewDataSource, UITableVi
                 postQuery.whereKey("seller", equalTo: "_User$" + (PFUser.current()?.objectId)!)
                 postQuery.findObjectsInBackground(block: { (posts, error) in
                     if let posts = posts {
-//                        let notification = SupermarketNotification.createNotification(withSender: PFUser.current()!, withReceiver: PFUser.current()!, withMessage: " is interested in your ", withPostObject: posts[0])
+                        // let notification = SupermarketNotification.createNotification(withSender: PFUser.current()!, withReceiver: PFUser.current()!, withMessage: " is interested in your ", withPostObject: posts[0])
                         for p in posts {
                             let post = Post(p)
                             if post.sold == true {
@@ -314,7 +327,6 @@ class SellFeedViewController: UIViewController, UITableViewDataSource, UITableVi
                             self.posts = self.soldPosts
                         }
                         self.postTableView.reloadData()
-                        
                     }
                 })
 //                for m in marketPosts {
@@ -367,8 +379,5 @@ class SellFeedViewController: UIViewController, UITableViewDataSource, UITableVi
             // print("destination VC: \(destinationVC)")
             destinationVC.delegate = self
         }
-        
      }
-    
-
 }
