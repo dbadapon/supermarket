@@ -149,7 +149,13 @@ class SelectMarketViewController: UIViewController, UICollectionViewDelegate, UI
                 }
                 // print ("the number of markets found was: \(markets.count)")
                 // print ("okay we got the list of markets")
-                self.collectionView.reloadData()
+//                self.collectionView.reloadData()
+                
+                self.collectionView.performBatchUpdates({
+                    let indexSet = IndexSet(integer: 0)
+                    self.collectionView.reloadSections(indexSet)
+                }, completion: nil)
+                
             } else {
                 // print ("there was no error but no markets were loaded")
             }
