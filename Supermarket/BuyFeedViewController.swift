@@ -288,7 +288,8 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         let font2 = UIFont(name: "Avenir", size: 16)
         dropView?.setLabel(font: font2!)
         dropView?.bottomLine = UIView()
-        dropView?.setImageWhen(normal: UIImage(named: "icons8-Expand Arrow-20"), selected: UIImage(named: "icons8-Expand Arrow-20"), disabled: UIImage(named: "icons8-Expand Arrow-20"))
+        dropView?.setImageWhen(normal: UIImage(named: "icons8-Expand Arrow-20"), selectedTintColor: Constants.Colors.mainColor, disabledTintColor: UIColor.black)
+
 
         // Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.queryParse), userInfo: nil, repeats: true)
         
