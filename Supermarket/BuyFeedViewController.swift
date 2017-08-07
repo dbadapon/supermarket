@@ -282,7 +282,7 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         
         let frame = CGRect(x: 0, y: 0, width: dropDownView.frame.width, height: dropDownView.frame.height)
         
-        dropView = YNDropDownMenu(frame:frame, dropDownViews: dropDownViews, dropDownViewTitles: ["Filter by", "Categories"])
+        dropView = YNDropDownMenu(frame:frame, dropDownViews: dropDownViews, dropDownViewTitles: ["Filter by ", "Categories "])
         self.view.addSubview(dropView!)
         dropView?.setLabelColorWhen(normal: UIColor.black, selected: ourColor, disabled: UIColor.gray)
         let font2 = UIFont(name: "Avenir", size: 16)
