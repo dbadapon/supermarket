@@ -308,6 +308,8 @@ class SellFeedViewController: UIViewController, UITableViewDataSource, UITableVi
                 }
                 let postQuery = PFQuery(className: "Post")
                 postQuery.addDescendingOrder("createdAt")
+                // change this to "updatedAt" for sold...
+                
                 postQuery.whereKey("objectId", containedIn: idArray)
                 postQuery.whereKey("seller", equalTo: "_User$" + (PFUser.current()?.objectId)!)
                 postQuery.findObjectsInBackground(block: { (posts, error) in

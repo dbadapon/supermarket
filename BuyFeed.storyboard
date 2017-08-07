@@ -540,6 +540,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="dZC-LV-E9i"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="20"/>
                                 <state key="normal" title="Mark as Sold"/>
                                 <connections>
                                     <action selector="onSold:" destination="egE-Tm-CJ3" eventType="touchUpInside" id="Kbi-nd-x1i"/>

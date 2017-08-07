@@ -54,6 +54,7 @@ class SelectCategoryViewController: UIViewController, UITableViewDelegate, UITab
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedCategory = market.categories[indexPath.row]
+        print("set selected category to \(selectedCategory)")
     }
     
     @IBAction func onCancel(_ sender: Any) {
@@ -66,7 +67,7 @@ class SelectCategoryViewController: UIViewController, UITableViewDelegate, UITab
             let dict = [market.name! : selectedCategory]
             delegate?.choseCategory(category: dict)
         }
-        delegate?.reloadCollectionView()
+        delegate?.reloadCollectionView() // what is this...?
         self.dismiss(animated: true, completion: nil)
     }
     

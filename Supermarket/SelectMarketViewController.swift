@@ -138,6 +138,9 @@ class SelectMarketViewController: UIViewController, UICollectionViewDelegate, UI
         let query = PFQuery(className: "Market")
         query.whereKey("objectId", containedIn: marketIds)
         
+        print("START MARKET ACTIVITY INDICATOR")
+        startAnimating(type: NVActivityIndicatorType.ballPulse, color: Constants.Colors.ourGray, backgroundColor: UIColor.clear)
+        
         query.findObjectsInBackground { (markets, error) in
             if error != nil {
                 print("Error with query.findObjectsInBackground")
@@ -151,6 +154,8 @@ class SelectMarketViewController: UIViewController, UICollectionViewDelegate, UI
                 // print ("okay we got the list of markets")
 //                self.collectionView.reloadData()
                 
+                print("STOP MARKET ACTIVITY INDICATOR?")
+                self.stopAnimating()
                 self.collectionView.performBatchUpdates({
                     let indexSet = IndexSet(integer: 0)
                     self.collectionView.reloadSections(indexSet)
@@ -186,16 +191,16 @@ class SelectMarketViewController: UIViewController, UICollectionViewDelegate, UI
         self.finalImages = actualImages
         
         // ALL INFO
-//        print("NAME: \(itemName)")
-//        print("COVER PHOTO: \(coverPhoto.image)")
-//        print("IMAGES: \(imageOne.image), \(imageTwo.image), \(imageThree.image), \(imageFour.image)")
-//        print("NEGOTIABLE: \(isNegotiable)")
-//        print("PRICE: \(itemPrice)")
-//        print("NEW: \(isNew)")
-//        print("DESCRIPTION: \(itemDescription.text)")
-//        print("LATITUDE: \(latitude)")
-//        print("LONGITUDE: \(longitude)")
-//        print("CITY: \(city)")
+        print("NAME: \(itemName)")
+        print("COVER PHOTO: \(coverPhoto.image)")
+        print("IMAGES: \(imageOne.image), \(imageTwo.image), \(imageThree.image), \(imageFour.image)")
+        print("NEGOTIABLE: \(isNegotiable)")
+        print("PRICE: \(itemPrice)")
+        print("NEW: \(isNew)")
+        print("DESCRIPTION: \(itemDescription.text)")
+        print("LATITUDE: \(latitude)")
+        print("LONGITUDE: \(longitude)")
+        print("CITY: \(city)")
 //
 //        print (imageOne.image?.size.height)
 //        print (imageOne.image?.size.width )
@@ -334,7 +339,7 @@ class SelectMarketViewController: UIViewController, UICollectionViewDelegate, UI
         let marketName = category.keys.first
         let categoryName = category[marketName!]
         marketsToPost[marketName!] = categoryName
-        // print (marketsToPost)
+        print ("new marketsToPost: \(marketsToPost)")
     }
     
     func deselectCategory(marketName: String) {
