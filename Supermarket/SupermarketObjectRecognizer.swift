@@ -236,8 +236,8 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
         photoSettings.isHighResolutionPhotoEnabled = true
         photoSettings.isAutoStillImageStabilizationEnabled = true
         
-        if photoSettings.availablePreviewPhotoPixelFormatTypes.count > 0 {
-            photoSettings.previewPhotoFormat = [ kCVPixelBufferPixelFormatTypeKey as String : photoSettings.availablePreviewPhotoPixelFormatTypes.first!]
+        if photoSettings.__availablePreviewPhotoPixelFormatTypes.count > 0 {
+            photoSettings.previewPhotoFormat = [ kCVPixelBufferPixelFormatTypeKey as String : photoSettings.__availablePreviewPhotoPixelFormatTypes.first!]
         }
         
         if let videoConnection = self.stillImageOutput.connection(withMediaType: AVMediaTypeVideo) {
