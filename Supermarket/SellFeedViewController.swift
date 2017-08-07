@@ -323,12 +323,18 @@ class SellFeedViewController: UIViewController, UITableViewDataSource, UITableVi
                                 self.sellingPosts.append(post)
                             }
                         }
+                        self.soldPosts.sort(by: { (post1, post2) -> Bool in
+                            return Int((post1.parseObject.updatedAt?.timeIntervalSinceNow)!) > Int((post2.parseObject.updatedAt?.timeIntervalSinceNow)!)
+                        })
+                        
                         if self.segmentedControl.selectedSegmentIndex == 0 {
                             self.posts = self.sellingPosts
                         } else {
                             self.posts = self.soldPosts
                         }
                         self.postTableView.reloadData()
+                        
+                        
                     }
                 })
 //                for m in marketPosts {
