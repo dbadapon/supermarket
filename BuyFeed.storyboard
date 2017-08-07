@@ -534,9 +534,12 @@
                                     <constraint firstAttribute="trailing" secondItem="PTW-kb-DJz" secondAttribute="trailing" id="iZ3-2n-B8s"/>
                                 </constraints>
                             </scrollView>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bMb-zu-Ng6">
-                                <rect key="frame" x="0.0" y="921" width="375" height="45"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bMb-zu-Ng6">
+                                <rect key="frame" x="0.0" y="955" width="375" height="45"/>
                                 <color key="backgroundColor" red="0.36714449524879456" green="0.7917712926864624" blue="0.80788099765777588" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="dZC-LV-E9i"/>
+                                </constraints>
                                 <state key="normal" title="Mark as Sold"/>
                                 <connections>
                                     <action selector="onSold:" destination="egE-Tm-CJ3" eventType="touchUpInside" id="Kbi-nd-x1i"/>
