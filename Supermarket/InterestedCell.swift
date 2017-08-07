@@ -22,64 +22,76 @@ class InterestedCell: UITableViewCell {
     
     var notification: SupermarketNotification! {
         didSet {
-            messageLabel.numberOfLines = 0
-            let date = notification.parseObject.createdAt
-            let dateString = Post.getRelativeDate(date: date!)
-            dateLabel.text = dateString
-            print ("getting to notification did set method")
-            let sender = notification.sender
-            print (sender)
-            var senderName: String = ""
-            var postName: String = ""
-            sender.fetchInBackground { (sender, error) in
-                if let error = error {
-                    print ("this is the error for sender: \(error.localizedDescription)")
-                } else {
-                    senderName = sender!["username"] as! String
-                    
-                    let post = self.notification.postObject
-                    post.fetchInBackground(block: { (post, error) in
-                        if let error = error {
-                            print ("this is the post error \(error.localizedDescription)")
-                        } else {
-                            self.post = Post(post)
-                            print ("it's actually getting here")
-                            postName = self.post.name as! String
-                            if self.notification.message == " is interested in your " {
-                                self.messageLabel.text = "'" + senderName + "'" + self.notification.message + postName + "."
-                                
-                                self.ignoreButton.setTitle("Dismiss", for: .normal)
-                                
-                                self.respondButton.frame.size.width = 0
-                                self.respondButton.frame.size.height = 0
-                                self.respondButton.alpha = 0
-                                self.respondButton.isEnabled = false
-                                
-                            } else if self.notification.message == " wants to ask about your " {
-                                self.messageLabel.text = "'" + senderName + "'" + self.notification.message + postName + "."
-                                
-                    
-                            } else {
-                                self.messageLabel.text = self.notification.message
-                                
-                                self.ignoreButton.setTitle("Dismiss", for: .normal)
-                                
-                                self.respondButton.frame.size.width = 0
-                                self.respondButton.frame.size.height = 0
-                                self.respondButton.alpha = 0
-                                self.respondButton.isEnabled = false
-                            }
-                            
-                            let images = self.post.images as! [PFFile]
-                            self.postPhotoImage.file = images[0] 
-                            self.postPhotoImage.loadInBackground()
-                            
-                            
-                        }
-                    })
-                    
-                }
-            }
+//            let date = notification.parseObject.createdAt
+//            let dateString = Post.getRelativeDate(date: date!)
+//            dateLabel.text = dateString
+//            print ("getting to notification did set method")
+//            let sender = notification.sender
+//            print (sender)
+//            post = Post(notification.postObject)
+//
+//            let senderName = notification.sender["username"] as! String
+//            let postName = notification.postObject["name"] as! String
+//            let message = notification.message
+//
+//            if self.notification.message == " is interested in your " {
+//                let firstPart = "'" + senderName
+//                let secondPart = "'" + message
+//                let thirdPart = postName + "."
+//                let messageText = firstPart + secondPart + thirdPart
+//                self.messageLabel.text = messageText
+//
+//                self.ignoreButton.setTitle("Dismiss", for: .normal)
+//
+//                self.respondButton.frame.size.width = 0
+//                self.respondButton.frame.size.height = 0
+//                self.respondButton.alpha = 0
+//                self.respondButton.isEnabled = false
+//
+//            } else if self.notification.message == " wants to ask about your " {
+//                let firstPart = "'" + senderName
+//                let secondPart = "'" + message
+//                let thirdPart = postName + "."
+//                let messageText = firstPart + secondPart + thirdPart
+//                self.messageLabel.text = messageText
+//
+//            } else {
+//                self.messageLabel.text = self.notification.message
+//
+//                self.ignoreButton.setTitle("Dismiss", for: .normal)
+//
+//                self.respondButton.frame.size.width = 0
+//                self.respondButton.frame.size.height = 0
+//                self.respondButton.alpha = 0
+//                self.respondButton.isEnabled = false
+//            }
+//
+//            let images = self.post.images as! [PFFile]
+//            self.postPhotoImage.file = images[0]
+//            self.postPhotoImage.loadInBackground()
+            
+//            sender.fetchInBackground { (sender, error) in
+//                if let error = error {
+//                    print ("this is the error for sender: \(error.localizedDescription)")
+//                } else {
+//                    senderName = sender!["username"] as! String
+//
+//                    let post = self.notification.postObject
+//                    post.fetchInBackground(block: { (post, error) in
+//                        if let error = error {
+//                            print ("this is the post error \(error.localizedDescription)")
+//                        } else {
+//                            self.post = Post(post)
+//                            print ("it's actually getting here")
+//                            postName = self.post.name as! String
+//
+//
+//
+//                        }
+//                    })
+//
+//                }
+//            }
             
         }
     }

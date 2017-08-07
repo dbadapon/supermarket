@@ -87,6 +87,8 @@ class NotificationsViewController: UIViewController, UITableViewDelegate, UITabl
         var query = PFQuery(className: "SupermarketNotification")
         query.whereKey("receiver", equalTo: PFUser.current())
         query.addDescendingOrder("createdAt")
+        query.includeKey("sender")
+        query.includeKey("postObject")
         query.limit = 20
         
         query.findObjectsInBackground { (notifications: [PFObject]?, error: Error?) in
@@ -126,12 +128,62 @@ class NotificationsViewController: UIViewController, UITableViewDelegate, UITabl
         
             let cell = tableView.dequeueReusableCell(withIdentifier: "InterestedCell") as! InterestedCell
             
-            cell.notification = notifications[indexPath.row]
-            cell.delegate = self
-            
+           cell.notification = notifications[indexPath.row]
+           cell.delegate = self
+        
             cell.preservesSuperviewLayoutMargins = false
             cell.separatorInset = UIEdgeInsets.zero
             cell.layoutMargins = UIEdgeInsets.zero
+        
+        let notification = notifications[indexPath.row]
+        
+        let date = notification.parseObject.createdAt
+        let dateString = Post.getRelativeDate(date: date!)
+        cell.dateLabel.text = dateString
+        print ("getting to notification did set method")
+        let sender = notification.sender
+        print (sender)
+        let post = Post(notification.postObject)
+        
+        let senderName = notification.sender["username"] as! String
+        let postName = notification.postObject["name"] as! String
+        let message = notification.message
+        
+        if notification.message == " is interested in your " {
+            let firstPart = "'" + senderName
+            let secondPart = "'" + message
+            let thirdPart = postName + "."
+            let messageText = firstPart + secondPart + thirdPart
+            cell.messageLabel.text = messageText
+            
+            cell.ignoreButton.setTitle("Dismiss", for: .normal)
+            
+            cell.respondButton.frame.size.width = 0
+            cell.respondButton.frame.size.height = 0
+            cell.respondButton.alpha = 0
+            cell.respondButton.isEnabled = false
+            
+        } else if notification.message == " wants to ask about your " {
+            let firstPart = "'" + senderName
+            let secondPart = "'" + message
+            let thirdPart = postName + "."
+            let messageText = firstPart + secondPart + thirdPart
+            cell.messageLabel.text = messageText
+            
+        } else {
+            cell.messageLabel.text = notification.message
+            
+            cell.ignoreButton.setTitle("Dismiss", for: .normal)
+            
+            cell.respondButton.frame.size.width = 0
+            cell.respondButton.frame.size.height = 0
+            cell.respondButton.alpha = 0
+            cell.respondButton.isEnabled = false
+        }
+        
+        let images = post.images as! [PFFile]
+        cell.postPhotoImage.file = images[0]
+        cell.postPhotoImage.loadInBackground()
             
             return cell
             
@@ -190,6 +242,7 @@ class NotificationsViewController: UIViewController, UITableViewDelegate, UITabl
         composeVC.body = initialString + name! + finalString
         
         self.indexPath = indexPath
+        self.notification = notification
         
         
         // Present the view controller modally.
