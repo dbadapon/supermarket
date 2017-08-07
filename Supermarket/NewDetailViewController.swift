@@ -52,10 +52,20 @@ class NewDetailViewController: ViewController {
         let currentUsername = PFUser.current()!.objectId
         print (postSellerUsername)
         print (currentUsername)
+        print("Has the item been sold? \(post.sold)")
         if postSellerUsername == currentUsername {
             // keep interested button lol
-        } else {
+        } else if post.sold! == false {
             soldButton.setTitle("Message Seller", for: .normal)
+        }
+        
+        if post.sold! {
+            print("sold...")
+            soldButton.frame.size.height = 0
+            soldButton.frame.size.width = 0
+            soldButton.alpha = 0
+            soldButton.isEnabled = false
+            // doesn't show up for sold posts
         }
         
         
