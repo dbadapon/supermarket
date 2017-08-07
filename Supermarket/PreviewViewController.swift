@@ -177,6 +177,10 @@ class PreviewViewController: UIViewController, UITextViewDelegate, UIGestureReco
                 }
             })
         }
+        if nameString != "" {
+            self.itemName.text = nameString
+        }
+        
         
         // border around textbox for user to type item name
         let borderColor = lightGray
