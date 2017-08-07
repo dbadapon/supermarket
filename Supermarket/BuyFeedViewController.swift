@@ -361,6 +361,7 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         
         self.posts = []
         let query = PFQuery(className: "MarketPost")
+        query.whereKey("seller", notEqualTo: PFUser.current()?.username)
         query.whereKey("market", equalTo: currentMarket?.name!)
         
         if self.category != "All" {
