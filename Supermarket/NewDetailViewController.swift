@@ -26,6 +26,7 @@ class NewDetailViewController: ViewController {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var newMark: UIImageView!
     @IBOutlet weak var interestedButton: UIButton!
+    @IBOutlet weak var soldButton: UIButton!
     
     
     override func viewDidLoad() {
@@ -42,6 +43,29 @@ class NewDetailViewController: ViewController {
         navigationController?.navigationBar.isTranslucent = false
         
         automaticallyAdjustsScrollViewInsets = false
+        
+        
+        
+        
+        let postSellerUsername = post.seller!.objectId
+        let currentUsername = PFUser.current()!.objectId
+        print (postSellerUsername)
+        print (currentUsername)
+        if postSellerUsername == currentUsername {
+            print ("this is the current user's post")
+            interestedButton.frame.size.width = 0
+            interestedButton.frame.size.height = 0
+            interestedButton.alpha = 0
+            interestedButton.isEnabled = false
+        } else {
+            print ("this is not the current user's post")
+            soldButton.frame.size.width = 0
+            soldButton.frame.size.height = 0
+            soldButton.alpha = 0
+            soldButton.isEnabled = false
+        }
+        
+        
         
         // Setup carousel view
         let images = post.images
@@ -146,12 +170,59 @@ class NewDetailViewController: ViewController {
     }
     
     @IBAction func onMessage(_ sender: Any) {
+        if post.seller == PFUser.current() {
+            // do things as though this post was created by this user
+            
+            
+            
+            
+        } else {
+            // do things as if this is some other user's post
+            
+            
+            
+            
+            
+            
+        }
     }
     
+    @IBAction func onSold(_ sender: Any) {
+        if let interestedList = post.interested {
+            print (interestedList)
+            let query: PFQuery = PFUser.query()!
+            query.whereKey("username", containedIn: interestedList)
+            query.findObjectsInBackground(block: { (users, error) in
+                if let error = error {
+                    print ("There was a problem with finding the user \(error.localizedDescription)")
+                } else {
+                    if let users = users {
+                        print ("there were \(users.count) users")
+                        for user in users {
+                            let notification = SupermarketNotification.createNotification(withSender: PFUser.current()!, withReceiver: user as! PFUser, withMessage: "The \(self.post.name!) that you were interested in has been sold!", withPostObject: self.post.parseObject)
+                        }
+                    }
+                    
+                    }
+                })
+                
+            }
+        
+        post.sold = true
+        post.parseObject.saveInBackground { (success, error) in
+            if let error = error {
+                print ("problem changing to sold \(error.localizedDescription)")
+            } else if success {
+                print ("Success with changing to sold")
+            } else {
+                print ("I'm not sure what happened with changing it to sold")
+            }
+        }
+    }
     
     @IBAction func onInterested(_ sender: Any) {
         interestedButton.isSelected = true
-        let notification = SupermarketNotification.createNotification(withSender: PFUser.current()!, withReceiver: PFUser.current()!, withMessage: " is interested in your ", withPostObject: post.parseObject)
+        let notification = SupermarketNotification.createNotification(withSender: PFUser.current()!, withReceiver: post.seller!, withMessage: " is interested in your ", withPostObject: post.parseObject)
         
         let interested = post.parseObject["interested"] as? [String]
         if let interested = interested {

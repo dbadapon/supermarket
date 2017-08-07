@@ -521,9 +521,9 @@
                                                 <rect key="frame" x="0.0" y="373" width="375" height="45"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" red="0.36714449524879456" green="0.7917712926864624" blue="0.80788099765777588" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                <state key="normal" title="Message Seller"/>
+                                                <state key="normal" title="Mark as Sold"/>
                                                 <connections>
-                                                    <action selector="onMessage:" destination="egE-Tm-CJ3" eventType="touchUpInside" id="JZ8-Va-YVb"/>
+                                                    <action selector="onSold:" destination="egE-Tm-CJ3" eventType="touchUpInside" id="Kbi-nd-x1i"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -563,6 +563,7 @@
                         <outlet property="nameLabel" destination="0gp-R9-P07" id="ocJ-A7-tar"/>
                         <outlet property="newMark" destination="f5z-7b-vWc" id="pO8-gZ-RV1"/>
                         <outlet property="priceLabel" destination="uDi-dH-sEK" id="DNH-CQ-Cck"/>
+                        <outlet property="soldButton" destination="bMb-zu-Ng6" id="vVC-CD-msw"/>
                         <outlet property="timeLabel" destination="ER6-sU-iEY" id="DaK-Ci-bD0"/>
                     </connections>
                 </viewController>

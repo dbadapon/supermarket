@@ -45,7 +45,11 @@ class InterestedCell: UITableViewCell {
                             self.post = Post(post)
                             print ("it's actually getting here")
                             postName = self.post.name as! String
-                            self.messageLabel.text = "'" + senderName + "'" + self.notification.message + postName + "."
+                            if self.notification.message == " is interested in your " {
+                                self.messageLabel.text = "'" + senderName + "'" + self.notification.message + postName + "."
+                            } else {
+                                self.messageLabel.text = self.notification.message
+                            }
                             let images = self.post.images as! [PFFile]
                             self.postPhotoImage.file = images[0] 
                             self.postPhotoImage.loadInBackground()
