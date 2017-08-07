@@ -253,13 +253,15 @@ class PriceViewController: UIViewController, UITextFieldDelegate {
                     }
                     
                     self.firstResultName.text = String(describing: item["name"]!)
-                    self.firstResultPrice.text = "$" + String(describing: item["salePrice"]!)
-                    self.itemPrice = item["salePrice"] as! Double
+                    
+                    if let firstItemPrice = item["salePrice"] {
+                        self.itemPrice = firstItemPrice as! Double
+                        self.firstResultPrice.text = "$" + String(describing: firstItemPrice)
+                        
+                    }
                     
                     self.setDefaultPrice()
-                    
-                    print (item["salePrice"]!)
-                }
+                    }
                 // more than one result from query
                 if numberOfItems > 1 {
                     let itemArray = responseDictionary["items"] as! [[String: Any]]
@@ -300,8 +302,11 @@ class PriceViewController: UIViewController, UITextFieldDelegate {
                     }
                     
                     self.secondResultName.text = String(describing: item["name"]!)
-                    self.secondResultPrice.text = "$" + String(describing: item["salePrice"]!)
-                    print (item["salePrice"]!)
+                    
+                    if let SecondItemPrice = item["salePrice"] {
+                        self.secondResultPrice.text = "$" + String(describing: SecondItemPrice)
+                        
+                    }
                 }
                 // more than two results from query
                 if numberOfItems > 2 {
@@ -343,9 +348,13 @@ class PriceViewController: UIViewController, UITextFieldDelegate {
                     }
                     
                     self.thirdResultName.text = String(describing: item["name"]!)
-                    self.thirdResultPrice.text = "$" + String(describing: item["salePrice"]!)
-                    print (item["salePrice"]!)
+                    
+                    if let thirdItemPrice = item["salePrice"] {
+                        self.thirdResultPrice.text = "$" + String(describing: thirdItemPrice)
+                        
+                    }
                 }
+                
                 // more than three results from query
                 if numberOfItems > 3 {
                     let itemArray = responseDictionary["items"] as! [[String: Any]]
@@ -386,8 +395,10 @@ class PriceViewController: UIViewController, UITextFieldDelegate {
                     }
                     
                     self.fourthResultName.text = String(describing: item["name"]!)
-                    self.fourthResultPrice.text = "$" + String(describing: item["salePrice"]!)
-                    print (item["salePrice"]!)
+                    
+                    if let fourthItemPrice = item["salePrice"] {
+                        self.fourthResultPrice.text = "$" + String(describing: fourthItemPrice)
+                    }
                 }
                 
                 // Show and animate results
