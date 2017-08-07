@@ -59,10 +59,11 @@ class NewDetailViewController: ViewController {
             interestedButton.isEnabled = false
         } else {
             print ("this is not the current user's post")
-            soldButton.frame.size.width = 0
-            soldButton.frame.size.height = 0
-            soldButton.alpha = 0
-            soldButton.isEnabled = false
+//            soldButton.frame.size.width = 0
+//            soldButton.frame.size.height = 0
+//            soldButton.alpha = 0
+//            soldButton.isEnabled = false
+            soldButton.setTitle("Message Seller (implement pls)", for: .normal)
         }
         
         
@@ -191,36 +192,52 @@ class NewDetailViewController: ViewController {
     }
     
     @IBAction func onSold(_ sender: Any) {
-        if let interestedList = post.interested {
-            print (interestedList)
-            let query: PFQuery = PFUser.query()!
-            query.whereKey("username", containedIn: interestedList)
-            query.findObjectsInBackground(block: { (users, error) in
-                if let error = error {
-                    print ("There was a problem with finding the user \(error.localizedDescription)")
-                } else {
-                    if let users = users {
-                        print ("there were \(users.count) users")
-                        for user in users {
-                            let notification = SupermarketNotification.createNotification(withSender: PFUser.current()!, withReceiver: user as! PFUser, withMessage: "The \(self.post.name!) that you were interested in has been sold!", withPostObject: self.post.parseObject)
-                        }
+        // this is only if you're coming from the sell feed...
+        
+        post.seller?.fetchIfNeededInBackground(block: { (user, error) in
+            if let user = user {
+                let username = user["username"] as! String
+                if PFUser.current()?.username == username {
+                    if let interestedList = self.post.interested {
+                        print (interestedList)
+                        let query: PFQuery = PFUser.query()!
+                        query.whereKey("username", containedIn: interestedList)
+                        query.findObjectsInBackground(block: { (users, error) in
+                            if let error = error {
+                                print ("There was a problem with finding the user \(error.localizedDescription)")
+                            } else {
+                                if let users = users {
+                                    print ("there were \(users.count) users")
+                                    for user in users {
+                                        let notification = SupermarketNotification.createNotification(withSender: PFUser.current()!, withReceiver: user as! PFUser, withMessage: "The \(self.post.name!) that you were interested in has been sold!", withPostObject: self.post.parseObject)
+                                    }
+                                }
+                                
+                            }
+                        })
+                        
                     }
                     
+                    self.post.sold = true
+                    self.post.parseObject.saveInBackground { (success, error) in
+                        if let error = error {
+                            print ("problem changing to sold \(error.localizedDescription)")
+                        } else if success {
+                            print ("Success with changing to sold")
+                        } else {
+                            print ("I'm not sure what happened with changing it to sold")
+                        }
                     }
-                })
-                
-            }
-        
-        post.sold = true
-        post.parseObject.saveInBackground { (success, error) in
-            if let error = error {
-                print ("problem changing to sold \(error.localizedDescription)")
-            } else if success {
-                print ("Success with changing to sold")
+                }
+                else { // we're on the buy 
+                    print("Notify the seller!")
+                }
+
             } else {
-                print ("I'm not sure what happened with changing it to sold")
+                print("Error fetching user/username: \(error?.localizedDescription)")
             }
-        }
+        })
+
     }
     
     @IBAction func onInterested(_ sender: Any) {
