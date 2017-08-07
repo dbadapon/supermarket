@@ -11,8 +11,10 @@ import Parse
 import ParseUI
 import MapKit
 import ZKCarousel
+import NVActivityIndicatorView
 
-class NewDetailViewController: ViewController {
+class NewDetailViewController: ViewController, NVActivityIndicatorViewable
+{
 
     var allImages: [UIImage] = []
     var post: Post = Post()
@@ -50,9 +52,7 @@ class NewDetailViewController: ViewController {
         
         let postSellerUsername = post.seller!.objectId
         let currentUsername = PFUser.current()!.objectId
-        print (postSellerUsername)
-        print (currentUsername)
-        print("Has the item been sold? \(post.sold)")
+     
         if postSellerUsername == currentUsername {
             // keep interested button lol
         } else if post.sold! == false {
@@ -60,12 +60,10 @@ class NewDetailViewController: ViewController {
         }
         
         if post.sold! {
-            print("sold...")
             soldButton.frame.size.height = 0
             soldButton.frame.size.width = 0
             soldButton.alpha = 0
             soldButton.isEnabled = false
-            // doesn't show up for sold posts
         }
         
         
@@ -206,6 +204,9 @@ class NewDetailViewController: ViewController {
     @IBAction func onSold(_ sender: Any) {
         // this is only if you're coming from the sell feed...
         
+        // show an activity indicator...
+        startAnimating(type: NVActivityIndicatorType.ballPulse, color: UIColor.white, backgroundColor: UIColor.clear)
+        
         post.seller?.fetchIfNeededInBackground(block: { (user, error) in
             if let user = user {
                 let username = user["username"] as! String
@@ -236,6 +237,12 @@ class NewDetailViewController: ViewController {
                             print ("problem changing to sold \(error.localizedDescription)")
                         } else if success {
                             print ("Success with changing to sold")
+                            self.stopAnimating()
+                            // stop activity indicator
+                            // show popup animation for confirmation of action
+                            // transition back to RELOADED feed
+                            // oh this means we need a delegate...
+                            
                         } else {
                             print ("I'm not sure what happened with changing it to sold")
                         }
