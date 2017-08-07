@@ -15,7 +15,7 @@ class MarketPost {
     
     
     enum Field {
-        case Post, Price, Market, Category
+        case Post, Price, Market, Category, Seller
         
         var key: String {
             switch (self) {
@@ -27,6 +27,8 @@ class MarketPost {
                 return "market"
             case .Category:
                 return "category"
+            case .Seller:
+                return "seller"
             }
         }
     }
@@ -68,6 +70,15 @@ class MarketPost {
         }
     }
     
+    var seller: String? {
+        get {
+            return parseObject[Field.Seller.key] as? String
+        }
+        set {
+            parseObject[Field.Seller.key] = newValue
+        }
+    }
+    
     
     var parseObject: PFObject
     
@@ -75,7 +86,7 @@ class MarketPost {
         self.parseObject = parseObject ?? PFObject(className: "MarketPost")
     }
     
-    class func postItem(post: Post, marketName: String, category: String) {
+    class func postItem(post: Post, marketName: String, category: String, seller: String) {
         
         
         let marketPost = MarketPost()
@@ -84,6 +95,7 @@ class MarketPost {
         marketPost.price = post.price
         marketPost.market = marketName
         marketPost.category = category
+        marketPost.seller = seller
         
         marketPost.parseObject.saveInBackground { (success, error) in
             if let error = error {

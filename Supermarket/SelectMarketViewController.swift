@@ -243,7 +243,7 @@ class SelectMarketViewController: UIViewController, UICollectionViewDelegate, UI
                                 let newPost = Post(post)
                                 // print("about to post to market!")
                                 // print("post id: \(newPost.parseObject.objectId)")
-                                MarketPost.postItem(post: newPost, marketName: market, category: category)
+                                MarketPost.postItem(post: newPost, marketName: market, category: category, seller: (PFUser.current()?.username)!)
                                 // print("Posted to market!")
                                 
                                 // Stop activity indicator
