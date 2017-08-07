@@ -19,12 +19,16 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var phoneNumberLabel: UILabel!
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return UIStatusBarStyle.lightContent
+    }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // make sure tab bar is there
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "MarketBackground")!)
         self.tabBarController?.tabBar.isHidden = false
 
         // Do any additional setup after loading the view.
@@ -32,24 +36,32 @@ class ProfileViewController: UIViewController {
             user = PFUser.current()!
         }
         
+        navigationController?.isNavigationBarHidden = true
         
         profileImage.layer.cornerRadius = profileImage.frame.width * 0.5
         profileImage.layer.masksToBounds = true
+        profileImage.layer.borderWidth = 3
+        profileImage.layer.borderColor = UIColor.white.cgColor
         
         profileImage.file = user.value(forKey: "profileImage") as? PFFile
         profileImage.loadInBackground()
         
         fullNameLabel.text = user.value(forKey: "fullname") as? String
-        usernameLabel.text = user.value(forKey: "username") as? String
+        usernameLabel.text = "@" + (user.value(forKey: "username") as! String)
         emailLabel.text = user.value(forKey: "email") as? String
         phoneNumberLabel.text = user.value(forKey: "phoneNumber") as? String
         
         
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.isNavigationBarHidden = true
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+        
     }
     
 

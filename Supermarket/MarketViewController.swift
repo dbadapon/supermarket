@@ -22,6 +22,10 @@ class MarketViewController: UIViewController {
     @IBOutlet weak var inviteFriendsButton: UIButton!
     @IBOutlet weak var leaveMarketButton: UIButton!
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return UIStatusBarStyle.lightContent
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
