@@ -229,8 +229,9 @@ class NewDetailViewController: ViewController {
                         }
                     }
                 }
-                else { // we're on the buy 
+                else { // we're on the buy
                     print("Notify the seller!")
+                    let notification = SupermarketNotification.createNotification(withSender: PFUser.current()!, withReceiver: self.post.seller!, withMessage: " wants to ask about your ", withPostObject: self.post.parseObject)
                 }
 
             } else {
