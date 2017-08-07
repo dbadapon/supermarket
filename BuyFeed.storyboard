@@ -16,6 +16,9 @@
             <string>Avenir-Medium</string>
             <string>Avenir-Roman</string>
         </array>
+        <array key="HelveticaNeueLights.ttc">
+            <string>HelveticaNeue-Light</string>
+        </array>
     </customFonts>
     <scenes>
         <!--Market Name-->
@@ -456,7 +459,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cNZ-k0-Wa9" customClass="ZKCarousel" customModule="ZKCarousel">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
                                                 <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="new" translatesAutoresizingMaskIntoConstraints="NO" id="f5z-7b-vWc">
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="New" translatesAutoresizingMaskIntoConstraints="NO" id="f5z-7b-vWc">
                                                         <rect key="frame" x="256" y="267" width="100" height="100"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     </imageView>
@@ -517,9 +520,22 @@
                                                     <action selector="onInterested:" destination="egE-Tm-CJ3" eventType="touchUpInside" id="qDb-lg-ugD"/>
                                                 </connections>
                                             </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bMb-zu-Ng6">
+                                                <rect key="frame" x="0.0" y="955" width="375" height="45"/>
+                                                <color key="backgroundColor" red="0.36714449519999998" green="0.79177129270000002" blue="0.80788099769999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="45" id="gcN-Hj-qhK"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
+                                                <state key="normal" title="Message Seller"/>
+                                                <connections>
+                                                    <action selector="onMessage:" destination="egE-Tm-CJ3" eventType="touchUpInside" id="JZ8-Va-YVb"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="bMb-zu-Ng6" secondAttribute="trailing" id="Cw6-ae-c2w"/>
                                             <constraint firstItem="cNZ-k0-Wa9" firstAttribute="top" secondItem="jQJ-Id-oSE" secondAttribute="top" id="Gpn-c2-EQI"/>
                                             <constraint firstAttribute="trailing" secondItem="cNZ-k0-Wa9" secondAttribute="trailing" id="Upf-Ce-4q9"/>
                                             <constraint firstItem="cNZ-k0-Wa9" firstAttribute="leading" secondItem="jQJ-Id-oSE" secondAttribute="leading" id="zTS-VL-BDh"/>
@@ -580,6 +596,5 @@
         <image name="icons8-Search-28" width="24" height="24"/>
         <image name="icons8-Star Filled-50 2" width="48" height="46"/>
         <image name="insta_camera_btn" width="25" height="25"/>
-        <image name="new" width="37" height="37"/>
     </resources>
 </document>
