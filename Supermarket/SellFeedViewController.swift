@@ -90,8 +90,12 @@ class SellFeedViewController: UIViewController, UITableViewDataSource, UITableVi
             NSForegroundColorAttributeName as NSObject : ourColor,
             NSFontAttributeName as NSObject: UIFont(name: "Avenir", size: 16)!
             ]
+        let boldTextAttributes2: [NSObject : AnyObject] = [
+            NSForegroundColorAttributeName as NSObject : UIColor.black,
+            NSFontAttributeName as NSObject: UIFont(name: "Avenir", size: 16)!
+        ]
         segmentedControl.setTitleTextAttributes(boldTextAttributes, for: .selected)
-        segmentedControl.setTitleTextAttributes(boldTextAttributes, for: .normal)
+        segmentedControl.setTitleTextAttributes(boldTextAttributes2, for: .normal)
         
 //        var marketQuery = PFQuery(className: "Market")
 //        marketQuery.whereKey("name", equalTo: "Yale Class of 2020")
