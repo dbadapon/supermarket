@@ -13,7 +13,6 @@ import Alamofire
 
 struct RecognizedObject {
     var boundingBox: CGRect
-    // var objectToTrack: VNDetectedObjectObservation
     var highProbabilityMLResult: String
     var highProbClassifications: String
 }
@@ -26,7 +25,6 @@ struct RecognizedBarcode {
 }
 
 struct CurrentFrame {
-    // to be updated and displayed continuously
     var classifications: String
     var topMLResult: String
 }
@@ -48,7 +46,7 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
     // this is calling the delegate
     // sends a RecognizedObject back to delegate
     // every time primaryRecognizedObject is set, delegate method is called
-    // what is the difference between: private (set) var recognizedObject: RecognizedObject? { and below???
+    // what is the difference between: private (set) var recognizedObject: RecognizedObject? { and below?
     var recognizedObject: RecognizedObject? {
         didSet {
             delegate?.getRecognizedObject(recognizedObject: recognizedObject!)
@@ -155,8 +153,7 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
             // wire up the session
             session.addInput(cameraInput)
             session.addOutput(videoOutput)
-            
-            // ADDED CODE
+
             // add photo output
             stillImageOutput.outputSettings = [AVVideoCodecKey: AVVideoCodecType.jpeg]
             
@@ -200,21 +197,7 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
         } catch {
             fatalError(error.localizedDescription)
         }
-        // at the end, need to set attributes of RecognizedObject
-        // TEMPORARY HARDCODED VALUES
-        // self.primaryRecognizedObject = RecognizedObject.init(label: "", boundingBox: CGRect(x: 0.0, y: 0.0, width: 0.0, height: 0.0))
-//        Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(self.printThis), userInfo: nil, repeats: true)
     } // end of init
-    
-//    func printThis() {
-//        print ("hey it's here still running")
-//        print (self.device)
-//        print (self.delegate)
-//        print (self.session.isRunning)
-//        if self.session.isInterrupted {
-//            print ("---WOOOOOWWW THE SESSION WAS INTERRUPTED---")
-//        }
-//    }
     
     // public function that can be called from create post vc
     func captureScreenshot() {
@@ -261,7 +244,6 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
         request(wholeUrl, method: .get).validate().responseJSON { [weak weakSelf = self] (response) in
             if response.result.isSuccess,
                 let responseDictionary = response.result.value as? [String: Any] {
-                
                 let numberOfItems = responseDictionary["numItems"] as! Int
                 
                 // number of items from query
@@ -341,37 +323,18 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
                 // set the accuracy to high
                 // this is slower, but it works a lot better
                 request.trackingLevel = .accurate
-                
-                
-                // right now, this is happening forever
-                // FIX THIS AFTER LUNCH!!!!!!
-                // perform the request
 
                 do {
-//                    let visionSequenceHandler = VNSequenceRequestHandler()
-//                    try visionSequenceHandler.perform([request], on: pixelBuffer)
                     try self.visionSequenceHandler.perform([request], on: pixelBuffer)
                     print("visionSequenceHandler success!!!")
                 } catch {
                     print("Throws: \(error)")
                 }
-
             }
-        /*
-            // below is code for identifying rectangles
-            let request = VNDetectRectanglesRequest(completionHandler: self.gotRectangles)
-            do {
-                try rectanglesSequenceHandler.perform([request], on: pixelBuffer)
-            } catch {
-                print("Throws: \(error)")
-            }
-  */
         }
     }
     
     func handleClassifications(request: VNRequest, error: Error?) {
-        
-        // print ("it's getting to the handle classifications function")
 
         if let theError = error {
             print("Error: \(theError.localizedDescription)")
@@ -390,7 +353,6 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
             .flatMap({$0.confidence > recognitionThreshold ? $0 : nil})
             .map({ "\($0.identifier) \(String(format:"%.2f", $0.confidence))" })
             .joined(separator: "\n")
-        // print(classifications)
         
         // allClassifications is a huge string of all results
         let allClassifications = observations[0...4] // top 4 results
@@ -398,21 +360,18 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
             .flatMap({$0.confidence > 0.0 ? $0 : nil})
             .map({ "\($0.identifier) \(String(format:"%.2f", $0.confidence))" })
             .joined(separator: "\n")
-        // print(allClassifications)
-        
+
         // highProbClassifications contains only results above the highRecognitionThreshold
         let highProbClassifications = observations[0...4] // top 4 results, CHANGE THIS!!!
             .flatMap({ $0 as? VNClassificationObservation })
             .flatMap({$0.confidence > highRecognitionThreshold ? $0 : nil})
             .map({ "\($0.identifier) \(String(format:"%.2f", $0.confidence))" })
             .joined(separator: "\n")
-        // print(highProbClassifications)
         
         DispatchQueue.main.async {
             
-            // to print results continuously
+            // to show results continuously
             self.classifications = classifications
-            // print(self.classifications)
             
             // goal of this section is to set topMLResult to the top result
             // substring huge string by splitting into an array of strings
@@ -437,8 +396,6 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
             } else {
                 self.topMLResult = resultForOne
             }
-            // for debugging purposes
-            // print(self.topMLResult)
             
             // update classifications to be passed onto delegate
             self.currentFrame = CurrentFrame(classifications: self.classifications, topMLResult: self.topMLResult)
@@ -469,49 +426,23 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
                 self.highProbabilityMLResult = highProbResultForOne
             }
 
-            
-//            if self.highProbabilityMLResult != "" {
-//                if self.highProbabilityMLResult != self.currentHighProbabilityMLResult {
-//                    print("NEW OBSERVATION, SO LAST OBSERVATION SET TO NIL")
-//                    self.lastObservation = nil
-//                    // high prob results have changed, so save then and initialize a tracker
-//                    // save the current high probability results
-//                    self.currentHighProbabilityMLResult = self.highProbabilityMLResult
-//                    self.currentHighProbClassifications = self.highProbClassifications
-//                    print(self.highProbabilityMLResult)
-//                    // self.delegate?.highProbObjectRecognized(isRecognized: true)
-//                    self.highProbExists = true
-//                    // set the observation
-//                    let initialRect = CGRect(x: 0.45, y: 0.60, width: 0.24, height: 0.32)
-//                    let newObservation = VNDetectedObjectObservation(boundingBox: initialRect)
-//                    print("HIGH PROB RESULT EXISTS AND INITIAL TRACKER INSTANTIATED")
-//                    self.lastObservation = newObservation
-//                    // call on delegate
-//                    print ("it's about to set a recognized object")
-//                    self.recognizedObject = RecognizedObject.init(boundingBox: initialRect, highProbabilityMLResult: self.currentHighProbabilityMLResult, highProbClassifications: self.currentHighProbClassifications)
-//                }
-//            } else {
-//                // self.lastObservation = nil // no need to do this
-//                // print("last observation set to nil bc no highProbObj anymore")
-//                self.currentHighProbabilityMLResult = ""
-//                self.highProbExists = false
-//                self.delegate?.highProbObjectRecognized(isRecognized: false)
-//            }
-
             if self.highProbabilityMLResult != "" {
                 if self.highProbabilityMLResult != self.currentHighProbabilityMLResult {
+                    
                     self.highRecognitionThreshold = 0.33
+                    self.highProbExists = true
                     self.delegate?.highProbObjectRecognized(isRecognized: true)
+                    
                     print("NEW OBSERVATION, SO RESET STUFF")
                     self.lastObservation = nil
                     self.visionSequenceHandler = VNSequenceRequestHandler()
+                    
                     // high prob results have changed, so save then and initialize a tracker
                     // save the current high probability results
                     self.currentHighProbabilityMLResult = self.highProbabilityMLResult
                     self.currentHighProbClassifications = self.highProbClassifications
                     print(self.highProbabilityMLResult)
-                    // self.delegate?.highProbObjectRecognized(isRecognized: true)
-                    self.highProbExists = true
+                    
                     // set the observation
                     // vision system is sensitive to the width and height of the rectangle we pass in
                     // closer the rectangle surrounds the object = better the system will be able to track it
@@ -527,13 +458,11 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
                     
                     var initialBoundingBox = CGRect(x: 0.345, y: 0.676, width: 0.36, height: 0.32)
                     initialBoundingBox.origin.y = 1 - initialBoundingBox.origin.y
+                    
                     // call on delegate
                     self.recognizedObject = RecognizedObject.init(boundingBox: initialBoundingBox, highProbabilityMLResult: self.currentHighProbabilityMLResult, highProbClassifications: self.currentHighProbClassifications)
                 }
             } else {
-                // self.visionSequenceHandler = VNSequenceRequestHandler()
-                // self.lastObservation = nil // no need to do this
-                // print("last observation set to nil bc no highProbObj anymore")
                 self.highRecognitionThreshold = 0.44
                 self.currentHighProbabilityMLResult = ""
                 self.currentHighProbClassifications = ""
@@ -556,12 +485,7 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
             
             // check the confidence level before updating the UI
             guard newObservation.confidence >= 0.3 else {
-                // hide the rectangle when we lose accuracy so the user knows something is wrong
-                // self.highlightView?.frame = .zero
-                // print("last observation set to nil")
-                // reset the tracker
-                // self.visionSequenceHandler = VNSequenceRequestHandler()
-                // self.lastObservation = nil
+
                 self.highRecognitionThreshold = 0.44
                 self.currentHighProbabilityMLResult = ""
                 self.highProbabilityMLResult = ""
@@ -580,13 +504,7 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
             transformedRect.origin.y = 1 - transformedRect.origin.y
             
             // pass tranformedRect back to delegate
-            // TEMPORARILY COMMENTED OUT TO TEST GOT RECTANGLES
             self.recognizedObject = RecognizedObject.init(boundingBox: transformedRect, highProbabilityMLResult: self.currentHighProbabilityMLResult, highProbClassifications: self.currentHighProbClassifications)
-                
-            // do this in delegate
-            // let convertedRect = self.cameraLayer.layerRectConverted(fromMetadataOutputRect: transformedRect)
-            // move the highlight view
-            // self.highlightView?.frame = convertedRect
         }
     }
     
