@@ -13,7 +13,7 @@
         <!--Profile-->
         <scene sceneID="B0Y-a7-0od">
             <objects>
-                <viewController id="enI-WW-S9f" customClass="ProfileViewController" customModule="Supermarket" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="ProfileViewController" storyboardIdentifier="ProfileViewController" id="enI-WW-S9f" customClass="ProfileViewController" customModule="Supermarket" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="BUC-KW-OaE"/>
                         <viewControllerLayoutGuide type="bottom" id="M4Z-Qh-Ex8"/>
@@ -73,6 +73,16 @@
                                 <color key="textColor" red="1" green="0.9999879599" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="swW-9h-f0p">
+                                <rect key="frame" x="313" y="72" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Done">
+                                    <color key="titleColor" red="1" green="0.9999879599" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
+                                <connections>
+                                    <action selector="onDone:" destination="enI-WW-S9f" eventType="touchUpInside" id="zGv-oE-Kzs"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -94,6 +104,7 @@
                     <navigationItem key="navigationItem" title="Profile" id="jxn-pM-NEb"/>
                     <connections>
                         <outlet property="boughtLabel" destination="F5s-Ay-qgw" id="ENs-yo-4ub"/>
+                        <outlet property="doneButton" destination="swW-9h-f0p" id="GCX-nW-zVY"/>
                         <outlet property="emailLabel" destination="Gl9-8b-VYF" id="jvP-ZW-upF"/>
                         <outlet property="fullNameLabel" destination="7Dj-c8-lDr" id="euP-Xa-Hfq"/>
                         <outlet property="phoneNumberLabel" destination="h7A-3U-oV8" id="afR-eG-bVT"/>

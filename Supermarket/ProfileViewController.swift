@@ -20,6 +20,7 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var phoneNumberLabel: UILabel!
     @IBOutlet weak var boughtLabel: UILabel!
+    @IBOutlet weak var doneButton: UIButton!
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return UIStatusBarStyle.lightContent
@@ -36,6 +37,10 @@ class ProfileViewController: UIViewController {
         // Do any additional setup after loading the view.
         if user == nil {
             user = PFUser.current()!
+            doneButton.frame.size.height = 0
+            doneButton.frame.size.width = 0
+            doneButton.alpha = 0
+            doneButton.isEnabled = false
         }
         
         navigationController?.isNavigationBarHidden = true
@@ -73,7 +78,10 @@ class ProfileViewController: UIViewController {
         
     }
     
-
+    @IBAction func onDone(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     /*
     // MARK: - Navigation
 

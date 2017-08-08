@@ -119,15 +119,24 @@ class InterestedCell: UITableViewCell {
     }
     
     @IBAction func didPressPhoto(_ sender: Any) {
+        print ("did select photo")
         self.delegate?.didTapPhoto(of: self.post)
     }
     
     @IBAction func didPressRespond(_ sender: Any) {
+        print ("did press respond")
         self.delegate?.didTapMessage(of: notification, indexPath: self.indexPath!)
     }
     
     @IBAction func didPressIgnore(_ sender: Any) {
+        print ("did press ignore")
         self.delegate?.didTapIgnore(of: notification, indexPath: self.indexPath!)
     }
+    
+    @IBAction func didPressProfile(_ sender: Any) {
+        print ("did press profile")
+        self.delegate?.didTapProfile(of: notification.sender)
+    }
+    
 
 }

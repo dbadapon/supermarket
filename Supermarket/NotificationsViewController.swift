@@ -14,9 +14,12 @@ protocol InterestedCellDelegate: class {
     func didTapPhoto(of post: Post)
     func didTapIgnore(of notification: SupermarketNotification, indexPath: IndexPath)
     func didTapMessage(of notification: SupermarketNotification, indexPath: IndexPath)
+    func didTapProfile(of sender: PFUser)
 }
 
 class NotificationsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, InterestedCellDelegate, MFMessageComposeViewControllerDelegate {
+
+    
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -31,6 +34,8 @@ class NotificationsViewController: UIViewController, UITableViewDelegate, UITabl
     var clickedPost: Post!
     
     var loadAgain: Bool?
+    
+    var sender: PFUser? 
     
     
     
@@ -50,9 +55,9 @@ class NotificationsViewController: UIViewController, UITableViewDelegate, UITabl
 //        self.navigationController?.navigationBar.shadowImage = UIImage()
         
         
-        
-        tableView.dataSource = self
         tableView.delegate = self
+        tableView.dataSource = self
+        
         
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 100
@@ -126,14 +131,14 @@ class NotificationsViewController: UIViewController, UITableViewDelegate, UITabl
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-            let cell = tableView.dequeueReusableCell(withIdentifier: "InterestedCell") as! InterestedCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "InterestedCell") as! InterestedCell
             
-           cell.notification = notifications[indexPath.row]
-           cell.delegate = self
+       cell.notification = notifications[indexPath.row]
+       cell.delegate = self
         
-            cell.preservesSuperviewLayoutMargins = false
-            cell.separatorInset = UIEdgeInsets.zero
-            cell.layoutMargins = UIEdgeInsets.zero
+        cell.preservesSuperviewLayoutMargins = false
+        cell.separatorInset = UIEdgeInsets.zero
+        cell.layoutMargins = UIEdgeInsets.zero
         
         let notification = notifications[indexPath.row]
         
@@ -187,10 +192,6 @@ class NotificationsViewController: UIViewController, UITableViewDelegate, UITabl
             
             return cell
             
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     func didTapPhoto(of post: Post) {
@@ -293,6 +294,15 @@ class NotificationsViewController: UIViewController, UITableViewDelegate, UITabl
         }
     }
     
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func didTapProfile(of sender: PFUser) {
+        self.sender = sender
+        self.performSegue(withIdentifier: "notificationToProfile", sender: self)
+    }
+    
     
     
     
@@ -306,6 +316,9 @@ class NotificationsViewController: UIViewController, UITableViewDelegate, UITabl
         if segue.identifier == "notificationToDetail" {
             let destination = segue.destination as! NewDetailViewController
             destination.post = self.clickedPost
+        } else if segue.identifier == "notificationToProfile" {
+            let destination = segue.destination as! ProfileViewController
+            destination.user = self.sender
         }
     }
     
