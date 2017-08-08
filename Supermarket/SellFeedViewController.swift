@@ -10,6 +10,7 @@ import UIKit
 import Parse
 import NVActivityIndicatorView
 import TableViewReloadAnimation
+import RAMAnimatedTabBarController
 
 class SellFeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, ModalDelegate, NVActivityIndicatorViewable {
     
@@ -59,7 +60,7 @@ class SellFeedViewController: UIViewController, UITableViewDataSource, UITableVi
         self.view.addGestureRecognizer(swipeDown)
         
         // make sure tab bar is there
-        self.tabBarController?.tabBar.isHidden = false
+//        self.tabBarController?.tabBar.isHidden = false
         
 //        let image = UIImage(named: "TeamProfileImage.jpg")
 //        print ("this is the image: \(image)")
@@ -193,6 +194,9 @@ class SellFeedViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        let animatedTabBar = self.tabBarController as! RAMAnimatedTabBarController
+        animatedTabBar.animationTabBarHidden(false)
+        
         navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont(name: "Avenir", size: 20)!]
         navigationController?.navigationBar.barTintColor = UIColor(red: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha: 1.0)
         navigationController?.navigationBar.barStyle = UIBarStyle.black

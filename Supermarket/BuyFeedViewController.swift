@@ -13,6 +13,7 @@ import ParseUI
 import YNDropDownMenu
 import NVActivityIndicatorView
 import TableViewReloadAnimation
+import RAMAnimatedTabBarController
 
 class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, ModalDelegate, YNDropDownDelegate, NVActivityIndicatorViewable {
     
@@ -78,7 +79,8 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
     
     override func viewDidLoad() {
         // make sure tab bar is there
-        self.tabBarController?.tabBar.isHidden = false
+//        self.tabBarController?.tabBar.isHidden = false
+
         
         super.viewDidLoad()
         
@@ -331,7 +333,9 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     override func viewWillAppear(_ animated: Bool) {
-
+        let animatedTabBar = self.tabBarController as! RAMAnimatedTabBarController
+        animatedTabBar.animationTabBarHidden(false)
+        
         /*
         navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont(name: "Avenir", size: 20)]
         let font = UIFontDescriptor(fontAttributes: [UIFontDescriptorFaceAttribute : "Medium", UIFontDescriptorFamilyAttribute: "Avenir"])

@@ -12,6 +12,7 @@ import ParseUI
 import MapKit
 import ZKCarousel
 import NVActivityIndicatorView
+import RAMAnimatedTabBarController
 
 class NewDetailViewController: ViewController, NVActivityIndicatorViewable
 {
@@ -35,6 +36,10 @@ class NewDetailViewController: ViewController, NVActivityIndicatorViewable
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // hide tab bar
+        let animatedTabBar = self.tabBarController as! RAMAnimatedTabBarController
+        animatedTabBar.animationTabBarHidden(true)
         
         // change the navigation bar
         self.navigationItem.title = "Item Details"
