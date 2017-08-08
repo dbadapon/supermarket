@@ -57,7 +57,10 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
     var category: String = "All"
     var filter: String = "Most Recent"
     
+    var refreshControl: UIRefreshControl!
+    
     let ourColor = UIColor(red: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha: 1.0)
+
     
     func changedMarket(market: Market) {
         self.category = "All"
@@ -78,6 +81,12 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         self.tabBarController?.tabBar.isHidden = false
         
         super.viewDidLoad()
+        
+        // pull to refresh
+        refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(didPullToRefresh(_:)), for: .valueChanged)
+        postTableView.insertSubview(refreshControl, at: 0)
+        
         
 
         // add swipe gestures
@@ -294,7 +303,13 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
         // Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.queryParse), userInfo: nil, repeats: true)
         
         setFirstMarket()
+    } // end of viewDidLoad
+    
+    
+    func didPullToRefresh(_ refreshControl: UIRefreshControl) {
+        filterPosts()
     }
+    
     
     // for swipe gestures
     func respondToSwipeGesture(gesture: UIGestureRecognizer) {
@@ -425,6 +440,7 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
                 // STOP ACTIVITY INDICATOR
                 print("Stop activity indicator!")
                 self.stopAnimating()
+                self.refreshControl.endRefreshing()
             } else {
                 print("Error fetching filtered posts: \(String(describing: error?.localizedDescription))")
             }
