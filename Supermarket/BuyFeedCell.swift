@@ -38,14 +38,15 @@ class BuyFeedCell: UITableViewCell {
 
     var itemImage: PFObject! {
         didSet{
-            let images: [PFFile]? = itemImage["images"] as? [PFFile]
-            let file = images![0]
-            self.itemImageView.file = file
+            itemImageView.file = nil
+            itemImageView.image = nil
+            let images = itemImage["images"] as? [PFFile]
+            self.itemImageView.file = images?[0]
             self.itemImageView.loadInBackground()
         }
 
     }
-    
+        
     override func awakeFromNib() {
         super.awakeFromNib()
         
