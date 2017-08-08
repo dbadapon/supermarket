@@ -22,6 +22,9 @@ class SidebarViewController: UIViewController, UITableViewDataSource, UITableVie
 
     @IBOutlet weak var marketTableView: UITableView!
     
+    @IBOutlet weak var findMarketsButton: UIButton!
+    
+    
     var markets: [Market] = []
     
     var feedViewController: BuyFeedViewController? = nil
@@ -36,6 +39,9 @@ class SidebarViewController: UIViewController, UITableViewDataSource, UITableVie
         
         // print("sidebar viewDidLoad")
         // print(self.navigationController!)
+        
+        // style Find Markets button
+        findMarketsButton.layer.cornerRadius = 5
         
         marketTableView.dataSource = self
         marketTableView.delegate = self
