@@ -193,7 +193,8 @@ class PriceViewController: UIViewController, UITextFieldDelegate {
                 // number of items from query
                 if numberOfItems == 0 {
                     print ("it's not getting a response")
-                    print (response.result.error!)
+                    activityIndicator.stopAnimating()
+                    return
                 }
                 // at least one result from query
                 if numberOfItems > 0 {

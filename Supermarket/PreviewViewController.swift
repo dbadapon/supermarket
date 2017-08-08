@@ -92,6 +92,9 @@ class PreviewViewController: UIViewController, UITextViewDelegate, UIGestureReco
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print(nameString)
+        print(priceString)
+        
         self.returnKey = IQKeyboardReturnKeyHandler.init(controller: self)
 
         // style navigation bar
@@ -154,7 +157,11 @@ class PreviewViewController: UIViewController, UITextViewDelegate, UIGestureReco
             })
         }
         if nameString != "" {
+            // API request result name from barcode
             self.itemName.text = nameString
+        } else {
+            // set text field default text to previous top ML result
+            itemName.text = topMLResult
         }
         
         // border around textbox for user to type item name
@@ -163,8 +170,6 @@ class PreviewViewController: UIViewController, UITextViewDelegate, UIGestureReco
         itemName.layer.borderWidth = 0.5;
         itemName.layer.cornerRadius = 5.0;
         
-        // set text field default text to previous top ML result
-        itemName.text = topMLResult
         
         // for image picker
         vc.delegate = self

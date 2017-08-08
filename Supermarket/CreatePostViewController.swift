@@ -432,7 +432,9 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
         if segue.identifier == "barcodeToPreviewSegue" {
             let dvc = segue.destination as! UINavigationController
             let vc = dvc.topViewController as! PreviewViewController
+            print(nameString)
             vc.nameString = self.nameString
+            print(priceString)
             vc.priceString = self.priceString
             vc.pictureUrl = self.pictureUrl
         }
