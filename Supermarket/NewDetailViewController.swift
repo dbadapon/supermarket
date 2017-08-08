@@ -16,7 +16,9 @@ import RAMAnimatedTabBarController
 
 class NewDetailViewController: ViewController, NVActivityIndicatorViewable
 {
-
+    
+    @IBOutlet weak var requestView: UIView!
+    
     var allImages: [UIImage] = []
     var post: Post = Post()
     
@@ -36,6 +38,10 @@ class NewDetailViewController: ViewController, NVActivityIndicatorViewable
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // style request notif
+        requestView.layer.cornerRadius = 10
+        requestView.isHidden = true
         
         // hide tab bar
         let animatedTabBar = self.tabBarController as! RAMAnimatedTabBarController
@@ -191,18 +197,21 @@ class NewDetailViewController: ViewController, NVActivityIndicatorViewable
     @IBAction func onMessage(_ sender: Any) {
         if post.seller == PFUser.current() {
             // do things as though this post was created by this user
-            
-            
+
             
             
         } else {
             // do things as if this is some other user's post
+
             
-            
-            
-            
-            
-            
+        }
+    }
+    
+    func animateRequestView() {
+        requestView.isHidden = false
+        requestView.slideIn(from: .bottom, duration: 0.5, delay: 0) { (complete) in
+            self.requestView.slideOut(to: .top, duration: 0.5, delay: 0.5, completion: nil)
+            self.requestView.fadeOut(duration: 0.5, delay: 0.5, completion: nil)
         }
     }
     
@@ -257,6 +266,7 @@ class NewDetailViewController: ViewController, NVActivityIndicatorViewable
                     print("Notify the seller!")
                     let notification = SupermarketNotification.createNotification(withSender: PFUser.current()!, withReceiver: self.post.seller!, withMessage: " wants to ask about your ", withPostObject: self.post.parseObject)
                     self.stopAnimating()
+                    self.animateRequestView()
                 }
 
             } else {
