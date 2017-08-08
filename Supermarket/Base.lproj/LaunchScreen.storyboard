@@ -20,15 +20,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IMQ-OX-PmG">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shopping-bag-512 2" translatesAutoresizingMaskIntoConstraints="NO" id="IMQ-OX-PmG">
                                 <rect key="frame" x="125" y="271" width="125" height="125"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="125" id="6Df-qe-1LO"/>
                                     <constraint firstAttribute="height" constant="125" id="wI4-AZ-Slj"/>
                                 </constraints>
                             </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="mouth" translatesAutoresizingMaskIntoConstraints="NO" id="wLU-pv-kQ8">
+                                <rect key="frame" x="176" y="331" width="22" height="12"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.36714449519999998" green="0.79177129270000002" blue="0.80788099769999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="tintColor" red="0.36714449519999998" green="0.79177129270000002" blue="0.80788099769999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="IMQ-OX-PmG" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="67J-0u-l2Q"/>
                             <constraint firstItem="IMQ-OX-PmG" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="cEf-uy-K3u"/>
@@ -40,4 +45,8 @@
             <point key="canvasLocation" x="52" y="374.66266866566718"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="mouth" width="232" height="116"/>
+        <image name="shopping-bag-512 2" width="216" height="219"/>
+    </resources>
 </document>
