@@ -105,10 +105,10 @@ class PhotoViewController: UIViewController {
         cancelButton.addTarget(self, action: #selector(cancel), for: .touchUpInside)
         view.addSubview(cancelButton)
         
-        let test = CGFloat((view.frame.width - (view.frame.width / 2 + 37.5)) + ((view.frame.width / 2) - 37.5) + 28.5)
+        let test = CGFloat((view.frame.width - (view.frame.width / 2 + 37.5)) + ((view.frame.width / 2) - 37.5) + 28.5 - 20)
         
         // add ">" to bottom right hand corner
-        let nextButton = UIButton(frame: CGRect(x: test, y: view.frame.height - 48.5, width: 30.0, height: 25.0))
+        let nextButton = UIButton(frame: CGRect(x: test, y: view.frame.height - 48.5 - 20, width: 50, height: 50))
         nextButton.setImage(#imageLiteral(resourceName: "arrow"), for: UIControlState())
         nextButton.addTarget(self, action: #selector(nextAction), for: .touchUpInside)
         view.addSubview(nextButton)

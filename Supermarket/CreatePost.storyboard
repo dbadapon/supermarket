@@ -38,7 +38,7 @@
                                         <rect key="frame" x="80" y="55" width="215" height="135"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" alpha="0.65000000000000002" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="result-tag" translatesAutoresizingMaskIntoConstraints="NO" id="JSW-PV-BV5">
+                                            <imageView userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="result-tag" translatesAutoresizingMaskIntoConstraints="NO" id="JSW-PV-BV5">
                                                 <rect key="frame" x="0.0" y="0.0" width="215" height="135"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             </imageView>
@@ -1049,6 +1049,6 @@
         <image name="temp map" width="750" height="1334"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="7UJ-Ht-5qy"/>
+        <segue reference="veg-mV-sRg"/>
     </inferredMetricsTieBreakers>
 </document>
