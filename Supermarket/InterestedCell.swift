@@ -105,6 +105,9 @@ class InterestedCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         
+        ignoreButton.layer.borderWidth = 1
+        ignoreButton.layer.borderColor = Constants.Colors.mainColor.cgColor
+        
         ignoreButton.layer.cornerRadius = ignoreButton.frame.width * 0.05
         ignoreButton.layer.masksToBounds = true
         
