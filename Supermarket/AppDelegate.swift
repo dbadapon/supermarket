@@ -71,7 +71,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //            print (PFUser.current())
 //        }
         
-        PFUser.logInWithUsername(inBackground: "TeamTriceratops", password: "password", block: { (user: PFUser?, error: Error?) in
+        PFUser.logInWithUsername(inBackground: "dadapon", password: "password", block: { (user: PFUser?, error: Error?) in
             if let error = error {
                 let errorInfo = error._userInfo as! [String: Any]
                 let code = errorInfo["code"] as! Int
