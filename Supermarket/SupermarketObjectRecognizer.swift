@@ -241,8 +241,8 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
         }
         
         if let videoConnection = self.stillImageOutput.connection(withMediaType: AVMediaTypeVideo) {
-            // Code for photo capture goes here...
-            stillImageOutput.captureStillImageAsynchronously(from: videoConnection, completionHandler: { (sampleBuffer, error) -> Void in
+            stillImageOutput.captureStillImageAsynchronously(from: videoConnection, completionHandler: {
+                (sampleBuffer, error) -> Void in
                 // Process the image data (sampleBuffer) here to get an image file we can put in our captureImageView
                 if sampleBuffer != nil {
                     let imageData = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(sampleBuffer!)
@@ -259,64 +259,6 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
         }
     }
     
-    /*
-    // for tracking rectangles
-    var rectangleViews: Array<UIView> = []
-    
-    private func gotRectangles(request: VNRequest, error: Error?) {
-        print("Got rectangles: ",request.results!)
-        DispatchQueue.main.async {
-            // make sure we have an actual result
-            let _ = request.results?.map() { result in
-                guard let newRectObv = result as? VNRectangleObservation else { return }
-                //                var transformedRect = newObservation.boundingBox
-                //                transformedRect.origin.y = 1 - transformedRect.origin.y
-//                let convertedRect = self.cameraLayer.layerRectConverted(fromMetadataOutputRect: newRectObv.boundingBox)
-//                let view =  UIView(frame: convertedRect)
-//                view.backgroundColor = UIColor.clear
-//                view.layer.borderWidth = 2.0
-//                view.layer.borderColor = UIColor.black.cgColor
-//                self.view.addSubview(view)
-                // self.recognizedObject = RecognizedObject.init(boundingBox: newRectObv.boundingBox, highProbabilityMLResult: self.currentHighProbabilityMLResult, highProbClassifications: self.currentHighProbClassifications)
-                if self.highProbabilityMLResult != "" {
-                    if self.highProbabilityMLResult != self.currentHighProbabilityMLResult {
-                        print("NEW OBSERVATION, SO LAST OBSERVATION SET TO NIL")
-                        // self.lastObservation = nil
-                        // high prob results have changed, so save then and initialize a tracker
-                        // save the current high probability results
-                        self.currentHighProbabilityMLResult = self.highProbabilityMLResult
-                        self.currentHighProbClassifications = self.highProbClassifications
-                        print(self.highProbabilityMLResult)
-                        self.delegate?.highProbObjectRecognized(isRecognized: true)
-                        self.highProbExists = true
-                        // set the observation
-                        // vision system is sensitive to the width and height of the rectangle we pass in
-                        // closer the rectangle surrounds the object = better the system will be able to track it
-                        // let initialRect = CGRect(x: 0.29, y: 0.252, width: 0.534, height: 0.467)
-                        // will show rectangle that's (105.375, 193.43, 175.125, 356.178)
-                        // var initialRect = CGRect(x: 0.29, y: 0.252, width: 0.534, height: 0.467)
-                        // convert from AVFoundation coordinate space to Vision coordinate space
-                        // initialRect.origin.y = 1 - initialRect.origin.y
-                        // let newObservation = VNDetectedObjectObservation(boundingBox: initialRect)
-                        // print("HIGH PROB RESULT EXISTS AND INITIAL TRACKER INSTANTIATED")
-                        // print(initialRect)
-                        // self.lastObservation = newObservation
-                        // call on delegate
-                        // self.recognizedObject = RecognizedObject.init(boundingBox: newRectObv.boundingBox, highProbabilityMLResult: self.currentHighProbabilityMLResult, highProbClassifications: self.currentHighProbClassifications)
-                        print("NEW RECTANGLE DETECTED")
-                    }
-                } else {
-                    // self.lastObservation = nil // no need to do this
-                    // print("last observation set to nil bc no highProbObj anymore")
-                    self.currentHighProbabilityMLResult = ""
-                    self.highProbExists = false
-                    self.delegate?.highProbObjectRecognized(isRecognized: false)
-                }
-            }
-        }
-    }
- */
-    
     // check if barcode is in Walmart API
     func checkPriceWithBarcode(query: String) {
         
@@ -328,7 +270,7 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
         print(newString)
         let wholeUrl = baseURL + newString + endUrl
         
-        request(wholeUrl, method: .get).validate().responseJSON { (response) in
+        request(wholeUrl, method: .get).validate().responseJSON { [weak weakSelf = self] (response) in
             if response.result.isSuccess,
                 let responseDictionary = response.result.value as? [String: Any] {
                 
@@ -360,14 +302,16 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
                         }
                         
                         let imageUrl = realEntity!["largeImage"] as! String
-                        self.pictureUrl = imageUrl
+                        weakSelf?.pictureUrl = imageUrl
                         print ("THIS IS THE IMAGE URL: \(imageUrl)")
                         
-                        self.nameString = String(describing: item["name"]!)
-                        self.priceString = "$" + String(describing: item["salePrice"]!)
+                        weakSelf?.nameString = String(describing: item["name"]!)
+                        weakSelf?.priceString = "$" + String(describing: item["salePrice"]!)
                         print (item["salePrice"]!)
                         
-                        self.recognizedBarcode = RecognizedBarcode.init(codeString: self.codeString, nameString: self.nameString, priceString: self.priceString, pictureUrl: self.pictureUrl)
+                        if let strongSelf = weakSelf {
+                            strongSelf.recognizedBarcode = RecognizedBarcode(codeString: strongSelf.codeString, nameString: strongSelf.nameString, priceString: strongSelf.priceString, pictureUrl: strongSelf.pictureUrl)
+                        }
                     }
                 }
             } else {
@@ -382,14 +326,6 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
         guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else {
             return
         }
-    
-//        guard
-//            // make sure the pixel buffer can be converted
-//            let pixelBuffer: CVPixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer),
-//            // make sure that there is a previous observation we can feed into the request
-//            let lastObservation = self.lastObservation
-//        else { return }
-        
         
         connection.videoOrientation = .portrait
         var requestOptions:[VNImageOption: Any] = [:]
@@ -707,5 +643,9 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
          present(alertController, animated: true, completion: nil)
          }
          */
+    }
+    
+    deinit {
+        print("Calling deinit")
     }
 }

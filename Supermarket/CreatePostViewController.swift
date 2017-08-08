@@ -33,23 +33,40 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
     
     var cachedResults: [String:Double] = [:]
     
+    private var recognizer: SupermarketObjectRecognizer? {
+        didSet {
+            oldValue?.delegate = nil
+            recognizer?.delegate = self
+            
+            if let recognizer = recognizer {
+                previewLayer = AVCaptureVideoPreviewLayer(session: recognizer.session)
+            } else {
+                previewLayer = nil
+            }
+        }
+    }
     
+    var previewLayer: AVCaptureVideoPreviewLayer? {
+        didSet {
+            oldValue?.removeFromSuperlayer()
+            if let previewLayer = previewLayer {
+                previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
+                previewView.layer.addSublayer(previewLayer)
+            }
+        }
+    }
 
-    
-    
-    
-    var recognizer: SupermarketObjectRecognizer?
-    
-    // preview layer
-    var previewLayer: AVCaptureVideoPreviewLayer!
-    // overlay layer
     var gradientLayer: CAGradientLayer!
     // for barcode recognition
     var qrCodeFrameView: UIView?
     // for object recognition
     var objectFrameView: UIView?
     // session
-    var session: AVCaptureSession?
+    var session: AVCaptureSession? {
+        get {
+            return self.recognizer?.session
+        }
+    }
     
     var objectRecognized = false
     
@@ -79,53 +96,8 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        // set initial price text to empty
-//        priceLabel.text = ""
-        
-//        let font = UIFontDescriptor(fontAttributes: [UIFontDescriptorFaceAttribute : "Medium", UIFontDescriptorFamilyAttribute: "Avenir"])
-//
-//        priceLabel.font = UIFont(descriptor: font, size: 20)
-        
-        
-        // hide tab bar
         let animatedTabBar = self.tabBarController as! RAMAnimatedTabBarController
         animatedTabBar.animationTabBarHidden(true)
-        
-         print("done hiding tab bar")
-        
-        // get hold of the default video camera
-        guard let camera = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo) else {
-            fatalError("No video camera available")
-        }
-        
-        
-        print("---START THE ACTIVITY INDICATOR...---")
-        
-        recognizer = SupermarketObjectRecognizer(passedDevice: camera)
-        
-        recognizer?.delegate = self
-        self.session = recognizer!.session
-        
-        // add the preview layer
-        // also configure live preview layer
-        previewLayer = AVCaptureVideoPreviewLayer(session: recognizer!.session)
-        previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
-        print("--STOP THE ACTIVITY INDICATOR---")
-        previewView.layer.addSublayer(previewLayer)
-//        print("---just added the sublayer---")
-        
-        // add a slight gradient overlay so we can read the results easily
-        gradientLayer = CAGradientLayer()
-        gradientLayer.colors = [
-            UIColor.init(red: 0, green: 0, blue: 0, alpha: 0.7).cgColor,
-            UIColor.init(red: 0, green: 0, blue: 0, alpha: 0.0).cgColor,
-        ]
-        gradientLayer.locations = [0.0, 0.3]
-        self.previewView.layer.addSublayer(gradientLayer)
-        
-        
         // add swipe gestures
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture))
         swipeRight.direction = UISwipeGestureRecognizerDirection.right
@@ -142,36 +114,49 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
         let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture))
         swipeDown.direction = UISwipeGestureRecognizerDirection.down
         self.view.addGestureRecognizer(swipeDown)
-        
-        
+
         // add flash, flip-camera, and capture buttons to view
         addButtons()
-        
         
         // Initialize QR Code Frame to highlight the QR code
         // qrCodeFrameView variable is invisible on screen because
         // the size of the UIView object is set to zero by default
         // when a QR code is detected, change its size and turn it into a green box
         qrCodeFrameView = UIView()
-        
         if let qrCodeFrameView = qrCodeFrameView {
             qrCodeFrameView.layer.borderColor = UIColor.green.cgColor
             qrCodeFrameView.layer.borderWidth = 2
             view.addSubview(qrCodeFrameView)
             view.bringSubview(toFront: qrCodeFrameView)
         }
-
-        // do same for object frame
-        // object frame only appears when high threshold of ML is surpassed
-        objectFrameView = UIView()
         
+        objectFrameView = UIView()
         if let objectFrameView = objectFrameView {
             objectFrameView.layer.borderColor = UIColor.clear.cgColor
             objectFrameView.layer.borderWidth = 2
             view.addSubview(objectFrameView)
             view.bringSubview(toFront: objectFrameView)
         }
-    } // end of viewDidLoad
+
+        guard let camera = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo) else {
+            fatalError("No video camera available")
+        }
+        recognizer = SupermarketObjectRecognizer(passedDevice: camera)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if let recognizer = self.recognizer {
+            recognizer.session.startRunning()
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        if let recognizer = self.recognizer {
+            recognizer.session.stopRunning()
+        }
+    }
     
     override var prefersStatusBarHidden: Bool {
         return true
@@ -223,8 +208,8 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        previewLayer.frame = self.previewView.bounds;
-        gradientLayer.frame = self.previewView.bounds;
+        previewLayer?.frame = self.previewView.bounds;
+        gradientLayer?.frame = self.previewView.bounds;
     }
     
     // delegate methods
@@ -262,8 +247,9 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
     
     func getBarcodeObject(barcodeObject: AVMetadataMachineReadableCodeObject) {
         // update the status label's text and set the bounds
-        let barCodeObject = self.previewLayer.transformedMetadataObject(for: barcodeObject)
-        self.qrCodeFrameView?.frame = barCodeObject!.bounds
+        if let barCodeObject = self.previewLayer?.transformedMetadataObject(for: barcodeObject) {
+            self.qrCodeFrameView?.frame = barCodeObject.bounds
+        }
     }
     
     func barcodeObjectExists(doesExist: Bool) {
@@ -275,24 +261,11 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
     
     func getRecognizedObject(recognizedObject: RecognizedObject) {
 
-        // update and set the bounds of the high probability object
-        // print("GET RECOGNIZED OBJECT, MEANS HIGH PROBS HAS BEEN REACHED YEEE")
-        
-        let convertedRect = self.previewLayer.rectForMetadataOutputRect(ofInterest: recognizedObject.boundingBox)
-        print("\n\nBounding box: ", recognizedObject.boundingBox)
-        print("Converted rect: ",convertedRect,"\n\n")
-        
-        // move the highlighted box
-        // print("SET RECTANGLE")
-        self.objectFrameView?.frame = convertedRect
+        if let convertedRect = self.previewLayer?.rectForMetadataOutputRect(ofInterest: recognizedObject.boundingBox) {
+            self.objectFrameView?.frame = convertedRect
+        }
         self.topMLResult = recognizedObject.highProbabilityMLResult
         delegate?.didFindNewObject(object: topMLResult)
-        // print ("just tried to call the delegate method")
-        
-        // THIS IS THE PLACE TO MAKE THE POPUP BOX APPEAR
-        // use the string below
-        // recognizedObject.highProbMLResult (ex. "soda can")
-        // recognizedObject.highProbClassifications --- (no need to use this "soda can 0.95")
         
         animateResultTag()
         
@@ -307,6 +280,17 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
         showResultTag(recognizedObject: recognizedObject)
     }
     
+    func highProbObjectRecognized(isRecognized: Bool) {
+        // to make sure red box disappears when object is not recognized
+        if !isRecognized {
+            self.objectRecognized = false
+            hideResultTag()
+            self.objectFrameView?.frame = CGRect.zero
+        } else {
+            self.objectRecognized = true
+            self.resultView.text = ""
+        }
+    }
     
     func runNetworkRequests() { // (while there's stuff in toFetch) run the request every 1 second to avoid hitting query limit
         Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(fetchNext), userInfo: nil, repeats: true)
@@ -408,22 +392,10 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
         }
     }
     
-    func highProbObjectRecognized(isRecognized: Bool) {
-        // to make sure red box disappears when object is not recognized
-        if !isRecognized {
-            self.objectRecognized = false
-            hideResultTag()
-            self.objectFrameView?.frame = CGRect.zero
-        } else {
-            self.objectRecognized = true
-            self.resultView.text = ""
-        }
-    }
-    
     @IBAction func captureAction(_ sender: UIButton) {
-        if recognizer != nil {
-            recognizer!.captureScreenshot()
-            self.topMLResult = recognizer!.topMLResult
+        if let recognizer = self.recognizer {
+            recognizer.captureScreenshot()
+            self.topMLResult = recognizer.topMLResult
         }
     }
     
@@ -451,45 +423,24 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
         flashButton.setImage(#imageLiteral(resourceName: "flashOutline"), for: UIControlState())
         // flashButton.addTarget(self, action: #selector(toggleFlashAction(_:)), for: .touchUpInside)
         self.view.addSubview(flashButton)
-        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
+        super.prepare(for: segue, sender: sender)
         if segue.identifier == "capturedSegue" {
-            // uncomment out to stop running AVCaptureSession
-            // self.previewLayer.removeFromSuperlayer()
-            // self.previewLayer = nil
-            // self.session?.stopRunning()
-            
-            let dvc = segue.destination as! PhotoViewController
-            dvc.backgroundImage = imageToPass
-            dvc.topMLResult = topMLResult
-//            print("PRINTING STUFF")
-//            print(dvc.backgroundImage)
-//            print(dvc.topMLResult)
+            let dvc = segue.destination as? PhotoViewController
+            dvc?.backgroundImage = self.imageToPass
+            dvc?.topMLResult = self.topMLResult
+            return
         }
         
         // only happens when barcode recognized and user clicks scan
         if segue.identifier == "barcodeToPreviewSegue" {
-            // uncomment out to stop running AVCaptureSession
-            // self.previewLayer.removeFromSuperlayer()
-            // self.previewLayer = nil
-            // self.session?.stopRunning()
-            
             let dvc = segue.destination as! UINavigationController
             let vc = dvc.topViewController as! PreviewViewController
             vc.nameString = self.nameString
             vc.priceString = self.priceString
             vc.pictureUrl = self.pictureUrl
-            // for debugging purposes
-            // print(self.pictureUrl)
-        }
-        
-        if segue.identifier == "toARKitSegue" {
-            // print ("okay it got to this one")
-            self.session?.stopRunning()
-            let destination = segue.destination as! ARKitViewController
         }
     }
 }

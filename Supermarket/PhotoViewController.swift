@@ -7,9 +7,11 @@
 //
 
 import UIKit
+import Vision
+import AVFoundation
 import Alamofire
 
-class PhotoViewController: UIViewController {
+class PhotoViewController: UIViewController, SupermarketObjectRecognizerDelegate {
     
     var backgroundImage: UIImage!
     var topMLResult: String!
@@ -30,16 +32,12 @@ class PhotoViewController: UIViewController {
     @IBOutlet weak var thirdResultName: UILabel!
     @IBOutlet weak var fourthResultName: UILabel!
     
-    
     @IBOutlet weak var blurView: UIVisualEffectView!
     
     @IBOutlet weak var result1: UIView!
     @IBOutlet weak var result2: UIView!
     @IBOutlet weak var result3: UIView!
     @IBOutlet weak var result4: UIView!
-    
-    
-    
     
     var firstResultImageUrl = ""
     var secondResultImageUrl = ""
@@ -367,6 +365,36 @@ class PhotoViewController: UIViewController {
             }
             self.animateResults()
         } // end of request completion
+    }
+    
+    // delegate methods for SupermarketObjectRecognizer
+    func updateRecognizedBarcode(recognizedBarcode: RecognizedBarcode) {
+
+    }
+    
+    func updateCurrentFrame(currentFrame: CurrentFrame) {
+
+    }
+    
+    // this is called on when user captures image on screen
+    func captureAndSegue(screenshot: UIImage) {
+
+    }
+    
+    func getBarcodeObject(barcodeObject: AVMetadataMachineReadableCodeObject) {
+
+    }
+    
+    func barcodeObjectExists(doesExist: Bool) {
+
+    }
+    
+    func getRecognizedObject(recognizedObject: RecognizedObject) {
+
+    }
+    
+    func highProbObjectRecognized(isRecognized: Bool) {
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

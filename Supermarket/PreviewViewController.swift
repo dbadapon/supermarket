@@ -15,8 +15,9 @@
 //
 
 import UIKit
-// import Alamofire
-// import AlamofireImage
+import Vision
+import AVFoundation
+import Alamofire
 import IQKeyboardManagerSwift
 
 class PreviewViewController: UIViewController, UITextViewDelegate, UIGestureRecognizerDelegate, UIAlertViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPopoverControllerDelegate, UITextFieldDelegate {
@@ -98,8 +99,6 @@ class PreviewViewController: UIViewController, UITextViewDelegate, UIGestureReco
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Configure keyboard
         
         self.returnKey = IQKeyboardReturnKeyHandler.init(controller: self)
         
