@@ -34,7 +34,7 @@ class MarketViewController: UIViewController {
 //        let animatedTabBar = self.tabBarController as! RAMAnimatedTabBarController
 //        animatedTabBar.animationTabBarHidden(true)
         
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background")!)
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "gradient")!)
         
         inviteFriendsButton.layer.cornerRadius = inviteFriendsButton.frame.width * 0.03
         inviteFriendsButton.layer.masksToBounds = true

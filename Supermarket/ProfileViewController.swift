@@ -28,7 +28,7 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         
         // make sure tab bar is there
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "MarketBackground")!)
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "gradient")!)
         self.tabBarController?.tabBar.isHidden = false
 
         // Do any additional setup after loading the view.

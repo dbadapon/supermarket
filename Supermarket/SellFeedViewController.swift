@@ -308,6 +308,7 @@ class SellFeedViewController: UIViewController, UITableViewDataSource, UITableVi
                 postQuery.findObjectsInBackground(block: { (posts, error) in
                     if let posts = posts {
                         // let notification = SupermarketNotification.createNotification(withSender: PFUser.current()!, withReceiver: PFUser.current()!, withMessage: " is interested in your ", withPostObject: posts[0])
+                        self.soldPosts = []
                         for p in posts {
                             let post = Post(p)
                             if post.sold == true {
