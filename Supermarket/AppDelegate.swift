@@ -104,16 +104,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        }
         // check if user is logged in.
         
-        if let currentUser = PFUser.current() {
-            print("Welcome back \(currentUser.username!) 😀")
-
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let tabBarController = storyboard.instantiateViewController(withIdentifier: "TabBarController")
-            // TabBarController is storyboard ID
-            window?.rootViewController = tabBarController
-        } else {
-            print ("there was no current user")
-        }
+//        if let currentUser = PFUser.current() {
+//            print("Welcome back \(currentUser.username!) 😀")
+//
+//            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//            let tabBarController = storyboard.instantiateViewController(withIdentifier: "TabBarController")
+//            // TabBarController is storyboard ID
+//            window?.rootViewController = tabBarController
+//        } else {
+//            print ("there was no current user")
+//        }
         
         return true
     }

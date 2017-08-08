@@ -19,6 +19,8 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var phoneNumberLabel: UILabel!
+    @IBOutlet weak var boughtLabel: UILabel!
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return UIStatusBarStyle.lightContent
     }
@@ -40,7 +42,7 @@ class ProfileViewController: UIViewController {
         
         profileImage.layer.cornerRadius = profileImage.frame.width * 0.5
         profileImage.layer.masksToBounds = true
-        profileImage.layer.borderWidth = 3
+        profileImage.layer.borderWidth = 5
         profileImage.layer.borderColor = UIColor.white.cgColor
         
         profileImage.file = user.value(forKey: "profileImage") as? PFFile
@@ -50,6 +52,13 @@ class ProfileViewController: UIViewController {
         usernameLabel.text = "@" + (user.value(forKey: "username") as! String)
         emailLabel.text = user.value(forKey: "email") as? String
         phoneNumberLabel.text = user.value(forKey: "phoneNumber") as? String
+        
+        let numBought = user["numBought"] as! Int
+        let numSold = user["numSold"] as! Int
+        let firstString = String(numBought) + " items bought | "
+        let secondString = String(numSold) + " items sold"
+        boughtLabel.text = firstString + secondString
+        
         
         
     }

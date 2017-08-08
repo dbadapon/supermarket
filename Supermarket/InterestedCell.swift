@@ -12,6 +12,7 @@ import ParseUI
 
 class InterestedCell: UITableViewCell {
 
+    
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var ignoreButton: UIButton!
     @IBOutlet weak var respondButton: UIButton!
