@@ -10,6 +10,7 @@ import UIKit
 import Parse
 import NVActivityIndicatorView
 import BouncyLayout
+import RAMAnimatedTabBarController
 
 
 protocol CategoryDelegate: class {
@@ -191,17 +192,17 @@ class SelectMarketViewController: UIViewController, UICollectionViewDelegate, UI
         self.finalImages = actualImages
         
         // ALL INFO
-        print("NAME: \(itemName)")
-        print("COVER PHOTO: \(coverPhoto.image)")
-        print("IMAGES: \(imageOne.image), \(imageTwo.image), \(imageThree.image), \(imageFour.image)")
-        print("NEGOTIABLE: \(isNegotiable)")
-        print("PRICE: \(itemPrice)")
-        print("NEW: \(isNew)")
-        print("DESCRIPTION: \(itemDescription.text)")
-        print("LATITUDE: \(latitude)")
-        print("LONGITUDE: \(longitude)")
-        print("CITY: \(city)")
-//
+//        print("NAME: \(itemName)")
+//        print("COVER PHOTO: \(coverPhoto.image)")
+//        print("IMAGES: \(imageOne.image), \(imageTwo.image), \(imageThree.image), \(imageFour.image)")
+//        print("NEGOTIABLE: \(isNegotiable)")
+//        print("PRICE: \(itemPrice)")
+//        print("NEW: \(isNew)")
+//        print("DESCRIPTION: \(itemDescription.text)")
+//        print("LATITUDE: \(latitude)")
+//        print("LONGITUDE: \(longitude)")
+//        print("CITY: \(city)")
+////
 //        print (imageOne.image?.size.height)
 //        print (imageOne.image?.size.width )
 //        print (imageTwo.image?.size.height )
@@ -271,11 +272,15 @@ class SelectMarketViewController: UIViewController, UICollectionViewDelegate, UI
     
     func backToHome() {
         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "TabBarController") as! UITabBarController
+        let vc = storyboard.instantiateViewController(withIdentifier: "TabBarController") as! RAMAnimatedTabBarController
         UIView.performWithoutAnimation {
 //            self.show(vc, sender: self)
             present(vc, animated: true, completion: nil)
-            vc.selectedIndex = 0
+            vc.setSelectIndex(from: 0, to: 1)
+//            UIView.performWithoutAnimation {
+//                self.show(vc, sender: self)
+//                vc.setSelectIndex(from: 0, to: 1)
+//            }
         }
     }
     
