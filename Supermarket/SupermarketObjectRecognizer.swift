@@ -93,8 +93,6 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
     var highRecognitionThreshold : Float = 0.49
     
     // corresponding to RecognizedObject
-    
-    // var boundingBox = CGRect(x: 0.0, y: 0.0, width: 0.0, height: 0.0)
     // continuously changes as different objects are recognized
     var highProbabilityMLResult = ""
     // go ahead and set this in case whole string is needed
@@ -103,12 +101,6 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
     var visionSequenceHandler = VNSequenceRequestHandler()
     var lastObservation: VNDetectedObjectObservation?
     var highProbExists = false
-    // ANOTHER METHOD FOR BOX AROUND RECOGNIZED OBJECT
-    // detects rectangles in consecutive frames as opposed to trying
-    // to track an object in live camera feed
-    // does not work as well, so probably a no on this
-    var rectanglesSequenceHandler = VNSequenceRequestHandler()
-    // private var latestBuffer: CMSampleBuffer!
     
     // save current one for when high probability object recognized
     // this will be the object that a box is put around
@@ -116,8 +108,6 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
     var currentHighProbClassifications = ""
     
     // corresponding to RecognizedBarcode
-    // no need
-    // var barcodeObject: AVMetadataMachineReadableCodeObject
     // what is read from barcode
     var codeString = ""
     // name of object from querying codeString
@@ -149,12 +139,10 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
         // Xiuya: Implement this
         device = passedDevice
         
-        
         // call super.init() immediately after all subclass properties are initialized
         super.init()
         
         do {
-            
             // create the capture input and the video output
             let cameraInput = try AVCaptureDeviceInput(device: device)
             

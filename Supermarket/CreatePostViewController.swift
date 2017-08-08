@@ -148,6 +148,8 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
         if let recognizer = self.recognizer {
             recognizer.session.stopRunning()
         }
+        self.qrCodeFrameView?.frame = CGRect.zero
+        self.objectFrameView?.frame = CGRect.zero
     }
     
     override var prefersStatusBarHidden: Bool {
@@ -218,6 +220,8 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
     }
     
     func updateCurrentFrame(currentFrame: CurrentFrame) {
+        /*
+        // commented out so that white text does not appear
         if self.objectRecognized {
             // if there's a high probability object being recognized
             // do not display constant results
@@ -225,10 +229,12 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
         } else {
             // set the result view to whatever the classifications are
             // called on whenever classifications changes
+            // commented out so that white text does not appear
             self.resultView.text = currentFrame.classifications
             // for debugging purposes
             // print("updating classifications")
         }
+        */
     }
     
     // this is called on when user captures image on screen
