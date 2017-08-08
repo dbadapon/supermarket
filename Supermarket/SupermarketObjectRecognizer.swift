@@ -89,8 +89,8 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
     var captureQueue = DispatchQueue(label: "captureQueue")
     var visionRequests = [VNRequest]()
     // for ML model
-    var recognitionThreshold : Float = 0.19
-    var highRecognitionThreshold : Float = 0.49
+    var recognitionThreshold : Float = 0.22
+    var highRecognitionThreshold : Float = 0.44
     
     // corresponding to RecognizedObject
     // continuously changes as different objects are recognized
@@ -500,7 +500,7 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
 
             if self.highProbabilityMLResult != "" {
                 if self.highProbabilityMLResult != self.currentHighProbabilityMLResult {
-                    self.highRecognitionThreshold = 0.39
+                    self.highRecognitionThreshold = 0.33
                     self.delegate?.highProbObjectRecognized(isRecognized: true)
                     print("NEW OBSERVATION, SO RESET STUFF")
                     self.lastObservation = nil
@@ -534,7 +534,7 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
                 // self.visionSequenceHandler = VNSequenceRequestHandler()
                 // self.lastObservation = nil // no need to do this
                 // print("last observation set to nil bc no highProbObj anymore")
-                self.highRecognitionThreshold = 0.49
+                self.highRecognitionThreshold = 0.44
                 self.currentHighProbabilityMLResult = ""
                 self.currentHighProbClassifications = ""
                 self.highProbExists = false
@@ -562,7 +562,7 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
                 // reset the tracker
                 // self.visionSequenceHandler = VNSequenceRequestHandler()
                 // self.lastObservation = nil
-                self.highRecognitionThreshold = 0.49
+                self.highRecognitionThreshold = 0.44
                 self.currentHighProbabilityMLResult = ""
                 self.highProbabilityMLResult = ""
                 
