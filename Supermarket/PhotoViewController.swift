@@ -11,7 +11,7 @@ import Vision
 import AVFoundation
 import Alamofire
 
-class PhotoViewController: UIViewController, SupermarketObjectRecognizerDelegate {
+class PhotoViewController: UIViewController {
     
     var backgroundImage: UIImage!
     var topMLResult: String!
@@ -43,20 +43,15 @@ class PhotoViewController: UIViewController, SupermarketObjectRecognizerDelegate
     var secondResultImageUrl = ""
     var thirdResultImageUrl = ""
     var fourthResultImageUrl = ""
-
     
     var firstPriceValue: Double?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("in view did load")
-    
         opaqueHeaderLabel.alpha = 0
         blurView.alpha = 0
-        
         opaqueHeaderImage.backgroundColor = Constants.Colors.mainColor
-        
         opaqueHeaderImage.isHidden = true
         
 //        UIView.animate(withDuration: 2) {
@@ -123,7 +118,7 @@ class PhotoViewController: UIViewController, SupermarketObjectRecognizerDelegate
         super.viewDidAppear(animated)
         UIView.animate(withDuration: 1) {
             self.blurView.alpha = 1.0
-//            self.opaqueHeaderImage.alpha = 0.5
+            // self.opaqueHeaderImage.alpha = 0.5
             self.opaqueHeaderLabel.alpha = 1.0
         }
     }
@@ -163,7 +158,6 @@ class PhotoViewController: UIViewController, SupermarketObjectRecognizerDelegate
         request(wholeUrl, method: .get).validate().responseJSON { (response) in
             if response.result.isSuccess,
                 let responseDictionary = response.result.value as? [String: Any] {
-                
                 let numberOfItems = responseDictionary["numItems"] as! Int
                 
                 // number of items from query
@@ -174,8 +168,8 @@ class PhotoViewController: UIViewController, SupermarketObjectRecognizerDelegate
                 // at least one result from query
                 if numberOfItems > 0 {
                     let itemArray = responseDictionary["items"] as! [[String: Any]]
-                    
                     let item = itemArray[0]
+                    
                     print ("this is the first item: \(item)")
                     
                     var imageEntities: [[String: Any]] = []
@@ -191,15 +185,12 @@ class PhotoViewController: UIViewController, SupermarketObjectRecognizerDelegate
                             break
                         }
                     }
-                    
                     print ("this is the number of entitities: \(imageEntities.count)")
                     if realEntity == nil && imageEntities.count > 0 {
                         print ("okay we just set the real entity")
                         realEntity = imageEntities[0]
                     }
-                    
                     print ("okay this is the real entity \(realEntity)")
-                    
                     var imageUrl = ""
                     if let realEntity = realEntity {
                         print ("okay it's about to set the image url")
@@ -218,27 +209,23 @@ class PhotoViewController: UIViewController, SupermarketObjectRecognizerDelegate
                             }
                         })
                     }
-                    
                     self.firstResultName.text = String(describing: item["name"]!)
-                    
                     if let firstItemPrice = item["salePrice"] {
                         self.firstPriceValue = firstItemPrice as? Double
                         self.firstResultPrice.text = "$" + String(describing: firstItemPrice)
-
                     }
                 }
                 // more than one result from query
                 if numberOfItems > 1 {
                     let itemArray = responseDictionary["items"] as! [[String: Any]]
-                    
                     let item = itemArray[1]
+                    
                     print ("this is the second item: \(item)")
                     
                     var imageEntities: [[String: Any]] = []
                     if let imageData = item["imageEntities"] {
                         imageEntities = imageData as! [[String: Any]]
                     }
-                    
                     var realEntity: [String: Any]? = nil
                     for entity in imageEntities {
                         let entityType = entity["entityType"] as! String
@@ -247,18 +234,15 @@ class PhotoViewController: UIViewController, SupermarketObjectRecognizerDelegate
                             break
                         }
                     }
-                    
                     if realEntity == nil && imageEntities.count > 0 {
                         realEntity = imageEntities[0]
                     }
-                    
                     var imageUrl = ""
                     if let realEntity = realEntity {
                         imageUrl = realEntity["largeImage"] as! String
                     }
                     self.secondResultImageUrl = imageUrl
                     print ("THIS IS THE IMAGE URL: \(imageUrl)")
-                    
                     if self.secondResultImageUrl != "" {
                         let request: URLRequest = URLRequest(url: URL(string: self.secondResultImageUrl)!)
                         NSURLConnection.sendAsynchronousRequest(request, queue: OperationQueue.main, completionHandler: {(response: URLResponse!,data: Data!,error: Error!) -> Void in
@@ -267,7 +251,6 @@ class PhotoViewController: UIViewController, SupermarketObjectRecognizerDelegate
                             }
                         })
                     }
-                    
                     self.secondResultName.text = String(describing: item["name"]!)
                     if item["salePrice"] != nil {
                         self.secondResultPrice.text = "$" + String(describing: item["salePrice"]!)
@@ -277,7 +260,6 @@ class PhotoViewController: UIViewController, SupermarketObjectRecognizerDelegate
                 // more than two results from query
                 if numberOfItems > 2 {
                     let itemArray = responseDictionary["items"] as! [[String: Any]]
-                    
                     let item = itemArray[2]
                     
                     var imageEntities: [[String: Any]] = []
@@ -292,18 +274,15 @@ class PhotoViewController: UIViewController, SupermarketObjectRecognizerDelegate
                             break
                         }
                     }
-                    
                     if realEntity == nil && imageEntities.count > 0 {
                         realEntity = imageEntities[0]
                     }
-                    
                     var imageUrl = ""
                     if let realEntity = realEntity {
                         imageUrl = realEntity["largeImage"] as! String
                     }
                     self.thirdResultImageUrl = imageUrl
                     print ("THIS IS THE IMAGE URL: \(imageUrl)")
-                    
                     if self.thirdResultImageUrl != "" {
                         let request: URLRequest = URLRequest(url: URL(string: self.thirdResultImageUrl)!)
                         NSURLConnection.sendAsynchronousRequest(request, queue: OperationQueue.main, completionHandler: {(response: URLResponse!,data: Data!,error: Error!) -> Void in
@@ -312,7 +291,6 @@ class PhotoViewController: UIViewController, SupermarketObjectRecognizerDelegate
                             }
                         })
                     }
-                    
                     self.thirdResultName.text = String(describing: item["name"]!)
                     if item["salePrice"] != nil {
                         self.thirdResultPrice.text = "$" + String(describing: item["salePrice"]!)
@@ -336,18 +314,15 @@ class PhotoViewController: UIViewController, SupermarketObjectRecognizerDelegate
                             break
                         }
                     }
-                    
                     if realEntity == nil && imageEntities.count > 0 {
                         realEntity = imageEntities[0]
                     }
-                    
                     var imageUrl = ""
                     if let realEntity = realEntity {
                         imageUrl = realEntity["largeImage"] as! String
                     }
                     self.fourthResultImageUrl = imageUrl
                     print ("THIS IS THE IMAGE URL: \(imageUrl)")
-                    
                     if self.fourthResultImageUrl != "" {
                         let request: URLRequest = URLRequest(url: URL(string: self.fourthResultImageUrl)!)
                         NSURLConnection.sendAsynchronousRequest(request, queue: OperationQueue.main, completionHandler: {(response: URLResponse!,data: Data!,error: Error!) -> Void in
@@ -356,7 +331,6 @@ class PhotoViewController: UIViewController, SupermarketObjectRecognizerDelegate
                             }
                         })
                     }
-                    
                     self.fourthResultName.text = String(describing: item["name"]!)
                     if item["salePrice"] != nil {
                         self.fourthResultPrice.text = "$" + String(describing: item["salePrice"]!)
@@ -367,36 +341,6 @@ class PhotoViewController: UIViewController, SupermarketObjectRecognizerDelegate
         } // end of request completion
     }
     
-    // delegate methods for SupermarketObjectRecognizer
-    func updateRecognizedBarcode(recognizedBarcode: RecognizedBarcode) {
-
-    }
-    
-    func updateCurrentFrame(currentFrame: CurrentFrame) {
-
-    }
-    
-    // this is called on when user captures image on screen
-    func captureAndSegue(screenshot: UIImage) {
-
-    }
-    
-    func getBarcodeObject(barcodeObject: AVMetadataMachineReadableCodeObject) {
-
-    }
-    
-    func barcodeObjectExists(doesExist: Bool) {
-
-    }
-    
-    func getRecognizedObject(recognizedObject: RecognizedObject) {
-
-    }
-    
-    func highProbObjectRecognized(isRecognized: Bool) {
-        
-    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "toPreviewSegue" {
@@ -405,9 +349,6 @@ class PhotoViewController: UIViewController, SupermarketObjectRecognizerDelegate
             rootVC.backgroundImage = self.backgroundImage
             rootVC.topMLResult = self.topMLResult
             rootVC.topPrice = self.firstPriceValue
-            
-//            dvc.backgroundImage = self.backgroundImage
-//            dvc.topMLResult = self.topMLResult
         }
     }
 }

@@ -26,14 +26,12 @@ class PreviewViewController: UIViewController, UITextViewDelegate, UIGestureReco
     
     // color to use for app
     let textColor = UIColor(red: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha:1.0)
-    
     let lightGray = UIColor(red: 199.0/255.0, green: 199.0/255.0, blue: 205.0/255.0, alpha: 0.50).cgColor
     
     // Next button
     @IBOutlet weak var nextButton: UIButton!
     
-    
-    // alter controllers
+    // alert controllers
     let nextAlertController = UIAlertController(title: "Invalid Action", message: "Cover photo is required", preferredStyle: .alert)
     let nameRequiredAlertController = UIAlertController(title: "Name Required", message: "Please enter an item name to continue", preferredStyle: .alert)
     let cameraSelectAlertController = UIAlertController(title: "Camera NOT available", message: "Please select Photo Library", preferredStyle: .alert)
@@ -53,8 +51,7 @@ class PreviewViewController: UIViewController, UITextViewDelegate, UIGestureReco
     
     var picker:UIImagePickerController? = UIImagePickerController()
     var popover:UIPopoverController? = nil
-    
-    
+
     @IBAction func backButton(_ sender: UIBarButtonItem) {
         if (nameString == "") {
             dismiss(animated: true, completion: nil)
@@ -63,7 +60,6 @@ class PreviewViewController: UIViewController, UITextViewDelegate, UIGestureReco
         }
     }
     
-
     @IBAction func cancelAction(_ sender: UIButton) {
         // nameString == "" means not from barcode
         // so dismissing it takes user back to PhotoVC
@@ -75,8 +71,6 @@ class PreviewViewController: UIViewController, UITextViewDelegate, UIGestureReco
     }
     
     @IBOutlet weak var itemName: UITextField!
-    
-    
     @IBOutlet weak var charCountLabel: UILabel!
     
      // RETURN KEY
@@ -94,26 +88,13 @@ class PreviewViewController: UIViewController, UITextViewDelegate, UIGestureReco
     var topPrice: Double!
     
     @IBOutlet weak var coverPhoto: UIImageView!
-    
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.returnKey = IQKeyboardReturnKeyHandler.init(controller: self)
-        
-//        itemName.delegate = self
-//        IQKeyboardManager.sharedManager().enable = true
 
-        
-//        returnKey.textFieldShouldEndEditing(itemName)
-        
-    
-//        returnKey.textFieldShouldEndEditing(itemName)
-        
-        
-        // Style navigation bar
-        
+        // style navigation bar
         let font = UIFontDescriptor(fontAttributes: [UIFontDescriptorFaceAttribute : "Medium", UIFontDescriptorFamilyAttribute: "Avenir"])
         
         navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont(descriptor: font, size: 20)]
@@ -123,10 +104,9 @@ class PreviewViewController: UIViewController, UITextViewDelegate, UIGestureReco
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         navigationController?.navigationBar.shadowImage = UIImage()
         
-        // Style Next button
+        // style Next button
         nextButton.layer.cornerRadius = 5
 
-        
         // set color of alert controllers
         nextAlertController.view.tintColor = textColor
         cameraSelectAlertController.view.tintColor = textColor
@@ -156,9 +136,6 @@ class PreviewViewController: UIViewController, UITextViewDelegate, UIGestureReco
         UITapRecognizerFour.delegate = self
         self.imageViewFour.addGestureRecognizer(UITapRecognizerFour)
         self.imageViewFour.isUserInteractionEnabled = true
-
-        
-//        itemName.delegate = self
         
         // if image was passed from photo vc
         if backgroundImage != nil {
@@ -180,10 +157,8 @@ class PreviewViewController: UIViewController, UITextViewDelegate, UIGestureReco
             self.itemName.text = nameString
         }
         
-        
         // border around textbox for user to type item name
         let borderColor = lightGray
-        
         itemName.layer.borderColor = borderColor
         itemName.layer.borderWidth = 0.5;
         itemName.layer.cornerRadius = 5.0;
@@ -213,8 +188,6 @@ class PreviewViewController: UIViewController, UITextViewDelegate, UIGestureReco
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         */
     }
-    
-
     
     func tappedImageCover(_sender: AnyObject) {
         print("Cover image tapped!")
@@ -368,43 +341,7 @@ class PreviewViewController: UIViewController, UITextViewDelegate, UIGestureReco
         // Dispose of any resources that can be recreated.
     }
     
-    /*
-    func keyboardWillShow(notification: NSNotification) {
-        // self.view.endEditing(false)
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            // shifts screen up as keyboard appears
-            self.view.frame.origin.y -= keyboardSize.height
-        }
-    }
-    
-    func keyboardWillHide(notification: NSNotification) {
-        // self.view.endEditing(true)
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            // shifts screen down as keyboard disappears
-            self.view.frame.origin.y += keyboardSize.height
-        }
-    }
-    */
-    
-    /*
-    func textViewDidChange(_ itemName: UITextView) {
-        let text = itemName.text!
-        let remainingCount = 50 - text.characters.count
-        let count = text.characters.count
-        
-        if count == 49 {
-            charCountLabel.text = "Item Name (1 character remaining)"
-        } else if count <= 50 {
-            charCountLabel.text = "Item Name (" + String(remainingCount) + " characters remaining)"
-        } else {
-            charCountLabel.text = "Item Name (0 characters remaining)"
-            self.present(self.nameAlertController, animated: true)
-        }
-    }
- */
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
         
         if segue.identifier == "toPriceSegue" {
             

@@ -53,9 +53,7 @@ class PriceViewController: UIViewController, UITextFieldDelegate {
     let nextAlertController = UIAlertController(title: "Price Required", message: "Please set a price to continue", preferredStyle: .alert)
     
     @IBOutlet weak var inputPrice: UITextField!
-    
     @IBOutlet weak var negotiableSwitch: UISwitch!
-    
     @IBOutlet weak var priceComparsionsLabel: UILabel!
     
     // Result views
@@ -63,15 +61,9 @@ class PriceViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var resultView2: UIView!
     @IBOutlet weak var resultView3: UIView!
     @IBOutlet weak var resultView4: UIView!
-    
-    
-    
-    
-    
+
     @IBOutlet weak var nextButton: UIButton!
-    
-    
-    
+
     @IBAction func previousAction(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
@@ -87,8 +79,6 @@ class PriceViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
         // hide results before they load
         hideResults()
         
@@ -102,22 +92,16 @@ class PriceViewController: UIViewController, UITextFieldDelegate {
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         navigationController?.navigationBar.shadowImage = UIImage()
         
-        
-        // style text field
-        
+        // style text
         let leftView = UILabel(frame: CGRect(x: 10, y: 0, width: 7, height: 26))
-        
         inputPrice.leftView = leftView
         inputPrice.leftViewMode = UITextFieldViewMode.always
-        
         inputPrice.layer.cornerRadius = 5
         inputPrice.layer.borderWidth = 1
         inputPrice.layer.borderColor = Constants.Colors.ourGray.cgColor
         
-        
         // style next button
         nextButton.layer.cornerRadius = 5
-        
         
         // make query
         checkPriceWithName(query: itemName)
@@ -148,7 +132,7 @@ class PriceViewController: UIViewController, UITextFieldDelegate {
         nextAlertController.addAction(OKAction)
         
         priceComparsionsLabel.fadeIn(duration: 1.2, delay: 0, completion: nil)
-//        comparisonAnimation()
+        // comparisonAnimation()
         
     }
     
@@ -181,7 +165,6 @@ class PriceViewController: UIViewController, UITextFieldDelegate {
         resultView4.slideIn(from: .bottom, duration: 1, delay: 0.8, completion: nil)
     }
     
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -194,8 +177,7 @@ class PriceViewController: UIViewController, UITextFieldDelegate {
         let activityIndicator = NVActivityIndicatorView(frame: frame, type: NVActivityIndicatorType.ballPulse, color: Constants.Colors.ourGray, padding: 0)
         view.addSubview(activityIndicator)
         activityIndicator.startAnimating()
-        
-        
+
         let baseURL = "http://api.walmartlabs.com/v1/search?query="
         let endUrl = "&format=json&apiKey=yva6f6yprac42rsp44tjvxjg"
         let newString = query.replacingOccurrences(of: " ", with: "+")
@@ -204,8 +186,8 @@ class PriceViewController: UIViewController, UITextFieldDelegate {
         
         request(wholeUrl, method: .get).validate().responseJSON { (response) in
             if response.result.isSuccess,
-                let responseDictionary = response.result.value as? [String: Any] {
                 
+                let responseDictionary = response.result.value as? [String: Any] {
                 let numberOfItems = responseDictionary["numItems"] as! Int
                 
                 // number of items from query
@@ -215,8 +197,8 @@ class PriceViewController: UIViewController, UITextFieldDelegate {
                 }
                 // at least one result from query
                 if numberOfItems > 0 {
-                    let itemArray = responseDictionary["items"] as! [[String: Any]]
                     
+                    let itemArray = responseDictionary["items"] as! [[String: Any]]
                     let item = itemArray[0]
                     
                     var imageEntities: [[String: Any]] = []
@@ -231,18 +213,15 @@ class PriceViewController: UIViewController, UITextFieldDelegate {
                             break
                         }
                     }
-                    
                     if realEntity == nil && imageEntities.count > 0 {
                         realEntity = imageEntities[0]
                     }
-                    
                     var imageUrl = ""
                     if let realEntity = realEntity {
                         imageUrl = realEntity["largeImage"] as! String
                     }
                     self.firstResultImageUrl = imageUrl
                     print ("THIS IS THE IMAGE URL: \(imageUrl)")
-                    
                     if self.firstResultImageUrl != "" {
                         let request: URLRequest = URLRequest(url: URL(string: self.firstResultImageUrl)!)
                         NSURLConnection.sendAsynchronousRequest(request, queue: OperationQueue.main, completionHandler: {(response: URLResponse!,data: Data!,error: Error!) -> Void in
@@ -251,21 +230,17 @@ class PriceViewController: UIViewController, UITextFieldDelegate {
                             }
                         })
                     }
-                    
                     self.firstResultName.text = String(describing: item["name"]!)
-                    
                     if let firstItemPrice = item["salePrice"] {
                         self.itemPrice = firstItemPrice as! Double
                         self.firstResultPrice.text = "$" + String(describing: firstItemPrice)
-                        
                     }
-                    
                     self.setDefaultPrice()
                     }
                 // more than one result from query
                 if numberOfItems > 1 {
-                    let itemArray = responseDictionary["items"] as! [[String: Any]]
                     
+                    let itemArray = responseDictionary["items"] as! [[String: Any]]
                     let item = itemArray[1]
                     
                     var imageEntities: [[String: Any]] = []
@@ -280,18 +255,15 @@ class PriceViewController: UIViewController, UITextFieldDelegate {
                             break
                         }
                     }
-                    
                     if realEntity == nil && imageEntities.count > 0 {
                         realEntity = imageEntities[0]
                     }
-                    
                     var imageUrl = ""
                     if let realEntity = realEntity {
                         imageUrl = realEntity["largeImage"] as! String
                     }
                     self.secondResultImageUrl = imageUrl
                     print ("THIS IS THE IMAGE URL: \(imageUrl)")
-                    
                     if self.secondResultImageUrl != "" {
                         let request: URLRequest = URLRequest(url: URL(string: self.secondResultImageUrl)!)
                         NSURLConnection.sendAsynchronousRequest(request, queue: OperationQueue.main, completionHandler: {(response: URLResponse!,data: Data!,error: Error!) -> Void in
@@ -300,18 +272,15 @@ class PriceViewController: UIViewController, UITextFieldDelegate {
                             }
                         })
                     }
-                    
                     self.secondResultName.text = String(describing: item["name"]!)
-                    
                     if let SecondItemPrice = item["salePrice"] {
                         self.secondResultPrice.text = "$" + String(describing: SecondItemPrice)
-                        
                     }
                 }
                 // more than two results from query
                 if numberOfItems > 2 {
-                    let itemArray = responseDictionary["items"] as! [[String: Any]]
                     
+                    let itemArray = responseDictionary["items"] as! [[String: Any]]
                     let item = itemArray[2]
                     
                     var imageEntities: [[String: Any]] = []
@@ -326,18 +295,15 @@ class PriceViewController: UIViewController, UITextFieldDelegate {
                             break
                         }
                     }
-                    
                     if realEntity == nil && imageEntities.count > 0 {
                         realEntity = imageEntities[0]
                     }
-                    
                     var imageUrl = ""
                     if let realEntity = realEntity {
                         imageUrl = realEntity["largeImage"] as! String
                     }
                     self.thirdResultImageUrl = imageUrl
                     print ("THIS IS THE IMAGE URL: \(imageUrl)")
-                    
                     if self.thirdResultImageUrl != "" {
                         let request: URLRequest = URLRequest(url: URL(string: self.thirdResultImageUrl)!)
                         NSURLConnection.sendAsynchronousRequest(request, queue: OperationQueue.main, completionHandler: {(response: URLResponse!,data: Data!,error: Error!) -> Void in
@@ -346,26 +312,22 @@ class PriceViewController: UIViewController, UITextFieldDelegate {
                             }
                         })
                     }
-                    
                     self.thirdResultName.text = String(describing: item["name"]!)
-                    
                     if let thirdItemPrice = item["salePrice"] {
                         self.thirdResultPrice.text = "$" + String(describing: thirdItemPrice)
-                        
                     }
                 }
-                
                 // more than three results from query
                 if numberOfItems > 3 {
-                    let itemArray = responseDictionary["items"] as! [[String: Any]]
                     
+                    let itemArray = responseDictionary["items"] as! [[String: Any]]
                     let item = itemArray[3]
                     
                     var imageEntities: [[String: Any]] = []
                     if let imageData = item["imageEntities"] {
                         imageEntities = imageData as! [[String: Any]]
                     }
-                 var realEntity: [String: Any]? = nil
+                    var realEntity: [String: Any]? = nil
                     for entity in imageEntities {
                         let entityType = entity["entityType"] as! String
                         if entityType == "PRIMARY" {
@@ -373,18 +335,15 @@ class PriceViewController: UIViewController, UITextFieldDelegate {
                             break
                         }
                     }
-                    
                     if realEntity == nil && imageEntities.count > 0 {
                         realEntity = imageEntities[0]
                     }
-                    
                     var imageUrl = ""
                     if let realEntity = realEntity {
                         imageUrl = realEntity["largeImage"] as! String
                     }
                     self.fourthResultImageUrl = imageUrl
                     print ("THIS IS THE IMAGE URL: \(imageUrl)")
-                    
                     if self.fourthResultImageUrl != "" {
                         let request: URLRequest = URLRequest(url: URL(string: self.fourthResultImageUrl)!)
                         NSURLConnection.sendAsynchronousRequest(request, queue: OperationQueue.main, completionHandler: {(response: URLResponse!,data: Data!,error: Error!) -> Void in
@@ -393,20 +352,16 @@ class PriceViewController: UIViewController, UITextFieldDelegate {
                             }
                         })
                     }
-                    
                     self.fourthResultName.text = String(describing: item["name"]!)
-                    
                     if let fourthItemPrice = item["salePrice"] {
                         self.fourthResultPrice.text = "$" + String(describing: fourthItemPrice)
                     }
                 }
-                
-                // Show and animate results
+                // show and animate results
                 activityIndicator.stopAnimating()
                 self.showResults()
                 self.comparisonAnimation()
-            } // End of closure
-        
+            } // end of closure
         }
     }
     
@@ -419,10 +374,9 @@ class PriceViewController: UIViewController, UITextFieldDelegate {
         self.inputPrice.text = formatter.string(from: price) // ex. "$123.44"
     }
 
-    
-    //Calls this function when the tap is recognized.
+    // calls this function when the tap is recognized.
     func dismissKeyboard() {
-        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        // causes the view (or one of its embedded text fields) to resign the first responder status.
         view.endEditing(true)
     }
     

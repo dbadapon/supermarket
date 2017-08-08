@@ -16,21 +16,13 @@ import SimpleAnimation
 
 class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDelegate {
     
-    
-    
     @IBOutlet weak var resultTag: UIView!
-    
     @IBOutlet weak var resultLabel: UILabel!
-    
     @IBOutlet weak var priceLabel: UILabel!
     
-    
     var resultShowing = false
-    
     var startedNetworkRequests = false
-    
     var toFetch: [String] = []
-    
     var cachedResults: [String:Double] = [:]
     
     private var recognizer: SupermarketObjectRecognizer? {
@@ -268,14 +260,12 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
         delegate?.didFindNewObject(object: topMLResult)
         
         animateResultTag()
-        
         resultLabel.text = recognizedObject.highProbabilityMLResult
         
         if !startedNetworkRequests {
             startedNetworkRequests = true
             runNetworkRequests()
         }
-        
         getPrice(mlResult: recognizedObject.highProbabilityMLResult)
         showResultTag(recognizedObject: recognizedObject)
     }
@@ -317,7 +307,7 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
             let endUrl = "&format=json&apiKey=yva6f6yprac42rsp44tjvxjg"
             
             let newString = query.replacingOccurrences(of: " ", with: "+")
-//            newString = newString.replacingOccurrences(of: ",", with: "")
+            // newString = newString.replacingOccurrences(of: ",", with: "")
 
             let wholeUrl = baseURL + newString + endUrl
             
@@ -348,7 +338,6 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
                     // print ("it's not getting a response")
                     print (response.result.error!)
                 }
-                
             }
             
          toFetch.remove(at: 0)
@@ -372,7 +361,6 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
             resultTag.isHidden = true
             view.addSubview(resultTag)
             view.bringSubview(toFront: resultTag)
-            
             resultTag.fadeIn(duration: 0.5, delay: 0, completion: { (complete) in
                 self.resultShowing = true
             })
