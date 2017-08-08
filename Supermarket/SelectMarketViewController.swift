@@ -260,10 +260,10 @@ class SelectMarketViewController: UIViewController, UICollectionViewDelegate, UI
                                 
                                 // Stop activity indicator
                                 self.stopAnimating()
-                                self.backToHome()
                             }
                         })
                     }
+                    self.backToHome()
                 }
             }
             
