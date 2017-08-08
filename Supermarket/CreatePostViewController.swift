@@ -262,7 +262,13 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
         if let convertedRect = self.previewLayer?.rectForMetadataOutputRect(ofInterest: recognizedObject.boundingBox) {
             self.objectFrameView?.frame = convertedRect
         }
-        self.topMLResult = recognizedObject.highProbabilityMLResult
+        
+        if recognizedObject.highProbabilityMLResult == "banana\n(NOT HOTDOG!)" {
+            self.topMLResult = "banana"
+        } else {
+            self.topMLResult = recognizedObject.highProbabilityMLResult
+        }
+        
         delegate?.didFindNewObject(object: topMLResult)
         
         animateResultTag()
@@ -389,7 +395,11 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
     @IBAction func captureAction(_ sender: UIButton) {
         if let recognizer = self.recognizer {
             recognizer.captureScreenshot()
-            self.topMLResult = recognizer.topMLResult
+            if recognizer.topMLResult == "banana\n(NOT HOTDOG!)" {
+                self.topMLResult = "banana"
+            } else {
+                self.topMLResult = recognizer.topMLResult
+            }
         }
     }
     

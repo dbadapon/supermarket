@@ -103,8 +103,15 @@ class PriceViewController: UIViewController, UITextFieldDelegate {
         // style next button
         nextButton.layer.cornerRadius = 5
         
-        // make query
-        checkPriceWithName(query: itemName)
+        // cut string off at 30 characters if item name too long
+        if itemName.characters.count > 30 {
+            let index = itemName.index(itemName.startIndex, offsetBy: 30)
+            let queryString = itemName.substring(to: index)
+            checkPriceWithName(query: queryString)
+        } else {
+            // make query without substringing
+            checkPriceWithName(query: itemName)
+        }
         
         // set color of negotiable switch
         negotiableSwitch.onTintColor = textColor

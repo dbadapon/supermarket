@@ -425,6 +425,10 @@ class SupermarketObjectRecognizer: NSObject, AVCaptureVideoDataOutputSampleBuffe
             } else {
                 self.highProbabilityMLResult = highProbResultForOne
             }
+            
+            if self.highProbabilityMLResult == "banana " {
+                self.highProbabilityMLResult = "banana\n(NOT HOTDOG!)"
+            }
 
             if self.highProbabilityMLResult != "" {
                 if self.highProbabilityMLResult != self.currentHighProbabilityMLResult {
