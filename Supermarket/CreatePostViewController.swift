@@ -278,8 +278,8 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
             startedNetworkRequests = true
             runNetworkRequests()
         }
-        getPrice(mlResult: recognizedObject.highProbabilityMLResult)
-        showResultTag(recognizedObject: recognizedObject)
+        getPrice(mlResult: self.topMLResult)
+        showResultTag()
     }
     
     func highProbObjectRecognized(isRecognized: Bool) {
@@ -364,7 +364,7 @@ class CreatePostViewController: UIViewController, SupermarketObjectRecognizerDel
         })
     }
     
-    func showResultTag(recognizedObject: RecognizedObject) {
+    func showResultTag() {
         // if it's already there, keep it there and don't do anything
         // if it's not there, fade it in
         
