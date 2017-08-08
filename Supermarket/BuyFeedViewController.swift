@@ -83,6 +83,7 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
 
         
         super.viewDidLoad()
+        startAnimating(type: NVActivityIndicatorType.ballPulse, color: Constants.Colors.ourGray, backgroundColor: UIColor.clear)
         
         // pull to refresh
         refreshControl = UIRefreshControl()
@@ -381,11 +382,6 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func filterPosts() {
-        // START ACTIVITY INDICATOR
-        print("Start activity indicator!")
-        // startAnimating(type: NVActivityIndicatorType.ballPulse)
-        // activityIndicatorView.isHidden = false
-        
         startAnimating(type: NVActivityIndicatorType.ballPulse, color: Constants.Colors.ourGray, backgroundColor: UIColor.clear)
         
         self.posts = []
@@ -434,15 +430,9 @@ class BuyFeedViewController: UIViewController, UITableViewDataSource, UITableVie
 //                self.postTableView.reloadData()
 //                self.postTableView.reloadData(with: UITableView.AnimationType.simple(duration: 0.75, direction: .top(useCellsFrame: true), constantDelay: 0))
                 
-                self.postTableView.reloadData(with: UITableView.AnimationType.simple(duration: 0.75, direction: .top(useCellsFrame: true), constantDelay: 0), reversed: false, completion: {
-//                    print("Stop activity indicator!")
-//                    self.activityIndicatorView.isHidden = true
-//                    self.stopAnimating()
-                    
-                })
+                self.postTableView.reloadData(with: UITableView.AnimationType.simple(duration: 0.75, direction: .top(useCellsFrame: true), constantDelay: 0), reversed: false, completion: nil)
 
                 // STOP ACTIVITY INDICATOR
-                print("Stop activity indicator!")
                 self.stopAnimating()
                 self.refreshControl.endRefreshing()
             } else {
