@@ -19,7 +19,7 @@
         </array>
     </customFonts>
     <scenes>
-        <!--Market Name-->
+        <!--Supermarket-->
         <scene sceneID="tIp-Vc-pBc">
             <objects>
                 <viewController id="8QK-l8-mMa" customClass="BuyFeedViewController" customModule="Supermarket" customModuleProvider="target" sceneMemberID="viewController">
@@ -132,7 +132,7 @@
                             <constraint firstItem="xCT-fe-2Pn" firstAttribute="top" secondItem="vwd-1s-d61" secondAttribute="bottom" id="yFx-K4-RNo"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Market Name" id="Lde-4x-prC">
+                    <navigationItem key="navigationItem" title="Supermarket" id="Lde-4x-prC">
                         <barButtonItem key="leftBarButtonItem" image="Menu-50" id="OWe-ii-zns">
                             <connections>
                                 <segue destination="gaw-1C-xQB" kind="presentation" identifier="sideMenu" id="cfL-Du-jpL"/>

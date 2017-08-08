@@ -29,10 +29,17 @@ class SellFeedViewController: UIViewController, UITableViewDataSource, UITableVi
     var items : [String] = ["Selling", "Sold"]
     var detailPost: Post?
     
+    var refreshControl: UIRefreshControl!
+    
     let ourColor = UIColor(red: 93.0/255.0, green: 202.0/255.0, blue: 206.0/255.0, alpha: 1.0)
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // pull to refresh
+        refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(didPullToRefresh(_:)), for: .valueChanged)
+        postTableView.insertSubview(refreshControl, at: 0)
         
         // add swipe gestures
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture))
@@ -160,6 +167,10 @@ class SellFeedViewController: UIViewController, UITableViewDataSource, UITableVi
 //        }
         
         
+    } // end of viewDidLoad
+    
+    func didPullToRefresh(_ refreshControl: UIRefreshControl) {
+        loadPosts()
     }
     
     // for swipe gestures
@@ -318,6 +329,7 @@ class SellFeedViewController: UIViewController, UITableViewDataSource, UITableVi
                         
                         self.postTableView.reloadData(with: UITableView.AnimationType.simple(duration: 0.75, direction: .top(useCellsFrame: true), constantDelay: 0), reversed: false, completion: nil)
                         self.stopAnimating()
+                        self.refreshControl.endRefreshing()
                     }
                 })
 //                for m in marketPosts {
