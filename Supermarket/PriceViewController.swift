@@ -234,7 +234,13 @@ class PriceViewController: UIViewController, UITextFieldDelegate {
                     self.firstResultName.text = String(describing: item["name"]!)
                     if let firstItemPrice = item["salePrice"] {
                         self.itemPrice = firstItemPrice as! Double
-                        self.firstResultPrice.text = "$" + String(describing: firstItemPrice)
+                        
+                        if self.itemPrice >= 100 {
+                            self.firstResultPrice.text = "$" + String(describing: Int(self.itemPrice))
+                        } else {
+                            let formattedString = "$" + String(format: "%.2f", self.itemPrice!)
+                            self.firstResultPrice.text = formattedString
+                        }
                     }
                     self.setDefaultPrice()
                     }
@@ -275,7 +281,13 @@ class PriceViewController: UIViewController, UITextFieldDelegate {
                     }
                     self.secondResultName.text = String(describing: item["name"]!)
                     if let SecondItemPrice = item["salePrice"] {
-                        self.secondResultPrice.text = "$" + String(describing: SecondItemPrice)
+                        let price = item["salePrice"] as! Double
+                        if price >= 100 {
+                            self.secondResultPrice.text = "$" + String(describing: Int(price))
+                        } else {
+                            let formattedString = "$" + String(format: "%.2f", price)
+                            self.secondResultPrice.text = formattedString
+                        }
                     }
                 }
                 // more than two results from query
@@ -315,7 +327,13 @@ class PriceViewController: UIViewController, UITextFieldDelegate {
                     }
                     self.thirdResultName.text = String(describing: item["name"]!)
                     if let thirdItemPrice = item["salePrice"] {
-                        self.thirdResultPrice.text = "$" + String(describing: thirdItemPrice)
+                        let price = item["salePrice"] as! Double
+                        if price >= 100 {
+                            self.thirdResultPrice.text = "$" + String(describing: Int(price))
+                        } else {
+                            let formattedString = "$" + String(format: "%.2f", price)
+                            self.thirdResultPrice.text = formattedString
+                        }
                     }
                 }
                 // more than three results from query
@@ -355,7 +373,13 @@ class PriceViewController: UIViewController, UITextFieldDelegate {
                     }
                     self.fourthResultName.text = String(describing: item["name"]!)
                     if let fourthItemPrice = item["salePrice"] {
-                        self.fourthResultPrice.text = "$" + String(describing: fourthItemPrice)
+                        let price = item["salePrice"] as! Double
+                        if price >= 100 {
+                            self.fourthResultPrice.text = "$" + String(describing: Int(price))
+                        } else {
+                            let formattedString = "$" + String(format: "%.2f", price)
+                            self.fourthResultPrice.text = formattedString
+                        }
                     }
                 }
                 // show and animate results

@@ -212,8 +212,13 @@ class PhotoViewController: UIViewController {
                     }
                     self.firstResultName.text = String(describing: item["name"]!)
                     if let firstItemPrice = item["salePrice"] {
-                        self.firstPriceValue = firstItemPrice as? Double
-                        self.firstResultPrice.text = "$" + String(describing: firstItemPrice)
+                        self.firstPriceValue = firstItemPrice as! Double
+                        if self.firstPriceValue! >= 100.0 {
+                            self.firstResultPrice.text = "$" + String(describing: Int(self.firstPriceValue!))
+                        } else {
+                            let formattedString = "$" + String(format: "%.2f", self.firstPriceValue!)
+                            self.firstResultPrice.text = formattedString
+                        }
                     }
                 }
                 // more than one result from query
@@ -254,7 +259,13 @@ class PhotoViewController: UIViewController {
                     }
                     self.secondResultName.text = String(describing: item["name"]!)
                     if item["salePrice"] != nil {
-                        self.secondResultPrice.text = "$" + String(describing: item["salePrice"]!)
+                        let price = item["salePrice"] as! Double
+                        if price >= 100 {
+                            self.secondResultPrice.text = "$" + String(describing: Int(price))
+                        } else {
+                            let formattedString = "$" + String(format: "%.2f", price)
+                            self.secondResultPrice.text = formattedString
+                        }
                     }
                 }
                 
@@ -294,7 +305,13 @@ class PhotoViewController: UIViewController {
                     }
                     self.thirdResultName.text = String(describing: item["name"]!)
                     if item["salePrice"] != nil {
-                        self.thirdResultPrice.text = "$" + String(describing: item["salePrice"]!)
+                        let price = item["salePrice"] as! Double
+                        if price >= 100 {
+                            self.thirdResultPrice.text = "$" + String(describing: Int(price))
+                        } else {
+                            let formattedString = "$" + String(format: "%.2f", price)
+                            self.thirdResultPrice.text = formattedString
+                        }
                     }
                 }
                 // more than three results from query
@@ -334,7 +351,13 @@ class PhotoViewController: UIViewController {
                     }
                     self.fourthResultName.text = String(describing: item["name"]!)
                     if item["salePrice"] != nil {
-                        self.fourthResultPrice.text = "$" + String(describing: item["salePrice"]!)
+                        let price = item["salePrice"] as! Double
+                        if price >= 100 {
+                            self.fourthResultPrice.text = "$" + String(describing: Int(price))
+                        } else {
+                            let formattedString = "$" + String(format: "%.2f", price)
+                            self.fourthResultPrice.text = formattedString
+                        }
                     }
                 }
             }
