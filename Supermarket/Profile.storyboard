@@ -9,6 +9,13 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Avenir.ttc">
+            <string>Avenir-Book</string>
+            <string>Avenir-Medium</string>
+            <string>Avenir-Roman</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Profile-->
         <scene sceneID="B0Y-a7-0od">
@@ -23,58 +30,87 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Xqw-DN-5E6" customClass="PFImageView">
-                                <rect key="frame" x="91" y="213" width="192" height="191"/>
+
+                                <rect key="frame" x="91" y="177" width="192" height="191"/>
+
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Xqw-DN-5E6" secondAttribute="height" multiplier="1:1" constant="1" id="MPP-Mo-mtc"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Alvin Magee" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Dj-c8-lDr">
+<<<<<<< HEAD
                                 <rect key="frame" x="87.5" y="164" width="200" height="29"/>
+=======
+                                <rect key="frame" x="87.5" y="124" width="200" height="33"/>
+>>>>>>> Started styling profile view
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="DhR-MQ-4Mg"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="24"/>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="24"/>
                                 <color key="textColor" red="1" green="0.9999879599" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="amagee12@gmail.com" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gl9-8b-VYF">
+<<<<<<< HEAD
                                 <rect key="frame" x="58" y="453" width="260" height="21"/>
+=======
+                                <rect key="frame" x="58" y="421" width="260" height="25"/>
+>>>>>>> Started styling profile view
                                 <constraints>
                                     <constraint firstAttribute="width" constant="260" id="725-4d-z9f"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="18"/>
                                 <color key="textColor" red="1" green="0.9999879599" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="almagee16" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="21g-g9-6ff">
+<<<<<<< HEAD
                                 <rect key="frame" x="87" y="424" width="200" height="21"/>
+=======
+                                <rect key="frame" x="87" y="388" width="200" height="25"/>
+>>>>>>> Started styling profile view
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="u16-Yt-Emh"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="18"/>
                                 <color key="textColor" red="1" green="0.9999879599" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(504) 418-0607" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h7A-3U-oV8">
+<<<<<<< HEAD
                                 <rect key="frame" x="107" y="482" width="160" height="21"/>
+=======
+                                <rect key="frame" x="107" y="454" width="160" height="25"/>
+>>>>>>> Started styling profile view
                                 <constraints>
                                     <constraint firstAttribute="width" constant="160" id="rUh-zs-QXw"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="18"/>
                                 <color key="textColor" red="1" green="0.9999879599" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F5s-Ay-qgw">
+<<<<<<< HEAD
                                 <rect key="frame" x="62.5" y="511" width="250" height="21"/>
+=======
+                                <rect key="frame" x="37.5" y="487" width="300" height="25"/>
+>>>>>>> Started styling profile view
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="250" id="kH4-iG-E8O"/>
+                                    <constraint firstAttribute="width" constant="300" id="kH4-iG-E8O"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="18"/>
                                 <color key="textColor" red="1" green="0.9999879599" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
+<<<<<<< HEAD
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="swW-9h-f0p">
                                 <rect key="frame" x="302" y="72" width="65" height="30"/>
+=======
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="swW-9h-f0p">
+                                <rect key="frame" x="165" y="603" width="45" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="18"/>
+>>>>>>> Started styling profile view
                                 <state key="normal" title="Done">
                                     <color key="titleColor" red="1" green="0.9999879599" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </state>
